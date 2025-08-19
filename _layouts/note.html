@@ -1,0 +1,103 @@
+---
+layout: default
+mathjax: true
+---
+
+<main class="text-zinc-900 dark:text-zinc-100 max-w-4xl mx-auto px-4 py-8 min-h-screen">
+    <article class="prose prose-zinc dark:prose-invert max-w-none">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold mb-4">{{ page.title }}</h1>
+            {% if page.tags.size > 0 %}
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for tag in page.tags %}
+                <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                    {{ tag }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if page.category %}
+            <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+                Category: <span class="font-medium">{{ page.category | capitalize }}</span>
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="note-content">
+            {{ content }}
+        </div>
+
+        <footer class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-700">
+            <div class="flex items-center justify-between">
+                <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Home
+                </a>
+                
+                <a href="/notes" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    All Notes
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </footer>
+    </article>
+</main>
+
+<style>
+    .note-content h1, .note-content h2, .note-content h3 {
+        color: rgb(24 24 27);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3 {
+        color: rgb(244 244 245);
+    }
+    
+    .note-content p {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+    }
+    
+    .note-content ul, .note-content ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+    
+    .note-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .note-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        background: rgb(244 244 245);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .dark .note-content code {
+        background: rgb(39 39 42);
+    }
+    
+    .note-content pre {
+        margin: 1.5rem 0;
+        background: rgb(248 250 252);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+    
+    .dark .note-content pre {
+        background: rgb(24 24 27);
+    }
+    
+    /* MathJax styling */
+    .MathJax {
+        font-size: 1.1em !important;
+    }
+</style>

@@ -1,0 +1,62 @@
+# Site settings
+title: Paras Parkash
+email: parasxparkash@gmail.com
+description: >-
+  Software Engineer passionate about building scalable applications and solving complex problems.
+  Currently focused on full-stack development and system architecture.
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://parasparkash.github.io" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      author: Paras Parkash
+  - scope:
+      path: "_notes"
+      type: notes
+    values:
+      layout: note
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - template copy.html
+
+# Site data
+author:
+  name: Paras Parkash
+  email: parasxparkash@gmail.com
+  location: Chennai, India
+  github: parasparkash
+  linkedin: parasparkash
+  twitter: parasparkash
+
+# MathJax settings
+mathjax: true
