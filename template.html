@@ -19,6 +19,16 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -155,6 +165,42 @@
         
         .tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
             opacity: 1;
+        }
+        
+        /* Note viewer styling */
+        #note-content {
+            line-height: 1.6;
+        }
+        
+        #note-content h1, #note-content h2, #note-content h3 {
+            color: rgb(24 24 27);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .dark #note-content h1, .dark #note-content h2, .dark #note-content h3 {
+            color: rgb(244 244 245);
+        }
+        
+        #note-content p {
+            margin-bottom: 1rem;
+        }
+        
+        #note-content ul, #note-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        #note-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        #note-content code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        #note-content pre {
+            margin: 1.5rem 0;
         }
         
         /* Responsive adjustments */
@@ -407,6 +453,21 @@
 
                 <!-- Demarcating Line -->
                 <div class="border-b border-zinc-200 dark:border-zinc-700 mb-8"></div>
+
+                <!-- Note Viewer Section -->
+                <div id="note-viewer" class="hidden mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100" id="note-title">Note Title</h2>
+                        <button onclick="closeNote()" class="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="note-content" class="prose prose-zinc dark:prose-invert max-w-none">
+                        <!-- Note content will be loaded here -->
+                    </div>
+                </div>
 
                 <!-- Projects Tab Content -->
                 <div id="content-projects" class="tab-content opacity-0 transform animate-fade-in">
@@ -976,18 +1037,16 @@
 
                 <!-- Footer -->
                 <div class="opacity-0 transform animate-fade-in animate-delay-800">
-                    <footer class="pt-4 text-xs text-zinc-400 dark:text-zinc-500 flex flex-col gap-2">
-                        <div class="flex justify-between items-center">
+                    <footer class="pt-4 text-xs text-zinc-400 dark:text-zinc-500">
+                        <div class="flex justify-between items-start mb-3">
                             <div></div>
                             <div class="text-right">
                                 <div class="mb-1">parasxparkash@gmail.com</div>
                                 <div>Design with nicotine and chai</div>
                             </div>
                         </div>
-                        <div class="text-[10px] text-zinc-300 dark:text-zinc-600 flex justify-between items-center">
+                        <div class="flex justify-between items-center text-[10px] text-zinc-300 dark:text-zinc-600">
                             <div id="user-system">💻 Detecting system...</div>
-                        </div>
-                        <div class="text-[10px] text-zinc-300 dark:text-zinc-600 flex justify-between items-center">
                             <div id="user-location">📍 Detecting location...</div>
                         </div>
                     </footer>
@@ -1016,16 +1075,22 @@
                 
                 <!-- Notes List -->
                 <div class="space-y-4">
-                    <div class="note-item" data-tags="maths,finance">
-                        <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">Mathematical Finance Models</h4>
-                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Advanced pricing models and risk assessment</p>
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="maths,finance" 
+                         data-note="ring-theory.md"
+                         onclick="loadNote('ring-theory.md')">
+                        <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">Ring Theory</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Abstract algebra concepts and ring axioms</p>
                         <div class="flex gap-1">
                             <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
-                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
+                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Algebra</span>
                         </div>
                     </div>
                     
-                    <div class="note-item" data-tags="probability">
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="probability" 
+                         data-note="probability-theory.md"
+                         onclick="loadNote('probability-theory.md')">
                         <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Probability Theory</h4>
                         <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Bayesian inference and statistical modeling</p>
                         <div class="flex gap-1">
@@ -1033,11 +1098,15 @@
                         </div>
                     </div>
                     
-                    <div class="note-item" data-tags="maths">
-                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Linear Algebra Applications</h4>
-                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Matrix operations and vector spaces</p>
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="maths,finance" 
+                         data-note="financial-mathematics.md"
+                         onclick="loadNote('financial-mathematics.md')">
+                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Financial Mathematics</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Time value of money and derivatives pricing</p>
                         <div class="flex gap-1">
                             <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
+                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
                         </div>
                     </div>
                 </div>
@@ -1236,6 +1305,92 @@
                     item.style.opacity = '0';
                 }
             });
+        }
+
+        // Note loading functionality
+        async function loadNote(noteFile) {
+            try {
+                const response = await fetch(`notes/${noteFile}`);
+                if (!response.ok) {
+                    throw new Error('Note not found');
+                }
+                
+                const content = await response.text();
+                
+                // Extract title from first line (remove # and trim)
+                const title = content.split('\n')[0].replace('#', '').trim();
+                
+                // Convert markdown to HTML (basic conversion)
+                const htmlContent = convertMarkdownToHtml(content);
+                
+                // Update the note viewer
+                document.getElementById('note-title').textContent = title;
+                document.getElementById('note-content').innerHTML = htmlContent;
+                
+                // Show the note viewer and hide tabs
+                document.getElementById('note-viewer').classList.remove('hidden');
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+                
+                // Re-render MathJax for LaTeX
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+                
+            } catch (error) {
+                console.error('Error loading note:', error);
+                alert('Error loading note. Please try again.');
+            }
+        }
+
+        function closeNote() {
+            // Hide note viewer
+            document.getElementById('note-viewer').classList.add('hidden');
+            
+            // Show the active tab content
+            const activeTab = document.querySelector('.tab-button.active');
+            if (activeTab) {
+                const tabName = activeTab.id.replace('tab-', '');
+                showTab(tabName);
+            }
+        }
+
+        function convertMarkdownToHtml(markdown) {
+            // Basic markdown to HTML conversion
+            let html = markdown
+                // Headers
+                .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mb-3 mt-6">$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold mb-4 mt-8">$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold mb-6">$1</h1>')
+                
+                // Bold and italic
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                
+                // Lists
+                .replace(/^\d+\. (.*$)/gim, '<li class="ml-4">$1</li>')
+                .replace(/^- (.*$)/gim, '<li class="ml-4">$1</li>')
+                
+                // Code blocks
+                .replace(/```(\w+)?\n([\s\S]*?)\n```/g, '<pre class="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg overflow-x-auto"><code>$2</code></pre>')
+                
+                // Inline code
+                .replace(/`([^`]+)`/g, '<code class="bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded text-sm">$1</code>')
+                
+                // Paragraphs
+                .replace(/\n\n/g, '</p><p class="mb-4">')
+                
+                // Tags at the end
+                .replace(/\*Tags: (.*?)\*/g, '<div class="mt-6 pt-4 border-t border-zinc-200 dark:border-zinc-700"><span class="text-sm text-zinc-500 dark:text-zinc-400">Tags: $1</span></div>');
+            
+            // Wrap in paragraph tags
+            html = '<p class="mb-4">' + html + '</p>';
+            
+            // Fix list formatting
+            html = html.replace(/<li class="ml-4">/g, '<ul class="list-decimal list-inside mb-4"><li class="ml-4">');
+            html = html.replace(/<\/li>\n<li class="ml-4">/g, '</li><li class="ml-4">');
+            html = html.replace(/<\/li>\n<p class="mb-4">/g, '</li></ul><p class="mb-4">');
+            
+            return html;
         }
 
         // Smooth scrolling for any anchor links
