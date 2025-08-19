@@ -169,15 +169,13 @@
         
         /* Note viewer styling */
         #note-content {
-            line-height: 1.5;
-            font-size: 0.875rem;
+            line-height: 1.6;
         }
         
         #note-content h1, #note-content h2, #note-content h3 {
             color: rgb(24 24 27);
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
         }
         
         .dark #note-content h1, .dark #note-content h2, .dark #note-content h3 {
@@ -185,49 +183,24 @@
         }
         
         #note-content p {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
         
         #note-content ul, #note-content ol {
-            margin-bottom: 0.75rem;
-            padding-left: 1.25rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
         }
         
         #note-content li {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
         
         #note-content code {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.8rem;
         }
         
         #note-content pre {
-            margin: 1rem 0;
-            font-size: 0.8rem;
-        }
-        
-        /* LaTeX rendering container */
-        #note-content .MathJax {
-            overflow-x: auto;
-            max-width: 100%;
-        }
-        
-        /* Notebook styling */
-        .notebook-item {
-            border-left: 2px solid transparent;
-        }
-        
-        .notebook-item:hover {
-            border-left-color: rgb(59 130 246);
-        }
-        
-        .page-item {
-            border-left: 1px solid rgb(228 228 231);
-        }
-        
-        .dark .page-item {
-            border-left-color: rgb(63 63 70);
+            margin: 1.5rem 0;
         }
         
         /* Responsive adjustments */
@@ -484,19 +457,14 @@
                 <!-- Note Viewer Section -->
                 <div id="note-viewer" class="hidden mb-8">
                     <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2" id="note-title">Note Title</h2>
-                            <div id="note-tags" class="flex flex-wrap gap-2">
-                                <!-- Tags will be displayed here -->
-                            </div>
-                        </div>
+                        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100" id="note-title">Note Title</h2>
                         <button onclick="closeNote()" class="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
                     </div>
-                    <div id="note-content" class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-none">
+                    <div id="note-content" class="prose prose-zinc dark:prose-invert max-w-none">
                         <!-- Note content will be loaded here -->
                     </div>
                 </div>
@@ -1087,18 +1055,59 @@
 
             <!-- Right Sidebar -->
             <div class="w-72 flex-shrink-0 sticky top-4 h-fit">
-                <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Notebooks</h3>
+                <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Notes</h3>
                 
-                <!-- Notebooks List -->
-                <div id="notebooks-list" class="space-y-2 mb-8">
-                    <!-- Notebooks will be loaded here -->
+                <!-- Tag Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="filterNotes('all')" class="note-tag active px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        All
+                    </button>
+                    <button onclick="filterNotes('maths')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Maths
+                    </button>
+                    <button onclick="filterNotes('finance')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Finance
+                    </button>
+                    <button onclick="filterNotes('probability')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Probability
+                    </button>
                 </div>
                 
-                <!-- Latest Notes Section -->
-                <div class="border-t border-zinc-200 dark:border-zinc-700 pt-6">
-                    <h4 class="text-md font-medium mb-4 text-zinc-900 dark:text-zinc-100">Latest Notes</h4>
-                    <div id="latest-notes" class="space-y-3">
-                        <!-- Latest notes will be loaded here -->
+                <!-- Notes List -->
+                <div class="space-y-4">
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="maths,finance" 
+                         data-note="ring-theory.md"
+                         onclick="loadNote('ring-theory.md')">
+                        <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">Ring Theory</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Abstract algebra concepts and ring axioms</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
+                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Algebra</span>
+                        </div>
+                    </div>
+                    
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="probability" 
+                         data-note="probability-theory.md"
+                         onclick="loadNote('probability-theory.md')">
+                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Probability Theory</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Bayesian inference and statistical modeling</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Probability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="note-item cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 p-3 rounded transition-colors" 
+                         data-tags="maths,finance" 
+                         data-note="financial-mathematics.md"
+                         onclick="loadNote('financial-mathematics.md')">
+                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Financial Mathematics</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Time value of money and derivatives pricing</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
+                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1271,102 +1280,30 @@
             detectUserLocation();
         });
 
-
-
-        // Notebook structure
-        const notebookStructure = {
-            'mathematics': {
-                name: 'Mathematics',
-                icon: '📐',
-                pages: [
-                    { name: 'Ring Theory', file: 'mathematics/ring-theory.md', tags: ['maths', 'algebra', 'ring-theory'] },
-                    { name: 'Linear Algebra', file: 'mathematics/linear-algebra.md', tags: ['maths', 'algebra', 'linear-algebra'] }
-                ]
-            },
-            'finance': {
-                name: 'Finance',
-                icon: '💰',
-                pages: [
-                    { name: 'Financial Mathematics', file: 'finance/financial-mathematics.md', tags: ['finance', 'maths', 'probability'] },
-                    { name: 'Portfolio Theory', file: 'finance/portfolio-theory.md', tags: ['finance', 'maths', 'portfolio-theory'] }
-                ]
-            },
-            'statistics': {
-                name: 'Statistics',
-                icon: '📊',
-                pages: [
-                    { name: 'Probability Theory', file: 'statistics/probability-theory.md', tags: ['probability', 'statistics', 'maths'] }
-                ]
-            }
-        };
-
-        // Initialize notebooks on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadNotebooks();
-            loadLatestNotes();
-        });
-
-        // Load notebooks in the sidebar
-        function loadNotebooks() {
-            const notebooksList = document.getElementById('notebooks-list');
-            notebooksList.innerHTML = '';
-
-            Object.entries(notebookStructure).forEach(([key, notebook]) => {
-                const notebookDiv = document.createElement('div');
-                notebookDiv.className = 'notebook-item';
-                notebookDiv.innerHTML = `
-                    <div class="flex items-center gap-2 p-2 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-colors" 
-                         onclick="toggleNotebook('${key}')">
-                        <span class="text-lg">${notebook.icon}</span>
-                        <span class="text-sm font-medium text-zinc-900 dark:text-zinc-100">${notebook.name}</span>
-                        <span class="ml-auto text-xs text-zinc-500">${notebook.pages.length}</span>
-                    </div>
-                    <div id="notebook-${key}" class="hidden ml-6 space-y-1">
-                        ${notebook.pages.map(page => `
-                            <div class="page-item p-2 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-colors text-xs text-zinc-600 dark:text-zinc-400"
-                                 onclick="loadNote('${page.file}')">
-                                📄 ${page.name}
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                notebooksList.appendChild(notebookDiv);
+        // Notes filtering functionality
+        function filterNotes(tag) {
+            // Update active tag button
+            document.querySelectorAll('.note-tag').forEach(btn => {
+                btn.classList.remove('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+                btn.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
             });
-        }
-
-        // Toggle notebook expansion
-        function toggleNotebook(notebookKey) {
-            const notebookContent = document.getElementById(`notebook-${notebookKey}`);
-            notebookContent.classList.toggle('hidden');
-        }
-
-        // Load latest notes
-        function loadLatestNotes() {
-            const latestNotes = document.getElementById('latest-notes');
-            latestNotes.innerHTML = '';
-
-            // Get all pages from all notebooks
-            const allPages = [];
-            Object.values(notebookStructure).forEach(notebook => {
-                notebook.pages.forEach(page => {
-                    allPages.push(page);
-                });
-            });
-
-            // Show latest 3 notes
-            allPages.slice(0, 3).forEach(page => {
-                const noteDiv = document.createElement('div');
-                noteDiv.className = 'p-2 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer transition-colors';
-                noteDiv.onclick = () => loadNote(page.file);
-                noteDiv.innerHTML = `
-                    <div class="text-xs font-medium text-zinc-900 dark:text-zinc-100 mb-1">${page.name}</div>
-                    <div class="flex flex-wrap gap-1">
-                        ${page.tags.map(tag => `
-                            <span class="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400 rounded">${tag}</span>
-                        `).join('')}
-                    </div>
-                `;
-                latestNotes.appendChild(noteDiv);
+            
+            // Highlight active button
+            const activeButton = event.target;
+            activeButton.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+            activeButton.classList.add('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+            
+            // Filter note items
+            const noteItems = document.querySelectorAll('.note-item');
+            noteItems.forEach(item => {
+                const itemTags = item.getAttribute('data-tags').split(',');
+                if (tag === 'all' || itemTags.includes(tag)) {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    item.style.display = 'none';
+                    item.style.opacity = '0';
+                }
             });
         }
 
@@ -1383,22 +1320,12 @@
                 // Extract title from first line (remove # and trim)
                 const title = content.split('\n')[0].replace('#', '').trim();
                 
-                // Extract tags from the end of the file
-                const tagsMatch = content.match(/\*Tags: (.*?)\*/);
-                const tags = tagsMatch ? tagsMatch[1].split(', ') : [];
-                
                 // Convert markdown to HTML (basic conversion)
                 const htmlContent = convertMarkdownToHtml(content);
                 
                 // Update the note viewer
                 document.getElementById('note-title').textContent = title;
                 document.getElementById('note-content').innerHTML = htmlContent;
-                
-                // Update tags display
-                const tagsContainer = document.getElementById('note-tags');
-                tagsContainer.innerHTML = tags.map(tag => 
-                    `<span class="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full">${tag}</span>`
-                ).join('');
                 
                 // Show the note viewer and hide tabs
                 document.getElementById('note-viewer').classList.remove('hidden');
