@@ -366,6 +366,17 @@
             main {
                 padding-top: 4rem;
             }
+            
+            /* Center title on mobile when menu toggle is visible */
+            .mobile-title-center {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .mobile-center {
+                text-align: center;
+            }
         }
         
         /* Improve touch targets on mobile */
@@ -498,8 +509,8 @@
                 <div class="opacity-0 transform animate-fade-in flex-shrink-0">
                     <section class="mb-6">
                         <div class="opacity-0 transform animate-fade-in animate-delay-200">
-                            <h1 class="text-2xl font-medium tracking-tight mb-4 flex items-baseline justify-between">
-                                <span>paras parkash</span>
+                            <h1 class="text-2xl font-medium tracking-tight mb-4 flex items-baseline justify-between mobile-title-center">
+                                <span class="mobile-center">paras parkash</span>
                                 <!-- Theme Toggle moved here -->
                                 <button id="theme-toggle" 
                                         class="p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-200">
@@ -1210,8 +1221,7 @@
                 </div>
 
                 </div>
-            </div>
-
+            
             <!-- Right Sidebar -->
             <div class="w-72 flex-shrink-0 sticky top-4 h-fit">
                 <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Notes</h3>
@@ -1277,9 +1287,8 @@
                     <div>Design with nicotine and chai</div>
                 </div>
             </div>
-            <div class="flex justify-between items-center text-[10px] text-zinc-300 dark:text-zinc-600">
-                <div id="user-system">💻 Detecting system...</div>
-                <div id="user-location">📍 Detecting location...</div>
+            <div class="flex justify-center items-center text-[10px] text-zinc-300 dark:text-zinc-600">
+                <div id="user-info">💻 Detecting system... • 📍 Detecting location...</div>
             </div>
         </div>
     </footer>
@@ -1372,10 +1381,7 @@
             // Get timezone
             const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             
-            const systemElement = document.getElementById('user-system');
-            if (systemElement) {
-                systemElement.textContent = `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
-            }
+            return `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
         }
 
         // User Location Detection (using IP-based service)
@@ -1384,17 +1390,24 @@
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
                 
-                const locationElement = document.getElementById('user-location');
-                if (locationElement && data.city && data.country_name) {
-                    locationElement.textContent = `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
-                } else if (locationElement) {
-                    locationElement.textContent = `📍 Location unavailable`;
+                if (data.city && data.country_name) {
+                    return `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
+                } else {
+                    return `📍 Location unavailable`;
                 }
             } catch (error) {
-                const locationElement = document.getElementById('user-location');
-                if (locationElement) {
-                    locationElement.textContent = `📍 Location unavailable`;
-                }
+                return `📍 Location unavailable`;
+            }
+        }
+        
+        // Combined user info function
+        async function updateUserInfo() {
+            const systemInfo = detectUserSystem();
+            const locationInfo = await detectUserLocation();
+            
+            const userInfoElement = document.getElementById('user-info');
+            if (userInfoElement) {
+                userInfoElement.textContent = `${systemInfo} • ${locationInfo}`;
             }
         }
 
@@ -1444,8 +1457,7 @@
             setInterval(updateISTClock, 1000);
             
             // Initialize user system and location detection
-            detectUserSystem();
-            detectUserLocation();
+            updateUserInfo();
         });
 
         // Notes filtering functionality
@@ -1491,17 +1503,7 @@
             });
         });
 
-        // Add hover effects for project items
-        const projectItems = document.querySelectorAll('.group');
-        projectItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(4px)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
-        });
+
         
         // Mobile menu functionality
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
