@@ -834,7 +834,7 @@
       <span class="k">return </span><span class="p">(</span>
         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"error-boundary"</span><span class="p">&gt;</span>
           <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Something went wrong.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">details</span> <span class="na">style</span><span class="p">=&gt;</span>
+          <span class="p">&lt;</span><span class="nt">details</span> <span class="na">style</span><span class="p">=</span><span class="si">{</span><span class="p">{</span> <span class="na">whiteSpace</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pre-wrap</span><span class="dl">'</span> <span class="p">}</span><span class="si">}</span><span class="p">&gt;</span>
             <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span><span class="si">}</span>
             <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
             <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">errorInfo</span><span class="p">.</span><span class="nx">componentStack</span><span class="si">}</span>
