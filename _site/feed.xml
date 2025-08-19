@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-08-19T22:39:23+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Paras Parkash</title><subtitle>Software Engineer passionate about building scalable applications and solving complex problems. Currently focused on full-stack development and system architecture.</subtitle><author><name>Paras Parkash</name><email>parasxparkash@gmail.com</email></author><entry><title type="html">Building Scalable Microservices with Node.js</title><link href="http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices.html" rel="alternate" type="text/html" title="Building Scalable Microservices with Node.js" /><published>2024-01-15T00:00:00+05:30</published><updated>2024-01-15T00:00:00+05:30</updated><id>http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices</id><content type="html" xml:base="http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices.html"><![CDATA[<h1 id="building-scalable-microservices-with-nodejs">Building Scalable Microservices with Node.js</h1>
+
+<p>Microservices architecture has become increasingly popular for building large-scale applications. In this comprehensive guide, we’ll explore how to design, build, and deploy scalable microservices using Node.js.</p>
+
+<h2 id="what-are-microservices">What Are Microservices?</h2>
+
+<p>Microservices are a software development approach that structures an application as a collection of loosely coupled services. Each service is:</p>
+
+<ul>
+  <li><strong>Independently deployable</strong></li>
+  <li><strong>Business capability focused</strong></li>
+  <li><strong>Owned by a small team</strong></li>
+  <li><strong>Technology agnostic</strong></li>
+</ul>
+
+<h2 id="key-benefits">Key Benefits</h2>
+
+<h3 id="1-scalability">1. Scalability</h3>
+<p>Each service can be scaled independently based on demand.</p>
+
+<h3 id="2-technology-diversity">2. Technology Diversity</h3>
+<p>Teams can choose the best technology stack for each service.</p>
+
+<h3 id="3-fault-isolation">3. Fault Isolation</h3>
+<p>Failures in one service don’t necessarily bring down the entire system.</p>
+
+<h3 id="4-team-autonomy">4. Team Autonomy</h3>
+<p>Small teams can work independently on their services.</p>
+
+<h2 id="architecture-patterns">Architecture Patterns</h2>
+
+<h3 id="api-gateway-pattern">API Gateway Pattern</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Example API Gateway with Express.js</span>
+<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">httpProxy</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http-proxy-middleware</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+
+<span class="c1">// Route to user service</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/users</span><span class="dl">'</span><span class="p">,</span> <span class="nf">httpProxy</span><span class="p">({</span>
+  <span class="na">target</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://user-service:3001</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">changeOrigin</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}));</span>
+
+<span class="c1">// Route to order service</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/orders</span><span class="dl">'</span><span class="p">,</span> <span class="nf">httpProxy</span><span class="p">({</span>
+  <span class="na">target</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://order-service:3002</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">changeOrigin</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}));</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="service-discovery">Service Discovery</h3>
+<p>Implement service discovery to handle dynamic service locations:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">consul</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">consul</span><span class="dl">'</span><span class="p">)();</span>
+
+<span class="c1">// Register service</span>
+<span class="nx">consul</span><span class="p">.</span><span class="nx">agent</span><span class="p">.</span><span class="nx">service</span><span class="p">.</span><span class="nf">register</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user-service</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">3001</span><span class="p">,</span>
+  <span class="na">check</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">http</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:3001/health</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">interval</span><span class="p">:</span> <span class="dl">'</span><span class="s1">10s</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Discover services</span>
+<span class="kd">const</span> <span class="nx">getService</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">serviceName</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">services</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">consul</span><span class="p">.</span><span class="nx">health</span><span class="p">.</span><span class="nf">service</span><span class="p">(</span><span class="nx">serviceName</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">services</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">Service</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="data-management-strategies">Data Management Strategies</h2>
+
+<h3 id="database-per-service">Database Per Service</h3>
+<p>Each microservice should have its own database to ensure loose coupling:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// User Service - MongoDB</span>
+<span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongodb://user-db:27017/users</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Order Service - PostgreSQL</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">Pool</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pool</span><span class="p">({</span>
+  <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">order-db</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">5432</span><span class="p">,</span>
+  <span class="na">database</span><span class="p">:</span> <span class="dl">'</span><span class="s1">orders</span><span class="dl">'</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="event-sourcing">Event Sourcing</h3>
+<p>Implement event sourcing for maintaining data consistency:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">EventStore</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">eventstore</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">eventstore</span> <span class="o">=</span> <span class="nc">EventStore</span><span class="p">({</span>
+  <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">mongodb</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">localhost</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">port</span><span class="p">:</span> <span class="mi">27017</span><span class="p">,</span>
+  <span class="na">dbName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">eventstore</span><span class="dl">'</span>
+<span class="p">});</span>
+
+<span class="c1">// Store events</span>
+<span class="nx">eventstore</span><span class="p">.</span><span class="nf">getEventStream</span><span class="p">(</span><span class="dl">'</span><span class="s1">user-123</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">stream</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">stream</span><span class="p">.</span><span class="nf">addEvent</span><span class="p">({</span>
+    <span class="na">eventType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">UserCreated</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John Doe</span><span class="dl">'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="dl">'</span><span class="s1">john@example.com</span><span class="dl">'</span> <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nx">stream</span><span class="p">.</span><span class="nf">commit</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="communication-patterns">Communication Patterns</h2>
+
+<h3 id="synchronous-communication">Synchronous Communication</h3>
+<p>Use HTTP/REST for synchronous service-to-service communication:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">getUserOrders</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">userId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">`http://user-service/users/</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">orders</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">`http://order-service/orders?userId=</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">user</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+      <span class="na">orders</span><span class="p">:</span> <span class="nx">orders</span><span class="p">.</span><span class="nx">data</span>
+    <span class="p">};</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Failed to fetch user orders</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="asynchronous-communication">Asynchronous Communication</h3>
+<p>Use message queues for asynchronous communication:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">amqp</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">amqplib</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Publisher</span>
+<span class="kd">const</span> <span class="nx">publishEvent</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="dl">'</span><span class="s1">amqp://localhost</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nf">createChannel</span><span class="p">();</span>
+  
+  <span class="k">await</span> <span class="nx">channel</span><span class="p">.</span><span class="nf">assertQueue</span><span class="p">(</span><span class="dl">'</span><span class="s1">user.events</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">channel</span><span class="p">.</span><span class="nf">sendToQueue</span><span class="p">(</span><span class="dl">'</span><span class="s1">user.events</span><span class="dl">'</span><span class="p">,</span> <span class="nx">Buffer</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">event</span><span class="p">)));</span>
+  
+  <span class="k">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="c1">// Consumer</span>
+<span class="kd">const</span> <span class="nx">consumeEvents</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">amqp</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="dl">'</span><span class="s1">amqp://localhost</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">connection</span><span class="p">.</span><span class="nf">createChannel</span><span class="p">();</span>
+  
+  <span class="k">await</span> <span class="nx">channel</span><span class="p">.</span><span class="nf">assertQueue</span><span class="p">(</span><span class="dl">'</span><span class="s1">user.events</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">channel</span><span class="p">.</span><span class="nf">consume</span><span class="p">(</span><span class="dl">'</span><span class="s1">user.events</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">event</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Received event:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+    <span class="nx">channel</span><span class="p">.</span><span class="nf">ack</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="deployment-with-docker-and-kubernetes">Deployment with Docker and Kubernetes</h2>
+
+<h3 id="dockerfile-example">Dockerfile Example</h3>
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:16-alpine</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+<span class="k">RUN </span>npm ci <span class="nt">--only</span><span class="o">=</span>production
+
+<span class="k">COPY</span><span class="s"> . .</span>
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+
+<span class="k">USER</span><span class="s"> node</span>
+
+<span class="k">CMD</span><span class="s"> ["npm", "start"]</span>
+</code></pre></div></div>
+
+<h3 id="kubernetes-deployment">Kubernetes Deployment</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">user-service</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">3</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">user-service</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">user-service</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">user-service</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">user-service:latest</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">3000</span>
+        <span class="na">env</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">DATABASE_URL</span>
+          <span class="na">valueFrom</span><span class="pi">:</span>
+            <span class="na">secretKeyRef</span><span class="pi">:</span>
+              <span class="na">name</span><span class="pi">:</span> <span class="s">db-secret</span>
+              <span class="na">key</span><span class="pi">:</span> <span class="s">url</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">user-service</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">user-service</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+    <span class="na">targetPort</span><span class="pi">:</span> <span class="m">3000</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+</code></pre></div></div>
+
+<h2 id="monitoring-and-observability">Monitoring and Observability</h2>
+
+<h3 id="health-checks">Health Checks</h3>
+<p>Implement health check endpoints:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/health</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">health</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">service</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user-service</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">healthy</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">timestamp</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toISOString</span><span class="p">(),</span>
+    <span class="na">checks</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">database</span><span class="p">:</span> <span class="k">await</span> <span class="nf">checkDatabase</span><span class="p">(),</span>
+      <span class="na">externalService</span><span class="p">:</span> <span class="k">await</span> <span class="nf">checkExternalService</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  
+  <span class="kd">const</span> <span class="nx">isHealthy</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nf">values</span><span class="p">(</span><span class="nx">health</span><span class="p">.</span><span class="nx">checks</span><span class="p">).</span><span class="nf">every</span><span class="p">(</span><span class="nx">check</span> <span class="o">=&gt;</span> <span class="nx">check</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">healthy</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="nx">isHealthy</span> <span class="p">?</span> <span class="mi">200</span> <span class="p">:</span> <span class="mi">503</span><span class="p">).</span><span class="nf">json</span><span class="p">(</span><span class="nx">health</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="distributed-tracing">Distributed Tracing</h3>
+<p>Use tools like Jaeger or Zipkin for distributed tracing:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">opentracing</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">opentracing</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">jaeger</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jaeger-client</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">serviceName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user-service</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">sampler</span><span class="p">:</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">const</span><span class="dl">'</span><span class="p">,</span> <span class="na">param</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">tracer</span> <span class="o">=</span> <span class="nx">jaeger</span><span class="p">.</span><span class="nf">initTracer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">opentracing</span><span class="p">.</span><span class="nf">initGlobalTracer</span><span class="p">(</span><span class="nx">tracer</span><span class="p">);</span>
+
+<span class="c1">// Create spans</span>
+<span class="kd">const</span> <span class="nx">span</span> <span class="o">=</span> <span class="nx">tracer</span><span class="p">.</span><span class="nf">startSpan</span><span class="p">(</span><span class="dl">'</span><span class="s1">get-user</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">span</span><span class="p">.</span><span class="nf">setTag</span><span class="p">(</span><span class="dl">'</span><span class="s1">user.id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">userId</span><span class="p">);</span>
+<span class="c1">// ... perform operation</span>
+<span class="nx">span</span><span class="p">.</span><span class="nf">finish</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ol>
+  <li><strong>Start with a Monolith</strong>: Don’t begin with microservices; extract them as your application grows</li>
+  <li><strong>Design for Failure</strong>: Implement circuit breakers, retries, and timeouts</li>
+  <li><strong>Automate Everything</strong>: Use CI/CD pipelines for consistent deployments</li>
+  <li><strong>Monitor Extensively</strong>: Implement comprehensive logging, metrics, and tracing</li>
+  <li><strong>Secure by Default</strong>: Implement authentication, authorization, and encryption</li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Building scalable microservices with Node.js requires careful planning, proper tooling, and adherence to best practices. While the complexity increases compared to monolithic applications, the benefits of scalability, maintainability, and team autonomy make it worthwhile for large-scale systems.</p>
+
+<p>Remember that microservices are not a silver bullet—they come with their own set of challenges including distributed system complexity, data consistency issues, and operational overhead. Choose this architecture pattern when it aligns with your team structure and business requirements.</p>
+
+<hr />
+
+<p><em>Want to learn more about microservices? Check out my other posts on <a href="/tags/distributed-systems">distributed systems</a> and <a href="/tags/devops">DevOps practices</a>.</em></p>]]></content><author><name>Paras Parkash</name></author><category term="blog" /><category term="development" /><category term="microservices" /><category term="nodejs" /><category term="docker" /><category term="kubernetes" /><summary type="html"><![CDATA[A comprehensive guide to architecting and deploying microservices using Node.js, Docker, and Kubernetes. Covers best practices for service communication, data consistency, and monitoring.]]></summary></entry><entry><title type="html">Modern React Patterns and Performance</title><link href="http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns.html" rel="alternate" type="text/html" title="Modern React Patterns and Performance" /><published>2024-01-10T00:00:00+05:30</published><updated>2024-01-10T00:00:00+05:30</updated><id>http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns</id><content type="html" xml:base="http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns.html"><![CDATA[<h1 id="modern-react-patterns-and-performance">Modern React Patterns and Performance</h1>
+
+<p>React has evolved significantly since its introduction, bringing new patterns and performance optimizations. In this post, we’ll explore modern React patterns and techniques to build efficient, maintainable applications.</p>
+
+<h2 id="advanced-react-patterns">Advanced React Patterns</h2>
+
+<h3 id="1-compound-components">1. Compound Components</h3>
+
+<p>Compound components allow you to create flexible, reusable components with implicit state sharing:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Modal compound component</span>
+<span class="kd">const</span> <span class="nx">Modal</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">isOpen</span><span class="p">,</span> <span class="nx">onClose</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">isOpen</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-overlay"</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClose</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-content"</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nf">stopPropagation</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="si">{</span><span class="nx">children</span><span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Header</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-header"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Body</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-body"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Footer</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-footer"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">isOpen</span><span class="p">,</span> <span class="nx">setIsOpen</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">Modal</span> <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nx">isOpen</span><span class="si">}</span> <span class="na">onClose</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setIsOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Confirmation<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Are you sure you want to delete this item?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Footer</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setIsOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">handleDelete</span><span class="si">}</span><span class="p">&gt;</span>Delete<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Footer</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="2-render-props-pattern">2. Render Props Pattern</h3>
+
+<p>Render props provide a way to share code between components using a prop whose value is a function:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">DataFetcher</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">render</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">error</span><span class="p">,</span> <span class="nx">setError</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">url</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="nf">render</span><span class="p">({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span> <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">UserProfile</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">DataFetcher</span>
+    <span class="na">url</span><span class="p">=</span><span class="s">"/api/user/profile"</span>
+    <span class="na">render</span><span class="p">=</span><span class="si">{</span><span class="p">({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Error: <span class="si">{</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Welcome, <span class="si">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span><span class="si">}</span>
+  <span class="p">/&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="3-custom-hooks">3. Custom Hooks</h3>
+
+<p>Custom hooks let you extract component logic into reusable functions:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Custom hook for API calls</span>
+<span class="kd">const</span> <span class="nx">useApi</span> <span class="o">=</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">error</span><span class="p">,</span> <span class="nx">setError</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">refetch</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">setLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="nf">setError</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    
+    <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">url</span><span class="p">]);</span>
+  
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">refetch</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">refetch</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">refetch</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Custom hook for local storage</span>
+<span class="kd">const</span> <span class="nx">useLocalStorage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">initialValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">storedValue</span><span class="p">,</span> <span class="nx">setStoredValue</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nf">getItem</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">item</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">:</span> <span class="nx">initialValue</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error reading localStorage key "</span><span class="p">${</span><span class="nx">key</span><span class="p">}</span><span class="s2">":`</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">initialValue</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="kd">const</span> <span class="nx">setValue</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">valueToStore</span> <span class="o">=</span> <span class="nx">value</span> <span class="k">instanceof</span> <span class="nb">Function</span> <span class="p">?</span> <span class="nf">value</span><span class="p">(</span><span class="nx">storedValue</span><span class="p">)</span> <span class="p">:</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="nf">setStoredValue</span><span class="p">(</span><span class="nx">valueToStore</span><span class="p">);</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nf">setItem</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">valueToStore</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error setting localStorage key "</span><span class="p">${</span><span class="nx">key</span><span class="p">}</span><span class="s2">":`</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">storedValue</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="p">[</span><span class="nx">storedValue</span><span class="p">,</span> <span class="nx">setValue</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="performance-optimization">Performance Optimization</h2>
+
+<h3 id="1-reactmemo">1. React.memo</h3>
+
+<p>Prevent unnecessary re-renders with React.memo:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ExpensiveComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">onUpdate</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">ExpensiveComponent rendered</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">data</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onUpdate</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+          <span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Custom comparison function</span>
+<span class="kd">const</span> <span class="nx">areEqual</span> <span class="o">=</span> <span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">prevProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">nextProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span>
+         <span class="nx">prevProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nf">every</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> 
+           <span class="nx">item</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">nextProps</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+         <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">OptimizedComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(</span><span class="nx">ExpensiveComponent</span><span class="p">,</span> <span class="nx">areEqual</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="2-usememo-hook">2. useMemo Hook</h3>
+
+<p>Memoize expensive calculations:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">DataProcessor</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">filter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">processedData</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Processing data...</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">items</span>
+      <span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">filter</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nf">localeCompare</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span>
+        <span class="p">...</span><span class="nx">item</span><span class="p">,</span>
+        <span class="na">displayName</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> (</span><span class="p">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">category</span><span class="p">}</span><span class="s2">)`</span>
+      <span class="p">}));</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">filter</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">total</span><span class="p">:</span> <span class="nx">processedData</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+      <span class="na">categories</span><span class="p">:</span> <span class="p">[...</span><span class="k">new</span> <span class="nc">Set</span><span class="p">(</span><span class="nx">processedData</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">category</span><span class="p">))]</span>
+    <span class="p">};</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">processedData</span><span class="p">]);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Total items: <span class="si">{</span><span class="nx">stats</span><span class="p">.</span><span class="nx">total</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Categories: <span class="si">{</span><span class="nx">stats</span><span class="p">.</span><span class="nx">categories</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">processedData</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">displayName</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="3-usecallback-hook">3. useCallback Hook</h3>
+
+<p>Memoize functions to prevent child re-renders:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">TodoList</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">todos</span><span class="p">,</span> <span class="nx">onToggle</span><span class="p">,</span> <span class="nx">onDelete</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">setFilter</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">all</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">filteredTodos</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">switch </span><span class="p">(</span><span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">);</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">);</span>
+      <span class="nl">default</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">todos</span><span class="p">,</span> <span class="nx">filter</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">handleToggle</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">onToggle</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">onToggle</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">handleDelete</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">onDelete</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">onDelete</span><span class="p">]);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">all</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">all</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          All
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Active
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Completed
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      
+      <span class="si">{</span><span class="nx">filteredTodos</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">TodoItem</span>
+          <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span>
+          <span class="na">todo</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="si">}</span>
+          <span class="na">onToggle</span><span class="p">=</span><span class="si">{</span><span class="nx">handleToggle</span><span class="si">}</span>
+          <span class="na">onDelete</span><span class="p">=</span><span class="si">{</span><span class="nx">handleDelete</span><span class="si">}</span>
+        <span class="p">/&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">TodoItem</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(({</span> <span class="nx">todo</span><span class="p">,</span> <span class="nx">onToggle</span><span class="p">,</span> <span class="nx">onDelete</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="s2">`todo-item </span><span class="p">${</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">`</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span>
+        <span class="na">type</span><span class="p">=</span><span class="s">"checkbox"</span>
+        <span class="na">checked</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="si">}</span>
+        <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onToggle</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onDelete</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Delete<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="4-code-splitting-with-reactlazy">4. Code Splitting with React.lazy</h3>
+
+<p>Split your code to reduce initial bundle size:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Suspense</span><span class="p">,</span> <span class="nx">lazy</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">LazyComponent</span> <span class="o">=</span> <span class="nf">lazy</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./LazyComponent</span><span class="dl">'</span><span class="p">));</span>
+<span class="kd">const</span> <span class="nx">AnotherLazyComponent</span> <span class="o">=</span> <span class="nf">lazy</span><span class="p">(()</span> <span class="o">=&gt;</span> 
+  <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./AnotherComponent</span><span class="dl">'</span><span class="p">).</span><span class="nf">then</span><span class="p">(</span><span class="nx">module</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="na">default</span><span class="p">:</span> <span class="nx">module</span><span class="p">.</span><span class="nx">AnotherComponent</span>
+  <span class="p">}))</span>
+<span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">fallback</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">LazyComponent</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+      
+      <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">fallback</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading another component...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">AnotherLazyComponent</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="advanced-patterns">Advanced Patterns</h2>
+
+<h3 id="error-boundaries">Error Boundaries</h3>
+
+<p>Handle errors gracefully in your component tree:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ErrorBoundary</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">hasError</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">error</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="na">errorInfo</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};</span>
+  <span class="p">}</span>
+  
+  <span class="kd">static</span> <span class="nf">getDerivedStateFromError</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">hasError</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
+  <span class="p">}</span>
+  
+  <span class="nf">componentDidCatch</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">errorInfo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+      <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">errorInfo</span><span class="p">:</span> <span class="nx">errorInfo</span>
+    <span class="p">});</span>
+    
+    <span class="c1">// Log error to monitoring service</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error caught by boundary:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">errorInfo</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">hasError</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return </span><span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"error-boundary"</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Something went wrong.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">details</span> <span class="na">style</span><span class="p">=&gt;</span>
+            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span><span class="si">}</span>
+            <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">errorInfo</span><span class="p">.</span><span class="nx">componentStack</span><span class="si">}</span>
+          <span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">ErrorBoundary</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Header</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Main</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Footer</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">ErrorBoundary</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="higher-order-components-hocs">Higher-Order Components (HOCs)</h3>
+
+<p>Create reusable component logic:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">withAuth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">loading</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useAuth</span><span class="p">();</span>
+    
+    <span class="k">if </span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Please log in to access this page.<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">WrappedComponent</span> <span class="si">{</span><span class="p">...</span><span class="nx">props</span><span class="si">}</span> <span class="na">user</span><span class="p">=</span><span class="si">{</span><span class="nx">user</span><span class="si">}</span> <span class="p">/&gt;;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">withLoading</span> <span class="o">=</span> <span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">({</span> <span class="nx">isLoading</span><span class="p">,</span> <span class="p">...</span><span class="nx">props</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">isLoading</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">WrappedComponent</span> <span class="si">{</span><span class="p">...</span><span class="nx">props</span><span class="si">}</span> <span class="p">/&gt;;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">Dashboard</span> <span class="o">=</span> <span class="nf">withAuth</span><span class="p">(</span><span class="nf">withLoading</span><span class="p">(({</span> <span class="nx">user</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome, <span class="si">{</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="si">{</span><span class="cm">/* Dashboard content */</span><span class="si">}</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">)));</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ol>
+  <li><strong>Keep components small and focused</strong>: Each component should have a single responsibility</li>
+  <li><strong>Use TypeScript</strong>: Add type safety to catch errors early</li>
+  <li><strong>Implement proper error handling</strong>: Use error boundaries and proper error states</li>
+  <li><strong>Optimize bundle size</strong>: Use code splitting and tree shaking</li>
+  <li><strong>Profile your app</strong>: Use React DevTools Profiler to identify performance bottlenecks</li>
+  <li><strong>Follow the rules of hooks</strong>: Only call hooks at the top level of components</li>
+  <li><strong>Use meaningful names</strong>: Component and hook names should be descriptive</li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Modern React development involves understanding and applying various patterns and optimization techniques. By leveraging compound components, custom hooks, and performance optimizations like memoization, you can build applications that are both maintainable and performant.</p>
+
+<p>Remember that premature optimization can be counterproductive. Always measure first, then optimize based on actual performance bottlenecks rather than assumptions.</p>
+
+<hr />
+
+<p><em>Interested in more React content? Check out my posts on <a href="/tags/testing">React Testing</a> and <a href="/tags/state-management">State Management</a>.</em></p>]]></content><author><name>Paras Parkash</name></author><category term="blog" /><category term="frontend" /><category term="react" /><category term="javascript" /><category term="performance" /><category term="patterns" /><summary type="html"><![CDATA[Exploring advanced React patterns including render props, compound components, and custom hooks. Learn how to optimize performance with React.memo, useMemo, and useCallback.]]></summary></entry></feed>

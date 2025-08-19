@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Modern React Patterns and Performance | Paras Parkash</title>
+    <meta name="description" content="Exploring advanced React patterns including render props, compound components, and custom hooks. Learn how to optimize performance with React.memo, useMemo, and useCallback.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Modern React Patterns and Performance | Paras Parkash">
+    <meta property="og:description" content="Exploring advanced React patterns including render props, compound components, and custom hooks. Learn how to optimize performance with React.memo, useMemo, and useCallback.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Modern React Patterns and Performance | Paras Parkash">
+    <meta property="twitter:description" content="Exploring advanced React patterns including render props, compound components, and custom hooks. Learn how to optimize performance with React.memo, useMemo, and useCallback.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'geist-sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-in': 'slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-left': 'slideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom head content -->
+<style>
+    .animate-delay-200 { animation-delay: 0.2s; }
+    .animate-delay-400 { animation-delay: 0.4s; }
+    .animate-delay-600 { animation-delay: 0.6s; }
+    .animate-delay-800 { animation-delay: 0.8s; }
+    .animate-delay-100 { animation-delay: 0.1s; }
+    .animate-delay-300 { animation-delay: 0.3s; }
+    .animate-delay-500 { animation-delay: 0.5s; }
+    
+    .opacity-0 { opacity: 0; }
+    .transform { transform: translateY(20px); }
+    .transform-x { transform: translateX(-20px); }
+    
+    /* Dark mode detection */
+    @media (prefers-color-scheme: dark) {
+        html:not(.light) {
+            color-scheme: dark;
+        }
+    }
+
+    /* Tab styles */
+    .tab-content {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    
+    .tab-button.active {
+        font-weight: bold !important;
+        color: rgb(39 39 42) !important;
+    }
+    
+    .dark .tab-button.active {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Smooth transitions for all interactive elements */
+    a, button {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    /* Hide scrollbar in center content area */
+    .flex-1.overflow-y-auto {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+    
+    .flex-1.overflow-y-auto::-webkit-scrollbar {
+        display: none; /* WebKit */
+    }
+    
+    /* Custom scrollbar for webkit browsers */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgb(161 161 170);
+        border-radius: 3px;
+    }
+    
+    .dark ::-webkit-scrollbar-thumb {
+        background: rgb(82 82 91);
+    }
+    
+    /* Notes tag styling */
+    .note-tag.active {
+        background-color: rgb(59 130 246) !important;
+        color: white !important;
+    }
+    
+    .dark .note-tag.active {
+        background-color: rgb(96 165 250) !important;
+        color: white !important;
+    }
+    
+    /* List item hover effects */
+    .tab-content li, .tab-content .space-y-6 > div {
+        position: relative;
+        transition: all 0.3s ease;
+        padding-left: 1rem;
+    }
+    
+    .tab-content li::before, .tab-content .space-y-6 > div::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: rgb(0 0 0);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .dark .tab-content li::before, .dark .tab-content .space-y-6 > div::before {
+        background: rgb(255 255 255);
+    }
+    
+    .tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
+        opacity: 1;
+    }
+    
+    /* Responsive adjustments */
+    
+    /* Large screens - Three column layout */
+    @media (min-width: 1200px) {
+        .flex.gap-12 {
+            gap: 3rem;
+        }
+    }
+    
+    /* Medium screens - Two column layout (hide right sidebar) */
+    @media (max-width: 1199px) and (min-width: 769px) {
+        .flex.gap-12 > div:last-child {
+            display: none;
+        }
+        
+        .flex.gap-12 {
+            gap: 2rem;
+        }
+    }
+    
+    /* Small screens - Single column layout */
+    @media (max-width: 768px) {
+        .flex.gap-12 {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .w-72 {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Show right sidebar again in vertical layout */
+        .flex.gap-12 > div:last-child {
+            display: block;
+        }
+        
+        /* Adjust main container padding */
+        main {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        /* Make header more compact on mobile */
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+        
+        /* Adjust social icons spacing */
+        .flex.flex-row.gap-4 {
+            gap: 1rem;
+        }
+        
+        /* Make tabs scrollable horizontally on mobile */
+        .inline-flex.h-9 {
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Adjust tab button sizing for mobile */
+        .tab-button {
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 640px) {
+        .max-w-3xl {
+            max-width: 100%;
+        }
+        
+        .px-4 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        /* Reduce profile image size on very small screens */
+        .w-32.h-32 {
+            width: 6rem;
+            height: 6rem;
+        }
+        
+        /* Adjust spacing for mobile */
+        .mb-6 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Make note tags wrap better on mobile */
+        .flex.flex-wrap.gap-2 {
+            gap: 0.5rem;
+        }
+        
+        /* Adjust footer layout for mobile */
+        .flex.justify-between.items-start {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .text-right {
+            text-align: left;
+        }
+    }
+    
+    /* Landscape mobile optimization */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .flex.gap-12 {
+            gap: 1rem;
+        }
+        
+        .mb-6 {
+            margin-bottom: 0.75rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 1rem;
+        }
+    }
+    
+    /* High DPI screens */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .w-32.h-32 {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    }
+    
+    /* Mobile sidebar overlay */
+    @media (max-width: 1023px) {
+        #left-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgb(255 255 255);
+            z-index: 40;
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto;
+            padding: 1rem;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark #left-sidebar {
+            background: rgb(24 24 27);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #left-sidebar.mobile-open {
+            left: 0;
+        }
+        
+        /* Mobile overlay background */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 30;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    
+    /* Ensure content is properly spaced on mobile */
+    @media (max-width: 1023px) {
+        main {
+            padding-top: 4rem;
+            height: 100vh;
+            max-height: 100vh;
+        }
+        
+        /* Center title on mobile when menu toggle is visible */
+        .mobile-title-center {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .mobile-center {
+            text-align: center;
+        }
+    }
+    
+    /* Ensure main container uses full viewport height */
+    main {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Ensure proper flex behavior */
+    .flex-1 {
+        min-height: 0;
+    }
+    
+    /* Ensure tabs section can scroll properly */
+    .overflow-y-auto {
+        min-height: 0;
+        flex: 1;
+    }
+    
+    /* Ensure footer stays within viewport */
+    footer {
+        margin-top: auto;
+        flex-shrink: 0;
+    }
+    
+    /* Improve touch targets on mobile */
+    @media (max-width: 768px) {
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1rem;
+        }
+        
+        /* Better spacing for mobile lists */
+        .space-y-8 > div {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Improve mobile form elements */
+        input, textarea, select {
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        .mobile-menu-toggle,
+        .mobile-overlay,
+        #mobile-menu-toggle {
+            display: none !important;
+        }
+        
+        body {
+            background: white !important;
+            color: black !important;
+        }
+        
+        .dark {
+            background: white !important;
+            color: black !important;
+        }
+    }
+</style>
+
+</head>
+
+<body class="font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300">
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
+    <main class="text-zinc-900 dark:text-zinc-100 max-w-4xl mx-auto px-4 py-8 min-h-screen">
+    <article class="prose prose-zinc dark:prose-invert max-w-none">
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold mb-4">Modern React Patterns and Performance</h1>
+            <div class="flex items-center justify-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
+                <time datetime="2024-01-10T00:00:00+05:30">
+                    January 10, 2024
+                </time>
+                
+                <span>•</span>
+                <span>Paras Parkash</span>
+                
+                
+                <span>•</span>
+                <span>6 min read</span>
+                
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-2 mt-4">
+                
+                <span class="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">
+                    react
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">
+                    javascript
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">
+                    performance
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">
+                    patterns
+                </span>
+                
+            </div>
+            
+        </header>
+
+        <div class="prose-content">
+            <h1 id="modern-react-patterns-and-performance">Modern React Patterns and Performance</h1>
+
+<p>React has evolved significantly since its introduction, bringing new patterns and performance optimizations. In this post, we’ll explore modern React patterns and techniques to build efficient, maintainable applications.</p>
+
+<h2 id="advanced-react-patterns">Advanced React Patterns</h2>
+
+<h3 id="1-compound-components">1. Compound Components</h3>
+
+<p>Compound components allow you to create flexible, reusable components with implicit state sharing:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Modal compound component</span>
+<span class="kd">const</span> <span class="nx">Modal</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">isOpen</span><span class="p">,</span> <span class="nx">onClose</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">isOpen</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-overlay"</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">onClose</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-content"</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nf">stopPropagation</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="si">{</span><span class="nx">children</span><span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Header</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-header"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Body</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-body"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="nx">Modal</span><span class="p">.</span><span class="nx">Footer</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"modal-footer"</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">children</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">isOpen</span><span class="p">,</span> <span class="nx">setIsOpen</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">Modal</span> <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nx">isOpen</span><span class="si">}</span> <span class="na">onClose</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setIsOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Confirmation<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Are you sure you want to delete this item?<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Footer</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setIsOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">handleDelete</span><span class="si">}</span><span class="p">&gt;</span>Delete<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">.</span><span class="nc">Footer</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="2-render-props-pattern">2. Render Props Pattern</h3>
+
+<p>Render props provide a way to share code between components using a prop whose value is a function:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">DataFetcher</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">render</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">error</span><span class="p">,</span> <span class="nx">setError</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">url</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="nf">render</span><span class="p">({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span> <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">UserProfile</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">DataFetcher</span>
+    <span class="na">url</span><span class="p">=</span><span class="s">"/api/user/profile"</span>
+    <span class="na">render</span><span class="p">=</span><span class="si">{</span><span class="p">({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Error: <span class="si">{</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Welcome, <span class="si">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span><span class="si">}</span>
+  <span class="p">/&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="3-custom-hooks">3. Custom Hooks</h3>
+
+<p>Custom hooks let you extract component logic into reusable functions:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Custom hook for API calls</span>
+<span class="kd">const</span> <span class="nx">useApi</span> <span class="o">=</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">error</span><span class="p">,</span> <span class="nx">setError</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">refetch</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">setLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="nf">setError</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    
+    <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="nf">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">url</span><span class="p">]);</span>
+  
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">refetch</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">refetch</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">refetch</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Custom hook for local storage</span>
+<span class="kd">const</span> <span class="nx">useLocalStorage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">initialValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">storedValue</span><span class="p">,</span> <span class="nx">setStoredValue</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nf">getItem</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">item</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">:</span> <span class="nx">initialValue</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error reading localStorage key "</span><span class="p">${</span><span class="nx">key</span><span class="p">}</span><span class="s2">":`</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">initialValue</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="kd">const</span> <span class="nx">setValue</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">valueToStore</span> <span class="o">=</span> <span class="nx">value</span> <span class="k">instanceof</span> <span class="nb">Function</span> <span class="p">?</span> <span class="nf">value</span><span class="p">(</span><span class="nx">storedValue</span><span class="p">)</span> <span class="p">:</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="nf">setStoredValue</span><span class="p">(</span><span class="nx">valueToStore</span><span class="p">);</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nf">setItem</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">valueToStore</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error setting localStorage key "</span><span class="p">${</span><span class="nx">key</span><span class="p">}</span><span class="s2">":`</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">storedValue</span><span class="p">]);</span>
+  
+  <span class="k">return</span> <span class="p">[</span><span class="nx">storedValue</span><span class="p">,</span> <span class="nx">setValue</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="performance-optimization">Performance Optimization</h2>
+
+<h3 id="1-reactmemo">1. React.memo</h3>
+
+<p>Prevent unnecessary re-renders with React.memo:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ExpensiveComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(({</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">onUpdate</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">ExpensiveComponent rendered</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">data</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onUpdate</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+          <span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Custom comparison function</span>
+<span class="kd">const</span> <span class="nx">areEqual</span> <span class="o">=</span> <span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">prevProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">nextProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span>
+         <span class="nx">prevProps</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nf">every</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> 
+           <span class="nx">item</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">nextProps</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+         <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">OptimizedComponent</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(</span><span class="nx">ExpensiveComponent</span><span class="p">,</span> <span class="nx">areEqual</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="2-usememo-hook">2. useMemo Hook</h3>
+
+<p>Memoize expensive calculations:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">DataProcessor</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">filter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">processedData</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Processing data...</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">items</span>
+      <span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">filter</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nf">localeCompare</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span>
+        <span class="p">...</span><span class="nx">item</span><span class="p">,</span>
+        <span class="na">displayName</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> (</span><span class="p">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">category</span><span class="p">}</span><span class="s2">)`</span>
+      <span class="p">}));</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">filter</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">total</span><span class="p">:</span> <span class="nx">processedData</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+      <span class="na">categories</span><span class="p">:</span> <span class="p">[...</span><span class="k">new</span> <span class="nc">Set</span><span class="p">(</span><span class="nx">processedData</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">category</span><span class="p">))]</span>
+    <span class="p">};</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">processedData</span><span class="p">]);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Total items: <span class="si">{</span><span class="nx">stats</span><span class="p">.</span><span class="nx">total</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Categories: <span class="si">{</span><span class="nx">stats</span><span class="p">.</span><span class="nx">categories</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">processedData</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">displayName</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="3-usecallback-hook">3. useCallback Hook</h3>
+
+<p>Memoize functions to prevent child re-renders:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">TodoList</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">todos</span><span class="p">,</span> <span class="nx">onToggle</span><span class="p">,</span> <span class="nx">onDelete</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">setFilter</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">all</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">filteredTodos</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">switch </span><span class="p">(</span><span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">);</span>
+      <span class="k">case</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="p">);</span>
+      <span class="nl">default</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">todos</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">todos</span><span class="p">,</span> <span class="nx">filter</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">handleToggle</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">onToggle</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">onToggle</span><span class="p">]);</span>
+  
+  <span class="kd">const</span> <span class="nx">handleDelete</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">onDelete</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">onDelete</span><span class="p">]);</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">all</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">all</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          All
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Active
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> 
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setFilter</span><span class="p">(</span><span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="nx">filter</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Completed
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      
+      <span class="si">{</span><span class="nx">filteredTodos</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">todo</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">TodoItem</span>
+          <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span>
+          <span class="na">todo</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="si">}</span>
+          <span class="na">onToggle</span><span class="p">=</span><span class="si">{</span><span class="nx">handleToggle</span><span class="si">}</span>
+          <span class="na">onDelete</span><span class="p">=</span><span class="si">{</span><span class="nx">handleDelete</span><span class="si">}</span>
+        <span class="p">/&gt;</span>
+      <span class="p">))</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">TodoItem</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nf">memo</span><span class="p">(({</span> <span class="nx">todo</span><span class="p">,</span> <span class="nx">onToggle</span><span class="p">,</span> <span class="nx">onDelete</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="si">{</span><span class="s2">`todo-item </span><span class="p">${</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">completed</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">`</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span>
+        <span class="na">type</span><span class="p">=</span><span class="s">"checkbox"</span>
+        <span class="na">checked</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">completed</span><span class="si">}</span>
+        <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onToggle</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">onDelete</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Delete<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="4-code-splitting-with-reactlazy">4. Code Splitting with React.lazy</h3>
+
+<p>Split your code to reduce initial bundle size:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Suspense</span><span class="p">,</span> <span class="nx">lazy</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">LazyComponent</span> <span class="o">=</span> <span class="nf">lazy</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./LazyComponent</span><span class="dl">'</span><span class="p">));</span>
+<span class="kd">const</span> <span class="nx">AnotherLazyComponent</span> <span class="o">=</span> <span class="nf">lazy</span><span class="p">(()</span> <span class="o">=&gt;</span> 
+  <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./AnotherComponent</span><span class="dl">'</span><span class="p">).</span><span class="nf">then</span><span class="p">(</span><span class="nx">module</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="na">default</span><span class="p">:</span> <span class="nx">module</span><span class="p">.</span><span class="nx">AnotherComponent</span>
+  <span class="p">}))</span>
+<span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">fallback</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">LazyComponent</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+      
+      <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">fallback</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading another component...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">AnotherLazyComponent</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="advanced-patterns">Advanced Patterns</h2>
+
+<h3 id="error-boundaries">Error Boundaries</h3>
+
+<p>Handle errors gracefully in your component tree:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ErrorBoundary</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">hasError</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">error</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="na">errorInfo</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};</span>
+  <span class="p">}</span>
+  
+  <span class="kd">static</span> <span class="nf">getDerivedStateFromError</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">hasError</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
+  <span class="p">}</span>
+  
+  <span class="nf">componentDidCatch</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">errorInfo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+      <span class="na">error</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">errorInfo</span><span class="p">:</span> <span class="nx">errorInfo</span>
+    <span class="p">});</span>
+    
+    <span class="c1">// Log error to monitoring service</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error caught by boundary:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">errorInfo</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">hasError</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return </span><span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"error-boundary"</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Something went wrong.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">details</span> <span class="na">style</span><span class="p">=&gt;</span>
+            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span><span class="si">}</span>
+            <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">errorInfo</span><span class="p">.</span><span class="nx">componentStack</span><span class="si">}</span>
+          <span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">ErrorBoundary</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Header</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Main</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Footer</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">ErrorBoundary</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="higher-order-components-hocs">Higher-Order Components (HOCs)</h3>
+
+<p>Create reusable component logic:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">withAuth</span> <span class="o">=</span> <span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">loading</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useAuth</span><span class="p">();</span>
+    
+    <span class="k">if </span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Please log in to access this page.<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">WrappedComponent</span> <span class="si">{</span><span class="p">...</span><span class="nx">props</span><span class="si">}</span> <span class="na">user</span><span class="p">=</span><span class="si">{</span><span class="nx">user</span><span class="si">}</span> <span class="p">/&gt;;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">withLoading</span> <span class="o">=</span> <span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">({</span> <span class="nx">isLoading</span><span class="p">,</span> <span class="p">...</span><span class="nx">props</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">isLoading</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">WrappedComponent</span> <span class="si">{</span><span class="p">...</span><span class="nx">props</span><span class="si">}</span> <span class="p">/&gt;;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">Dashboard</span> <span class="o">=</span> <span class="nf">withAuth</span><span class="p">(</span><span class="nf">withLoading</span><span class="p">(({</span> <span class="nx">user</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome, <span class="si">{</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="si">{</span><span class="cm">/* Dashboard content */</span><span class="si">}</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">)));</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ol>
+  <li><strong>Keep components small and focused</strong>: Each component should have a single responsibility</li>
+  <li><strong>Use TypeScript</strong>: Add type safety to catch errors early</li>
+  <li><strong>Implement proper error handling</strong>: Use error boundaries and proper error states</li>
+  <li><strong>Optimize bundle size</strong>: Use code splitting and tree shaking</li>
+  <li><strong>Profile your app</strong>: Use React DevTools Profiler to identify performance bottlenecks</li>
+  <li><strong>Follow the rules of hooks</strong>: Only call hooks at the top level of components</li>
+  <li><strong>Use meaningful names</strong>: Component and hook names should be descriptive</li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Modern React development involves understanding and applying various patterns and optimization techniques. By leveraging compound components, custom hooks, and performance optimizations like memoization, you can build applications that are both maintainable and performant.</p>
+
+<p>Remember that premature optimization can be counterproductive. Always measure first, then optimize based on actual performance bottlenecks rather than assumptions.</p>
+
+<hr />
+
+<p><em>Interested in more React content? Check out my posts on <a href="/tags/testing">React Testing</a> and <a href="/tags/state-management">State Management</a>.</em></p>
+
+        </div>
+
+        <footer class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-700">
+            <div class="flex items-center justify-between">
+                <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Home
+                </a>
+                
+                
+                <a href="/blog" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    All Blog Posts
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+                
+            </div>
+        </footer>
+    </article>
+</main>
+
+    
+    <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 
+                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    if (currentTheme === 'dark') {
+        html.classList.add('dark');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+            
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+    }
+
+    // Tab functionality
+    function showTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('opacity-0', 'transform');
+        });
+        
+        // Remove active class from all buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+            button.classList.remove('!font-bold', '!text-neutral-800', 'dark:!text-neutral-100');
+            button.classList.add('!font-light', '!text-neutral-400', 'dark:!text-neutral-400');
+        });
+        
+        // Show selected tab content
+        const selectedContent = document.getElementById(`content-${tabName}`);
+        if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+            
+            // Add active class to selected button
+            const selectedButton = document.getElementById(`tab-${tabName}`);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+                selectedButton.classList.remove('!font-light', '!text-neutral-400', 'dark:!text-neutral-400');
+                selectedButton.classList.add('!font-bold', '!text-neutral-800', 'dark:!text-neutral-100');
+            }
+            
+            // Trigger animations for the new content
+            setTimeout(() => {
+                selectedContent.classList.add('opacity-0', 'transform');
+                selectedContent.classList.add('animate-fade-in');
+                
+                // Animate list items if they exist
+                const listItems = selectedContent.querySelectorAll('li, .space-y-6 > div');
+                listItems.forEach((item, index) => {
+                    item.classList.add('opacity-0', 'transform-x');
+                    item.classList.add('animate-slide-left');
+                    item.style.animationDelay = `${(index + 1) * 0.1}s`;
+                });
+            }, 10);
+        }
+    }
+
+    // User System Detection
+    function detectUserSystem() {
+        const userAgent = navigator.userAgent;
+        let os = 'Unknown OS';
+        let browser = 'Unknown Browser';
+        
+        // Detect OS
+        if (userAgent.indexOf('Win') !== -1) os = 'Windows';
+        else if (userAgent.indexOf('Mac') !== -1) os = 'macOS';
+        else if (userAgent.indexOf('Linux') !== -1) os = 'Linux';
+        else if (userAgent.indexOf('Android') !== -1) os = 'Android';
+        else if (userAgent.indexOf('iPhone') !== -1 || userAgent.indexOf('iPad') !== -1) os = 'iOS';
+        
+        // Detect Browser
+        if (userAgent.indexOf('Chrome') !== -1 && userAgent.indexOf('Edg') === -1) browser = 'Chrome';
+        else if (userAgent.indexOf('Firefox') !== -1) browser = 'Firefox';
+        else if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) browser = 'Safari';
+        else if (userAgent.indexOf('Edg') !== -1) browser = 'Edge';
+        else if (userAgent.indexOf('Opera') !== -1) browser = 'Opera';
+        
+        // Get screen resolution
+        const screenRes = `${screen.width}x${screen.height}`;
+        
+        // Get timezone
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        
+        return `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
+    }
+
+    // User Location Detection (using IP-based service)
+    async function detectUserLocation() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            
+            if (data.city && data.country_name) {
+                return `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
+            } else {
+                return `📍 Location unavailable`;
+            }
+        } catch (error) {
+            return `📍 Location unavailable`;
+        }
+    }
+    
+    // Combined user info function
+    async function updateUserInfo() {
+        const systemInfo = detectUserSystem();
+        const locationInfo = await detectUserLocation();
+        
+        const userInfoElement = document.getElementById('user-info');
+        if (userInfoElement) {
+            userInfoElement.textContent = `${systemInfo} • ${locationInfo}`;
+        }
+    }
+
+    // IST Clock functionality
+    function updateISTClock() {
+        const now = new Date();
+        const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+        
+        const timeString = istTime.toLocaleTimeString('en-US', {
+            hour12: true,
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+        const dayString = istTime.toLocaleDateString('en-US', {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short'
+        });
+        
+        const clockElement = document.getElementById('ist-clock');
+        if (clockElement) {
+            clockElement.textContent = `${dayString}, ${timeString} IST`;
+        }
+    }
+
+    // Initialize animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Trigger all initial animations
+        const animatedElements = document.querySelectorAll('.opacity-0');
+        animatedElements.forEach(el => {
+            el.classList.remove('opacity-0');
+            if (el.classList.contains('transform')) {
+                el.classList.remove('transform');
+            }
+            if (el.classList.contains('transform-x')) {
+                el.classList.remove('transform-x');
+            }
+        });
+        
+        // Set initial active tab
+        showTab('projects');
+        
+        // Initialize and start the IST clock
+        updateISTClock();
+        setInterval(updateISTClock, 1000);
+        
+        // Initialize user system and location detection
+        updateUserInfo();
+    });
+
+    // Notes filtering functionality
+    function filterNotes(tag) {
+        // Update active tag button
+        document.querySelectorAll('.note-tag').forEach(btn => {
+            btn.classList.remove('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+            btn.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+        });
+        
+        // Highlight active button
+        const activeButton = event.target;
+        activeButton.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+        activeButton.classList.add('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+        
+        // Filter note items
+        const noteItems = document.querySelectorAll('.note-item');
+        noteItems.forEach(item => {
+            const itemTags = item.getAttribute('data-tags').split(',');
+            if (tag === 'all' || itemTags.includes(tag)) {
+                item.style.display = 'block';
+                item.style.opacity = '1';
+            } else {
+                item.style.display = 'none';
+                item.style.opacity = '0';
+            }
+        });
+    }
+
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const leftSidebar = document.getElementById('left-sidebar');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    
+    function toggleMobileMenu() {
+        if (leftSidebar && mobileOverlay) {
+            leftSidebar.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (leftSidebar.classList.contains('mobile-open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (leftSidebar && mobileOverlay) {
+            leftSidebar.classList.remove('mobile-open');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Event listeners
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close menu on window resize (if switching to desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1023 && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Touch gesture support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        // Swipe right to open menu
+        if (swipeDistance > swipeThreshold && touchStartX < 50) {
+            if (leftSidebar && !leftSidebar.classList.contains('mobile-open')) {
+                toggleMobileMenu();
+            }
+        }
+        
+        // Swipe left to close menu
+        if (swipeDistance < -swipeThreshold && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    }
+
+    // Smooth scrolling for any anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Financial Mathematics | Paras Parkash</title>
+    <meta name="description" content="Software Engineer passionate about building scalable applications and solving complex problems. Currently focused on full-stack development and system architecture.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Financial Mathematics | Paras Parkash">
+    <meta property="og:description" content="Software Engineer passionate about building scalable applications and solving complex problems. Currently focused on full-stack development and system architecture.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Financial Mathematics | Paras Parkash">
+    <meta property="twitter:description" content="Software Engineer passionate about building scalable applications and solving complex problems. Currently focused on full-stack development and system architecture.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'geist-sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-in': 'slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-left': 'slideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom head content -->
+<style>
+    .animate-delay-200 { animation-delay: 0.2s; }
+    .animate-delay-400 { animation-delay: 0.4s; }
+    .animate-delay-600 { animation-delay: 0.6s; }
+    .animate-delay-800 { animation-delay: 0.8s; }
+    .animate-delay-100 { animation-delay: 0.1s; }
+    .animate-delay-300 { animation-delay: 0.3s; }
+    .animate-delay-500 { animation-delay: 0.5s; }
+    
+    .opacity-0 { opacity: 0; }
+    .transform { transform: translateY(20px); }
+    .transform-x { transform: translateX(-20px); }
+    
+    /* Dark mode detection */
+    @media (prefers-color-scheme: dark) {
+        html:not(.light) {
+            color-scheme: dark;
+        }
+    }
+
+    /* Tab styles */
+    .tab-content {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    
+    .tab-button.active {
+        font-weight: bold !important;
+        color: rgb(39 39 42) !important;
+    }
+    
+    .dark .tab-button.active {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Smooth transitions for all interactive elements */
+    a, button {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    /* Hide scrollbar in center content area */
+    .flex-1.overflow-y-auto {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+    
+    .flex-1.overflow-y-auto::-webkit-scrollbar {
+        display: none; /* WebKit */
+    }
+    
+    /* Custom scrollbar for webkit browsers */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgb(161 161 170);
+        border-radius: 3px;
+    }
+    
+    .dark ::-webkit-scrollbar-thumb {
+        background: rgb(82 82 91);
+    }
+    
+    /* Notes tag styling */
+    .note-tag.active {
+        background-color: rgb(59 130 246) !important;
+        color: white !important;
+    }
+    
+    .dark .note-tag.active {
+        background-color: rgb(96 165 250) !important;
+        color: white !important;
+    }
+    
+    /* List item hover effects */
+    .tab-content li, .tab-content .space-y-6 > div {
+        position: relative;
+        transition: all 0.3s ease;
+        padding-left: 1rem;
+    }
+    
+    .tab-content li::before, .tab-content .space-y-6 > div::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: rgb(0 0 0);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .dark .tab-content li::before, .dark .tab-content .space-y-6 > div::before {
+        background: rgb(255 255 255);
+    }
+    
+    .tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
+        opacity: 1;
+    }
+    
+    /* Responsive adjustments */
+    
+    /* Large screens - Three column layout */
+    @media (min-width: 1200px) {
+        .flex.gap-12 {
+            gap: 3rem;
+        }
+    }
+    
+    /* Medium screens - Two column layout (hide right sidebar) */
+    @media (max-width: 1199px) and (min-width: 769px) {
+        .flex.gap-12 > div:last-child {
+            display: none;
+        }
+        
+        .flex.gap-12 {
+            gap: 2rem;
+        }
+    }
+    
+    /* Small screens - Single column layout */
+    @media (max-width: 768px) {
+        .flex.gap-12 {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .w-72 {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Show right sidebar again in vertical layout */
+        .flex.gap-12 > div:last-child {
+            display: block;
+        }
+        
+        /* Adjust main container padding */
+        main {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        /* Make header more compact on mobile */
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+        
+        /* Adjust social icons spacing */
+        .flex.flex-row.gap-4 {
+            gap: 1rem;
+        }
+        
+        /* Make tabs scrollable horizontally on mobile */
+        .inline-flex.h-9 {
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Adjust tab button sizing for mobile */
+        .tab-button {
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 640px) {
+        .max-w-3xl {
+            max-width: 100%;
+        }
+        
+        .px-4 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        /* Reduce profile image size on very small screens */
+        .w-32.h-32 {
+            width: 6rem;
+            height: 6rem;
+        }
+        
+        /* Adjust spacing for mobile */
+        .mb-6 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Make note tags wrap better on mobile */
+        .flex.flex-wrap.gap-2 {
+            gap: 0.5rem;
+        }
+        
+        /* Adjust footer layout for mobile */
+        .flex.justify-between.items-start {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .text-right {
+            text-align: left;
+        }
+    }
+    
+    /* Landscape mobile optimization */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .flex.gap-12 {
+            gap: 1rem;
+        }
+        
+        .mb-6 {
+            margin-bottom: 0.75rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 1rem;
+        }
+    }
+    
+    /* High DPI screens */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .w-32.h-32 {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    }
+    
+    /* Mobile sidebar overlay */
+    @media (max-width: 1023px) {
+        #left-sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgb(255 255 255);
+            z-index: 40;
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto;
+            padding: 1rem;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark #left-sidebar {
+            background: rgb(24 24 27);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #left-sidebar.mobile-open {
+            left: 0;
+        }
+        
+        /* Mobile overlay background */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 30;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    
+    /* Ensure content is properly spaced on mobile */
+    @media (max-width: 1023px) {
+        main {
+            padding-top: 4rem;
+            height: 100vh;
+            max-height: 100vh;
+        }
+        
+        /* Center title on mobile when menu toggle is visible */
+        .mobile-title-center {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .mobile-center {
+            text-align: center;
+        }
+    }
+    
+    /* Ensure main container uses full viewport height */
+    main {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Ensure proper flex behavior */
+    .flex-1 {
+        min-height: 0;
+    }
+    
+    /* Ensure tabs section can scroll properly */
+    .overflow-y-auto {
+        min-height: 0;
+        flex: 1;
+    }
+    
+    /* Ensure footer stays within viewport */
+    footer {
+        margin-top: auto;
+        flex-shrink: 0;
+    }
+    
+    /* Improve touch targets on mobile */
+    @media (max-width: 768px) {
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1rem;
+        }
+        
+        /* Better spacing for mobile lists */
+        .space-y-8 > div {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Improve mobile form elements */
+        input, textarea, select {
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        .mobile-menu-toggle,
+        .mobile-overlay,
+        #mobile-menu-toggle {
+            display: none !important;
+        }
+        
+        body {
+            background: white !important;
+            color: black !important;
+        }
+        
+        .dark {
+            background: white !important;
+            color: black !important;
+        }
+    }
+</style>
+
+</head>
+
+<body class="font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300">
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
+    <main class="text-zinc-900 dark:text-zinc-100 max-w-4xl mx-auto px-4 py-8 min-h-screen">
+    <article class="prose prose-zinc dark:prose-invert max-w-none">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold mb-4">Financial Mathematics</h1>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+                
+                <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                    finance
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                    mathematics
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                    derivatives
+                </span>
+                
+                <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                    quantitative-finance
+                </span>
+                
+            </div>
+            
+            
+            <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+                Category: <span class="font-medium">Finance</span>
+            </div>
+            
+        </header>
+
+        <div class="note-content">
+            <h1 id="financial-mathematics">Financial Mathematics</h1>
+
+<p>Financial mathematics applies mathematical methods to solve problems in finance, including pricing derivatives, managing risk, and optimizing portfolios.</p>
+
+<h2 id="time-value-of-money">Time Value of Money</h2>
+
+<h3 id="present-and-future-value">Present and Future Value</h3>
+
+<p>The <strong>present value</strong> (PV) of a future cash flow $FV$ received after time $t$ at interest rate $r$ is:
+\(PV = \frac{FV}{(1 + r)^t}\)</p>
+
+<p>The <strong>future value</strong> of a present investment $PV$ after time $t$ is:
+\(FV = PV(1 + r)^t\)</p>
+
+<h3 id="continuous-compounding">Continuous Compounding</h3>
+
+<p>With continuous compounding at rate $r$:
+\(FV = PV \cdot e^{rt}\)
+\(PV = FV \cdot e^{-rt}\)</p>
+
+<h3 id="annuities">Annuities</h3>
+
+<p>The present value of an <strong>ordinary annuity</strong> with payment $PMT$ for $n$ periods at rate $r$:
+\(PV = PMT \cdot \frac{1 - (1 + r)^{-n}}{r}\)</p>
+
+<p>For a <strong>perpetuity</strong> (infinite annuity):
+\(PV = \frac{PMT}{r}\)</p>
+
+<h2 id="bond-pricing">Bond Pricing</h2>
+
+<h3 id="zero-coupon-bonds">Zero-Coupon Bonds</h3>
+
+<p>The price of a zero-coupon bond with face value $F$ maturing in time $T$ at yield $y$ is:
+\(P = F \cdot e^{-yT}\)</p>
+
+<h3 id="coupon-bonds">Coupon Bonds</h3>
+
+<p>For a bond with coupon rate $c$, face value $F$, and yield $y$:
+\(P = \sum_{t=1}^{n} \frac{c \cdot F}{(1 + y)^t} + \frac{F}{(1 + y)^n}\)</p>
+
+<h3 id="duration-and-convexity">Duration and Convexity</h3>
+
+<p><strong>Modified duration</strong> measures price sensitivity to yield changes:
+\(D_{mod} = -\frac{1}{P} \frac{\partial P}{\partial y}\)</p>
+
+<p><strong>Convexity</strong> measures the curvature of the price-yield relationship:
+\(C = \frac{1}{P} \frac{\partial^2 P}{\partial y^2}\)</p>
+
+<p>Price change approximation:
+\(\frac{\Delta P}{P} \approx -D_{mod} \Delta y + \frac{1}{2} C (\Delta y)^2\)</p>
+
+<h2 id="option-pricing">Option Pricing</h2>
+
+<h3 id="black-scholes-model">Black-Scholes Model</h3>
+
+<p>For a European call option on a non-dividend-paying stock:</p>
+
+<p><strong>Assumptions:</strong></p>
+<ul>
+  <li>Stock price follows geometric Brownian motion: $dS = \mu S dt + \sigma S dW$</li>
+  <li>Constant risk-free rate $r$ and volatility $\sigma$</li>
+  <li>No transaction costs or taxes</li>
+</ul>
+
+<p><strong>Black-Scholes Formula:</strong>
+\(C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2)\)</p>
+
+<p>where:
+\(d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}\)
+\(d_2 = d_1 - \sigma\sqrt{T}\)</p>
+
+<p>and $\Phi(\cdot)$ is the standard normal CDF.</p>
+
+<p><strong>Put Option (Put-Call Parity):</strong>
+\(P = K e^{-rT} \Phi(-d_2) - S_0 \Phi(-d_1)\)</p>
+
+<h3 id="the-greeks">The Greeks</h3>
+
+<p>Option sensitivities to various parameters:</p>
+
+<p><strong>Delta</strong> (price sensitivity):
+\(\Delta = \frac{\partial C}{\partial S} = \Phi(d_1)\)</p>
+
+<p><strong>Gamma</strong> (delta sensitivity):
+\(\Gamma = \frac{\partial^2 C}{\partial S^2} = \frac{\phi(d_1)}{S_0 \sigma \sqrt{T}}\)</p>
+
+<p><strong>Theta</strong> (time decay):
+\(\Theta = -\frac{\partial C}{\partial T} = -\frac{S_0 \phi(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} \Phi(d_2)\)</p>
+
+<p><strong>Vega</strong> (volatility sensitivity):
+\(\nu = \frac{\partial C}{\partial \sigma} = S_0 \phi(d_1) \sqrt{T}\)</p>
+
+<p><strong>Rho</strong> (interest rate sensitivity):
+\(\rho = \frac{\partial C}{\partial r} = KT e^{-rT} \Phi(d_2)\)</p>
+
+<h3 id="binomial-model">Binomial Model</h3>
+
+<p>In the binomial model, stock price moves up by factor $u$ or down by factor $d$ each period.</p>
+
+<p><strong>Risk-neutral probability:</strong>
+\(q = \frac{e^{r\Delta t} - d}{u - d}\)</p>
+
+<p><strong>Option value:</strong>
+\(C = e^{-r\Delta t}[qC_u + (1-q)C_d]\)</p>
+
+<p>where $C_u$ and $C_d$ are option values in up and down states.</p>
+
+<h2 id="portfolio-theory">Portfolio Theory</h2>
+
+<h3 id="mean-variance-optimization">Mean-Variance Optimization</h3>
+
+<p>For a portfolio with weights $w = (w_1, \ldots, w_n)$:</p>
+
+<p><strong>Expected return:</strong>
+\(\mu_p = w^T \mu\)</p>
+
+<p><strong>Portfolio variance:</strong>
+\(\sigma_p^2 = w^T \Sigma w\)</p>
+
+<p>where $\mu$ is the vector of expected returns and $\Sigma$ is the covariance matrix.</p>
+
+<h3 id="efficient-frontier">Efficient Frontier</h3>
+
+<p>The <strong>minimum variance portfolio</strong> solves:
+\(\min_{w} w^T \Sigma w \quad \text{subject to} \quad w^T \mathbf{1} = 1\)</p>
+
+<p>Solution:
+\(w_{mvp} = \frac{\Sigma^{-1} \mathbf{1}}{\mathbf{1}^T \Sigma^{-1} \mathbf{1}}\)</p>
+
+<h3 id="capital-asset-pricing-model-capm">Capital Asset Pricing Model (CAPM)</h3>
+
+<p>The expected return of asset $i$ is:
+\(E[R_i] = R_f + \beta_i (E[R_m] - R_f)\)</p>
+
+<p>where:</p>
+<ul>
+  <li>$R_f$ is the risk-free rate</li>
+  <li>$R_m$ is the market return</li>
+  <li>$\beta_i = \frac{\text{Cov}(R_i, R_m)}{\text{Var}(R_m)}$ is the beta coefficient</li>
+</ul>
+
+<h2 id="interest-rate-models">Interest Rate Models</h2>
+
+<h3 id="vasicek-model">Vasicek Model</h3>
+
+<p>Short rate follows:
+\(dr_t = a(b - r_t)dt + \sigma dW_t\)</p>
+
+<p>where $a$ is mean reversion speed, $b$ is long-term mean, and $\sigma$ is volatility.</p>
+
+<p><strong>Bond price:</strong>
+\(P(t,T) = A(t,T) e^{-B(t,T) r_t}\)</p>
+
+<p>where:
+\(B(t,T) = \frac{1 - e^{-a(T-t)}}{a}\)
+\(A(t,T) = \exp\left(\frac{(B(t,T) - T + t)(a^2 b - \sigma^2/2)}{a^2} - \frac{\sigma^2 B(t,T)^2}{4a}\right)\)</p>
+
+<h3 id="cox-ingersoll-ross-cir-model">Cox-Ingersoll-Ross (CIR) Model</h3>
+
+\[dr_t = a(b - r_t)dt + \sigma \sqrt{r_t} dW_t\]
+
+<p>This ensures non-negative interest rates.</p>
+
+<h2 id="risk-management">Risk Management</h2>
+
+<h3 id="value-at-risk-var">Value at Risk (VaR)</h3>
+
+<p><strong>Parametric VaR</strong> (assuming normal returns):
+\(\text{VaR}_\alpha = -(\mu - z_\alpha \sigma) \cdot V\)</p>
+
+<p>where $z_\alpha$ is the $\alpha$-quantile of standard normal distribution.</p>
+
+<p><strong>Historical Simulation VaR:</strong>
+Use empirical distribution of historical returns.</p>
+
+<p><strong>Monte Carlo VaR:</strong>
+Simulate future portfolio values using stochastic models.</p>
+
+<h3 id="expected-shortfall-conditional-var">Expected Shortfall (Conditional VaR)</h3>
+
+\[\text{ES}_\alpha = E[\text{Loss} | \text{Loss} &gt; \text{VaR}_\alpha]\]
+
+<h3 id="risk-neutral-valuation">Risk-Neutral Valuation</h3>
+
+<p>Under the risk-neutral measure $\mathbb{Q}$:
+\(C_0 = e^{-rT} E^\mathbb{Q}[C_T]\)</p>
+
+<p>The <strong>Radon-Nikodym derivative</strong> transforms from physical to risk-neutral measure:
+\(\frac{d\mathbb{Q}}{d\mathbb{P}} = e^{-\frac{1}{2}\theta^2 T - \theta W_T}\)</p>
+
+<p>where $\theta$ is the market price of risk.</p>
+
+<h2 id="exotic-options">Exotic Options</h2>
+
+<h3 id="asian-options">Asian Options</h3>
+
+<p><strong>Arithmetic average:</strong>
+\(\text{Payoff} = \max\left(\frac{1}{n}\sum_{i=1}^n S_{t_i} - K, 0\right)\)</p>
+
+<p><strong>Geometric average:</strong>
+\(\text{Payoff} = \max\left(\left(\prod_{i=1}^n S_{t_i}\right)^{1/n} - K, 0\right)\)</p>
+
+<h3 id="barrier-options">Barrier Options</h3>
+
+<p><strong>Up-and-out call:</strong>
+\(\text{Payoff} = \begin{cases}
+\max(S_T - K, 0) &amp; \text{if } \max_{0 \leq t \leq T} S_t &lt; H \\
+0 &amp; \text{otherwise}
+\end{cases}\)</p>
+
+<h3 id="lookback-options">Lookback Options</h3>
+
+<p><strong>Fixed strike:</strong>
+\(\text{Payoff} = \max\left(\max_{0 \leq t \leq T} S_t - K, 0\right)\)</p>
+
+<p><strong>Floating strike:</strong>
+\(\text{Payoff} = S_T - \min_{0 \leq t \leq T} S_t\)</p>
+
+<h2 id="numerical-methods">Numerical Methods</h2>
+
+<h3 id="monte-carlo-simulation">Monte Carlo Simulation</h3>
+
+<p>For European options:</p>
+<ol>
+  <li>Simulate $N$ paths of $S_T$</li>
+  <li>Calculate payoff for each path</li>
+  <li>Average and discount: $C_0 = e^{-rT} \frac{1}{N} \sum_{i=1}^N \text{Payoff}_i$</li>
+</ol>
+
+<p><strong>Variance Reduction:</strong></p>
+<ul>
+  <li><strong>Antithetic variables</strong>: Use $W$ and $-W$</li>
+  <li><strong>Control variates</strong>: Use known analytical solution</li>
+  <li><strong>Importance sampling</strong>: Change probability measure</li>
+</ul>
+
+<h3 id="finite-difference-methods">Finite Difference Methods</h3>
+
+<p>Discretize the Black-Scholes PDE:
+\(\frac{\partial C}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 C}{\partial S^2} + rS\frac{\partial C}{\partial S} - rC = 0\)</p>
+
+<p><strong>Explicit scheme:</strong>
+\(C_{i,j+1} = aC_{i-1,j} + bC_{i,j} + cC_{i+1,j}\)</p>
+
+<p><strong>Implicit scheme:</strong>
+\(aC_{i-1,j+1} + bC_{i,j+1} + cC_{i+1,j+1} = C_{i,j}\)</p>
+
+<h2 id="applications">Applications</h2>
+
+<h3 id="algorithmic-trading">Algorithmic Trading</h3>
+
+<p><strong>Mean reversion strategy:</strong>
+\(\text{Signal} = \frac{S_t - \text{MA}(S_t)}{\text{StdDev}(S_t)}\)</p>
+
+<p><strong>Momentum strategy:</strong>
+\(\text{Signal} = \frac{S_t - S_{t-k}}{S_{t-k}}\)</p>
+
+<h3 id="credit-risk">Credit Risk</h3>
+
+<p><strong>Merton Model:</strong>
+Firm value follows:
+\(dV_t = \mu V_t dt + \sigma V_t dW_t\)</p>
+
+<p>Default occurs when $V_T &lt; D$ (debt level).</p>
+
+<p><strong>Credit spread:</strong>
+\(s = -\frac{1}{T} \ln\left(\frac{P_{\text{risky}}}{P_{\text{risk-free}}}\right)\)</p>
+
+<h2 id="exercises">Exercises</h2>
+
+<ol>
+  <li>
+    <p><strong>Calculate</strong> the price of a European call option using Black-Scholes formula with $S_0 = 100$, $K = 105$, $r = 0.05$, $\sigma = 0.2$, $T = 0.25$.</p>
+  </li>
+  <li>
+    <p><strong>Derive</strong> the put-call parity relationship for European options.</p>
+  </li>
+  <li>
+    <p><strong>Show</strong> that delta-hedging eliminates the risk in a Black-Scholes world.</p>
+  </li>
+  <li>
+    <p><strong>Implement</strong> a two-period binomial model for option pricing.</p>
+  </li>
+</ol>
+
+<h2 id="further-reading">Further Reading</h2>
+
+<ul>
+  <li>Hull, J. <em>Options, Futures, and Other Derivatives</em></li>
+  <li>Shreve, S. <em>Stochastic Calculus for Finance</em></li>
+  <li>Björk, T. <em>Arbitrage Theory in Continuous Time</em></li>
+</ul>
+
+<hr />
+
+<p><em>Tags: quantitative finance, derivatives pricing, risk management, portfolio theory</em></p>
+
+        </div>
+
+        <footer class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-700">
+            <div class="flex items-center justify-between">
+                <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Home
+                </a>
+                
+                <a href="/notes" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    All Notes
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </footer>
+    </article>
+</main>
+
+<style>
+    .note-content h1, .note-content h2, .note-content h3 {
+        color: rgb(24 24 27);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3 {
+        color: rgb(244 244 245);
+    }
+    
+    .note-content p {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+    }
+    
+    .note-content ul, .note-content ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+    
+    .note-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .note-content code {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        background: rgb(244 244 245);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .dark .note-content code {
+        background: rgb(39 39 42);
+    }
+    
+    .note-content pre {
+        margin: 1.5rem 0;
+        background: rgb(248 250 252);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+    
+    .dark .note-content pre {
+        background: rgb(24 24 27);
+    }
+    
+    /* MathJax styling */
+    .MathJax {
+        font-size: 1.1em !important;
+    }
+</style>
+
+    
+    <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 
+                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    if (currentTheme === 'dark') {
+        html.classList.add('dark');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+            
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+    }
+
+    // Tab functionality
+    function showTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('opacity-0', 'transform');
+        });
+        
+        // Remove active class from all buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+            button.classList.remove('!font-bold', '!text-neutral-800', 'dark:!text-neutral-100');
+            button.classList.add('!font-light', '!text-neutral-400', 'dark:!text-neutral-400');
+        });
+        
+        // Show selected tab content
+        const selectedContent = document.getElementById(`content-${tabName}`);
+        if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+            
+            // Add active class to selected button
+            const selectedButton = document.getElementById(`tab-${tabName}`);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+                selectedButton.classList.remove('!font-light', '!text-neutral-400', 'dark:!text-neutral-400');
+                selectedButton.classList.add('!font-bold', '!text-neutral-800', 'dark:!text-neutral-100');
+            }
+            
+            // Trigger animations for the new content
+            setTimeout(() => {
+                selectedContent.classList.add('opacity-0', 'transform');
+                selectedContent.classList.add('animate-fade-in');
+                
+                // Animate list items if they exist
+                const listItems = selectedContent.querySelectorAll('li, .space-y-6 > div');
+                listItems.forEach((item, index) => {
+                    item.classList.add('opacity-0', 'transform-x');
+                    item.classList.add('animate-slide-left');
+                    item.style.animationDelay = `${(index + 1) * 0.1}s`;
+                });
+            }, 10);
+        }
+    }
+
+    // User System Detection
+    function detectUserSystem() {
+        const userAgent = navigator.userAgent;
+        let os = 'Unknown OS';
+        let browser = 'Unknown Browser';
+        
+        // Detect OS
+        if (userAgent.indexOf('Win') !== -1) os = 'Windows';
+        else if (userAgent.indexOf('Mac') !== -1) os = 'macOS';
+        else if (userAgent.indexOf('Linux') !== -1) os = 'Linux';
+        else if (userAgent.indexOf('Android') !== -1) os = 'Android';
+        else if (userAgent.indexOf('iPhone') !== -1 || userAgent.indexOf('iPad') !== -1) os = 'iOS';
+        
+        // Detect Browser
+        if (userAgent.indexOf('Chrome') !== -1 && userAgent.indexOf('Edg') === -1) browser = 'Chrome';
+        else if (userAgent.indexOf('Firefox') !== -1) browser = 'Firefox';
+        else if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) browser = 'Safari';
+        else if (userAgent.indexOf('Edg') !== -1) browser = 'Edge';
+        else if (userAgent.indexOf('Opera') !== -1) browser = 'Opera';
+        
+        // Get screen resolution
+        const screenRes = `${screen.width}x${screen.height}`;
+        
+        // Get timezone
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        
+        return `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
+    }
+
+    // User Location Detection (using IP-based service)
+    async function detectUserLocation() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            
+            if (data.city && data.country_name) {
+                return `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
+            } else {
+                return `📍 Location unavailable`;
+            }
+        } catch (error) {
+            return `📍 Location unavailable`;
+        }
+    }
+    
+    // Combined user info function
+    async function updateUserInfo() {
+        const systemInfo = detectUserSystem();
+        const locationInfo = await detectUserLocation();
+        
+        const userInfoElement = document.getElementById('user-info');
+        if (userInfoElement) {
+            userInfoElement.textContent = `${systemInfo} • ${locationInfo}`;
+        }
+    }
+
+    // IST Clock functionality
+    function updateISTClock() {
+        const now = new Date();
+        const istTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+        
+        const timeString = istTime.toLocaleTimeString('en-US', {
+            hour12: true,
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+        const dayString = istTime.toLocaleDateString('en-US', {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short'
+        });
+        
+        const clockElement = document.getElementById('ist-clock');
+        if (clockElement) {
+            clockElement.textContent = `${dayString}, ${timeString} IST`;
+        }
+    }
+
+    // Initialize animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Trigger all initial animations
+        const animatedElements = document.querySelectorAll('.opacity-0');
+        animatedElements.forEach(el => {
+            el.classList.remove('opacity-0');
+            if (el.classList.contains('transform')) {
+                el.classList.remove('transform');
+            }
+            if (el.classList.contains('transform-x')) {
+                el.classList.remove('transform-x');
+            }
+        });
+        
+        // Set initial active tab
+        showTab('projects');
+        
+        // Initialize and start the IST clock
+        updateISTClock();
+        setInterval(updateISTClock, 1000);
+        
+        // Initialize user system and location detection
+        updateUserInfo();
+    });
+
+    // Notes filtering functionality
+    function filterNotes(tag) {
+        // Update active tag button
+        document.querySelectorAll('.note-tag').forEach(btn => {
+            btn.classList.remove('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+            btn.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+        });
+        
+        // Highlight active button
+        const activeButton = event.target;
+        activeButton.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+        activeButton.classList.add('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+        
+        // Filter note items
+        const noteItems = document.querySelectorAll('.note-item');
+        noteItems.forEach(item => {
+            const itemTags = item.getAttribute('data-tags').split(',');
+            if (tag === 'all' || itemTags.includes(tag)) {
+                item.style.display = 'block';
+                item.style.opacity = '1';
+            } else {
+                item.style.display = 'none';
+                item.style.opacity = '0';
+            }
+        });
+    }
+
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const leftSidebar = document.getElementById('left-sidebar');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    
+    function toggleMobileMenu() {
+        if (leftSidebar && mobileOverlay) {
+            leftSidebar.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (leftSidebar.classList.contains('mobile-open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (leftSidebar && mobileOverlay) {
+            leftSidebar.classList.remove('mobile-open');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Event listeners
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close menu on window resize (if switching to desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1023 && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Touch gesture support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        // Swipe right to open menu
+        if (swipeDistance > swipeThreshold && touchStartX < 50) {
+            if (leftSidebar && !leftSidebar.classList.contains('mobile-open')) {
+                toggleMobileMenu();
+            }
+        }
+        
+        // Swipe left to close menu
+        if (swipeDistance < -swipeThreshold && leftSidebar && leftSidebar.classList.contains('mobile-open')) {
+            closeMobileMenu();
+        }
+    }
+
+    // Smooth scrolling for any anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
