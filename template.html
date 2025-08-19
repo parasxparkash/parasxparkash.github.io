@@ -365,6 +365,8 @@
         @media (max-width: 1023px) {
             main {
                 padding-top: 4rem;
+                height: 100vh;
+                max-height: 100vh;
             }
             
             /* Center title on mobile when menu toggle is visible */
@@ -377,6 +379,30 @@
             .mobile-center {
                 text-align: center;
             }
+        }
+        
+        /* Ensure main container uses full viewport height */
+        main {
+            height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Ensure proper flex behavior */
+        .flex-1 {
+            min-height: 0;
+        }
+        
+        /* Ensure tabs section can scroll properly */
+        .overflow-y-auto {
+            min-height: 0;
+            flex: 1;
+        }
+        
+        /* Ensure footer stays within viewport */
+        footer {
+            margin-top: auto;
+            flex-shrink: 0;
         }
         
         /* Improve touch targets on mobile */
@@ -425,8 +451,8 @@
 <body class="font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300">
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
-    <main class="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-4 min-h-screen">
-        <div class="flex gap-12">
+    <main class="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-4 h-screen flex flex-col">
+        <div class="flex gap-12 flex-1">
             <!-- Left Sidebar -->
             <div class="w-72 flex-shrink-0 sticky top-4 h-fit" id="left-sidebar">
                 <!-- Mobile Menu Toggle -->
@@ -504,7 +530,7 @@
             </div>
 
             <!-- Center Content Area -->
-            <div class="flex-1 flex flex-col h-screen">
+            <div class="flex-1 flex flex-col">
                 <!-- Header Section - Fixed -->
                 <div class="opacity-0 transform animate-fade-in flex-shrink-0">
                     <section class="mb-6">
@@ -608,7 +634,7 @@
                 </div>
 
                 <!-- Tabs Section - Scrollable -->
-                <div class="flex-1 overflow-y-auto">
+                <div class="flex-1 overflow-y-auto min-h-0">
                 <div class="opacity-0 transform animate-fade-in animate-delay-200">
                     <div class="text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg mb-4 border-none bg-transparent p-0 -ml-[8px]">
                         <button type="button" onclick="showTab('projects')" 
@@ -1275,10 +1301,8 @@
                 </div>
             </div>
         </div>
-    </main>
-
-    <!-- Footer - At bottom of page -->
-    <footer class="pt-8 pb-4 text-xs text-zinc-400 dark:text-zinc-500 border-t border-zinc-200 dark:border-zinc-700">
+            <!-- Footer - Within main container -->
+            <footer class="pt-6 pb-4 text-xs text-zinc-400 dark:text-zinc-500 border-t border-zinc-200 dark:border-zinc-700 mt-auto flex-shrink-0">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-start mb-3">
                 <div></div>
@@ -1290,8 +1314,9 @@
             <div class="flex justify-center items-center text-[10px] text-zinc-300 dark:text-zinc-600">
                 <div id="user-info">💻 Detecting system... • 📍 Detecting location...</div>
             </div>
+        </footer>
         </div>
-    </footer>
+    </main>
 
     <script>
         // Theme toggle functionality
