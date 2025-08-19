@@ -137,10 +137,6 @@
             transition: all 0.3s ease;
         }
         
-        .tab-content li:hover, .tab-content .space-y-6 > div:hover {
-            padding-left: 1rem;
-        }
-        
         .tab-content li::before, .tab-content .space-y-6 > div::before {
             content: '';
             position: absolute;
@@ -148,9 +144,13 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, rgb(59 130 246), rgb(147 51 234));
+            background: rgb(0 0 0);
             opacity: 0;
             transition: opacity 0.3s ease;
+        }
+        
+        .dark .tab-content li::before, .dark .tab-content .space-y-6 > div::before {
+            background: rgb(255 255 255);
         }
         
         .tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
@@ -159,12 +159,12 @@
         
         /* Responsive adjustments */
         @media (max-width: 1024px) {
-            .flex.gap-8 {
+            .flex.gap-12 {
                 flex-direction: column;
                 gap: 2rem;
             }
             
-            .w-80 {
+            .w-72 {
                 width: 100%;
                 max-width: 100%;
             }
@@ -185,14 +185,35 @@
 
 <body class="font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300">
     <main class="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-4 min-h-screen">
-        <div class="flex gap-8">
+        <div class="flex gap-12">
             <!-- Left Sidebar -->
-            <div class="w-80 flex-shrink-0 sticky top-4 h-fit">
+            <div class="w-72 flex-shrink-0 sticky top-4 h-fit relative">
+                <!-- Theme Toggle -->
+                <div class="absolute top-0 right-0">
+                    <button id="theme-toggle" 
+                            class="p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-200">
+                        <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
                 <!-- Profile Image -->
                 <div class="mb-6 flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" 
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
                          alt="Profile" 
-                         class="w-24 h-24 rounded-full object-cover border-2 border-zinc-200 dark:border-zinc-700">
+                         class="w-32 h-32 rounded-full object-cover border-2 border-zinc-200 dark:border-zinc-700">
                 </div>
                 
                 <!-- About Me Section -->
@@ -250,77 +271,12 @@
                 
                 <div class="border-b border-zinc-200 dark:border-zinc-700 mb-8"></div>
 
-                <!-- Notes Section with Tags -->
-                <div>
-                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 mb-3">Notes</h4>
-                    <!-- Tag Filter Buttons -->
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <button onclick="filterNotes('all')" class="note-tag active px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                            All
-                        </button>
-                        <button onclick="filterNotes('maths')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                            Maths
-                        </button>
-                        <button onclick="filterNotes('finance')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                            Finance
-                        </button>
-                        <button onclick="filterNotes('probability')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                            Probability
-                        </button>
-                    </div>
-                    
-                    <!-- Notes List -->
-                    <div class="space-y-3">
-                        <div class="note-item" data-tags="maths,finance">
-                            <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">Mathematical Finance Models</h4>
-                            <p class="text-xs text-zinc-600 dark:text-zinc-400">Advanced pricing models and risk assessment</p>
-                            <div class="flex gap-1 mt-1">
-                                <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
-                                <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
-                            </div>
-                        </div>
-                        
-                        <div class="note-item" data-tags="probability">
-                            <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100">Probability Theory</h4>
-                            <p class="text-xs text-zinc-600 dark:text-zinc-400">Bayesian inference and statistical modeling</p>
-                            <div class="flex gap-1 mt-1">
-                                <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Probability</span>
-                            </div>
-                        </div>
-                        
-                        <div class="note-item" data-tags="maths">
-                            <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100">Linear Algebra Applications</h4>
-                            <p class="text-xs text-zinc-600 dark:text-zinc-400">Matrix operations and vector spaces</p>
-                            <div class="flex gap-1 mt-1">
-                                <span class="px-2 py-2 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 
-                <!-- Theme Toggle -->
-                <div class="mt-8 flex justify-end">
-                    <button id="theme-toggle" 
-                            class="p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-200">
-                        <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                        <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
-                </div>
+
             </div>
 
-            <!-- Right Content Area -->
+            <!-- Center Content Area -->
             <div class="flex-1">
             <!-- Header Section -->
             <div class="opacity-0 transform animate-fade-in">
@@ -1022,8 +978,11 @@
                 <div class="opacity-0 transform animate-fade-in animate-delay-800">
                     <footer class="pt-4 text-xs text-zinc-400 dark:text-zinc-500 flex flex-col gap-2">
                         <div class="flex justify-between items-center">
-                            <div>parasxparkash@gmail.com</div>
-                            <div>Design with nicotine and chai</div>
+                            <div></div>
+                            <div class="text-right">
+                                <div class="mb-1">parasxparkash@gmail.com</div>
+                                <div>Design with nicotine and chai</div>
+                            </div>
                         </div>
                         <div class="text-[10px] text-zinc-300 dark:text-zinc-600 flex justify-between items-center">
                             <div id="user-system">💻 Detecting system...</div>
@@ -1035,7 +994,54 @@
                 </div>
             </div>
 
-
+            <!-- Right Sidebar -->
+            <div class="w-72 flex-shrink-0 sticky top-4 h-fit">
+                <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Notes</h3>
+                
+                <!-- Tag Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button onclick="filterNotes('all')" class="note-tag active px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        All
+                    </button>
+                    <button onclick="filterNotes('maths')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Maths
+                    </button>
+                    <button onclick="filterNotes('finance')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Finance
+                    </button>
+                    <button onclick="filterNotes('probability')" class="note-tag px-3 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        Probability
+                    </button>
+                </div>
+                
+                <!-- Notes List -->
+                <div class="space-y-4">
+                    <div class="note-item" data-tags="maths,finance">
+                        <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">Mathematical Finance Models</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Advanced pricing models and risk assessment</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
+                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
+                        </div>
+                    </div>
+                    
+                    <div class="note-item" data-tags="probability">
+                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Probability Theory</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Bayesian inference and statistical modeling</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Probability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="note-item" data-tags="maths">
+                        <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Linear Algebra Applications</h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Matrix operations and vector spaces</p>
+                        <div class="flex gap-1">
+                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Maths</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
