@@ -186,6 +186,14 @@
         
         /* Responsive adjustments */
         @media (max-width: 1024px) {
+            /* Hide right sidebar on medium screens to keep left + center layout */
+            .flex.gap-12 > div:last-child {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Stack vertically on small screens */
             .flex.gap-12 {
                 flex-direction: column;
                 gap: 2rem;
@@ -194,6 +202,11 @@
             .w-72 {
                 width: 100%;
                 max-width: 100%;
+            }
+            
+            /* Show right sidebar again in vertical layout */
+            .flex.gap-12 > div:last-child {
+                display: block;
             }
         }
         
