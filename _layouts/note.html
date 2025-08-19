@@ -3,7 +3,7 @@ layout: default
 mathjax: true
 ---
 
-<div class="flex gap-8 max-w-7xl mx-auto px-4 py-8">
+<div class="flex gap-8 max-w-8xl mx-auto px-4 py-8">
     <!-- Left Sidebar - Table of Contents -->
     <div class="w-64 flex-shrink-0 sticky top-4 h-fit">
         <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4">
@@ -15,7 +15,7 @@ mathjax: true
     </div>
 
     <!-- Main Content -->
-    <div class="flex-1 max-w-4xl">
+    <div class="flex-1 max-w-5xl">
         <article class="prose prose-zinc dark:prose-invert max-w-none">
             <header class="mb-8">
                 <h1 class="text-4xl font-bold mb-4">{{ page.title }}</h1>
@@ -26,11 +26,6 @@ mathjax: true
                         {{ tag }}
                     </span>
                     {% endfor %}
-                </div>
-                {% endif %}
-                {% if page.category %}
-                <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                    Category: <span class="font-medium">{{ page.category | capitalize }}</span>
                 </div>
                 {% endif %}
             </header>
@@ -61,28 +56,26 @@ mathjax: true
 
     <!-- Right Sidebar - Notes List -->
     <div class="w-72 flex-shrink-0 sticky top-4 h-fit">
-        <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4">
-            <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Other Notes</h3>
-            <div class="space-y-3">
-                {% for note in site.notes limit:5 %}
-                {% if note.title != page.title %}
-                <div class="p-3 bg-white dark:bg-zinc-700 rounded border border-zinc-200 dark:border-zinc-600">
-                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">{{ note.title }}</h4>
-                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-2">{{ note.content | strip_html | truncate: 80 }}</p>
-                    <div class="flex gap-1">
-                        {% for tag in note.tags limit:2 %}
-                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag | capitalize }}</span>
-                        {% endfor %}
-                    </div>
-                    <div class="mt-2">
-                        <a href="{{ note.url }}" class="text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                            Read →
-                        </a>
-                    </div>
+        <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Other Notes</h3>
+        <div class="space-y-4">
+            {% for note in site.notes limit:5 %}
+            {% if note.title != page.title %}
+            <div class="note-item">
+                <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">{{ note.title }}</h4>
+                <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">{{ note.content | strip_html | truncate: 80 }}</p>
+                <div class="flex gap-1">
+                    {% for tag in note.tags limit:2 %}
+                    <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag | capitalize }}</span>
+                    {% endfor %}
                 </div>
-                {% endif %}
-                {% endfor %}
+                <div class="mt-2">
+                    <a href="{{ note.url }}" class="text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                        Read →
+                    </a>
+                </div>
             </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

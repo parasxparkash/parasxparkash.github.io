@@ -2,7 +2,6 @@
 layout: note
 title: "Probability Theory"
 tags: [probability, statistics, mathematics]
-category: mathematics
 mathjax: true
 ---
 

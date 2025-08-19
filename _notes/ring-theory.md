@@ -2,7 +2,6 @@
 layout: note
 title: "Ring Theory"
 tags: [maths, algebra, abstract-algebra]
-category: mathematics
 mathjax: true
 ---
 

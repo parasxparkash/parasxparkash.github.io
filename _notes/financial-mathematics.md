@@ -2,7 +2,6 @@
 layout: note
 title: "Financial Mathematics"
 tags: [finance, mathematics, derivatives, quantitative-finance]
-category: finance
 mathjax: true
 ---
 
