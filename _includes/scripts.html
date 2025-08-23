@@ -92,7 +92,7 @@
         // Get timezone
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         
-        return `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
+        return ` ${os} • ${browser} • ${screenRes} • ${timezone}`;
     }
 
     // User Location Detection (using IP-based service with caching)
@@ -115,14 +115,14 @@
             const data = await response.json();
             
             if (data.city && data.country_name) {
-                const locationString = `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
+                const locationString = ` ${data.city}, ${data.country_name} • IP: ${data.ip}`;
                 sessionStorage.setItem('userLocation', locationString);
                 return locationString;
             } else {
-                return `📍 Location unavailable`;
+                return ` Location unavailable`;
             }
         } catch (error) {
-            return `📍 Location unavailable`;
+            return ` Location unavailable`;
         }
     }
     
@@ -159,6 +159,30 @@
         if (clockElement) {
             clockElement.textContent = `${dayString}, ${timeString} IST`;
         }
+    }
+
+    // Service Worker Registration for caching
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/assets/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+
+    // Performance monitoring
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+                console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+            }, 0);
+        });
     }
 
     // Initialize animations when page loads

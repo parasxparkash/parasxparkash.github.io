@@ -16,7 +16,7 @@
     <meta property="twitter:title" content="Modern React Patterns and Performance | Paras Parkash">
     <meta property="twitter:description" content="Exploring advanced React patterns including render props, compound components, and custom hooks. Learn how to optimize performance with React.memo, useMemo, and useCallback.">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -65,7 +65,46 @@
     </script>
     
     <!-- Custom head content -->
+<!-- Resource hints for performance -->
+<link rel="dns-prefetch" href="//github.com">
+<link rel="dns-prefetch" href="//twitter.com">
+<link rel="dns-prefetch" href="//linkedin.com">
+<link rel="dns-prefetch" href="//ipapi.co">
+
+<!-- Preload critical resources -->
+<link rel="preload" href="./assets/profile-optimized.webp" as="image" type="image/webp">
+<link rel="preload" href="./assets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="./assets/main.css"></noscript>
+
+<!-- Critical CSS for above-the-fold content -->
 <style>
+    /* Critical CSS - inline for fastest rendering */
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .text-zinc-900 { color: rgb(24 24 27); }
+    .dark .text-zinc-100 { color: rgb(244 244 245); }
+    .max-w-7xl { max-width: 80rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .h-screen { height: 100vh; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .gap-12 { gap: 3rem; }
+    .w-72 { width: 18rem; }
+    .flex-shrink-0 { flex-shrink: 0; }
+    .sticky { position: sticky; }
+    .top-4 { top: 1rem; }
+    .h-fit { height: fit-content; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .justify-center { justify-content: center; }
+    .w-40 { width: 10rem; }
+    .h-40 { height: 10rem; }
+    .rounded-full { border-radius: 9999px; }
+    .object-cover { object-fit: cover; }
+    .border-2 { border-width: 2px; }
+    .border-zinc-200 { border-color: rgb(228 228 231); }
+    .dark .border-zinc-700 { border-color: rgb(63 63 70); }
+    
     /* Optimized animation delays - reduced from 8 to 4 for better performance */
     .animate-delay-100 { animation-delay: 0.1s; }
     .animate-delay-200 { animation-delay: 0.2s; }
@@ -1133,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get timezone
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         
-        return `💻 ${os} • ${browser} • ${screenRes} • ${timezone}`;
+        return ` ${os} • ${browser} • ${screenRes} • ${timezone}`;
     }
 
     // User Location Detection (using IP-based service with caching)
@@ -1156,14 +1195,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
             
             if (data.city && data.country_name) {
-                const locationString = `📍 ${data.city}, ${data.country_name} • IP: ${data.ip}`;
+                const locationString = ` ${data.city}, ${data.country_name} • IP: ${data.ip}`;
                 sessionStorage.setItem('userLocation', locationString);
                 return locationString;
             } else {
-                return `📍 Location unavailable`;
+                return ` Location unavailable`;
             }
         } catch (error) {
-            return `📍 Location unavailable`;
+            return ` Location unavailable`;
         }
     }
     
@@ -1200,6 +1239,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (clockElement) {
             clockElement.textContent = `${dayString}, ${timeString} IST`;
         }
+    }
+
+    // Service Worker Registration for caching
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/assets/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+
+    // Performance monitoring
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+                console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+            }, 0);
+        });
     }
 
     // Initialize animations when page loads
