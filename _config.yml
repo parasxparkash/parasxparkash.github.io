@@ -2,8 +2,7 @@
 title: Paras Parkash
 email: parasxparkash@gmail.com
 description: >-
-  Software Engineer passionate about building scalable applications and solving complex problems.
-  Currently focused on full-stack development and system architecture.
+  My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://parasparkash.github.io" # the base hostname & protocol for your site
@@ -54,9 +53,18 @@ author:
   name: Paras Parkash
   email: parasxparkash@gmail.com
   location: Chennai, India
-  github: parasparkash
-  linkedin: parasparkash
-  twitter: parasparkash
+  github: parasxparkash
+  linkedin: parasxparkash
+  twitter: parasxparkash
+  medium: https://medium.com/@parasparkash
+  substack: https://parasparkash.substack.com
+  scholar: https://scholar.google.com/citations?user=
+  orcid: https://orcid.org/
+  kaggle: https://kaggle.com/
+  researchgate: https://www.researchgate.net/profile/
+  stackoverflow: https://stackoverflow.com/users/
+  youtube: https://www.youtube.com/@
+  rss: /feed.xml
 
 # MathJax settings
 mathjax: true
