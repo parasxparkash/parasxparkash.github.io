@@ -1,3 +1,10 @@
+---
+layout: note
+title: "Portfolio Optimization Methods, Their Application and Evaluation' by Paras Parkash 6)"
+tags: [portfolio-optimization, quantitative-finance, risk-management, performance, notes]
+mathjax: true
+---
+
 1. Introduction
 "Investing in knowledge yields the best returns" — Benjamin Franklin. This quote encapsulates the fundamental philosophy behind rigorous portfolio theory: understanding the mathematical foundations of investment decisions leads to superior long-term outcomes.
 Portfolio optimization represents the intersection of mathematical rigor and practical investment management. It seeks to answer fundamental questions that have plagued investors for centuries: How should we allocate capital across different assets to maximize return while controlling risk? What constitutes an optimal portfolio? How do we balance the trade-off between expected returns and uncertainty?
