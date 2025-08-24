@@ -21,15 +21,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            }
-        };
-    </script>
+    <!-- MathJax setup (must load before MathJax library executes) -->
+    <script src="/assets/js/mathjax-setup.js"></script>
+    <!-- MathJax v3 library -->
+    <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Polyfill for older browsers (safe to defer) -->
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
     
     
     <script>
@@ -72,9 +69,9 @@
 <link rel="dns-prefetch" href="//ipapi.co">
 
 <!-- Preload critical resources -->
-<link rel="preload" href="./assets/profile-optimized.webp" as="image" type="image/webp">
-<link rel="preload" href="./assets/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="./assets/main.css"></noscript>
+<link rel="preload" href="/assets/profile-optimized.webp" as="image" type="image/webp">
+<link rel="preload" href="/assets/medium.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/assets/medium.css"></noscript>
 
 <!-- Critical CSS for above-the-fold content -->
 <style>
@@ -963,60 +960,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<style>
-    .note-content h1, .note-content h2, .note-content h3 {
-        color: rgb(24 24 27);
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3 {
-        color: rgb(244 244 245);
-    }
-    
-    .note-content p {
-        margin-bottom: 1rem;
-        line-height: 1.7;
-    }
-    
-    .note-content ul, .note-content ol {
-        margin-bottom: 1rem;
-        padding-left: 1.5rem;
-    }
-    
-    .note-content li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .note-content code {
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        background: rgb(244 244 245);
-        padding: 0.2rem 0.4rem;
-        border-radius: 0.25rem;
-        font-size: 0.875rem;
-    }
-    
-    .dark .note-content code {
-        background: rgb(39 39 42);
-    }
-    
-    .note-content pre {
-        margin: 1.5rem 0;
-        background: rgb(248 250 252);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        overflow-x: auto;
-    }
-    
-    .dark .note-content pre {
-        background: rgb(24 24 27);
-    }
-    
-    /* MathJax styling */
-    .MathJax {
-        font-size: 1.1em !important;
-    }
-</style>
+
 
     
     <script>
@@ -1116,45 +1060,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return ` ${os} • ${browser} • ${screenRes} • ${timezone}`;
     }
 
-    // User Location Detection (using IP-based service with caching)
+    // User Location Detection (disabled to avoid external request)
     async function detectUserLocation() {
-        // Check if we have cached location data
-        const cachedLocation = sessionStorage.getItem('userLocation');
-        if (cachedLocation) {
-            return cachedLocation;
-        }
-        
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-            
-            const response = await fetch('https://ipapi.co/json/', {
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-            
-            const data = await response.json();
-            
-            if (data.city && data.country_name) {
-                const locationString = ` ${data.city}, ${data.country_name} • IP: ${data.ip}`;
-                sessionStorage.setItem('userLocation', locationString);
-                return locationString;
-            } else {
-                return ` Location unavailable`;
-            }
-        } catch (error) {
-            return ` Location unavailable`;
-        }
+        return '';
     }
     
     // Combined user info function
     async function updateUserInfo() {
         const systemInfo = detectUserSystem();
         const locationInfo = await detectUserLocation();
-        
+        const line = locationInfo ? `${systemInfo} • ${locationInfo}` : systemInfo;
         const userInfoElement = document.getElementById('user-info');
         if (userInfoElement) {
-            userInfoElement.textContent = `${systemInfo} • ${locationInfo}`;
+            userInfoElement.textContent = line;
         }
     }
 

@@ -13,30 +13,36 @@ layout: default
     </div>
     
     <!-- Main Content -->
-    <div class="flex-1 max-w-5xl">
+    <div class="flex-1 max-w-5xl mt-16">
         <article class="prose prose-zinc dark:prose-invert max-w-none">
             <header class="mb-8">
-                <div class="flex items-center justify-between mb-4">
-                    <h1 class="text-4xl font-bold">{{ page.title }}</h1>
-                    <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                        Back to Home
-                    </a>
-                </div>
+                <h1 class="text-4xl font-bold mb-2">{{ page.title }}</h1>
                 <time class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 block">{{ page.date | date: "%B %d, %Y" }}</time>
                 {% if page.tags.size > 0 %}
-                <div class="flex flex-wrap gap-2 mb-4">
-                    {% for tag in page.tags %}
-                    <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
-                        {{ tag }}
-                    </span>
-                    {% endfor %}
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in page.tags %}
+                        <span class="px-3 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded-full">
+                            {{ tag }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                        Back to Home
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
                 </div>
                 {% endif %}
             </header>
             
+            {% if page.image %}
+            <figure class="mb-8">
+                <img src="{{ page.image }}" alt="{{ page.title }} cover" loading="lazy" decoding="async" class="w-full rounded-lg">
+            </figure>
+            {% endif %}
+
             <div class="post-content">
                 {{ content }}
             </div>

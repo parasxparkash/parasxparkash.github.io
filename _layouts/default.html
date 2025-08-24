@@ -21,15 +21,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     {% if site.mathjax or page.mathjax %}
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            }
-        };
-    </script>
+    <!-- MathJax setup (must load before MathJax library executes) -->
+    <script src="{{ '/assets/js/mathjax-setup.js' | relative_url }}"></script>
+    <!-- MathJax v3 library -->
+    <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Polyfill for older browsers (safe to defer) -->
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
     {% endif %}
     
     <script>

@@ -10,7 +10,6 @@ url: "https://parasparkash.github.io" # the base hostname & protocol for your si
 # Build settings
 markdown: kramdown
 highlighter: rouge
-theme: minima
 
 plugins:
   - jekyll-feed
@@ -57,6 +56,10 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - template copy.html
+
+# Include hidden directories to be served (for Chrome DevTools request)
+include:
+  - .well-known
 
 # Site data
 author:

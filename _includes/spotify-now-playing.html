@@ -1,0 +1,52 @@
+<div id="spotify-now-playing" class="text-sm text-zinc-600 dark:text-zinc-400">Loading Spotify...</div>
+
+<script>
+  (function () {
+    const API_BASE = '{{ site.author.spotify_now_playing_endpoint | default: "" }}';
+    const TARGET = document.getElementById('spotify-now-playing');
+
+    function renderMessage(html) {
+      if (TARGET) TARGET.innerHTML = html;
+    }
+
+    async function getNowPlaying() {
+      if (!API_BASE) {
+        renderMessage('<p>Spotify endpoint not configured.</p>');
+        return;
+      }
+      const url = API_BASE.replace(/\/$/, '') + '/api/now-playing';
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Bad response');
+        const data = await res.json();
+
+        if (data && data.is_playing) {
+          const title = data.title || 'Unknown Title';
+          const artist = data.artist || 'Unknown Artist';
+          const songUrl = data.song_url || '#';
+          const albumArt = data.album_image_url || '';
+
+          renderMessage(`
+            <div class="flex items-center gap-3">
+              ${albumArt ? `<img src="${albumArt}" alt="Album Art" class="w-12 h-12 rounded object-cover" loading="lazy" decoding="async" />` : ''}
+              <p>
+                Currently listening to: 
+                <a href="${songUrl}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                  <strong>${title}</strong> by <strong>${artist}</strong>
+                </a>
+              </p>
+            </div>
+          `);
+        } else {
+          renderMessage('<p>Not currently listening to anything.</p>');
+        }
+      } catch (err) {
+        console.error('Error fetching Spotify data:', err);
+        renderMessage('<p>Error loading Spotify data.</p>');
+      }
+    }
+
+    getNowPlaying();
+    setInterval(getNowPlaying, 30000); // Update every 30 seconds
+  })();
+</script>

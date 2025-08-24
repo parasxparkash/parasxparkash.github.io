@@ -95,45 +95,19 @@
         return ` ${os} • ${browser} • ${screenRes} • ${timezone}`;
     }
 
-    // User Location Detection (using IP-based service with caching)
+    // User Location Detection (disabled to avoid external request)
     async function detectUserLocation() {
-        // Check if we have cached location data
-        const cachedLocation = sessionStorage.getItem('userLocation');
-        if (cachedLocation) {
-            return cachedLocation;
-        }
-        
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-            
-            const response = await fetch('https://ipapi.co/json/', {
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-            
-            const data = await response.json();
-            
-            if (data.city && data.country_name) {
-                const locationString = ` ${data.city}, ${data.country_name} • IP: ${data.ip}`;
-                sessionStorage.setItem('userLocation', locationString);
-                return locationString;
-            } else {
-                return ` Location unavailable`;
-            }
-        } catch (error) {
-            return ` Location unavailable`;
-        }
+        return '';
     }
     
     // Combined user info function
     async function updateUserInfo() {
         const systemInfo = detectUserSystem();
         const locationInfo = await detectUserLocation();
-        
+        const line = locationInfo ? `${systemInfo} • ${locationInfo}` : systemInfo;
         const userInfoElement = document.getElementById('user-info');
         if (userInfoElement) {
-            userInfoElement.textContent = `${systemInfo} • ${locationInfo}`;
+            userInfoElement.textContent = line;
         }
     }
 
