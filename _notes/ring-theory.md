@@ -1,8 +1,14 @@
 ---
 layout: note
 title: "Ring Theory"
+date: 2024-01-05
+category: mathematics
 tags: [maths, algebra, abstract-algebra]
 mathjax: true
+description: "Introduction to ring theory in abstract algebra, covering rings, ideals, homomorphisms, and their fundamental properties with mathematical proofs."
+keywords: "ring theory, abstract algebra, rings, ideals, homomorphisms, mathematics, algebra"
+author: Paras Parkash
+reading_time: 8
 ---
 
 # Ring Theory

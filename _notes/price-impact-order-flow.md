@@ -4,6 +4,10 @@ date: 2024-01-15
 category: quantitative-finance
 tags: [price-impact, order-flow, market-microstructure, liquidity, trading]
 mathjax: true
+description: "Comprehensive analysis of order flow imbalance and its impact on stock prices. Explore the linear relationship between order book events and price changes in modern electronic markets."
+keywords: "price impact, order flow imbalance, market microstructure, liquidity, trading, derivatives, quantitative finance"
+author: Paras Parkash
+reading_time: 15
 ---
 
 # Understanding Price Impact in Financial Markets: How Order Flow Imbalance Drives Stock Price Changes

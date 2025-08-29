@@ -1,8 +1,14 @@
 ---
 layout: note
 title: "Probability Theory"
+date: 2024-01-08
+category: mathematics
 tags: [probability, statistics, mathematics]
 mathjax: true
+description: "Fundamental concepts in probability theory including random variables, distributions, and stochastic processes with applications to quantitative finance."
+keywords: "probability theory, random variables, distributions, stochastic processes, quantitative finance, statistics"
+author: Paras Parkash
+reading_time: 10
 ---
 
 # Probability Theory

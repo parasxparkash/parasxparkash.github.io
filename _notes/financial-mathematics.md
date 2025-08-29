@@ -1,8 +1,14 @@
 ---
 layout: note
 title: "Financial Mathematics"
+date: 2024-01-10
+category: mathematics
 tags: [finance, mathematics, derivatives, quantitative-finance]
 mathjax: true
+description: "Comprehensive guide to financial mathematics covering derivatives pricing, risk management, and portfolio optimization using advanced mathematical techniques."
+keywords: "financial mathematics, derivatives pricing, risk management, portfolio optimization, quantitative finance, stochastic calculus"
+author: Paras Parkash
+reading_time: 12
 ---
 
 # Financial Mathematics
