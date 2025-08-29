@@ -1,33 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>http://localhost:4000/notes/financial-mathematics/</loc>
-<lastmod>2025-08-24T17:19:59+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/notes/probability-theory/</loc>
-<lastmod>2025-08-24T17:19:59+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/notes/ring-theory/</loc>
-<lastmod>2025-08-24T17:19:59+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns.html</loc>
-<lastmod>2024-01-10T00:00:00+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices.html</loc>
-<lastmod>2024-01-15T00:00:00+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2025/08/24/am-i-really-living-or-just-wasting-time.html</loc>
-<lastmod>2025-08-24T00:00:00+05:30</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/posts/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/</loc>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>http://localhost:4000</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Blog Posts -->
+  
+  <url>
+    <loc>http://localhost:4000/2025/08/24/am-i-really-living-or-just-wasting-time/</loc>
+    <lastmod>2025-08-24T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+    <image:image>
+      <image:loc>http://localhost:4000/assets/memento-mori.jpg</image:loc>
+      <image:title>Am I Really Living, Or Just Wasting Time?</image:title>
+      <image:caption>Four Stoic rules that pull me out of comfort and into a lived day: memento mori, choose discomfort, stop lying, do the work in silence.</image:caption>
+    </image:image>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices/</loc>
+    <lastmod>2024-01-15T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns/</loc>
+    <lastmod>2024-01-10T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+  </url>
+  
+  
+  <!-- Notes -->
+  
+  <url>
+    <loc>http://localhost:4000/notes/financial-mathematics/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/price-impact-order-flow/</loc>
+    <lastmod>2024-01-15T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/probability-theory/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/ring-theory/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+  <!-- Static Pages -->
+  
+    
+  
+    
+  <url>
+    <loc>http://localhost:4000/posts/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+    
+  
+    
+  <url>
+    <loc>http://localhost:4000/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+    
+  
+    
+  <url>
+    <loc>http://localhost:4000/search/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+    
+  
+    
+  
+    
+  
+  
+  <!-- Category Pages -->
+  
+  <url>
+    <loc>http://localhost:4000/categories/blog/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/categories/frontend/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/categories/development/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  
+  <!-- Tag Pages -->
+  
+  <url>
+    <loc>http://localhost:4000/tags/react/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/javascript/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/performance/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/patterns/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/microservices/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/nodejs/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/docker/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/kubernetes/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/stoicism/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/philosophy/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/tags/self-improvement/</loc>
+    <lastmod>2025-08-29T07:19:02+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
 </urlset>
