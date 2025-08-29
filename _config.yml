@@ -15,6 +15,11 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-redirect-from
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
 
 # Performance optimizations
 compress_html:
@@ -81,3 +86,39 @@ author:
 
 # MathJax settings
 mathjax: true
+
+# SEO Settings
+seo:
+  type: "Person"
+  name: "Paras Parkash"
+  description: "Quantitative Researcher specializing in derivatives, risk management, and AI-powered financial models"
+  image: "/assets/profile-optimized.webp"
+  url: "https://parasparkash.github.io"
+  twitter:
+    username: "parasxparkash"
+  facebook:
+    app_id: ""
+  google_site_verification: ""
+  bing_site_verification: ""
+  yandex_site_verification: ""
+
+# Sitemap settings
+sitemap:
+  changefreq: weekly
+  priority: 0.7
+  lastmod: true
+
+# Feed settings
+feed:
+  path: feed.xml
+  excerpt_only: true
+  limit: 20
+
+# Timezone
+timezone: Asia/Kolkata
+
+# Encoding
+encoding: utf-8
+
+# Permalinks
+permalink: /:categories/:year/:month/:day/:title/
