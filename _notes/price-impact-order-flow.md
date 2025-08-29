@@ -332,36 +332,4 @@ The research also opens new avenues for understanding market efficiency, liquidi
 
 The simplicity and empirical success of the linear order flow imbalance model represents a significant advance in market microstructure theory, providing both practical insights for market participants and theoretical foundation for future research.
 
----
 
-## References
-
-Cont, R., Kukanov, A., & Stoikov, S. (2011). The price impact of order book events. *arXiv preprint arXiv:1011.6402v3*. Retrieved from https://arxiv.org/abs/1011.6402
-
-**Additional References Cited in the Original Paper:**
-
-Ahn, H., Bae, K., & Chan, K. (2001). Limit orders, depth, and volatility: evidence from the stock exchange of Hong Kong. *Journal of Finance*, 56, 767-788.
-
-Almgren, R., & Chriss, N. (2000). Optimal execution of portfolio transactions. *Journal of Risk*, 3, 5-39.
-
-Almgren, R., Thum, C., Hauptmann, E., & Li, H. (2005). Direct estimation of equity market impact. *Journal of Risk*, 18, 57.
-
-Bertsimas, D., & Lo, A. (1998). Optimal control of execution costs. *Journal of Financial Markets*, 1, 1-50.
-
-Bouchaud, J.-P., Gefen, Y., Potters, M., & Wyart, M. (2004). Fluctuations and response in financial markets: the subtle nature of 'random' price changes. *Quantitative Finance*, 4, 176.
-
-Eisler, Z., Bouchaud, J.-P., & Kockelkoren, J. (2009). The price impact of order book events: market orders, limit orders and cancellations. *Quantitative Finance Papers*, arXiv:0904.0900.
-
-Engle, R., & Lunde, A. (2003). Trades and quotes: a bivariate point process. *Journal of Financial Econometrics*, 1, 159-188.
-
-Hasbrouck, J. (1991). Measuring the information content of stock trades. *Journal of Finance*, 46, 179-207.
-
-Hasbrouck, J., & Seppi, D. (2001). Common factors in prices, order flows and liquidity. *Journal of Finance and Economics*, 59, 383.
-
-Jones, C., Kaul, G., & Lipson, M. (1994). Transactions, volume, and volatility. *Review of Financial Studies*, 7, 631-651.
-
-Karpoff, J. (1987). The relation between price changes and trading volume: A survey. *Journal of Financial and Quantitative Analysis*, 22, 109.
-
-Lee, C., & Ready, M. (1991). Inferring trade direction from intraday data. *Journal of Finance*, 46, 733-746.
-
-Madhavan, A., Richardson, M., & Roomans, M. (1997). Why do security prices change? a transaction-level analysis of nyse stocks. *Review of Financial Studies*, 10, 1035.
