@@ -1078,16 +1078,8 @@
                             id="tab-experience">
                         Experience
                     </button>
-                    <button type="button" onclick="showTab('education')" 
-                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
-                            id="tab-education">
-                        Education
-                    </button>
-                    <button type="button" onclick="showTab('tools')" 
-                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
-                            id="tab-tools">
-                        Tools
-                    </button>
+
+
                     <button type="button" onclick="showTab('blogs')" 
                             class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
                             id="tab-blogs">
@@ -1103,11 +1095,7 @@
                             id="tab-books">
                         Books
                     </button>
-                    <button type="button" onclick="showTab('resources')" 
-                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
-                            id="tab-resources">
-                        Resources
-                    </button>
+
                 </div>
             </div>
 
@@ -1380,103 +1368,88 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
             <!-- Experience Tab Content -->
             <div id="content-experience" class="tab-content hidden">
                 <section class="mb-12">
-                    <div class="space-y-8">
-                        <ul class="space-y-8">
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-100">
+                    <!-- Work Experience Section -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Work Experience</h3>
+                        <div class="space-y-8">
+                            <ul class="space-y-8">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-100">
+                                    <li class="group">
+                                        <div class="flex items-baseline justify-between mb-1">
+                                            <h3 class="text-md font-medium">Quantitative Researcher | Educator</h3>
+                                            <span class="text-xs text-zinc-500 dark:text-zinc-400">Feb 2023 - Sep 2023</span>
+                                        </div>
+                                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">QuantEdX</p>
+                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Developed and implemented advanced Machine Learning-based LFT/MFT models for enhanced trading strategies, effectively leveraging statistical arbitrage and derivative pricing techniques. Conducted in-depth credit risk analysis and led research in innovative quantitative models for derivative pricing.</p>
+                                        <div class="flex flex-wrap gap-2 mt-2">
+                                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Machine Learning</span>
+                                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivative Pricing</span>
+                                            <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Risk Management</span>
+                                            <span class="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Statistical Arbitrage</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-200">
                                 <li class="group">
                                     <div class="flex items-baseline justify-between mb-1">
-                                        <h3 class="text-md font-medium">Quantitative Researcher | Educator</h3>
-                                        <span class="text-xs text-zinc-500 dark:text-zinc-400">Feb 2023 - Sep 2023</span>
+                                        <h3 class="text-md font-medium">Section Engineer</h3>
+                                        <span class="text-xs text-zinc-500 dark:text-zinc-400">Jun 2016 - Aug 2022</span>
                                     </div>
-                                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">QuantEdX</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Developed and implemented advanced Machine Learning-based LFT/MFT models for enhanced trading strategies, effectively leveraging statistical arbitrage and derivative pricing techniques. Conducted in-depth credit risk analysis and led research in innovative quantitative models for derivative pricing.</p>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Jal Shakti Dept. PHE, Jammu & Kashmir, India</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Managed and maintained electro-mechanical systems for water pumping stations, including procurement and maintenance of motors, actuators, and PLC logic systems. Engineered and debugged control logic for power machinery using microcontrollers (Arduino, Raspberry Pi, STM32) and chips (Intel 8051, PIC, ARM Cortex-M series) to automate operations.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Machine Learning</span>
-                                        <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivative Pricing</span>
-                                        <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Risk Management</span>
-                                        <span class="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Statistical Arbitrage</span>
+                                        <span class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300 rounded">PLC Systems</span>
+                                        <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Microcontrollers</span>
+                                        <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Control Logic</span>
+                                        <span class="px-2 py-1 text-xs bg-gray-50 text-gray-700 dark:bg-gray-900/20 dark:text-gray-300 rounded">Electro-mechanical</span>
                                     </div>
                                 </li>
-                            </div>
-                            
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-200">
+                                </div>
+
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-300">
                                 <li class="group">
-                                <div class="flex items-baseline justify-between mb-1">
-                                    <h3 class="text-md font-medium">HFT Strategy Researcher | Educator</h3>
-                                    <span class="text-xs text-zinc-500 dark:text-zinc-400">Aug 2022 - Dec 2022</span>
+                                    <div class="flex items-baseline justify-between mb-1">
+                                        <h3 class="text-md font-medium">Assistant Manager</h3>
+                                        <span class="text-xs text-zinc-500 dark:text-zinc-400">Jul 2013 - Jul 2015</span>
+                                    </div>
+                                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Maruti Suzuki India Limited</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Experienced in automotive HVAC system design, development, and optimization with focus on electro-fluidic parts and control systems. Designed, tested, and evaluated HVAC systems using electronic control units (ECUs) with microprocessors (Intel 8086, Motorola 68000 series) and sensors (temperature, pressure, flow sensors). Performed heat load calculations and thermal management analysis.</p>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">HVAC Systems</span>
+                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">ECU Design</span>
+                                        <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Thermal Analysis</span>
+                                        <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Sensor Integration</span>
+                                    </div>
+                                    </li>
                                 </div>
-                                <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Quantified Trader</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Collaborated with clients to design and implement MFT/HFT trading systems using Python and C++. Developed and backtested HFT Trading Strategies using quantitative approaches. Optimized trading system performance using multi-threading and low-latency design principles.</p>
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">High-Frequency Trading</span>
-                                    <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Python/C++</span>
-                                    <span class="px-2 py-1 text-xs bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-purple-300 rounded">Low-Latency Systems</span>
-                                    <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Multi-threading</span>
-                                </div>
-                            </li>
-                            </div>
-
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-300">
-                            <li class="group">
-                                <div class="flex items-baseline justify-between mb-1">
-                                    <h3 class="text-md font-medium">Section Engineer</h3>
-                                    <span class="text-xs text-zinc-500 dark:text-zinc-400">Jun 2016 - Aug 2022</span>
-                                </div>
-                                <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Jal Shakti Dept. PHE, Jammu & Kashmir, India</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Managed and maintained electro-mechanical systems for water pumping stations, including procurement and maintenance of motors, actuators, and PLC logic systems. Engineered and debugged control logic for power machinery using microcontrollers (Arduino, Raspberry Pi, STM32) and chips (Intel 8051, PIC, ARM Cortex-M series) to automate operations.</p>
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    <span class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300 rounded">PLC Systems</span>
-                                    <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Microcontrollers</span>
-                                    <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Control Logic</span>
-                                    <span class="px-2 py-1 text-xs bg-gray-50 text-gray-700 dark:bg-gray-900/20 dark:text-gray-300 rounded">Electro-mechanical</span>
-                                </div>
-                            </li>
-                            </div>
-
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
-                            <li class="group">
-                                <div class="flex items-baseline justify-between mb-1">
-                                    <h3 class="text-md font-medium">Assistant Manager</h3>
-                                    <span class="text-xs text-zinc-500 dark:text-zinc-400">Jul 2013 - Jul 2015</span>
-                                </div>
-                                <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Maruti Suzuki India Limited</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Experienced in automotive HVAC system design, development, and optimization with focus on electro-fluidic parts and control systems. Designed, tested, and evaluated HVAC systems using electronic control units (ECUs) with microprocessors (Intel 8086, Motorola 68000 series) and sensors (temperature, pressure, flow sensors). Performed heat load calculations and thermal management analysis.</p>
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">HVAC Systems</span>
-                                    <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">ECU Design</span>
-                                    <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Thermal Analysis</span>
-                                    <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Sensor Integration</span>
-                                </div>
-                                </li>
-                            </div>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </section>
-            </div>
 
-            <!-- Education Tab Content -->
-            <div id="content-education" class="tab-content hidden">
-                <section class="mb-12">
-                    <div class="space-y-8">
-                        <ul class="space-y-8">
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-100">
-                                <li class="group">
-                                    <div class="flex items-baseline justify-between mb-1">
-                                        <h3 class="text-md font-medium">Master of Science in Financial Engineering</h3>
-                                        <span class="text-xs text-zinc-500 dark:text-zinc-400">2022 - 2024</span>
-                                    </div>
-                                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">WorldQuant University</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced studies in quantitative finance, derivatives pricing, risk management, and algorithmic trading strategies. Focus on mathematical modeling, statistical analysis, and computational finance applications.</p>
-                                    <div class="flex flex-wrap gap-2 mt-2">
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Quantitative Finance</span>
-                                        <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivatives Pricing</span>
-                                        <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Risk Management</span>
-                                        <span class="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Algorithmic Trading</span>
-                                    </div>
-                                </li>
-                            </div>
-                            
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-200">
+                    <!-- Education Section -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Education</h3>
+                        <div class="space-y-8">
+                            <ul class="space-y-8">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
+                                    <li class="group">
+                                        <div class="flex items-baseline justify-between mb-1">
+                                            <h3 class="text-md font-medium">Master of Science in Financial Engineering</h3>
+                                            <span class="text-xs text-zinc-500 dark:text-zinc-400">2022 - 2024</span>
+                                        </div>
+                                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">WorldQuant University</p>
+                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced studies in quantitative finance, derivatives pricing, risk management, and algorithmic trading strategies. Focus on mathematical modeling, statistical analysis, and computational finance applications.</p>
+                                        <div class="flex flex-wrap gap-2 mt-2">
+                                            <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Quantitative Finance</span>
+                                            <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivatives Pricing</span>
+                                            <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Risk Management</span>
+                                            <span class="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Algorithmic Trading</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-500">
                                 <li class="group">
                                 <div class="flex items-baseline justify-between mb-1">
                                     <h3 class="text-md font-medium">Masters in Science, Mathematics</h3>
@@ -1492,7 +1465,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                             </li>
                             </div>
 
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-300">
+                            <div class="opacity-0 transform-x animate-slide-left animate-delay-600">
                             <li class="group">
                                 <div class="flex items-baseline justify-between mb-1">
                                     <h3 class="text-md font-medium">Post Graduate Diploma in Finance</h3>
@@ -1508,7 +1481,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                             </li>
                             </div>
 
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
+                            <div class="opacity-0 transform-x animate-slide-left animate-delay-700">
                             <li class="group">
                                 <div class="flex items-baseline justify-between mb-1">
                                     <h3 class="text-md font-medium">Bachelor of Technology, Mechanical</h3>
@@ -1528,9 +1501,9 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                         
                         <!-- Certifications Section -->
                         <div class="mt-12">
-                            <h3 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Certifications</h3>
+                            <h4 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Certifications</h4>
                             <div class="space-y-6">
-                                <div class="opacity-0 transform-x animate-slide-left animate-delay-500">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-800">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Applied Data Science Lab</h4>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2023</span>
@@ -1539,7 +1512,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced data science techniques and machine learning applications in quantitative finance.</p>
                                 </div>
                                 
-                                <div class="opacity-0 transform-x animate-slide-left animate-delay-600">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-900">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Algorithmic Trading and Computational Finance</h4>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2021</span>
@@ -1548,7 +1521,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Comprehensive training in algorithmic trading strategies and computational finance methodologies.</p>
                                 </div>
                                 
-                                <div class="opacity-0 transform-x animate-slide-left animate-delay-700">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-1000">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Executive Development Programme in Financial Data Analytics</h4>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2019</span>
@@ -1557,7 +1530,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced analytics techniques for financial data analysis and business intelligence applications.</p>
                                 </div>
                                 
-                                <div class="opacity-0 transform-x animate-slide-left animate-delay-800">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-1100">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Machine Learning Specialization</h4>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2019</span>
@@ -1568,63 +1541,91 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
 
-            <!-- Tools Tab Content -->
-            <div id="content-tools" class="tab-content hidden">
-                <section class="mb-12">
+                <!-- Tools & Technologies Section -->
+                <div class="mb-12">
+                    <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Tools & Technologies</h3>
                     <div class="space-y-6">
-                        <div class="opacity-0 transform-x animate-slide-left animate-delay-100">
-                            <h3 class="text-md font-medium mb-3">Languages</h3>
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1200">
+                            <h4 class="text-md font-medium mb-3">Programming Languages</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">JavaScript</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">TypeScript</span>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Python</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Go</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Java</span>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">C++</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">R</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">MATLAB</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">SQL</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">JavaScript</span>
                             </div>
                         </div>
                         
-                        <div class="opacity-0 transform-x animate-slide-left animate-delay-200">
-                            <h3 class="text-md font-medium mb-3">Frontend</h3>
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1300">
+                            <h4 class="text-md font-medium mb-3">Quantitative Finance</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">React</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Next.js</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Vue.js</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Tailwind CSS</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">SASS</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">React Native</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Pandas</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">NumPy</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">SciPy</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">QuantLib</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Zipline</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Backtrader</span>
                             </div>
                         </div>
                         
-                        <div class="opacity-0 transform-x animate-slide-left animate-delay-300">
-                            <h3 class="text-md font-medium mb-3">Backend & Database</h3>
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1400">
+                            <h4 class="text-md font-medium mb-3">Machine Learning & AI</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Node.js</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Express.js</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">PostgreSQL</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">MongoDB</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Scikit-learn</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">TensorFlow</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">PyTorch</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">XGBoost</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">LightGBM</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Keras</span>
+                            </div>
+                        </div>
+                        
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1500">
+                            <h4 class="text-md font-medium mb-3">Data & Analytics</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Jupyter</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Tableau</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Power BI</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Apache Spark</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Kafka</span>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Redis</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">GraphQL</span>
                             </div>
                         </div>
-
-                        <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
-                            <h3 class="text-md font-medium mb-3">Tools & DevOps</h3>
+                        
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1600">
+                            <h4 class="text-md font-medium mb-3">Trading & Market Data</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Docker</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Interactive Brokers API</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Bloomberg API</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Yahoo Finance</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Alpha Vantage</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Quandl</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">CCXT</span>
+                            </div>
+                        </div>
+                        
+                        <div class="opacity-0 transform-x animate-slide-left animate-delay-1700">
+                            <h4 class="text-md font-medium mb-3">Cloud & Infrastructure</h4>
+                            <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">AWS</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Git</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">CI/CD</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Docker</span>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Kubernetes</span>
-                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Terraform</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Git</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Linux</span>
+                                <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Bash</span>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
 
             <!-- Books Tab Content -->
             <div id="content-books" class="tab-content hidden">
@@ -1890,8 +1891,7 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
             </div>
             
 
-            <!-- Resources Tab Content -->
-            <div id="content-resources" class="tab-content hidden">
+
                 <section class="mb-12">
                     <div class="space-y-8">
                         <ul class="space-y-8">
@@ -1993,7 +1993,6 @@ Ring theory is a fundamental area of abstract algebra that studies algebraic str
                         </ul>
                     </div>
                 </section>
-            </div>
             </div>
         </div>
 
