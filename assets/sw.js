@@ -2,9 +2,8 @@
 const CACHE_NAME = 'paras-portfolio-v1';
 const urlsToCache = [
   '/',
-  '/assets/main.css',
-  '/assets/profile-optimized.webp',
-  '/assets/xM86BWys_400x400.jpg'
+  '/assets/medium.css',
+  '/assets/profile-optimized.webp'
 ];
 
 // Install event - cache resources

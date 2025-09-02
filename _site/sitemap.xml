@@ -7,8 +7,8 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <!-- Homepage -->
   <url>
-    <loc>https://parasparkash.github.io</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -16,13 +16,13 @@
   <!-- Blog Posts -->
   
   <url>
-    <loc>https://parasparkash.github.io/2025/08/24/am-i-really-living-or-just-wasting-time/</loc>
+    <loc>http://localhost:4000/2025/08/24/am-i-really-living-or-just-wasting-time/</loc>
     <lastmod>2025-08-24T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
     <image:image>
-      <image:loc>https://parasparkash.github.io/assets/memento-mori.jpg</image:loc>
+      <image:loc>http://localhost:4000/assets/memento-mori.jpg</image:loc>
       <image:title>Am I Really Living, Or Just Wasting Time?</image:title>
       <image:caption>Four Stoic rules that pull me out of comfort and into a lived day: memento mori, choose discomfort, stop lying, do the work in silence.</image:caption>
     </image:image>
@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/blog/development/2024/01/15/building-scalable-microservices/</loc>
+    <loc>http://localhost:4000/blog/development/2024/01/15/building-scalable-microservices/</loc>
     <lastmod>2024-01-15T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/blog/frontend/2024/01/10/modern-react-patterns/</loc>
+    <loc>http://localhost:4000/blog/frontend/2024/01/10/modern-react-patterns/</loc>
     <lastmod>2024-01-10T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -49,35 +49,63 @@
   <!-- Notes -->
   
   <url>
-    <loc>https://parasparkash.github.io/notes/ring-theory/</loc>
+    <loc>http://localhost:4000/notes/local-volatility-under-rough-volatility/</loc>
+    <lastmod>2022-11-13T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/learning-simulate-limit-order-book-world-agent/</loc>
+    <lastmod>2022-11-14T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/deep-reinforcement-learning-market-making/</loc>
+    <lastmod>2022-11-15T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/asymmetric-information-realized-spread/</loc>
+    <lastmod>2022-11-16T00:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:4000/notes/ring-theory/</loc>
     <lastmod>2024-01-05T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/notes/probability-theory/</loc>
+    <loc>http://localhost:4000/notes/probability-theory/</loc>
     <lastmod>2024-01-08T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/notes/financial-mathematics/</loc>
+    <loc>http://localhost:4000/notes/financial-mathematics/</loc>
     <lastmod>2024-01-10T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/notes/price-impact-order-flow/</loc>
+    <loc>http://localhost:4000/notes/price-impact-order-flow/</loc>
     <lastmod>2024-01-15T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/notes/order-book-price-impact-analysis/</loc>
+    <loc>http://localhost:4000/notes/order-book-price-impact-analysis/</loc>
     <lastmod>2024-01-20T00:00:00+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -90,8 +118,8 @@
   
     
   <url>
-    <loc>https://parasparkash.github.io/posts/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/notes/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -99,8 +127,8 @@
   
     
   <url>
-    <loc>https://parasparkash.github.io/notes/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/posts/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -108,17 +136,8 @@
   
     
   <url>
-    <loc>https://parasparkash.github.io/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-    
-  
-    
-  <url>
-    <loc>https://parasparkash.github.io/search/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -132,22 +151,22 @@
   <!-- Category Pages -->
   
   <url>
-    <loc>https://parasparkash.github.io/categories/blog/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/categories/blog/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/categories/frontend/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/categories/frontend/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/categories/development/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/categories/development/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -156,78 +175,78 @@
   <!-- Tag Pages -->
   
   <url>
-    <loc>https://parasparkash.github.io/tags/react/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/react/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/javascript/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/javascript/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/performance/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/performance/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/patterns/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/patterns/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/microservices/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/microservices/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/nodejs/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/nodejs/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/docker/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/docker/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/kubernetes/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/kubernetes/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/stoicism/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/stoicism/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/philosophy/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/philosophy/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://parasparkash.github.io/tags/self-improvement/</loc>
-    <lastmod>2025-08-29T08:55:01+05:30</lastmod>
+    <loc>http://localhost:4000/tags/self-improvement/</loc>
+    <lastmod>2025-09-02T21:34:58+05:30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>

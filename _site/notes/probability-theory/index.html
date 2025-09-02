@@ -15,14 +15,14 @@
     <meta name="revisit-after" content="7 days">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://parasparkash.github.io/notes/probability-theory/">
+    <link rel="canonical" href="http://localhost:4000/notes/probability-theory/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://parasparkash.github.io/notes/probability-theory/">
+    <meta property="og:url" content="http://localhost:4000/notes/probability-theory/">
     <meta property="og:title" content="Probability Theory | Paras Parkash">
     <meta property="og:description" content="Fundamental concepts in probability theory including random variables, distributions, and stochastic processes with applications to quantitative finance.">
-    <meta property="og:image" content="https://parasparkash.github.io/assets/profile-optimized.webp">
+    <meta property="og:image" content="http://localhost:4000/assets/profile-optimized.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Probability Theory">
@@ -32,10 +32,10 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://parasparkash.github.io/notes/probability-theory/">
+    <meta name="twitter:url" content="http://localhost:4000/notes/probability-theory/">
     <meta name="twitter:title" content="Probability Theory | Paras Parkash">
     <meta name="twitter:description" content="Fundamental concepts in probability theory including random variables, distributions, and stochastic processes with applications to quantitative finance.">
-    <meta name="twitter:image" content="https://parasparkash.github.io/assets/profile-optimized.webp">
+    <meta name="twitter:image" content="http://localhost:4000/assets/profile-optimized.webp">
     <meta name="twitter:image:alt" content="Probability Theory">
     <meta name="twitter:creator" content="@parasxparkash">
     <meta name="twitter:site" content="@parasxparkash">
@@ -107,8 +107,8 @@
         
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "https://parasparkash.github.io",
-        "image": "https://parasparkash.github.io/assets/profile-optimized.webp",
+        "url": "http://localhost:4000",
+        "image": "http://localhost:4000/assets/profile-optimized.webp",
         "jobTitle": "Quantitative Researcher",
         "worksFor": {
             "@type": "Organization",
@@ -151,15 +151,13 @@
         "@type": "WebSite",
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "https://parasparkash.github.io",
+        "url": "http://localhost:4000",
         "author": {
             "@type": "Person",
             "name": "Paras Parkash"
         },
         "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://parasparkash.github.io/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
+            
         }
     }
     </script>
@@ -290,6 +288,21 @@
         color: white !important;
     }
     
+    /* Note item transitions */
+    .note-item {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .note-item[style*="display: none"] {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    
+    .note-item[style*="display: block"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     /* List item hover effects */
     .tab-content li, .tab-content .space-y-6 > div {
         position: relative;
@@ -319,10 +332,26 @@
     
     /* Responsive adjustments */
     
-    /* Large screens - Three column layout */
+    /* Large screens - Three column layout with center column double width of sidebars */
     @media (min-width: 1200px) {
         .flex.gap-12 {
             gap: 3rem;
+        }
+        
+        /* Set flex behavior for 1:2:1 ratio */
+        .flex.gap-12 > div:first-child {  /* Left sidebar */
+            flex: 1;
+            max-width: 288px;
+        }
+        
+        .flex.gap-12 > div:nth-child(2) {  /* Center content */
+            flex: 2;
+            min-width: 576px;
+        }
+        
+        .flex.gap-12 > div:last-child {  /* Right sidebar */
+            flex: 1;
+            max-width: 288px;
         }
     }
     
@@ -581,12 +610,20 @@
     
     /* Medium-style article layout */
     .medium-style-article {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .medium-style-article.max-w-none {
+        max-width: none;
+        width: 100%;
     }
     
     .medium-content {
+        max-width: none;
+        width: 100%;
         font-family: 'Charter', 'Georgia', serif;
         font-size: 21px;
         line-height: 1.58;
@@ -837,6 +874,263 @@
             margin: 20px 0;
         }
     }
+    
+    /* Scientific Journal Typography for Notes */
+    .font-serif {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+    }
+    
+    .font-mono {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+    }
+    
+    /* Enhanced Table of Contents styling */
+    #toc {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(161 161 170) transparent;
+    }
+    
+    #toc::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    #toc::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    #toc::-webkit-scrollbar-thumb {
+        background: rgb(161 161 170);
+        border-radius: 2px;
+    }
+    
+    .dark #toc::-webkit-scrollbar-thumb {
+        background: rgb(82 82 91);
+    }
+    
+    /* Scientific journal style content - override Medium styles */
+    .note-content {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        color: rgb(24 24 27) !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    .dark .note-content {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Scientific journal style headings */
+    .note-content h1, .note-content h2, .note-content h3, .note-content h4 {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-weight: 600 !important;
+        color: rgb(24 24 27) !important;
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3, .dark .note-content h4 {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Scientific journal style paragraphs */
+    .note-content p {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.7 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Scientific journal style lists */
+    .note-content ul, .note-content ol {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin-bottom: 1rem !important;
+        padding-left: 1.5rem !important;
+    }
+    
+    .note-content li { 
+        margin-bottom: 0.5rem !important; 
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Scientific journal style code */
+    .note-content code {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+        background: rgb(244 244 245);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .dark .note-content code { 
+        background: rgb(39 39 42); 
+    }
+    
+    /* Scientific journal style pre blocks */
+    .note-content pre {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+        margin: 1.5rem 0;
+        background: rgb(248 250 252);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+    
+    .dark .note-content pre { 
+        background: rgb(24 24 27); 
+    }
+    
+    /* Enhanced TOC link styling */
+    .toc-link {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+        border-left: 2px solid transparent;
+        transition: all 0.2s ease;
+        padding: 0 !important;
+        margin: 0 !important;
+        line-height: 1.0 !important;
+        font-size: 10px !important;
+    }
+    
+    /* TOC container styling */
+    #toc {
+        margin-bottom: 0.5rem !important;
+        padding-bottom: 0.25rem !important;
+    }
+    
+    .toc-link:hover {
+        border-left-color: rgb(59 130 246);
+        background-color: rgba(59, 130, 246, 0.05);
+        padding-left: 6px !important;
+    }
+    
+    .dark .toc-link:hover {
+        background-color: rgba(96, 165, 250, 0.1);
+    }
+    
+    /* Active TOC link styling */
+    .toc-link.text-blue-600,
+    .toc-link.dark\:text-blue-400 {
+        border-left-color: rgb(59 130 246);
+        background-color: rgba(59, 130, 246, 0.1);
+        font-weight: 600;
+    }
+    
+    .dark .toc-link.text-blue-600,
+    .dark .toc-link.dark\:text-blue-400 {
+        background-color: rgba(96, 165, 250, 0.15);
+    }
+    
+    /* Responsive adjustments for scientific typography */
+    @media (max-width: 768px) {
+        .note-content {
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+        
+        .note-content h1 {
+            font-size: 1.75rem;
+        }
+        
+        .note-content h2 {
+            font-size: 1.5rem;
+        }
+        
+        .note-content h3 {
+            font-size: 1.25rem;
+        }
+        
+        .note-content h4 {
+            font-size: 1.125rem;
+        }
+        
+        /* Stack layout on mobile */
+        .flex.gap-3 {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .w-44 {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+        .flex.gap-3 {
+            gap: 1rem;
+        }
+        
+        .w-44 {
+            width: 220px;
+        }
+    }
+    
+    /* Override Medium content styles for notes */
+    .medium-content.note-content {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        color: rgb(24 24 27) !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    .dark .medium-content.note-content {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Override Medium headings for notes */
+    .medium-content.note-content h1,
+    .medium-content.note-content h2,
+    .medium-content.note-content h3,
+    .medium-content.note-content h4 {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-weight: 600 !important;
+        color: rgb(24 24 27) !important;
+        text-align: left !important;
+    }
+    
+    .dark .medium-content.note-content h1,
+    .dark .medium-content.note-content h2,
+    .dark .medium-content.note-content h3,
+    .dark .medium-content.note-content h4 {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Override Medium paragraphs for notes */
+    .medium-content.note-content p {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 1rem 0 !important;
+        line-height: 1.7 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Override Medium lists for notes */
+    .medium-content.note-content ul,
+    .medium-content.note-content ol {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 1rem 0 !important;
+        padding-left: 1.5rem !important;
+    }
+    
+    .medium-content.note-content li {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 0.4rem 0 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
 </style>
 
 </head>
@@ -845,41 +1139,41 @@
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
     
-    <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="flex gap-8">
+    <div class="max-w-full mx-auto px-4 py-2">
+    <div class="flex gap-3">
         <!-- Table of Contents Sidebar -->
-        <div class="w-64 flex-shrink-0 sticky top-8 h-fit">
-            <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4">
-                <h3 class="text-sm font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Table of Contents</h3>
-                <nav id="toc" class="space-y-2">
+        <div class="w-44 flex-shrink-0 sticky top-2 h-fit order-1">
+            <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                <h3 class="text-xs font-semibold mb-2 text-zinc-900 dark:text-zinc-100 font-serif">Table of Contents</h3>
+                <nav id="toc" class="space-y-0">
                     <!-- TOC will be generated by JavaScript -->
                 </nav>
             </div>
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1">
-            <article class="medium-style-article">
-                <header class="mb-12 text-center">
+        <div class="flex-1 order-2 min-w-0 w-full">
+            <article class="medium-style-article max-w-none w-full">
+                <header class="mb-8 text-center">
                     <div class="mb-6">
-                        <h1 class="text-5xl font-bold text-zinc-900 dark:text-zinc-100 leading-tight mb-4">Probability Theory</h1>
+                        <h1 class="text-4xl font-bold text-zinc-900 dark:text-zinc-100 leading-tight mb-4 font-serif">Probability Theory</h1>
                         
-                        <time class="text-lg text-zinc-600 dark:text-zinc-400">January 08, 2024</time>
+                        <time class="text-base text-zinc-600 dark:text-zinc-400 font-serif">January 08, 2024</time>
                         
                     </div>
                     
                     
-                    <div class="flex flex-wrap gap-2 justify-center mb-8">
+                    <div class="flex flex-wrap gap-1.5 justify-center mb-8">
                         
-                        <span class="px-4 py-2 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
                             probability
                         </span>
                         
-                        <span class="px-4 py-2 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
                             statistics
                         </span>
                         
-                        <span class="px-4 py-2 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
                             mathematics
                         </span>
                         
@@ -887,7 +1181,7 @@
                     
                     
                     <div class="flex justify-center">
-                        <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                        <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-serif">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
@@ -1192,16 +1486,16 @@ provided $P(B) &gt; 0$.</p>
 
                 </div>
 
-                <footer class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-700 text-center">
+                <footer class="mt-12 pt-6 border-t border-zinc-200 dark:border-zinc-700 text-center">
                     <div class="space-y-4">
                         <div class="flex justify-center space-x-6">
-                            <a href="/notes" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                            <a href="/notes" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-serif">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                 </svg>
                                 All Notes
                             </a>
-                            <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                            <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-serif">
                                 Homepage
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -1213,67 +1507,129 @@ provided $P(B) &gt; 0$.</p>
                         
                         
                         <div class="mt-8">
-                            <h3 class="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Related Notes</h3>
+                            <h3 class="text-base font-semibold mb-4 text-zinc-900 dark:text-zinc-100 font-serif">Related Notes</h3>
                             <div class="grid gap-4 md:grid-cols-3">
                                 
                                 <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
-                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
+                                        <a href="/notes/local-volatility-under-rough-volatility/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Local volatility under rough volatility</a>
+                                    </h4>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif">Local volatility under rough volatility
+
+Abstract
+Several asymptotic results ...</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">rough volatility</span>
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">local volatility</span>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
+                                        <a href="/notes/learning-simulate-limit-order-book-world-agent/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Learning to simulate realistic limit order book markets from data as a World Agent</a>
+                                    </h4>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif">Learning to simulate realistic limit order book markets from data as a World ...</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">generative adversarial networks</span>
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">limit order book</span>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
+                                        <a href="/notes/deep-reinforcement-learning-market-making/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Deep Reinforcement Learning for Market Making Under a Hawkes Process-Based Limit Order Book Model</a>
+                                    </h4>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif">Deep Reinforcement Learning for Market Making Under a Hawkes Process-Based Li...</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">reinforcement learning</span>
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">market making</span>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
+                                        <a href="/notes/asymmetric-information-realized-spread/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Asymmetric Information Modelling in the Realized Spread</a>
+                                    </h4>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif">Asymmetric Information Modelling in the Realized Spread
+
+Abstract
+This paper ...</p>
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">asymmetric information</span>
+                                        
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">realized spread</span>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
                                         <a href="/notes/ring-theory/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Ring Theory</a>
                                     </h4>
-                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">Ring Theory
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif">Ring Theory
 
 Ring theory is a fundamental area of abstract algebra that studi...</p>
                                     <div class="flex flex-wrap gap-1">
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">maths</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">maths</span>
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">algebra</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">algebra</span>
                                         
                                     </div>
                                 </div>
                                 
                                 <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
-                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
                                         <a href="/notes/financial-mathematics/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Financial Mathematics</a>
                                     </h4>
-                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3"># Financial Mathematics
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif"># Financial Mathematics
 
 Financial mathematics applies mathematical methods t...</p>
                                     <div class="flex flex-wrap gap-1">
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">finance</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">finance</span>
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">mathematics</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">mathematics</span>
                                         
                                     </div>
                                 </div>
                                 
                                 <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
-                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
                                         <a href="/notes/price-impact-order-flow/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Understanding Price Impact in Financial Markets: How Order Flow Imbalance Drives Stock Price Changes</a>
                                     </h4>
-                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3"># Understanding Price Impact in Financial Markets: How Order Flow Imbalance D...</p>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif"># Understanding Price Impact in Financial Markets: How Order Flow Imbalance D...</p>
                                     <div class="flex flex-wrap gap-1">
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">price-impact</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">price-impact</span>
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">order-flow</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">order-flow</span>
                                         
                                     </div>
                                 </div>
                                 
                                 <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
-                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">
+                                    <h4 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2 font-serif">
                                         <a href="/notes/order-book-price-impact-analysis/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">The Price Impact of Order Book Events: A Comprehensive Analysis</a>
                                     </h4>
-                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3"># The Price Impact of Order Book Events: A Comprehensive Analysis
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 font-serif"># The Price Impact of Order Book Events: A Comprehensive Analysis
 
 ## Abstrac...</p>
                                     <div class="flex flex-wrap gap-1">
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">order-book</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">order-book</span>
                                         
-                                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">price-impact</span>
+                                        <span class="px-2 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded font-mono">price-impact</span>
                                         
                                     </div>
                                 </div>
@@ -1299,27 +1655,27 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Generate TOC
-    let tocHTML = '';
-    headings.forEach((heading, index) => {
-        // Add ID to heading if it doesn't have one
-        if (!heading.id) {
-            heading.id = `heading-${index}`;
-        }
-        
-        // Determine indentation based on heading level
-        const level = parseInt(heading.tagName.charAt(1));
-        const indent = (level - 1) * 12; // 12px per level
-        
-        tocHTML += `
-            <a href="#${heading.id}" 
-               class="toc-link block text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors py-1 pl-${Math.max(1, level)}"
-               style="padding-left: ${indent}px;"
-               data-heading-id="${heading.id}">
-                ${heading.textContent.trim()}
-            </a>
-        `;
-    });
+            // Generate TOC
+        let tocHTML = '';
+        headings.forEach((heading, index) => {
+            // Add ID to heading if it doesn't have one
+            if (!heading.id) {
+                heading.id = `heading-${index}`;
+            }
+            
+            // Determine indentation based on heading level
+            const level = parseInt(heading.tagName.charAt(1));
+            const indent = (level - 1) * 4; // Reduced from 6px to 4px for ultra-compact layout
+            
+            tocHTML += `
+                <a href="#${heading.id}" 
+                   class="toc-link block text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors py-0 font-serif"
+                   style="padding-left: ${indent}px;"
+                   data-heading-id="${heading.id}">
+                    ${heading.textContent.trim()}
+                </a>
+            `;
+        });
     
     tocContainer.innerHTML = tocHTML;
     

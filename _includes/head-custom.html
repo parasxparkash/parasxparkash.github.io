@@ -124,6 +124,21 @@
         color: white !important;
     }
     
+    /* Note item transitions */
+    .note-item {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .note-item[style*="display: none"] {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    
+    .note-item[style*="display: block"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     /* List item hover effects */
     .tab-content li, .tab-content .space-y-6 > div {
         position: relative;
@@ -153,10 +168,26 @@
     
     /* Responsive adjustments */
     
-    /* Large screens - Three column layout */
+    /* Large screens - Three column layout with center column double width of sidebars */
     @media (min-width: 1200px) {
         .flex.gap-12 {
             gap: 3rem;
+        }
+        
+        /* Set flex behavior for 1:2:1 ratio */
+        .flex.gap-12 > div:first-child {  /* Left sidebar */
+            flex: 1;
+            max-width: 288px;
+        }
+        
+        .flex.gap-12 > div:nth-child(2) {  /* Center content */
+            flex: 2;
+            min-width: 576px;
+        }
+        
+        .flex.gap-12 > div:last-child {  /* Right sidebar */
+            flex: 1;
+            max-width: 288px;
         }
     }
     
@@ -415,12 +446,20 @@
     
     /* Medium-style article layout */
     .medium-style-article {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .medium-style-article.max-w-none {
+        max-width: none;
+        width: 100%;
     }
     
     .medium-content {
+        max-width: none;
+        width: 100%;
         font-family: 'Charter', 'Georgia', serif;
         font-size: 21px;
         line-height: 1.58;
@@ -670,5 +709,262 @@
             padding: 15px;
             margin: 20px 0;
         }
+    }
+    
+    /* Scientific Journal Typography for Notes */
+    .font-serif {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+    }
+    
+    .font-mono {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+    }
+    
+    /* Enhanced Table of Contents styling */
+    #toc {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(161 161 170) transparent;
+    }
+    
+    #toc::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    #toc::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    #toc::-webkit-scrollbar-thumb {
+        background: rgb(161 161 170);
+        border-radius: 2px;
+    }
+    
+    .dark #toc::-webkit-scrollbar-thumb {
+        background: rgb(82 82 91);
+    }
+    
+    /* Scientific journal style content - override Medium styles */
+    .note-content {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        color: rgb(24 24 27) !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    .dark .note-content {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Scientific journal style headings */
+    .note-content h1, .note-content h2, .note-content h3, .note-content h4 {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-weight: 600 !important;
+        color: rgb(24 24 27) !important;
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3, .dark .note-content h4 {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Scientific journal style paragraphs */
+    .note-content p {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.7 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Scientific journal style lists */
+    .note-content ul, .note-content ol {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin-bottom: 1rem !important;
+        padding-left: 1.5rem !important;
+    }
+    
+    .note-content li { 
+        margin-bottom: 0.5rem !important; 
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Scientific journal style code */
+    .note-content code {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+        background: rgb(244 244 245);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .dark .note-content code { 
+        background: rgb(39 39 42); 
+    }
+    
+    /* Scientific journal style pre blocks */
+    .note-content pre {
+        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+        margin: 1.5rem 0;
+        background: rgb(248 250 252);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+    
+    .dark .note-content pre { 
+        background: rgb(24 24 27); 
+    }
+    
+    /* Enhanced TOC link styling */
+    .toc-link {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+        border-left: 2px solid transparent;
+        transition: all 0.2s ease;
+        padding: 0 !important;
+        margin: 0 !important;
+        line-height: 1.0 !important;
+        font-size: 10px !important;
+    }
+    
+    /* TOC container styling */
+    #toc {
+        margin-bottom: 0.5rem !important;
+        padding-bottom: 0.25rem !important;
+    }
+    
+    .toc-link:hover {
+        border-left-color: rgb(59 130 246);
+        background-color: rgba(59, 130, 246, 0.05);
+        padding-left: 6px !important;
+    }
+    
+    .dark .toc-link:hover {
+        background-color: rgba(96, 165, 250, 0.1);
+    }
+    
+    /* Active TOC link styling */
+    .toc-link.text-blue-600,
+    .toc-link.dark\:text-blue-400 {
+        border-left-color: rgb(59 130 246);
+        background-color: rgba(59, 130, 246, 0.1);
+        font-weight: 600;
+    }
+    
+    .dark .toc-link.text-blue-600,
+    .dark .toc-link.dark\:text-blue-400 {
+        background-color: rgba(96, 165, 250, 0.15);
+    }
+    
+    /* Responsive adjustments for scientific typography */
+    @media (max-width: 768px) {
+        .note-content {
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+        
+        .note-content h1 {
+            font-size: 1.75rem;
+        }
+        
+        .note-content h2 {
+            font-size: 1.5rem;
+        }
+        
+        .note-content h3 {
+            font-size: 1.25rem;
+        }
+        
+        .note-content h4 {
+            font-size: 1.125rem;
+        }
+        
+        /* Stack layout on mobile */
+        .flex.gap-3 {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .w-44 {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+        .flex.gap-3 {
+            gap: 1rem;
+        }
+        
+        .w-44 {
+            width: 220px;
+        }
+    }
+    
+    /* Override Medium content styles for notes */
+    .medium-content.note-content {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-size: 18px !important;
+        line-height: 1.7 !important;
+        color: rgb(24 24 27) !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+        max-width: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    .dark .medium-content.note-content {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Override Medium headings for notes */
+    .medium-content.note-content h1,
+    .medium-content.note-content h2,
+    .medium-content.note-content h3,
+    .medium-content.note-content h4 {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        font-weight: 600 !important;
+        color: rgb(24 24 27) !important;
+        text-align: left !important;
+    }
+    
+    .dark .medium-content.note-content h1,
+    .dark .medium-content.note-content h2,
+    .dark .medium-content.note-content h3,
+    .dark .medium-content.note-content h4 {
+        color: rgb(244 244 245) !important;
+    }
+    
+    /* Override Medium paragraphs for notes */
+    .medium-content.note-content p {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 1rem 0 !important;
+        line-height: 1.7 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
+    }
+    
+    /* Override Medium lists for notes */
+    .medium-content.note-content ul,
+    .medium-content.note-content ol {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 1rem 0 !important;
+        padding-left: 1.5rem !important;
+    }
+    
+    .medium-content.note-content li {
+        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
+        margin: 0.4rem 0 !important;
+        text-align: justify !important;
+        text-justify: inter-word !important;
     }
 </style>

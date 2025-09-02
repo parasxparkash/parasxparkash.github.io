@@ -5,7 +5,7 @@ description: "Explore research notes on quantitative finance, derivatives, risk 
 permalink: /notes/
 ---
 
-<div class="max-w-6xl mx-auto px-4 py-8">
+<div class="max-w-7xl mx-auto px-4 py-8">
     <!-- Breadcrumb -->
     <nav class="mb-8" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-2 text-sm text-zinc-600 dark:text-zinc-400">
@@ -18,70 +18,110 @@ permalink: /notes/
             </li>
         </ol>
     </nav>
-    
-    <header class="mb-12">
-        <h1 class="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">Research Notes</h1>
-        <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl">
-            In-depth research notes on quantitative finance, derivatives pricing, risk management, mathematical finance, and advanced financial modeling techniques.
-        </p>
-    </header>
-    
-    <!-- Categories Filter -->
-    <div class="mb-8">
-        <h2 class="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Filter by Category</h2>
-        <div class="flex flex-wrap gap-2">
-            <button onclick="filterNotes('all')" class="note-filter active px-4 py-2 text-sm bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                All Notes
-            </button>
-            {% assign categories = site.notes | map: 'category' | uniq | sort %}
-            {% for category in categories %}
-            <button onclick="filterNotes('{{ category }}')" class="note-filter px-4 py-2 text-sm bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
-                {{ category | capitalize }}
-            </button>
-            {% endfor %}
-        </div>
-    </div>
-    
-    <!-- Notes Grid - Sorted by Date -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="notes-grid">
-        {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
-        {% for note in sorted_notes %}
-        <article class="note-card bg-zinc-50 dark:bg-zinc-800 rounded-lg p-6 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors" 
-                 data-category="{{ note.category }}">
-            <div class="mb-4">
-                <time class="text-sm text-zinc-500 dark:text-zinc-400">{{ note.date | date: "%B %d, %Y" }}</time>
-                {% if note.category %}
-                <span class="text-sm text-zinc-500 dark:text-zinc-400"> • {{ note.category | capitalize }}</span>
-                {% endif %}
+
+    <div class="flex gap-8">
+        <!-- Main Content -->
+        <div class="flex-1 mb-[20px]">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">Research Notes</h1>
+                <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl">
+                    In-depth research notes on quantitative finance, derivatives pricing, risk management, mathematical finance, and advanced financial modeling techniques.
+                </p>
+            </header>
+
+            <!-- Categories Filter -->
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Filter by Category</h2>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterNotes('all')" class="note-filter active px-4 py-2 text-sm bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        All Notes
+                    </button>
+                    {% assign categories = site.notes | map: 'category' | uniq | sort %}
+                    {% for category in categories %}
+                    <button onclick="filterNotes('{{ category }}')" class="note-filter px-4 py-2 text-sm bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors">
+                        {{ category | capitalize }}
+                    </button>
+                    {% endfor %}
+                </div>
             </div>
-            
-            <h2 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">
-                <a href="{{ note.url }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    {{ note.title }}
-                </a>
-            </h2>
-            
-            <p class="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">{{ note.content | strip_html | truncate: 120 }}</p>
-            
-            <div class="flex flex-wrap gap-2 mb-4">
-                {% for tag in note.tags limit:3 %}
-                <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag }}</span>
+
+            <!-- Notes Grid -->
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2" id="notes-grid">
+                {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+                {% for note in sorted_notes %}
+                <article class="note-card bg-zinc-50 dark:bg-zinc-800 rounded-lg p-6 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+                         data-category="{{ note.category }}">
+                    <div class="mb-4">
+                        <time class="text-sm text-zinc-500 dark:text-zinc-400">{{ note.date | date: "%B %d, %Y" }}</time>
+                        {% if note.category %}
+                        <span class="text-sm text-zinc-500 dark:text-zinc-400"> • {{ note.category | capitalize }}</span>
+                        {% endif %}
+                    </div>
+
+                    <h2 class="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">
+                        <a href="{{ note.url }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            {{ note.title }}
+                        </a>
+                    </h2>
+
+                    <p class="text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed">{{ note.content | strip_html | truncate: 120 }}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {% for tag in note.tags limit:3 %}
+                        <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <a href="{{ note.url }}" class="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                            Read Note
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                        {% if note.mathjax %}
+                        <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Math</span>
+                        {% endif %}
+                    </div>
+                </article>
                 {% endfor %}
             </div>
-            
-            <div class="flex items-center justify-between">
-                <a href="{{ note.url }}" class="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-                    Read Note
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                </a>
-                {% if note.mathjax %}
-                <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Math</span>
-                {% endif %}
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="hidden lg:block w-80 flex-shrink-0">
+            <div class="sticky top-8">
+                <h3 class="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Recent Notes</h3>
+                <div class="space-y-4">
+                    {% assign recent_notes = site.notes | sort: 'date' | reverse | slice: 0, 5 %}
+                    {% for note in recent_notes %}
+                    <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                        <time class="text-xs text-zinc-500 dark:text-zinc-400">{{ note.date | date: "%b %d, %Y" }}</time>
+                        <h4 class="text-sm font-medium mt-1 mb-2 text-zinc-900 dark:text-zinc-100">
+                            <a href="{{ note.url }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                {{ note.title | truncate: 40 }}
+                            </a>
+                        </h4>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{{ note.content | strip_html | truncate: 80 }}</p>
+                        {% if note.category %}
+                        <span class="inline-block mt-2 px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ note.category | capitalize }}</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- RSS Feed Link in Sidebar -->
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Stay updated with new research notes</p>
+                    <a href="/feed.xml" class="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                        Subscribe to RSS Feed
+                    </a>
+                </div>
             </div>
-        </article>
-        {% endfor %}
+        </div>
     </div>
     
     <!-- RSS Feed Link -->

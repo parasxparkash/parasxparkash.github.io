@@ -28,8 +28,9 @@ html, body {
 article.prose,
 .post-content,
 .note-content {
-  max-width: 720px; /* ~70-75ch on default font-size */
-  margin: 0 auto;
+  max-width: none; /* Use full available width */
+  width: 100%;
+  margin: 0;
   font-size: 18px;
   line-height: 1.8;
 }
