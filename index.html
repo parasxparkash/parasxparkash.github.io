@@ -30,22 +30,22 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
             
             <!-- About Me Section -->
             <h3 class="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-100">About Me</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify">
                 Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
             </p>
             
-            <div class="space-y-2 mb-4">
+            <div class="space-y-2 mb-1">
                 <div class="flex items-center text-sm">
-                    <span class="text-zinc-600 dark:text-zinc-400">Chennai, India</span>
+                    <span class="text-zinc-600 dark:text-zinc-400">Chennai | Gurugram, India</span>
                 </div>
             </div>
             
             <div class="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
             <!-- Current Project Section -->
-            <div class="mb-4">
-                <h4 class="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Working On</h4>
-                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Advanced HFT/MFT trading strategies with ML/AI integration for alpha generation and risk management</p>
+            <div class="mb-1">
+                <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @QuantCraft</h4>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Advanced HFT/MFT trading strategies with ML/AI integration for alpha generation and risk management</p>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Python/C++</span>
                     <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">ML/AI</span>
@@ -56,17 +56,17 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
             <div class="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
             <!-- Current Company Section -->
-            <div class="mb-4">
-                <h4 class="font-medium text-zinc-900 dark:text-zinc-100 mb-2">Current Role</h4>
-                <p class="text-sm text-zinc-600 dark:text-zinc-400">Quant Researcher | Financial Data Analyst | HFT Systems Specialist</p>
-                <p class="text-xs text-zinc-500 dark:text-zinc-400">Independent Consultant • 2023 - Present</p>
+            <div class="mb-1">
+                <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Working as</h4>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-1">Quant Researcher</p>
+                <p class="text-xs text-zinc-500 dark:text-zinc-400">@QuantEdX Research • 2023 - Present</p>
             </div>
             
             <div class="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
             <!-- Top Posts Section -->
-            <div class="mb-8">
-                <h4 class="font-medium text-zinc-900 dark:text-zinc-100 mb-3">Top Posts</h4>
+            <div class="mb-4">
+                <h4 class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Top Posts</h4>
                 <div class="space-y-2">
                     {% for post in site.posts limit:3 %}
                     <a href="{{ post.url }}" class="block text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
@@ -102,7 +102,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                     </div>
                     
                     <div class="opacity-0 transform animate-fade-in animate-delay-300">
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mb-4">
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
                             Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
                         </p>
                     </div>
@@ -259,7 +259,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                             </a>
                                         </div>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">A comprehensive project management platform with real-time collaboration, Kanban boards, and team analytics.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">A comprehensive project management platform with real-time collaboration, Kanban boards, and team analytics.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="px-2 py-1 text-xs bg-black text-white dark:bg-white dark:text-black rounded">Next.js</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">TypeScript</span>
@@ -285,7 +285,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">{{ post.title }}</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">{{ post.date | date: "%b %Y" }}</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">{{ post.description | default: post.excerpt | strip_html | truncate: 150 }}</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{{ post.description | default: post.excerpt | strip_html | truncate: 150 }}</p>
                                     <div class="flex items-center gap-2">
                                         <a href="{{ post.url }}" class="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
                                             Read More
@@ -320,7 +320,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                                     {{ note.title }}
                                                 </a>
                                             </h3>
-                                            <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">{{ note.content | strip_html | truncate: 100 }}</p>
+                                            <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{{ note.content | strip_html | truncate: 100 }}</p>
                                             <div class="flex flex-wrap gap-2 mt-2">
                                                 {% for tag in note.tags limit:3 %}
                                                 <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag }}</span>
@@ -375,7 +375,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                             <span class="text-xs text-zinc-500 dark:text-zinc-400">Feb 2023 - Sep 2023</span>
                                     </div>
                                         <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">QuantEdX</p>
-                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Developed and implemented advanced Machine Learning-based LFT/MFT models for enhanced trading strategies, effectively leveraging statistical arbitrage and derivative pricing techniques. Conducted in-depth credit risk analysis and led research in innovative quantitative models for derivative pricing.</p>
+                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Developed and implemented advanced Machine Learning-based LFT/MFT models for enhanced trading strategies, effectively leveraging statistical arbitrage and derivative pricing techniques. Conducted in-depth credit risk analysis and led research in innovative quantitative models for derivative pricing.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                             <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Machine Learning</span>
                                             <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivative Pricing</span>
@@ -392,7 +392,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Jun 2016 - Aug 2022</span>
                                 </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Jal Shakti Dept. PHE, Jammu & Kashmir, India</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Managed and maintained electro-mechanical systems for water pumping stations, including procurement and maintenance of motors, actuators, and PLC logic systems. Engineered and debugged control logic for power machinery using microcontrollers (Arduino, Raspberry Pi, STM32) and chips (Intel 8051, PIC, ARM Cortex-M series) to automate operations.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Managed and maintained electro-mechanical systems for water pumping stations, including procurement and maintenance of motors, actuators, and PLC logic systems. Engineered and debugged control logic for power machinery using microcontrollers (Arduino, Raspberry Pi, STM32) and chips (Intel 8051, PIC, ARM Cortex-M series) to automate operations.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300 rounded">PLC Systems</span>
                                         <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Microcontrollers</span>
@@ -409,7 +409,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Jul 2013 - Jul 2015</span>
                                 </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Maruti Suzuki India Limited</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Experienced in automotive HVAC system design, development, and optimization with focus on electro-fluidic parts and control systems. Designed, tested, and evaluated HVAC systems using electronic control units (ECUs) with microprocessors (Intel 8086, Motorola 68000 series) and sensors (temperature, pressure, flow sensors). Performed heat load calculations and thermal management analysis.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Experienced in automotive HVAC system design, development, and optimization with focus on electro-fluidic parts and control systems. Designed, tested, and evaluated HVAC systems using electronic control units (ECUs) with microprocessors (Intel 8086, Motorola 68000 series) and sensors (temperature, pressure, flow sensors). Performed heat load calculations and thermal management analysis.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">HVAC Systems</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">ECU Design</span>
@@ -434,7 +434,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                             <span class="text-xs text-zinc-500 dark:text-zinc-400">2022 - 2024</span>
                                 </div>
                                         <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">WorldQuant University</p>
-                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced studies in quantitative finance, derivatives pricing, risk management, and algorithmic trading strategies. Focus on mathematical modeling, statistical analysis, and computational finance applications.</p>
+                                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Advanced studies in quantitative finance, derivatives pricing, risk management, and algorithmic trading strategies. Focus on mathematical modeling, statistical analysis, and computational finance applications.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                             <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Quantitative Finance</span>
                                             <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivatives Pricing</span>
@@ -451,7 +451,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                     <span class="text-xs text-zinc-500 dark:text-zinc-400">2021 - 2023</span>
                                 </div>
                                 <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Lovely Professional University</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced mathematical studies with focus on applied mathematics, statistical analysis, and mathematical modeling. Final thesis pending completion.</p>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Advanced mathematical studies with focus on applied mathematics, statistical analysis, and mathematical modeling. Final thesis pending completion.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">Applied Mathematics</span>
                                     <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Statistical Analysis</span>
@@ -467,7 +467,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                     <span class="text-xs text-zinc-500 dark:text-zinc-400">2019 - 2020</span>
                                 </div>
                                 <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Birla Institute of Technology and Science, Pilani</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Comprehensive finance education covering corporate finance, investment analysis, financial markets, and portfolio management. Strong foundation in financial theory and practical applications.</p>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Comprehensive finance education covering corporate finance, investment analysis, financial markets, and portfolio management. Strong foundation in financial theory and practical applications.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     <span class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300 rounded">Corporate Finance</span>
                                     <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Investment Analysis</span>
@@ -483,7 +483,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                     <span class="text-xs text-zinc-500 dark:text-zinc-400">2009 - 2013</span>
                                 </div>
                                 <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">National Institute of Technology, Jalandhar</p>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Comprehensive mechanical engineering education with focus on systems design, control systems, and automation. Strong foundation in engineering principles, mathematics, and problem-solving methodologies.</p>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Comprehensive mechanical engineering education with focus on systems design, control systems, and automation. Strong foundation in engineering principles, mathematics, and problem-solving methodologies.</p>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">Mechanical Systems</span>
                                     <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Control Systems</span>
@@ -504,7 +504,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2023</span>
                     </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">WorldQuant University</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced data science techniques and machine learning applications in quantitative finance.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Advanced data science techniques and machine learning applications in quantitative finance.</p>
             </div>
 
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-900">
@@ -513,7 +513,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2021</span>
                                     </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">NSE India</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Comprehensive training in algorithmic trading strategies and computational finance methodologies.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Comprehensive training in algorithmic trading strategies and computational finance methodologies.</p>
                                 </div>
                                 
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-1000">
@@ -522,7 +522,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2019</span>
                                     </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Professional Development</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Advanced analytics techniques for financial data analysis and business intelligence applications.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Advanced analytics techniques for financial data analysis and business intelligence applications.</p>
                                 </div>
                                 
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-1100">
@@ -531,7 +531,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">2019</span>
                                     </div>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">CloudxLabs ECIT IIT Roorkee</p>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Comprehensive machine learning algorithms, deep learning, and AI applications in real-world scenarios.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Comprehensive machine learning algorithms, deep learning, and AI applications in real-world scenarios.</p>
                                 </div>
                             </div>
                         </div>
@@ -636,7 +636,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Algebra</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Serge Lang</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">A comprehensive foundational text in algebra covering groups, rings, and fields.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">A comprehensive foundational text in algebra covering groups, rings, and fields.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Abstract Algebra</span>
                                     </div>
@@ -649,7 +649,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Aghora III: The Law of Karma</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Robert E. Svoboda</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Final volume of the trilogy, centered around metaphysics and karma in the Aghora tradition.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Final volume of the trilogy, centered around metaphysics and karma in the Aghora tradition.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">Aghora</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Karma</span>
@@ -663,7 +663,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Options, Futures, and Other Derivatives</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">John C. Hull</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Gold standard textbook in quantitative finance covering derivatives, options pricing, and risk management.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Gold standard textbook in quantitative finance covering derivatives, options pricing, and risk management.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Finance</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Derivatives</span>
@@ -677,7 +677,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Talks with Sri Ramana Maharshi</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Sri Ramana Maharshi</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Dialogues on Advaita Vedanta, exploring self-inquiry and realization of the Self.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Dialogues on Advaita Vedanta, exploring self-inquiry and realization of the Self.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Advaita</span>
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Philosophy</span>
@@ -691,7 +691,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">The Mathematics of Financial Derivatives</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Paul Wilmott, Sam Howison, Jeff Dewynne</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Covers partial differential equations in finance, option pricing, and advanced models.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Covers partial differential equations in finance, option pricing, and advanced models.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Finance</span>
                                         <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Mathematics</span>
@@ -705,7 +705,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Abstract Algebra</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Dummit & Foote</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Standard graduate-level introduction to group theory, rings, and modules.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Standard graduate-level introduction to group theory, rings, and modules.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Algebra</span>
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Mathematics</span>
@@ -719,7 +719,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">The Mandukya Upanishad with Gaudapada’s Karika</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Gaudapada</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Foundational text of Advaita Vedanta emphasizing non-duality and the nature of consciousness.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Foundational text of Advaita Vedanta emphasizing non-duality and the nature of consciousness.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">Advaita</span>
                                         <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Upanishads</span>
@@ -733,7 +733,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Stochastic Calculus for Finance II</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Steven Shreve</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Graduate-level introduction to Itô calculus, Black–Scholes models, and continuous finance.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Graduate-level introduction to Itô calculus, Black–Scholes models, and continuous finance.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Itô Calculus</span>
                                         <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Quant Finance</span>
@@ -747,7 +747,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Aghora: At the Left Hand of God</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Robert E. Svoboda</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">An exploration of the Aghora spiritual path through direct accounts with an Aghori master.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">An exploration of the Aghora spiritual path through direct accounts with an Aghori master.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">Aghora</span>
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Tantra</span>
@@ -761,7 +761,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Stochastic Differential Equations: An Introduction with Applications</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Bernt Øksendal</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Classic introduction to stochastic differential equations, with finance and physics applications.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Classic introduction to stochastic differential equations, with finance and physics applications.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Stochastic</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Mathematics</span>
@@ -775,7 +775,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Aghora II: Kundalini</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Robert E. Svoboda</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">The sequel to Aghora, focusing on Kundalini energy and transformative practices.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">The sequel to Aghora, focusing on Kundalini energy and transformative practices.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 rounded">Aghora</span>
                                         <span class="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Spiritual Energy</span>
@@ -789,7 +789,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Paul Wilmott Introduces Quantitative Finance</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Paul Wilmott</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">A practical introduction to advanced quantitative finance for practitioners and students.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">A practical introduction to advanced quantitative finance for practitioners and students.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Quant Finance</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Mathematics</span>
@@ -803,7 +803,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Stochastic Finance: An Introduction in Discrete Time</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Hans Föllmer, Alexander Schied</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Rigorous introduction to mathematical principles of finance in discrete-time models.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Rigorous introduction to mathematical principles of finance in discrete-time models.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Stochastic Finance</span>
                                         <span class="px-2 py-1 text-xs bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300 rounded">Mathematics</span>
@@ -817,7 +817,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">A Course in Pure Mathematics</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">G.H. Hardy</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Classic introduction to analysis and higher mathematics, essential for advanced math students.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Classic introduction to analysis and higher mathematics, essential for advanced math students.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Mathematics</span>
                                         <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 rounded">Analysis</span>
@@ -831,7 +831,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">The Concepts and Practice of Mathematical Finance</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Mark S. Joshi</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">An accessible introduction to stochastic finance, covering models, Monte Carlo methods, and numerical approaches.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">An accessible introduction to stochastic finance, covering models, Monte Carlo methods, and numerical approaches.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300 rounded">Finance</span>
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Stochastic</span>
@@ -845,7 +845,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Stochastic Calculus for Finance I</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Steven Shreve</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">Introductory stochastic finance book building fundamental concepts with binomial models.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Introductory stochastic finance book building fundamental concepts with binomial models.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Stochastic</span>
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Finance</span>
@@ -859,7 +859,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Financial Calculus: An Introduction to Derivative Pricing</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">Baxter & Rennie</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">A concise and rigorous introduction to arbitrage, martingale measures, and derivative pricing.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">A concise and rigorous introduction to arbitrage, martingale measures, and derivative pricing.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Derivatives</span>
                                         <span class="px-2 py-1 text-xs bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded">Quantitative Finance</span>
@@ -873,7 +873,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                                         <h3 class="text-md font-medium">Topics in Algebra</h3>
                                         <span class="text-xs text-zinc-500 dark:text-zinc-400">I.N. Herstein</span>
                                     </div>
-                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">A student-friendly introduction to algebraic structures with clear examples.</p>
+                                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">A student-friendly introduction to algebraic structures with clear examples.</p>
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">Algebra</span>
                                     </div>
@@ -946,7 +946,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
                             {{ note.title }}
                         </a>
                     </h4>
-                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3">{{ note.content | strip_html | truncate: 80 }}</p>
+                    <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">{{ note.content | strip_html | truncate: 80 }}</p>
                     <div class="flex gap-1">
                         {% for tag in note.tags limit:2 %}
                         <span class="px-2 py-1 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">{{ tag | capitalize }}</span>
