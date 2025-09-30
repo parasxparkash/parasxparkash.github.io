@@ -6,7 +6,7 @@ My work focuses on developing quantitative risk management models leveraging age
 
 ## About Me
 
-I'm Paras Parkash, a quantitative researcher based in Chennai, India, specializing in derivatives, risk management, and AI-powered financial models. My expertise lies in:
+I'm Paras Parkash, a quantitative researcher based in Gurugram, India, specializing in derivatives, risk management, and AI-powered financial models. My expertise lies in:
 
 - **Quantitative Risk Management**: Developing models that leverage agentic AI to dynamically manage market risks
 - **Derivatives**: Complex financial instruments and their applications in portfolio protection
