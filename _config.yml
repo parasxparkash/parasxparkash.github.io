@@ -36,16 +36,24 @@ collections:
 # Defaults
 defaults:
   - scope:
+      path: ""
+    values:
+      image: "/assets/profile-optimized.webp"
+      author: "Paras Parkash"
+  - scope:
       path: "_posts"
       type: posts
     values:
       layout: post
-      author: Paras Parkash
+      author: "Paras Parkash"
+      keywords: "quantitative finance, derivatives, risk management, AI, machine learning"
   - scope:
       path: "_notes"
       type: notes
     values:
       layout: note
+      author: "Paras Parkash"
+      keywords: "quantitative finance, mathematical finance, derivatives, risk management"
 
 # Exclude from processing
 exclude:
@@ -90,6 +98,7 @@ seo:
   description: "Quantitative Researcher specializing in derivatives, risk management, and AI-powered financial models"
   image: "/assets/profile-optimized.webp"
   url: "https://parasparkash.github.io"
+  keywords: "quantitative finance, derivatives, risk management, AI, machine learning, GARCH models, Heston model, financial engineering, portfolio optimization, volatility modeling"
   twitter:
     username: "parasxparkash"
   facebook:
@@ -97,6 +106,7 @@ seo:
   google_site_verification: ""
   bing_site_verification: ""
   yandex_site_verification: ""
+  baidu_site_verification: ""
 
 # Sitemap settings
 sitemap:

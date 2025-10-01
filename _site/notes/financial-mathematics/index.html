@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     
     <!-- Primary Meta Tags -->
     <title>Financial Mathematics | Paras Parkash</title>
@@ -15,14 +15,14 @@
     <meta name="revisit-after" content="7 days">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/notes/financial-mathematics/">
+    <link rel="canonical" href="http://0.0.0.0:4000/notes/financial-mathematics/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/notes/financial-mathematics/">
+    <meta property="og:url" content="http://0.0.0.0:4000/notes/financial-mathematics/">
     <meta property="og:title" content="Financial Mathematics | Paras Parkash">
     <meta property="og:description" content="Comprehensive guide to financial mathematics covering derivatives pricing, risk management, and portfolio optimization using advanced mathematical techniques.">
-    <meta property="og:image" content="http://localhost:4000/assets/profile-optimized.webp">
+    <meta property="og:image" content="http://0.0.0.0:4000/assets/profile-optimized.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Financial Mathematics">
@@ -32,10 +32,10 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="http://localhost:4000/notes/financial-mathematics/">
+    <meta name="twitter:url" content="http://0.0.0.0:4000/notes/financial-mathematics/">
     <meta name="twitter:title" content="Financial Mathematics | Paras Parkash">
     <meta name="twitter:description" content="Comprehensive guide to financial mathematics covering derivatives pricing, risk management, and portfolio optimization using advanced mathematical techniques.">
-    <meta name="twitter:image" content="http://localhost:4000/assets/profile-optimized.webp">
+    <meta name="twitter:image" content="http://0.0.0.0:4000/assets/profile-optimized.webp">
     <meta name="twitter:image:alt" content="Financial Mathematics">
     <meta name="twitter:creator" content="@parasxparkash">
     <meta name="twitter:site" content="@parasxparkash">
@@ -107,8 +107,8 @@
         
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "http://localhost:4000",
-        "image": "http://localhost:4000/assets/profile-optimized.webp",
+        "url": "http://0.0.0.0:4000",
+        "image": "http://0.0.0.0:4000/assets/profile-optimized.webp",
         "jobTitle": "Quantitative Researcher",
         "worksFor": {
             "@type": "Organization",
@@ -151,13 +151,18 @@
         "@type": "WebSite",
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "http://localhost:4000",
+        "url": "http://0.0.0.0:4000",
         "author": {
             "@type": "Person",
             "name": "Paras Parkash"
         },
         "potentialAction": {
-            
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "http://0.0.0.0:4000/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
         }
     }
     </script>
@@ -176,15 +181,19 @@
 
 <!-- Critical CSS for above-the-fold content -->
 <style>
-    /* Critical CSS - inline for fastest rendering */
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    /* Base styles */
+    body { 
+        margin: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    }
+    
+    /* Core layout utilities */
     .text-zinc-900 { color: rgb(24 24 27); }
     .dark .text-zinc-100 { color: rgb(244 244 245); }
     .max-w-7xl { max-width: 80rem; }
     .mx-auto { margin-left: auto; margin-right: auto; }
     .px-4 { padding-left: 1rem; padding-right: 1rem; }
     .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-    .h-screen { height: 100vh; }
     .flex { display: flex; }
     .flex-col { flex-direction: column; }
     .gap-12 { gap: 3rem; }
@@ -203,13 +212,12 @@
     .border-zinc-200 { border-color: rgb(228 228 231); }
     .dark .border-zinc-700 { border-color: rgb(63 63 70); }
     
-    /* Optimized animation delays - reduced from 8 to 4 for better performance */
+    /* Animation classes */
     .animate-delay-100 { animation-delay: 0.1s; }
     .animate-delay-200 { animation-delay: 0.2s; }
     .animate-delay-300 { animation-delay: 0.3s; }
     .animate-delay-400 { animation-delay: 0.4s; }
     
-    /* Use will-change for better performance on animated elements */
     .opacity-0 { 
         opacity: 0; 
         will-change: opacity;
@@ -244,22 +252,21 @@
         color: rgb(244 244 245) !important;
     }
     
-    /* Smooth transitions for all interactive elements */
+    /* Smooth transitions */
     a, button {
         transition: all 0.2s ease-in-out;
     }
     
-    /* Hide scrollbar in center content area */
+    /* Scrollbar styling */
     .flex-1.overflow-y-auto {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
     
     .flex-1.overflow-y-auto::-webkit-scrollbar {
-        display: none; /* WebKit */
+        display: none;
     }
     
-    /* Custom scrollbar for webkit browsers */
     ::-webkit-scrollbar {
         width: 6px;
     }
@@ -293,16 +300,6 @@
         transition: opacity 0.3s ease, transform 0.3s ease;
     }
     
-    .note-item[style*="display: none"] {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    
-    .note-item[style*="display: block"] {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
     /* List item hover effects */
     .tab-content li, .tab-content .space-y-6 > div {
         position: relative;
@@ -330,15 +327,15 @@
         opacity: 1;
     }
     
-    /* Responsive adjustments */
+    /* ===== RESPONSIVE DESIGN ===== */
     
-    /* Large screens - Three column layout with center column double width of sidebars */
+    /* Large screens only - Three column layout (1200px+) */
     @media (min-width: 1200px) {
         .flex.gap-12 {
             gap: 3rem;
+            flex-direction: row;
         }
         
-        /* Set flex behavior for 1:2:1 ratio */
         .flex.gap-12 > div:first-child {  /* Left sidebar */
             flex: 1;
             max-width: 288px;
@@ -353,240 +350,326 @@
             flex: 1;
             max-width: 288px;
         }
+        
+        /* Show all elements on desktop */
+        #left-sidebar {
+            position: sticky !important;
+            top: 1rem !important;
+            height: fit-content !important;
+        }
+        
+        .flex.gap-12 > div:last-child {
+            display: block !important;
+            position: sticky !important;
+            top: 1rem !important;
+            height: fit-content !important;
+        }
+        
+        /* Desktop: Hide mobile elements */
+        .md\:hidden {
+            display: none !important;
+        }
+        
+        .hidden.md\:block {
+            display: block !important;
+        }
     }
     
-    /* Medium screens - Two column layout (hide right sidebar) */
-    @media (max-width: 1199px) and (min-width: 769px) {
+    /* Tablet and Mobile - Single column layout (below 1200px) */
+    @media (max-width: 1199px) {
+        /* Override the mobile menu toggle and overlay */
+        #mobile-menu-toggle {
+            display: none !important;
+        }
+        
+        .mobile-overlay {
+            display: none !important;
+        }
+        
+        /* Main container adjustments */
+        main {
+            padding: 1rem !important;
+            height: auto !important;
+            min-height: 100vh !important;
+            overflow: visible !important;
+        }
+        
+        /* Force single column layout */
+        .flex.gap-12 {
+            flex-direction: column !important;
+            gap: 2rem !important;
+        }
+        
+        /* All column widths become full width */
+        .w-72 {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        
+        .flex-shrink-0 {
+            flex-shrink: 1 !important;
+        }
+        
+        /* Left sidebar styling for tablets and mobile */
+        #left-sidebar {
+            position: static !important;
+            width: 100% !important;
+            height: auto !important;
+            margin-bottom: 2rem !important;
+            padding: 1.5rem 1rem !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-bottom: 1px solid rgb(228 228 231);
+        }
+        
+        .dark #left-sidebar {
+            border-bottom-color: rgb(63 63 70);
+        }
+        
+        /* Center content full width */
+        .flex-1 {
+            width: 100% !important;
+            position: static !important;
+        }
+        
+        /* Right sidebar styling for tablets and mobile */
         .flex.gap-12 > div:last-child {
+            display: block !important;
+            width: 100% !important;
+            position: static !important;
+            height: auto !important;
+            margin-top: 2rem !important;
+            padding-top: 2rem !important;
+            border-top: 1px solid rgb(228 228 231);
+        }
+        
+        .dark .flex.gap-12 > div:last-child {
+            border-top-color: rgb(63 63 70);
+        }
+        
+        /* Remove all height constraints */
+        .h-screen, .h-fit, .h-full, .h-\[calc\(100vh-2rem\)\] {
+            height: auto !important;
+        }
+        
+        .overflow-y-auto {
+            overflow-y: visible !important;
+            max-height: none !important;
+        }
+        
+        /* Profile image styling */
+        .w-40.h-40 {
+            width: 8rem !important;
+            height: 8rem !important;
+            margin: 0 auto 1rem auto !important;
+        }
+        
+        /* About Me section enhancement */
+        .text-lg.font-semibold.mb-2 {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 1rem !important;
+            text-align: center !important;
+        }
+        
+        .text-sm.text-zinc-600.dark\:text-zinc-400.mb-2.text-justify {
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+            margin-bottom: 1.5rem !important;
+        }
+        
+        /* Hide GitHub Contributions section on tablet and mobile */
+        section.mb-8 {
+            display: none !important;
+        }
+        
+        /* Typography improvements */
+        .text-2xl {
+            font-size: 1.5rem !important;
+            text-align: center !important;
+        }
+        
+        /* Location and time info layout */
+        .flex.items-center.gap-3.mb-4 {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            text-align: center !important;
+        }
+        
+        /* Tab navigation optimization */
+        .inline-flex.h-9 {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+        }
+        
+        .inline-flex.h-9::-webkit-scrollbar {
             display: none;
         }
         
-        .flex.gap-12 {
-            gap: 2rem;
-        }
-    }
-    
-    /* Small screens - Single column layout */
-    @media (max-width: 768px) {
-        .flex.gap-12 {
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .w-72 {
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        /* Show right sidebar again in vertical layout */
-        .flex.gap-12 > div:last-child {
-            display: block;
-        }
-        
-        /* Adjust main container padding */
-        main {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        
-        /* Make header more compact on mobile */
-        .text-2xl {
-            font-size: 1.5rem;
-        }
-        
-        /* Adjust social icons spacing */
-        .flex.flex-row.gap-4 {
-            gap: 1rem;
-        }
-        
-        /* Make tabs scrollable horizontally on mobile */
-        .inline-flex.h-9 {
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Adjust tab button sizing for mobile */
         .tab-button {
-            white-space: nowrap;
-            min-width: fit-content;
+            white-space: nowrap !important;
+            min-width: fit-content !important;
+            padding: 0.75rem 1rem !important;
+        }
+        
+        /* Project items layout */
+        .flex.items-baseline.justify-between {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.5rem !important;
+        }
+        
+        /* Text improvements */
+        .text-justify {
+            text-align: left !important;
+        }
+        
+        /* Tag styling */
+        .flex.flex-wrap.gap-2 {
+            gap: 0.5rem !important;
+            margin-top: 0.75rem !important;
+        }
+        
+        .px-2.py-1.text-xs {
+            padding: 0.375rem 0.5rem !important;
+            font-size: 0.75rem !important;
+        }
+        
+        /* Spacing improvements */
+        .mb-12 {
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .mb-8 {
+            margin-bottom: 1.25rem !important;
+        }
+        
+        .mb-6 {
+            margin-bottom: 1rem !important;
+        }
+        
+        .mb-4 {
+            margin-bottom: 0.75rem !important;
+        }
+        
+        /* Content sections spacing */
+        section {
+            margin-bottom: 2rem !important;
+        }
+        
+        /* Ensure proper content flow */
+        .space-y-8 > * + * {
+            margin-top: 1.5rem !important;
+        }
+        
+        .space-y-6 > * + * {
+            margin-top: 1.25rem !important;
+        }
+        
+        .space-y-4 > * + * {
+            margin-top: 1rem !important;
+        }
+        
+        .space-y-2 > * + * {
+            margin-top: 0.5rem !important;
+        }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 0.75rem !important;
+            }
+            
+            .w-40.h-40 {
+                width: 7rem !important;
+                height: 7rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.375rem !important;
+            }
+            
+            /* Reduce spacing on mobile */
+            .flex.gap-12 {
+                gap: 1.5rem !important;
+            }
+            
+            #left-sidebar {
+                padding: 1rem !important;
+            }
         }
     }
     
-    /* Extra small screens */
-    @media (max-width: 640px) {
-        .max-w-3xl {
-            max-width: 100%;
-        }
-        
+    /* Extra small screens (≤480px) */
+    @media (max-width: 480px) {
         .px-4 {
             padding-left: 0.75rem;
             padding-right: 0.75rem;
         }
         
-        /* Reduce profile image size on very small screens */
-        .w-32.h-32 {
-            width: 6rem;
-            height: 6rem;
+        .py-10 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
         
-        /* Adjust spacing for mobile */
-        .mb-6 {
-            margin-bottom: 1rem;
+        .w-40.h-40 {
+            width: 6rem !important;
+            height: 6rem !important;
         }
         
-        .mb-8 {
-            margin-bottom: 1.5rem;
+        .text-2xl {
+            font-size: 1.25rem !important;
         }
         
-        /* Make note tags wrap better on mobile */
-        .flex.flex-wrap.gap-2 {
-            gap: 0.5rem;
+        .text-md {
+            font-size: 0.875rem !important;
         }
         
-        /* Adjust footer layout for mobile */
-        .flex.justify-between.items-start {
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .text-right {
-            text-align: left;
+        .gap-12 {
+            gap: 1rem !important;
         }
     }
     
-    /* Landscape mobile optimization */
-    @media (max-width: 768px) and (orientation: landscape) {
-        .flex.gap-12 {
-            gap: 1rem;
-        }
-        
-        .mb-6 {
-            margin-bottom: 0.75rem;
-        }
-        
-        .mb-8 {
-            margin-bottom: 1rem;
-        }
-    }
+    /* These styles are now handled by the unified responsive system above */
     
-    /* High DPI screens */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        .w-32.h-32 {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-    }
-    
-    /* Mobile sidebar overlay */
-    @media (max-width: 1023px) {
-        #left-sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 280px;
-            height: 100vh;
-            background: rgb(255 255 255);
-            z-index: 40;
-            transition: left 0.3s ease-in-out;
-            overflow-y: auto;
-            padding: 1rem;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark #left-sidebar {
-            background: rgb(24 24 27);
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        #left-sidebar.mobile-open {
-            left: 0;
-        }
-        
-        /* Mobile overlay background */
-        .mobile-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 30;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .mobile-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-    
-    /* Ensure content is properly spaced on mobile */
-    @media (max-width: 1023px) {
-        main {
-            padding-top: 4rem;
-            height: 100vh;
-            max-height: 100vh;
-        }
-        
-        /* Center title on mobile when menu toggle is visible */
-        .mobile-title-center {
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .mobile-center {
-            text-align: center;
-        }
-    }
-    
-    /* Ensure main container uses full viewport height */
+    /* Main container behavior - optimized for all screen sizes */
     main {
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     
-    /* Ensure proper flex behavior */
     .flex-1 {
         min-height: 0;
     }
     
-    /* Ensure tabs section can scroll properly */
     .overflow-y-auto {
         min-height: 0;
         flex: 1;
     }
     
-    /* Ensure footer stays within viewport */
     footer {
         margin-top: auto;
         flex-shrink: 0;
     }
     
-    /* Improve touch targets on mobile */
-    @media (max-width: 768px) {
-        button, a {
-            min-height: 44px;
-            min-width: 44px;
-        }
-        
-        .tab-button {
-            padding: 0.75rem 1rem;
-        }
-        
-        /* Better spacing for mobile lists */
-        .space-y-8 > div {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Improve mobile form elements */
-        input, textarea, select {
-            font-size: 16px; /* Prevents zoom on iOS */
-        }
+    /* Ensure responsive images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Prevent horizontal overflow */
+    * {
+        box-sizing: border-box;
+    }
+    
+    html, body {
+        overflow-x: hidden;
     }
     
     /* Print styles */
@@ -601,11 +684,6 @@
             background: white !important;
             color: black !important;
         }
-        
-        .dark {
-            background: white !important;
-            color: black !important;
-        }
     }
     
     /* Medium-style article layout */
@@ -616,78 +694,84 @@
         padding: 0;
     }
     
-    .medium-style-article.max-w-none {
-        max-width: none;
-        width: 100%;
-    }
-    
     .medium-content {
         max-width: none;
         width: 100%;
-        font-family: 'Charter', 'Georgia', serif;
-        font-size: 21px;
-        line-height: 1.58;
-        color: #242424;
-        text-align: justify;
-        text-justify: inter-word;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: 20px;
+        line-height: 1.6;
+        color: rgb(41, 41, 41);
+        text-align: left;
+        letter-spacing: -0.003em;
     }
     
     .dark .medium-content {
-        color: #e5e5e5;
+        color: rgb(242, 242, 242);
     }
     
-    /* Headings */
+    /* Medium content headings - responsive and elegant */
     .medium-content h1 {
-        font-size: 42px;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: clamp(2rem, 5vw, 2.5rem);
         font-weight: 700;
-        line-height: 1.04;
-        margin: 56px 0 8px 0;
-        color: #242424;
-        text-align: left;
+        line-height: 1.2;
+        margin: 3rem 0 1.5rem 0;
+        color: rgb(41, 41, 41);
+        letter-spacing: -0.02em;
     }
     
     .medium-content h2 {
-        font-size: 34px;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
         font-weight: 600;
-        line-height: 1.15;
-        margin: 43px 0 4px 0;
-        color: #242424;
-        text-align: left;
+        line-height: 1.3;
+        margin: 2.5rem 0 1rem 0;
+        color: rgb(41, 41, 41);
+        letter-spacing: -0.015em;
     }
     
     .medium-content h3 {
-        font-size: 28px;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
         font-weight: 600;
-        line-height: 1.22;
-        margin: 35px 0 4px 0;
-        color: #242424;
-        text-align: left;
+        line-height: 1.4;
+        margin: 2rem 0 0.75rem 0;
+        color: rgb(41, 41, 41);
+        letter-spacing: -0.01em;
     }
     
     .medium-content h4 {
-        font-size: 24px;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: clamp(1.125rem, 2.5vw, 1.25rem);
         font-weight: 600;
-        line-height: 1.25;
-        margin: 30px 0 4px 0;
-        color: #242424;
-        text-align: left;
+        line-height: 1.4;
+        margin: 1.5rem 0 0.5rem 0;
+        color: rgb(41, 41, 41);
+        letter-spacing: -0.005em;
     }
     
     .dark .medium-content h1,
     .dark .medium-content h2,
     .dark .medium-content h3,
     .dark .medium-content h4 {
-        color: #e5e5e5;
+        color: rgb(242, 242, 242);
     }
     
-    /* Paragraphs */
+    /* Medium content paragraphs and text */
     .medium-content p {
-        margin: 21px 0;
-        text-align: justify;
-        text-justify: inter-word;
+        font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
+        font-size: 20px;
+        line-height: 1.6;
+        margin: 1.5rem 0;
+        color: rgb(41, 41, 41);
+        text-align: left;
+        letter-spacing: -0.003em;
     }
     
-    /* Lists */
+    .dark .medium-content p {
+        color: rgb(242, 242, 242);
+    }
+    
     .medium-content ul,
     .medium-content ol {
         margin: 21px 0;
@@ -700,7 +784,6 @@
         text-justify: inter-word;
     }
     
-    /* Blockquotes */
     .medium-content blockquote {
         border-left: 3px solid #242424;
         padding-left: 20px;
@@ -714,7 +797,6 @@
         color: #a0a0a0;
     }
     
-    /* Code blocks */
     .medium-content pre {
         background: #f6f6f6;
         border-radius: 8px;
@@ -744,457 +826,326 @@
         color: #e5e5e5;
     }
     
-    /* Math equations - centered */
-    .medium-content .MathJax_Display,
-    .medium-content .mjx-chtml.MJXc-display {
-        text-align: center !important;
-        margin: 30px 0 !important;
-        padding: 20px 0 !important;
-    }
-    
-    /* Inline math */
-    .medium-content .MathJax,
-    .medium-content .mjx-chtml {
-        text-align: center;
-    }
-    
-    /* MathJax container styling */
-    .medium-content .MathJax_Display {
-        background: rgba(0, 0, 0, 0.02);
-        border-radius: 8px;
-        padding: 20px;
-        margin: 30px 0;
-    }
-    
-    .dark .medium-content .MathJax_Display {
-        background: rgba(255, 255, 255, 0.05);
-    }
-    
-    /* Links */
-    .medium-content a {
-        color: #242424;
-        text-decoration: underline;
-        text-decoration-color: rgba(0, 0, 0, 0.3);
-        text-underline-offset: 2px;
-        transition: all 0.2s ease;
-    }
-    
-    .medium-content a:hover {
-        text-decoration-color: #242424;
-    }
-    
-    .dark .medium-content a {
-        color: #e5e5e5;
-        text-decoration-color: rgba(255, 255, 255, 0.3);
-    }
-    
-    .dark .medium-content a:hover {
-        text-decoration-color: #e5e5e5;
-    }
-    
-    /* Strong and emphasis */
-    .medium-content strong {
-        font-weight: 600;
-    }
-    
-    .medium-content em {
-        font-style: italic;
-    }
-    
-    /* Horizontal rules */
-    .medium-content hr {
-        border: none;
-        height: 1px;
-        background: #e5e5e5;
-        margin: 40px 0;
-    }
-    
-    .dark .medium-content hr {
-        background: #404040;
-    }
-    
-    /* Tables */
-    .medium-content table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 29px 0;
-        font-size: 18px;
-    }
-    
-    .medium-content th,
-    .medium-content td {
-        border: 1px solid #e5e5e5;
-        padding: 12px 16px;
-        text-align: left;
-    }
-    
-    .medium-content th {
-        background: #f6f6f6;
-        font-weight: 600;
-    }
-    
-    .dark .medium-content th,
-    .dark .medium-content td {
-        border-color: #404040;
-    }
-    
-    .dark .medium-content th {
-        background: #2a2a2a;
-    }
-    
-    /* Responsive adjustments */
+    /* Notes page specific responsive optimizations */
     @media (max-width: 768px) {
-        .medium-style-article {
-            padding: 0 16px;
-        }
-        
+        /* Notes layout mobile adjustments */
         .medium-content {
             font-size: 18px;
-            line-height: 1.6;
+            line-height: 1.65;
+            padding: 0 0.5rem;
         }
         
-        .medium-content h1 {
-            font-size: 32px;
+        .medium-content p {
+            font-size: 18px;
+            line-height: 1.65;
+            margin: 1.25rem 0;
         }
         
-        .medium-content h2 {
-            font-size: 28px;
+        /* Mobile TOC improvements */
+        #mobile-toc-toggle {
+            position: sticky;
+            top: 1rem;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            background-color: rgba(249, 250, 251, 0.9);
         }
         
-        .medium-content h3 {
-            font-size: 24px;
+        .dark #mobile-toc-toggle {
+            background-color: rgba(39, 39, 42, 0.9);
         }
         
-        .medium-content h4 {
-            font-size: 20px;
+        /* Optimize notes container for mobile */
+        .max-w-6xl {
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+    
+    /* Performance optimizations */
+    @media (prefers-reduced-motion: reduce) {
+        .toc-link,
+        .tab-button,
+        .note-item,
+        button {
+            transition: none !important;
         }
         
-        .medium-content .MathJax_Display {
-            padding: 15px;
-            margin: 20px 0;
+        .animate-fade-in,
+        .animate-slide-left,
+        .animate-pulse {
+            animation: none !important;
         }
     }
     
-    /* Scientific Journal Typography for Notes */
-    .font-serif {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
+    /* Optimize for high-DPI displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .medium-content {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
     }
     
-    .font-mono {
-        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
+    /* Blog Post Layout Responsive Styles */
+    .medium-style-article {
+        line-height: 1.6;
     }
     
-    /* Enhanced Table of Contents styling */
-    #toc {
-        scrollbar-width: thin;
-        scrollbar-color: rgb(161 161 170) transparent;
+    .medium-style-article .prose {
+        font-family: Charter, Georgia, serif;
+        color: rgba(41, 41, 41, 1);
     }
     
-    #toc::-webkit-scrollbar {
-        width: 4px;
+    .dark .medium-style-article .prose {
+        color: rgba(242, 242, 242, 1);
     }
     
-    #toc::-webkit-scrollbar-track {
-        background: transparent;
+    /* TOC Responsive Behavior */
+    @media (max-width: 1023px) {
+        .lg\:block {
+            display: none !important;
+        }
+        
+        .lg\:hidden {
+            display: block !important;
+        }
+        
+        /* Mobile TOC toggle styling */
+        #mobile-toc-toggle {
+            transition: all 0.2s ease;
+        }
+        
+        #mobile-toc.hidden {
+            display: none;
+        }
+        
+        #mobile-toc:not(.hidden) {
+            display: block;
+            animation: slideDown 0.2s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
     }
     
-    #toc::-webkit-scrollbar-thumb {
-        background: rgb(161 161 170);
-        border-radius: 2px;
+    /* Post content responsive typography */
+    @media (max-width: 768px) {
+        .medium-style-article h1 {
+            font-size: 2.25rem !important;
+            line-height: 1.2 !important;
+        }
+        
+        .medium-style-article .prose {
+            font-size: 1rem !important;
+            line-height: 1.6 !important;
+        }
+        
+        .max-w-6xl {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
     }
     
-    .dark #toc::-webkit-scrollbar-thumb {
-        background: rgb(82 82 91);
+    @media (max-width: 480px) {
+        .medium-style-article h1 {
+            font-size: 1.875rem !important;
+        }
+        
+        .text-3xl {
+            font-size: 1.875rem !important;
+        }
+        
+        .text-4xl {
+            font-size: 2.25rem !important;
+        }
+        
+        .text-5xl {
+            font-size: 2.25rem !important;
+        }
     }
     
-    /* Scientific journal style content - override Medium styles */
+    /* Notes Layout Responsive Styles */
     .note-content {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        font-size: 18px !important;
-        line-height: 1.7 !important;
-        color: rgb(24 24 27) !important;
-        text-align: justify !important;
-        text-justify: inter-word !important;
-        max-width: none !important;
-        width: 100% !important;
-        margin: 0 !important;
+        line-height: 1.7;
     }
     
-    .dark .note-content {
-        color: rgb(244 244 245) !important;
+    @media (max-width: 1023px) {
+        /* Ensure notes TOC behaves consistently with posts */
+        .note-content h1, .note-content h2, .note-content h3, .note-content h4 {
+            scroll-margin-top: 80px;
+        }
     }
     
-    /* Scientific journal style headings */
-    .note-content h1, .note-content h2, .note-content h3, .note-content h4 {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        font-weight: 600 !important;
-        color: rgb(24 24 27) !important;
-        margin-top: 2rem !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    .dark .note-content h1, .dark .note-content h2, .dark .note-content h3, .dark .note-content h4 {
-        color: rgb(244 244 245) !important;
-    }
-    
-    /* Scientific journal style paragraphs */
-    .note-content p {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        margin-bottom: 1rem !important;
-        line-height: 1.7 !important;
-        text-align: justify !important;
-        text-justify: inter-word !important;
-    }
-    
-    /* Scientific journal style lists */
-    .note-content ul, .note-content ol {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        margin-bottom: 1rem !important;
-        padding-left: 1.5rem !important;
-    }
-    
-    .note-content li { 
-        margin-bottom: 0.5rem !important; 
-        text-align: justify !important;
-        text-justify: inter-word !important;
-    }
-    
-    /* Scientific journal style code */
-    .note-content code {
-        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
-        background: rgb(244 244 245);
-        padding: 0.2rem 0.4rem;
-        border-radius: 0.25rem;
-        font-size: 0.875rem;
-    }
-    
-    .dark .note-content code { 
-        background: rgb(39 39 42); 
-    }
-    
-    /* Scientific journal style pre blocks */
-    .note-content pre {
-        font-family: 'Courier New', Courier, 'Liberation Mono', monospace;
-        margin: 1.5rem 0;
-        background: rgb(248 250 252);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        overflow-x: auto;
-    }
-    
-    .dark .note-content pre { 
-        background: rgb(24 24 27); 
-    }
-    
-    /* Enhanced TOC link styling */
-    .toc-link {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
-        border-left: 2px solid transparent;
-        transition: all 0.2s ease;
-        padding: 0 !important;
-        margin: 0 !important;
-        line-height: 1.0 !important;
-        font-size: 10px !important;
-    }
-    
-    /* TOC container styling */
-    #toc {
-        margin-bottom: 0.5rem !important;
-        padding-bottom: 0.25rem !important;
-    }
-    
-    .toc-link:hover {
-        border-left-color: rgb(59 130 246);
-        background-color: rgba(59, 130, 246, 0.05);
-        padding-left: 6px !important;
-    }
-    
-    .dark .toc-link:hover {
-        background-color: rgba(96, 165, 250, 0.1);
-    }
-    
-    /* Active TOC link styling */
-    .toc-link.text-blue-600,
-    .toc-link.dark\:text-blue-400 {
-        border-left-color: rgb(59 130 246);
-        background-color: rgba(59, 130, 246, 0.1);
-        font-weight: 600;
-    }
-    
-    .dark .toc-link.text-blue-600,
-    .dark .toc-link.dark\:text-blue-400 {
-        background-color: rgba(96, 165, 250, 0.15);
-    }
-    
-    /* Responsive adjustments for scientific typography */
     @media (max-width: 768px) {
         .note-content {
-            font-size: 16px;
-            line-height: 1.6;
-            padding: 0 1rem;
+            font-size: 1rem !important;
+            line-height: 1.6 !important;
         }
         
         .note-content h1 {
-            font-size: 1.75rem;
+            font-size: 2rem !important;
+            line-height: 1.2 !important;
         }
         
         .note-content h2 {
-            font-size: 1.5rem;
+            font-size: 1.5rem !important;
         }
         
         .note-content h3 {
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
+        }
+    }
+    
+    /* Mobile-First Approach Enhancements */
+    /* Base mobile styles applied first, then enhanced for larger screens */
+    
+    /* Touch-friendly interactions */
+    @media (hover: none) and (pointer: coarse) {
+        .toc-link {
+            padding: 0.75rem 0.5rem !important;
+            margin: 0.25rem 0 !important;
         }
         
-        .note-content h4 {
-            font-size: 1.125rem;
+        #mobile-toc-toggle {
+            padding: 1rem !important;
+            font-size: 1rem !important;
         }
         
-        /* Stack layout on mobile */
-        .flex.gap-3 {
-            flex-direction: column;
-            gap: 0.75rem;
+        /* Larger touch targets for mobile */
+        .inline-flex.items-center.gap-2 {
+            padding: 0.75rem 1rem !important;
+            margin: 0.5rem 0 !important;
+        }
+    }
+    
+    /* Progressive enhancement for larger screens */
+    @media (min-width: 1024px) {
+        .toc-link {
+            font-size: 0.875rem;
+            padding: 0.5rem;
         }
         
-        .w-44 {
-            width: 100%;
-            max-width: 100%;
+        /* Enhanced desktop interaction */
+        .toc-link:hover {
+            transform: translateX(4px);
+            transition: all 0.2s ease;
         }
     }
     
-    /* Large screen optimizations */
-    @media (min-width: 1200px) {
-        .flex.gap-3 {
-            gap: 1rem;
-        }
-        
-        .w-44 {
-            width: 220px;
-        }
+    /* Ensure content is readable across all devices */
+    .prose, .medium-content, .note-content {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
     }
     
-    /* Override Medium content styles for notes */
-    .medium-content.note-content {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        font-size: 18px !important;
-        line-height: 1.7 !important;
-        color: rgb(24 24 27) !important;
-        text-align: justify !important;
-        text-justify: inter-word !important;
-        max-width: none !important;
-        width: 100% !important;
-        margin: 0 !important;
-    }
-    
-    .dark .medium-content.note-content {
-        color: rgb(244 244 245) !important;
-    }
-    
-    /* Override Medium headings for notes */
-    .medium-content.note-content h1,
-    .medium-content.note-content h2,
-    .medium-content.note-content h3,
-    .medium-content.note-content h4 {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        font-weight: 600 !important;
-        color: rgb(24 24 27) !important;
-        text-align: left !important;
-    }
-    
-    .dark .medium-content.note-content h1,
-    .dark .medium-content.note-content h2,
-    .dark .medium-content.note-content h3,
-    .dark .medium-content.note-content h4 {
-        color: rgb(244 244 245) !important;
-    }
-    
-    /* Override Medium paragraphs for notes */
-    .medium-content.note-content p {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        margin: 1rem 0 !important;
-        line-height: 1.7 !important;
-        text-align: justify !important;
-        text-justify: inter-word !important;
-    }
-    
-    /* Override Medium lists for notes */
-    .medium-content.note-content ul,
-    .medium-content.note-content ol {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        margin: 1rem 0 !important;
-        padding-left: 1.5rem !important;
-    }
-    
-    .medium-content.note-content li {
-        font-family: 'Times New Roman', Times, 'Liberation Serif', serif !important;
-        margin: 0.4rem 0 !important;
-        text-align: justify !important;
-        text-justify: inter-word !important;
+    /* Improved focus states for accessibility */
+    .toc-link:focus,
+    #mobile-toc-toggle:focus {
+        outline: 2px solid rgb(59 130 246);
+        outline-offset: 2px;
     }
 </style>
-
 </head>
 
 <body class="font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300">
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
     
-    <div class="max-w-full mx-auto px-4 py-2">
-    <div class="flex gap-3">
-        <!-- Table of Contents Sidebar -->
-        <div class="w-44 flex-shrink-0 sticky top-2 h-fit order-1">
-            <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
-                <h3 class="text-xs font-semibold mb-2 text-zinc-900 dark:text-zinc-100 font-serif">Table of Contents</h3>
-                <nav id="toc" class="space-y-0">
+    
+
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex gap-6 lg:gap-8">
+        <!-- Table of Contents Sidebar - Hidden on mobile, visible on desktop -->
+        <div class="hidden lg:block w-48 flex-shrink-0 sticky top-8 h-fit">
+            <div class="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                <h3 class="text-sm font-semibold mb-3 text-zinc-900 dark:text-zinc-100 font-serif">Contents</h3>
+                <nav id="toc" class="space-y-1">
                     <!-- TOC will be generated by JavaScript -->
                 </nav>
             </div>
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 order-2 min-w-0 w-full">
-            <article class="medium-style-article max-w-none w-full">
-                <header class="mb-8 text-center">
-                    <div class="mb-6">
-                        <h1 class="text-4xl font-bold text-zinc-900 dark:text-zinc-100 leading-tight mb-4 font-serif">Financial Mathematics</h1>
+        <div class="flex-1 min-w-0">
+            <article class="medium-style-article">
+                <!-- Header -->
+                <header class="mb-12 text-center border-b border-zinc-200 dark:border-zinc-700 pb-8">
+                    <div class="mb-8">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-100 leading-tight mb-6 font-serif tracking-tight">Financial Mathematics</h1>
                         
-                        <time class="text-base text-zinc-600 dark:text-zinc-400 font-serif">January 10, 2024</time>
+                        <time class="text-lg text-zinc-600 dark:text-zinc-400 font-serif">January 10, 2024</time>
                         
                     </div>
                     
                     
-                    <div class="flex flex-wrap gap-1.5 justify-center mb-8">
+                    <div class="flex flex-wrap gap-2 justify-center mb-8">
                         
-                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
+                        <span class="px-3 py-1.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-serif tracking-wide">
                             finance
                         </span>
                         
-                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
+                        <span class="px-3 py-1.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-serif tracking-wide">
                             mathematics
                         </span>
                         
-                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
+                        <span class="px-3 py-1.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-serif tracking-wide">
                             derivatives
                         </span>
                         
-                        <span class="px-2.5 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-mono">
+                        <span class="px-3 py-1.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-serif tracking-wide">
                             quantitative-finance
                         </span>
                         
                     </div>
                     
                     
-                    <div class="flex justify-center">
+                    <div class="flex justify-center space-x-6">
                         <a href="/" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-serif">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
-                            Back to Home
+                            Home
+                        </a>
+                        <a href="/notes" class="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-serif">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            All Notes
                         </a>
                     </div>
                 </header>
 
-                <div class="note-content medium-content">
+                <!-- Mobile TOC Toggle Button (only on mobile/tablet) -->
+                <div class="lg:hidden mb-6">
+                    <button id="mobile-toc-toggle" class="w-full flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                        <span class="font-serif">Table of Contents</span>
+                        <svg class="w-4 h-4 transform transition-transform" id="toc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="mobile-toc" class="hidden mt-3 p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
+                        <nav id="toc-mobile" class="space-y-1">
+                            <!-- TOC will be generated by JavaScript -->
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Content with Medium styling -->
+                <div class="note-content medium-content prose prose-lg max-w-none">
                     <h1 id="financial-mathematics">Financial Mathematics</h1>
 
 <p>Financial mathematics applies mathematical methods to solve problems in finance, including pricing derivatives, managing risk, and optimizing portfolios.</p>
@@ -1657,13 +1608,27 @@ Probability theory is the branch of mathematics concerned...</p>
 document.addEventListener('DOMContentLoaded', function() {
     const headings = document.querySelectorAll('.note-content h1, .note-content h2, .note-content h3, .note-content h4');
     const tocContainer = document.getElementById('toc');
+    const tocMobileContainer = document.getElementById('toc-mobile');
+    const mobileToggle = document.getElementById('mobile-toc-toggle');
+    const mobileToc = document.getElementById('mobile-toc');
+    const tocChevron = document.getElementById('toc-chevron');
+    
+    // Mobile TOC toggle functionality
+    if (mobileToggle && mobileToc && tocChevron) {
+        mobileToggle.addEventListener('click', function() {
+            mobileToc.classList.toggle('hidden');
+            tocChevron.classList.toggle('rotate-180');
+        });
+    }
     
     if (headings.length === 0) {
-        tocContainer.innerHTML = '<p class="text-xs text-zinc-500 dark:text-zinc-400">No headings found</p>';
+        if (tocContainer) tocContainer.innerHTML = '<p class="text-xs text-zinc-500 dark:text-zinc-400 font-serif">No headings found</p>';
+        if (tocMobileContainer) tocMobileContainer.innerHTML = '<p class="text-xs text-zinc-500 dark:text-zinc-400 font-serif">No headings found</p>';
         return;
     }
     
-            // Generate TOC
+    // Generate TOC HTML
+    function generateTOC() {
         let tocHTML = '';
         headings.forEach((heading, index) => {
             // Add ID to heading if it doesn't have one
@@ -1673,19 +1638,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Determine indentation based on heading level
             const level = parseInt(heading.tagName.charAt(1));
-            const indent = (level - 1) * 4; // Reduced from 6px to 4px for ultra-compact layout
+            const indent = (level - 1) * 8;
             
             tocHTML += `
                 <a href="#${heading.id}" 
-                   class="toc-link block text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors py-0 font-serif"
-                   style="padding-left: ${indent}px;"
+                   class="toc-link block text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors py-1 px-2 rounded font-serif text-sm leading-snug"
+                   style="margin-left: ${indent}px;"
                    data-heading-id="${heading.id}">
                     ${heading.textContent.trim()}
                 </a>
             `;
         });
+        return tocHTML;
+    }
     
-    tocContainer.innerHTML = tocHTML;
+    const tocHTML = generateTOC();
+    if (tocContainer) tocContainer.innerHTML = tocHTML;
+    if (tocMobileContainer) tocMobileContainer.innerHTML = tocHTML;
     
     // Add scroll spy functionality
     const tocLinks = document.querySelectorAll('.toc-link');
@@ -1697,24 +1666,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         headingElements.forEach((heading) => {
             const rect = heading.getBoundingClientRect();
-            if (rect.top <= 100) { // 100px offset from top
+            if (rect.top <= 120) {
                 current = heading.id;
             }
         });
         
         // Remove active class from all links
         tocLinks.forEach(link => {
-            link.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-medium');
+            link.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-semibold', 'bg-blue-50', 'dark:bg-blue-900/20');
             link.classList.add('text-zinc-600', 'dark:text-zinc-400');
         });
         
         // Add active class to current link
         if (current) {
-            const activeLink = document.querySelector(`[data-heading-id="${current}"]`);
-            if (activeLink) {
+            const activeLinks = document.querySelectorAll(`[data-heading-id="${current}"]`);
+            activeLinks.forEach(activeLink => {
                 activeLink.classList.remove('text-zinc-600', 'dark:text-zinc-400');
-                activeLink.classList.add('text-blue-600', 'dark:text-blue-400', 'font-medium');
-            }
+                activeLink.classList.add('text-blue-600', 'dark:text-blue-400', 'font-semibold', 'bg-blue-50', 'dark:bg-blue-900/20');
+            });
         }
     }
     
@@ -1732,9 +1701,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Close mobile TOC on click
+                if (mobileToc && !mobileToc.classList.contains('hidden')) {
+                    mobileToc.classList.add('hidden');
+                    tocChevron.classList.remove('rotate-180');
+                }
+                
+                // Smooth scroll with offset for fixed headers
+                const offsetTop = targetElement.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
                 });
             }
         });
@@ -1877,8 +1854,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         const clockElement = document.getElementById('ist-clock');
+        const mobileClockElement = document.getElementById('ist-clock-mobile');
+        
         if (clockElement) {
             clockElement.textContent = `${dayString}, ${timeString} IST`;
+        }
+        
+        if (mobileClockElement) {
+            mobileClockElement.textContent = `${dayString}, ${timeString} IST`;
         }
     }
 
@@ -2056,6 +2039,35 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMobileMenu();
         }
     }
+    
+    // Improve mobile navigation behavior
+    // Add click outside to close functionality
+    document.addEventListener('click', function(event) {
+        const isClickInsideLeftSidebar = leftSidebar.contains(event.target);
+        const isClickOnToggle = mobileMenuToggle.contains(event.target);
+        
+        if (!isClickInsideLeftSidebar &&
+            !isClickOnToggle &&
+            leftSidebar.classList.contains('mobile-open') &&
+            window.innerWidth <= 1023) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Improve mobile experience by hiding right sidebar on small screens
+    function adjustLayoutForMobile() {
+        if (window.innerWidth <= 768) {
+            // Ensure proper layout for mobile
+            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(10vh-2rem\\)\\].overflow-y-auto');
+            if (rightSidebar) {
+                rightSidebar.style.display = 'block'; // Show on mobile in single column
+            }
+        }
+    }
+    
+    // Run on initial load and on resize
+    window.addEventListener('load', adjustLayoutForMobile);
+    window.addEventListener('resize', adjustLayoutForMobile);
 
     // Smooth scrolling for any anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

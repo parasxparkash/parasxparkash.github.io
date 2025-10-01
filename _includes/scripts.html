@@ -130,8 +130,14 @@
         });
         
         const clockElement = document.getElementById('ist-clock');
+        const mobileClockElement = document.getElementById('ist-clock-mobile');
+        
         if (clockElement) {
             clockElement.textContent = `${dayString}, ${timeString} IST`;
+        }
+        
+        if (mobileClockElement) {
+            mobileClockElement.textContent = `${dayString}, ${timeString} IST`;
         }
     }
 
@@ -309,6 +315,35 @@
             closeMobileMenu();
         }
     }
+    
+    // Improve mobile navigation behavior
+    // Add click outside to close functionality
+    document.addEventListener('click', function(event) {
+        const isClickInsideLeftSidebar = leftSidebar.contains(event.target);
+        const isClickOnToggle = mobileMenuToggle.contains(event.target);
+        
+        if (!isClickInsideLeftSidebar &&
+            !isClickOnToggle &&
+            leftSidebar.classList.contains('mobile-open') &&
+            window.innerWidth <= 1023) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Improve mobile experience by hiding right sidebar on small screens
+    function adjustLayoutForMobile() {
+        if (window.innerWidth <= 768) {
+            // Ensure proper layout for mobile
+            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(10vh-2rem\\)\\].overflow-y-auto');
+            if (rightSidebar) {
+                rightSidebar.style.display = 'block'; // Show on mobile in single column
+            }
+        }
+    }
+    
+    // Run on initial load and on resize
+    window.addEventListener('load', adjustLayoutForMobile);
+    window.addEventListener('resize', adjustLayoutForMobile);
 
     // Smooth scrolling for any anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

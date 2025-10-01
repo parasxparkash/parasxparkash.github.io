@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://parasparkash.github.io/sitemap.xml
+Sitemap: https://parasparkash.github.io/feed.xml
 
 # Disallow admin and private areas
 Disallow: /_site/
@@ -16,10 +17,42 @@ Disallow: /Gemfile.lock
 Disallow: /node_modules/
 Disallow: /vendor/
 
-# Allow important files
+# Allow important files and directories
 Allow: /assets/
 Allow: /feed.xml
 Allow: /sitemap.xml
+Allow: /notes/
+Allow: /posts/
 
-# Crawl delay (optional)
+# Crawl delay for better server performance
 Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block unwanted bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

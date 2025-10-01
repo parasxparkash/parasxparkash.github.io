@@ -4,6 +4,7 @@ _site/
 # Caches
 .jekyll-cache/
 .sass-cache/
+.claude/
 
 # OS files
 .DS_Store
