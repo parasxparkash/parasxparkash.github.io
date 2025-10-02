@@ -65,6 +65,23 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Prevent flash of incorrect theme -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (shouldUseDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.style.colorScheme = 'dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
+    
     {% if site.mathjax or page.mathjax %}
     <!-- MathJax setup (must load before MathJax library executes) -->
     <script src="{{ '/assets/js/mathjax-setup.js' | relative_url }}"></script>

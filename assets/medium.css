@@ -7,7 +7,8 @@
   --border: #e6e6e6;
   --code-bg: #f6f8fa;
 }
-:root.dark {
+:root.dark,
+html.dark {
   --text: #e5e5e5;
   --muted: #a1a1aa;
   --bg: #0a0a0a;
@@ -74,7 +75,10 @@ article.prose blockquote, .post-content blockquote, .note-content blockquote {
 }
 :root.dark article.prose blockquote,
 :root.dark .post-content blockquote,
-:root.dark .note-content blockquote { background: rgba(255,255,255,0.03); }
+:root.dark .note-content blockquote,
+html.dark article.prose blockquote,
+html.dark .post-content blockquote,
+html.dark .note-content blockquote { background: rgba(255,255,255,0.03); }
 
 /* Code */
 article.prose code, .post-content code, .note-content code {
@@ -101,7 +105,10 @@ article.prose td, .post-content td, .note-content td { border: 1px solid var(--b
 article.prose thead th, .post-content thead th, .note-content thead th { background: rgba(0,0,0,0.03); font-weight: 700; }
 :root.dark article.prose thead th,
 :root.dark .post-content thead th,
-:root.dark .note-content thead th { background: rgba(255,255,255,0.06); }
+:root.dark .note-content thead th,
+html.dark article.prose thead th,
+html.dark .post-content thead th,
+html.dark .note-content thead th { background: rgba(255,255,255,0.06); }
 
 /* Horizontal rule */
 article.prose hr, .post-content hr, .note-content hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
@@ -120,7 +127,8 @@ article.prose figcaption, .post-content figcaption, .note-content figcaption { t
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-.dark .note-content h1, .dark .note-content h2, .dark .note-content h3 {
+.dark .note-content h1, .dark .note-content h2, .dark .note-content h3,
+html.dark .note-content h1, html.dark .note-content h2, html.dark .note-content h3 {
   color: rgb(244 244 245);
 }
 .note-content p {
@@ -139,7 +147,8 @@ article.prose figcaption, .post-content figcaption, .note-content figcaption { t
   border-radius: 0.25rem;
   font-size: 0.875rem;
 }
-.dark .note-content code { background: rgb(39 39 42); }
+.dark .note-content code,
+html.dark .note-content code { background: rgb(39 39 42); }
 .note-content pre {
   margin: 1.5rem 0;
   background: rgb(248 250 252);
@@ -147,6 +156,7 @@ article.prose figcaption, .post-content figcaption, .note-content figcaption { t
   border-radius: 0.5rem;
   overflow-x: auto;
 }
-.dark .note-content pre { background: rgb(24 24 27); }
+.dark .note-content pre,
+html.dark .note-content pre { background: rgb(24 24 27); }
 /* MathJax sizing */
 .MathJax { font-size: 1.1em !important; }

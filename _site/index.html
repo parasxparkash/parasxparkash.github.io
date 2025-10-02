@@ -15,14 +15,14 @@
     <meta name="revisit-after" content="7 days">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://0.0.0.0:4000/">
+    <link rel="canonical" href="http://0.0.0.0:4002/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://0.0.0.0:4000/">
+    <meta property="og:url" content="http://0.0.0.0:4002/">
     <meta property="og:title" content="Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India | Paras Parkash">
     <meta property="og:description" content="My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.">
-    <meta property="og:image" content="http://0.0.0.0:4000/assets/profile-optimized.webp">
+    <meta property="og:image" content="http://0.0.0.0:4002/assets/profile-optimized.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India">
@@ -32,10 +32,10 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="http://0.0.0.0:4000/">
+    <meta name="twitter:url" content="http://0.0.0.0:4002/">
     <meta name="twitter:title" content="Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India | Paras Parkash">
     <meta name="twitter:description" content="My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.">
-    <meta name="twitter:image" content="http://0.0.0.0:4000/assets/profile-optimized.webp">
+    <meta name="twitter:image" content="http://0.0.0.0:4002/assets/profile-optimized.webp">
     <meta name="twitter:image:alt" content="Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India">
     <meta name="twitter:creator" content="@parasxparkash">
     <meta name="twitter:site" content="@parasxparkash">
@@ -57,6 +57,23 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Prevent flash of incorrect theme -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (shouldUseDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.style.colorScheme = 'dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.style.colorScheme = 'light';
+            }
+        })();
+    </script>
     
     
     <!-- MathJax setup (must load before MathJax library executes) -->
@@ -107,8 +124,8 @@
         
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "http://0.0.0.0:4000",
-        "image": "http://0.0.0.0:4000/assets/profile-optimized.webp",
+        "url": "http://0.0.0.0:4002",
+        "image": "http://0.0.0.0:4002/assets/profile-optimized.webp",
         "jobTitle": "Quantitative Researcher",
         "worksFor": {
             "@type": "Organization",
@@ -151,7 +168,7 @@
         "@type": "WebSite",
         "name": "Paras Parkash",
         "description": "My work focuses on developing quantitative risk management models leveraging agentic AI that dynamically manage market risks and optimize portfolio protection, using derivatives combined with advanced volatility models like GARCH, Heston, and higher-order frameworks.",
-        "url": "http://0.0.0.0:4000",
+        "url": "http://0.0.0.0:4002",
         "author": {
             "@type": "Person",
             "name": "Paras Parkash"
@@ -160,7 +177,7 @@
             "@type": "SearchAction",
             "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "http://0.0.0.0:4000/search?q={search_term_string}"
+                "urlTemplate": "http://0.0.0.0:4002/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
         }
@@ -185,6 +202,19 @@
     body { 
         margin: 0; 
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    }
+    
+    /* Ensure dark theme works properly */
+    .dark {
+        color-scheme: dark;
+    }
+    
+    .dark body {
+        background-color: rgb(24 24 27) !important;
+    }
+    
+    .dark main {
+        background-color: rgb(24 24 27) !important;
     }
     
     /* Core layout utilities */
@@ -1065,7 +1095,7 @@
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
     
-    <main class="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden">
+    <main class="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden">
     <!-- Mobile Overlay - Completely hidden in new responsive design -->
     <div id="mobile-overlay" class="mobile-overlay hidden"></div>
 
@@ -1209,7 +1239,7 @@
         </div>
 
         <!-- Center Content Area -->
-        <div class="flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col lg:h-screen">
             <!-- Header Section - Responsive layout -->
             <div class="opacity-0 transform animate-fade-in flex-shrink-0">
                 <section class="mb-6">
@@ -1328,15 +1358,24 @@
                             id="tab-projects">
                         Projects
                     </button>
-                    <button type="button" onclick="showTab('experience')" 
-                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
+                    <button type="button" onclick="showTab('experience')"
+                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400"
                             id="tab-experience">
                         Experience
                     </button>
+                    <button type="button" onclick="showTab('education')"
+                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400"
+                            id="tab-education">
+                        Education
+                    </button>
+                    <button type="button" onclick="showTab('tools')"
+                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400"
+                            id="tab-tools">
+                        Tools
+                    </button>
 
-
-                    <button type="button" onclick="showTab('blogs')" 
-                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
+                    <button type="button" onclick="showTab('blogs')"
+                            class="tab-button inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400"
                             id="tab-blogs">
                         Blogs
                     </button>
@@ -1843,14 +1882,20 @@ Several asymptotic results for the implied vola...</p>
                         </div>
                             </div>
 
-                    <!-- Education Section -->
-                    <div class="mb-12">
-                        <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Education</h3>
-                        <div class="space-y-8">
-                            <ul class="space-y-8">
-                            <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
-                            <li class="group">
-                                <div class="flex items-baseline justify-between mb-1">
+                </section>
+            </div>
+
+            <!-- Education Tab Content -->
+            <div id="content-education" class="tab-content hidden">
+                <section class="mb-12">
+                    <div class="space-y-8">
+                        <div class="mb-12">
+                            <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Education</h3>
+                            <div class="space-y-8">
+                                <ul class="space-y-8">
+                                <div class="opacity-0 transform-x animate-slide-left animate-delay-400">
+                                <li class="group">
+                                    <div class="flex items-baseline justify-between mb-1">
                                             <h3 class="text-md font-medium">Master of Science in Financial Engineering</h3>
                                             <span class="text-xs text-zinc-500 dark:text-zinc-400">2022 - 2024</span>
                                 </div>
@@ -1864,7 +1909,7 @@ Several asymptotic results for the implied vola...</p>
                                         </div>
                                     </li>
                                 </div>
-                                
+
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-500">
                                 <li class="group">
                                 <div class="flex items-baseline justify-between mb-1">
@@ -1914,7 +1959,7 @@ Several asymptotic results for the implied vola...</p>
                                 </li>
                             </div>
                         </ul>
-                        
+
                         <!-- Certifications Section -->
                         <div class="mt-12">
                             <h4 class="text-lg font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Certifications</h4>
@@ -1936,7 +1981,7 @@ Several asymptotic results for the implied vola...</p>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">NSE India</p>
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Comprehensive training in algorithmic trading strategies and computational finance methodologies.</p>
                                 </div>
-                                
+
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-1000">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Executive Development Programme in Financial Data Analytics</h4>
@@ -1945,7 +1990,7 @@ Several asymptotic results for the implied vola...</p>
                                     <p class="text-sm text-zinc-600 dark:text-zinc-300 mb-1">Professional Development</p>
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">Advanced analytics techniques for financial data analysis and business intelligence applications.</p>
                                 </div>
-                                
+
                                 <div class="opacity-0 transform-x animate-slide-left animate-delay-1100">
                                     <div class="flex items-baseline justify-between mb-1">
                                         <h4 class="text-sm font-medium">Machine Learning Specialization</h4>
@@ -1958,10 +2003,12 @@ Several asymptotic results for the implied vola...</p>
                         </div>
                     </div>
                 </div>
+                </section>
+            </div>
 
-                <!-- Tools & Technologies Section -->
-                <div class="mb-12">
-                    <h3 class="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Tools & Technologies</h3>
+            <!-- Tools Tab Content -->
+            <div id="content-tools" class="tab-content hidden">
+                <section class="mb-12">
                     <div class="space-y-6">
                         <div class="opacity-0 transform-x animate-slide-left animate-delay-1200">
                             <h4 class="text-md font-medium mb-3">Programming Languages</h4>
@@ -1974,7 +2021,7 @@ Several asymptotic results for the implied vola...</p>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">JavaScript</span>
                             </div>
                         </div>
-                        
+
                         <div class="opacity-0 transform-x animate-slide-left animate-delay-1300">
                             <h4 class="text-md font-medium mb-3">Quantitative Finance</h4>
                             <div class="flex flex-wrap gap-2">
@@ -1986,7 +2033,7 @@ Several asymptotic results for the implied vola...</p>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Backtrader</span>
                             </div>
                         </div>
-                        
+
                         <div class="opacity-0 transform-x animate-slide-left animate-delay-1400">
                             <h4 class="text-md font-medium mb-3">Machine Learning & AI</h4>
                             <div class="flex flex-wrap gap-2">
@@ -1998,7 +2045,7 @@ Several asymptotic results for the implied vola...</p>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Keras</span>
                             </div>
                         </div>
-                        
+
                         <div class="opacity-0 transform-x animate-slide-left animate-delay-1500">
                             <h4 class="text-md font-medium mb-3">Data & Analytics</h4>
                             <div class="flex flex-wrap gap-2">
@@ -2022,7 +2069,7 @@ Several asymptotic results for the implied vola...</p>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">CCXT</span>
                             </div>
                         </div>
-                        
+
                         <div class="opacity-0 transform-x animate-slide-left animate-delay-1700">
                             <h4 class="text-md font-medium mb-3">Cloud & Infrastructure</h4>
                             <div class="flex flex-wrap gap-2">
@@ -2034,14 +2081,9 @@ Several asymptotic results for the implied vola...</p>
                                 <span class="px-2 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 rounded">Bash</span>
                             </div>
                             </div>
-                        </div>
                     </div>
                 </section>
             </div>
-
-
-
-
 
             <!-- Books Tab Content -->
             <div id="content-books" class="tab-content hidden">
@@ -2319,7 +2361,7 @@ Several asymptotic results for the implied vola...</p>
                 <div class="flex gap-2">
                     <!-- Theme Toggle Button -->
                     <button id="sidebar-theme-toggle" class="p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors duration-200">
-                        <svg id="sidebar-sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg id="sidebar-sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -2330,7 +2372,7 @@ Several asymptotic results for the implied vola...</p>
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                        <svg id="sidebar-moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg id="sidebar-moon-icon" class="w-5 h-5 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
@@ -2437,23 +2479,24 @@ Probability theory is the branch of mathematics concerned...</p>
                 </div>
                 
             </div>
+            
+            <!-- Footer - Below Notes Section -->
+            <div class="border-t border-zinc-200 dark:border-zinc-700 mt-6 pt-4">
+                <footer class="text-xs text-zinc-400 dark:text-zinc-500">
+                    <div class="flex justify-between items-start mb-3">
+                        <div></div>
+                        <div class="text-right">
+                            <div class="mb-1">parasxparkash@gmail.com</div>
+                            <div>Design with nicotine and chai</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end items-center text-[10px] text-zinc-300 dark:text-zinc-600">
+                        <div id="user-info">  Detecting system... •  Detecting location...</div>
+                    </div>
+                </footer>
+            </div>
         </div>
     </div>
-        <!-- Footer - Within main container -->
-        <footer class="pt-6 pb-4 text-xs text-zinc-400 dark:text-zinc-500 mt-auto flex-shrink-0">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-start mb-3">
-                <div></div>
-                <div class="text-right">
-                    <div class="mb-1">parasxparkash@gmail.com</div>
-                    <div>Design with nicotine and chai</div>
-                </div>
-            </div>
-            <div class="flex justify-end items-center text-[10px] text-zinc-300 dark:text-zinc-600">
-                <div id="user-info">  Detecting system... •  Detecting location...</div>
-            </div>
-        </div>
-    </footer>
 </main>
 
 <script>
@@ -2464,10 +2507,13 @@ Probability theory is the branch of mathematics concerned...</p>
         
         // Update active button
         tagButtons.forEach(button => {
-            button.classList.remove('active');
+            button.classList.remove('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+            button.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
+            
             if (button.getAttribute('data-tag') === tag || 
                 (tag === 'all' && button.getAttribute('data-tag') === 'all')) {
-                button.classList.add('active');
+                button.classList.add('active', 'bg-blue-500', 'text-white', 'dark:bg-blue-400', 'dark:text-white');
+                button.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-700', 'dark:text-zinc-300');
             }
         });
         
@@ -2485,33 +2531,10 @@ Probability theory is the branch of mathematics concerned...</p>
         });
     }
 
-    // Theme toggle functionality for the sidebar button
+    // Theme toggle functionality is now handled in _includes/scripts.html
+
+    // Add event listeners to tag buttons when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
-        const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
-        const sidebarSunIcon = document.getElementById('sidebar-sun-icon');
-        const sidebarMoonIcon = document.getElementById('sidebar-moon-icon');
-        
-        if (sidebarThemeToggle) {
-            sidebarThemeToggle.addEventListener('click', function() {
-                // Toggle dark mode class on html element
-                document.documentElement.classList.toggle('dark');
-                
-                // Update icon visibility based on current theme
-                if (document.documentElement.classList.contains('dark')) {
-                    sidebarSunIcon.classList.remove('hidden');
-                    sidebarMoonIcon.classList.add('hidden');
-                } else {
-                    sidebarSunIcon.classList.add('hidden');
-                    sidebarMoonIcon.classList.remove('hidden');
-                }
-                
-                // Save preference to localStorage
-                const isDark = document.documentElement.classList.contains('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-        }
-        
-        // Add event listeners to tag buttons
         const tagButtons = document.querySelectorAll('.note-tag');
         tagButtons.forEach(button => {
             button.addEventListener('click', function() {
@@ -2525,26 +2548,96 @@ Probability theory is the branch of mathematics concerned...</p>
 
     
     <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    // Check for saved theme preference or default to 'light'
-    const currentTheme = localStorage.getItem('theme') || 
-                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    
-    if (currentTheme === 'dark') {
-        html.classList.add('dark');
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            html.classList.toggle('dark');
+    // Global theme management - unified system
+    window.themeManager = {
+        // Initialize theme on page load
+        init: function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            const theme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
+            // Determine which theme to use
+            let shouldUseDark;
+            if (savedTheme) {
+                shouldUseDark = savedTheme === 'dark';
+            } else {
+                shouldUseDark = prefersDark;
+            }
+            
+            if (shouldUseDark) {
+                this.setDark();
+            } else {
+                this.setLight();
+            }
+        },
+        
+        // Set dark theme
+        setDark: function() {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            this.updateIcons(true);
+        },
+        
+        // Set light theme  
+        setLight: function() {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            this.updateIcons(false);
+        },
+        
+        // Toggle between themes
+        toggle: function() {
+            if (document.documentElement.classList.contains('dark')) {
+                this.setLight();
+            } else {
+                this.setDark();
+            }
+        },
+        
+        // Update icon visibility
+        updateIcons: function(isDark) {
+            const sunIcon = document.getElementById('sidebar-sun-icon');
+            const moonIcon = document.getElementById('sidebar-moon-icon');
+            
+            if (sunIcon && moonIcon) {
+                if (isDark) {
+                    // In dark mode, show sun icon (to switch to light)
+                    sunIcon.classList.remove('hidden');
+                    sunIcon.classList.add('block');
+                    moonIcon.classList.add('hidden');
+                    moonIcon.classList.remove('block');
+                } else {
+                    // In light mode, show moon icon (to switch to dark)
+                    sunIcon.classList.add('hidden');
+                    sunIcon.classList.remove('block');
+                    moonIcon.classList.remove('hidden');
+                    moonIcon.classList.add('block');
+                }
+            }
+        }
+    };
+
+    // Initialize theme and setup toggle on DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize theme
+        window.themeManager.init();
+        
+        // Setup theme toggle button if it exists on this page
+        const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
+        if (sidebarThemeToggle) {
+            sidebarThemeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.themeManager.toggle();
+            });
+        }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            // Only auto-switch if user hasn't set a preference
+            if (!localStorage.getItem('theme')) {
+                window.themeManager.init();
+            }
         });
-    }
+    });
 
     // Tab functionality
     function showTab(tabName) {
@@ -2860,7 +2953,7 @@ Probability theory is the branch of mathematics concerned...</p>
     function adjustLayoutForMobile() {
         if (window.innerWidth <= 768) {
             // Ensure proper layout for mobile
-            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(10vh-2rem\\)\\].overflow-y-auto');
+            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(100vh-2rem\\)\\].overflow-y-auto');
             if (rightSidebar) {
                 rightSidebar.style.display = 'block'; // Show on mobile in single column
             }

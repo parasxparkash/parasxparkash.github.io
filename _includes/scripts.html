@@ -1,24 +1,94 @@
 <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    // Check for saved theme preference or default to 'light'
-    const currentTheme = localStorage.getItem('theme') || 
-                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    
-    if (currentTheme === 'dark') {
-        html.classList.add('dark');
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            html.classList.toggle('dark');
+    // Global theme management - unified system
+    window.themeManager = {
+        // Initialize theme on page load
+        init: function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            const theme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
+            // Determine which theme to use
+            let shouldUseDark;
+            if (savedTheme) {
+                shouldUseDark = savedTheme === 'dark';
+            } else {
+                shouldUseDark = prefersDark;
+            }
+            
+            if (shouldUseDark) {
+                this.setDark();
+            } else {
+                this.setLight();
+            }
+        },
+        
+        // Set dark theme
+        setDark: function() {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            this.updateIcons(true);
+        },
+        
+        // Set light theme  
+        setLight: function() {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            this.updateIcons(false);
+        },
+        
+        // Toggle between themes
+        toggle: function() {
+            if (document.documentElement.classList.contains('dark')) {
+                this.setLight();
+            } else {
+                this.setDark();
+            }
+        },
+        
+        // Update icon visibility
+        updateIcons: function(isDark) {
+            const sunIcon = document.getElementById('sidebar-sun-icon');
+            const moonIcon = document.getElementById('sidebar-moon-icon');
+            
+            if (sunIcon && moonIcon) {
+                if (isDark) {
+                    // In dark mode, show sun icon (to switch to light)
+                    sunIcon.classList.remove('hidden');
+                    sunIcon.classList.add('block');
+                    moonIcon.classList.add('hidden');
+                    moonIcon.classList.remove('block');
+                } else {
+                    // In light mode, show moon icon (to switch to dark)
+                    sunIcon.classList.add('hidden');
+                    sunIcon.classList.remove('block');
+                    moonIcon.classList.remove('hidden');
+                    moonIcon.classList.add('block');
+                }
+            }
+        }
+    };
+
+    // Initialize theme and setup toggle on DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize theme
+        window.themeManager.init();
+        
+        // Setup theme toggle button if it exists on this page
+        const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
+        if (sidebarThemeToggle) {
+            sidebarThemeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.themeManager.toggle();
+            });
+        }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            // Only auto-switch if user hasn't set a preference
+            if (!localStorage.getItem('theme')) {
+                window.themeManager.init();
+            }
         });
-    }
+    });
 
     // Tab functionality
     function showTab(tabName) {
@@ -334,7 +404,7 @@
     function adjustLayoutForMobile() {
         if (window.innerWidth <= 768) {
             // Ensure proper layout for mobile
-            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(10vh-2rem\\)\\].overflow-y-auto');
+            const rightSidebar = document.querySelector('.w-72.flex-shrink-0.sticky.top-4.h-\\[calc\\(100vh-2rem\\)\\].overflow-y-auto');
             if (rightSidebar) {
                 rightSidebar.style.display = 'block'; // Show on mobile in single column
             }
