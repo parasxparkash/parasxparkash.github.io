@@ -96,7 +96,7 @@
         const tabContents = document.querySelectorAll('.tab-content');
         tabContents.forEach(content => {
             content.classList.add('hidden');
-            content.classList.remove('opacity-0', 'transform');
+            content.style.opacity = '0';
         });
         
         // Remove active class from all buttons
@@ -111,7 +111,11 @@
         const selectedContent = document.getElementById(`content-${tabName}`);
         if (selectedContent) {
             selectedContent.classList.remove('hidden');
-            
+            selectedContent.style.opacity = '1';
+
+            // Reset scroll position to top
+            selectedContent.parentElement.scrollTop = 0;
+
             // Add active class to selected button
             const selectedButton = document.getElementById(`tab-${tabName}`);
             if (selectedButton) {
@@ -119,20 +123,6 @@
                 selectedButton.classList.remove('!font-light', '!text-neutral-400', 'dark:!text-neutral-400');
                 selectedButton.classList.add('!font-bold', '!text-neutral-800', 'dark:!text-neutral-100');
             }
-            
-            // Trigger animations for the new content
-            setTimeout(() => {
-                selectedContent.classList.add('opacity-0', 'transform');
-                selectedContent.classList.add('animate-fade-in');
-                
-                // Animate list items if they exist
-                const listItems = selectedContent.querySelectorAll('li, .space-y-6 > div');
-                listItems.forEach((item, index) => {
-                    item.classList.add('opacity-0', 'transform-x');
-                    item.classList.add('animate-slide-left');
-                    item.style.animationDelay = `${(index + 1) * 0.1}s`;
-                });
-            }, 10);
         }
     }
 

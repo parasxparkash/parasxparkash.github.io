@@ -3,7 +3,7 @@ layout: default
 title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
 ---
 
-<main class="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden">
+<main class="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden" style="background: var(--bg);">
     <!-- Mobile Overlay - Completely hidden in new responsive design -->
     <div id="mobile-overlay" class="mobile-overlay hidden"></div>
 
@@ -235,12 +235,12 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
 
             <!-- GitHub Contributions -->
             <section class="mb-8">
-                <h3 class="text-md font-medium mb-3">GitHub Contributions</h3>
+                <h3 class="text-md font-medium mb-3">GitHub Contributions - {{ site.time | date: "%Y" }}</h3>
                 <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener noreferrer" class="block">
-                    <img 
-                        src="https://ghchart.rshah.org/{{ site.author.github }}" 
-                        alt="GitHub contributions chart for {{ site.author.github }}" 
-                        loading="lazy" 
+                    <img
+                        src="https://ghchart.rshah.org/{{ site.author.github }}?year={{ site.time | date: "%Y" }}&size=large"
+                        alt="GitHub contributions chart for {{ site.author.github }}"
+                        loading="lazy"
                         decoding="async"
                         class="w-full rounded"
                     />
@@ -251,7 +251,7 @@ title: "Paras Parkash | Quantitative Researcher | Chennai|Gurugram, India"
 
             <!-- Tabs Section - Scrollable -->
             <div class="flex-1 overflow-y-auto min-h-0">
-            <div class="opacity-0 transform animate-fade-in animate-delay-200">
+            <div class="opacity-0 transform animate-fade-in animate-delay-200" style="position: sticky; top: 0; background: var(--bg); z-index: 10;">
                 <div class="text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg mb-2 md:mb-4 border-none bg-transparent p-0 -ml-[8px]">
                     <button type="button" onclick="showTab('projects')" 
                             class="tab-button active inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out !text-neutral-400 dark:!text-neutral-400" 
