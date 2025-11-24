@@ -9,7 +9,11 @@ interface Post {
   tags?: string[]
 }
 
-export default function RecentPostsSidebar() {
+interface RecentPostsSidebarProps {
+  topPosts?: Array<{ id: string; title: string; tags?: string[] }>
+}
+
+export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebarProps) {
   const [posts, setPosts] = useState<Post[]>([])
   const [allTags, setAllTags] = useState<string[]>([])
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
@@ -44,7 +48,7 @@ export default function RecentPostsSidebar() {
   return (
     <div className="w-72 flex-shrink-0 sticky top-4 h-[calc(100vh-2rem)] overflow-y-auto">
       <div className="flex items-center justify-end mb-4">
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Recent Posts</h3>
+        <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">- Recent Posts</h3>
       </div>
 
       {/* Filter Tags with View All Posts inline */}
@@ -73,7 +77,7 @@ export default function RecentPostsSidebar() {
             >
               All
             </button>
-            {allTags.slice(0, 10).map((tag) => (
+            {allTags.slice(0, 5).map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
@@ -91,22 +95,18 @@ export default function RecentPostsSidebar() {
       )}
 
       {/* Posts List */}
-      <div className="space-y-4">
-        {filteredPosts.slice(0, 5).map((post) => (
-          <div key={post.id} className="p-3 rounded hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
-            <div className="flex items-baseline justify-between gap-2 mb-2">
-              <h4 className="font-medium text-zinc-900 dark:text-zinc-100 text-sm flex-1">
-                <a href={`/posts/${post.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  {post.title}
-                </a>
-              </h4>
-              <time className="text-xs text-zinc-500 dark:text-zinc-400 whitespace-nowrap flex-shrink-0">
-                {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-              </time>
-            </div>
+      <div className="space-y-2">
+        {filteredPosts.slice(0, 2).map((post) => (
+          <div key={post.id}>
+            <a
+              href={`/posts/${post.id}`}
+              className="block text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-1"
+            >
+              {post.title}
+            </a>
             {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1 mt-2">
-                {post.tags.slice(0, 2).map((tag) => (
+              <div className="flex flex-wrap gap-1 mb-2">
+                {post.tags.slice(0, 1).map((tag) => (
                   <span key={tag} className="px-1.5 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">
                     {tag}
                   </span>
@@ -116,6 +116,36 @@ export default function RecentPostsSidebar() {
           </div>
         ))}
       </div>
+
+      {/* Pinned Post Section */}
+      {topPosts.length > 0 && (
+        <div className="mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-700">
+          <div className="flex items-center justify-end mb-3">
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">- Pinned Post</h4>
+          </div>
+          <div className="space-y-2">
+            {topPosts.map((post) => (
+              <div key={post.id}>
+                <a
+                  href={`/posts/${post.id}`}
+                  className="block text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-1"
+                >
+                  {post.title}
+                </a>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {post.tags.slice(0, 1).map((tag) => (
+                      <span key={tag} className="px-1.5 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Footer - Email and Design credit */}
       <div className="border-t border-zinc-200 dark:border-zinc-700 mt-6 pt-4">

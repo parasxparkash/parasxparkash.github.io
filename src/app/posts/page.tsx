@@ -5,11 +5,21 @@ import Sidebar from '@/components/Sidebar'
 
 export const metadata: Metadata = {
   title: 'Posts',
-  description: 'Blog posts and articles on quantitative finance, derivatives, risk management, AI, and machine learning by Paras Parkash',
+  description: 'Blog posts and articles on quantitative finance, derivatives, risk management, AI, machine learning, HFT trading strategies, and mathematical finance by Paras Parkash',
+  keywords: ['quantitative finance blog', 'derivatives articles', 'risk management posts', 'AI finance', 'machine learning finance', 'HFT strategies', 'algorithmic trading blog'],
   openGraph: {
     title: 'Posts | Paras Parkash',
-    description: 'Blog posts and articles on quantitative finance, derivatives, risk management, AI, and machine learning',
+    description: 'Blog posts and articles on quantitative finance, derivatives, risk management, AI, machine learning, HFT trading strategies, and mathematical finance',
     url: 'https://parasparkash.github.io/posts',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Posts | Paras Parkash',
+    description: 'Blog posts and articles on quantitative finance, derivatives, risk management, AI, and machine learning',
+  },
+  alternates: {
+    canonical: 'https://parasparkash.github.io/posts',
   },
 }
 
