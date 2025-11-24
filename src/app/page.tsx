@@ -9,6 +9,7 @@ import BlogsTab from '@/components/BlogsTab'
 import BooksTab from '@/components/BooksTab'
 import RecentPostsSidebar from '@/components/RecentPostsSidebar'
 import ThemeToggle from '@/components/ThemeToggle'
+import RotatingText from '@/components/RotatingText'
 import Image from 'next/image'
 
 const tabs = [
@@ -266,9 +267,11 @@ export default function Home() {
               </p>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal" id="ist-clock-mobile">
               </p>
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">Open to Opportunities</p>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
+                  <RotatingText items={['Open to Opportunities', 'deploying', 'merging', 'building', 'testing']} />
+                </p>
               </div>
             </div>
 
@@ -387,9 +390,11 @@ export default function Home() {
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal" id="ist-clock">
                   </p>
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">Open to Opportunities</p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
+                      <RotatingText items={['Open to Opportunities', 'deploying', 'merging', 'building', 'testing']} />
+                    </p>
                   </div>
                 </div>
               </div>

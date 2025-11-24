@@ -981,3 +981,31 @@ a, button {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Rotating text animation */
+.rotating-text {
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rotating-text-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rotating-text-out {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.rotating-text-enter {
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slideInText 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
