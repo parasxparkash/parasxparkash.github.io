@@ -5,11 +5,6 @@ on:
     # Run daily at 00:00 UTC
     - cron: '0 0 * * *'
   workflow_dispatch: # Allow manual trigger
-  push:
-    branches:
-      - main
-    paths:
-      - 'scripts/fetch-github-contributions.js'
 
 jobs:
   update-github-data:
@@ -42,5 +37,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add public/data/
-          git commit -m "Update GitHub data (contributions & commits) [skip ci]"
+          git commit -m "Update GitHub data (contributions & commits)"
           git push
