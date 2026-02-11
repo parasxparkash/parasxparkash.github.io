@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "sha": "63fc5a9",
+    "message": "fix: Add placeholder data files and fix workflow triggers",
+    "date": "2026-02-11T15:52:03Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/63fc5a9d0ca05b50018e65c64d29dadb8acc8d5a",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "439d462",
+    "message": "fix: Remove deleted Header and Sidebar component references from posts pages",
+    "date": "2026-02-11T15:45:22Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/439d4621c58fcfabc9393d6145460671e4158f21",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "fff11d1",
+    "message": "feat: GitHub Pages deployment with auto-updating contributions and commits",
+    "date": "2026-02-11T14:21:16Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/fff11d150c16a20595c9da662edb28db75e8540e",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "310ef06",
+    "message": "Optimize SEO metadata, improve UI components, and add recent commits feature",
+    "date": "2025-11-24T13:50:39Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/310ef06f49be522cbf0a5fb0f35fa876e7857cbf",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "d11df0b",
+    "message": "Add blinking green light and rotating text animation with vertical shuffle",
+    "date": "2025-11-24T11:28:39Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d11df0bc3c0e3b35111ac264b1f40fca06f483b1",
+    "author": "Paras Parkash"
+  }
+]
