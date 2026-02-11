@@ -152,6 +152,7 @@ a, button {
   position: relative;
   transition: all 0.3s ease;
   padding-left: 1rem;
+  min-height: 120px;
 }
 
 .tab-content li::before, .tab-content .space-y-6 > div::before {
@@ -172,6 +173,15 @@ a, button {
 
 .tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
   opacity: 1;
+}
+
+/* Increase spacing between list items */
+.tab-content .space-y-8 > * + * {
+  margin-top: 2.5rem !important;
+}
+
+.tab-content ul.space-y-8 {
+  padding-bottom: 2rem;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

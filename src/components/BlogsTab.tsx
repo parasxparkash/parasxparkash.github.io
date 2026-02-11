@@ -1,37 +1,20 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
-interface Post {
-  id: string
-  title: string
-  date: string
-  description?: string
-  content: string
-}
+import { usePosts } from '@/hooks/usePosts'
 
 export default function BlogsTab() {
-  const [posts, setPosts] = useState<Post[]>([])
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('/api/posts')
-        const data = await response.json()
-        setPosts(data.slice(0, 5)) // Show first 5 posts
-      } catch (error) {
-        console.error('Error fetching posts:', error)
-      }
-    }
-    fetchPosts()
-  }, [])
+  const { posts } = usePosts(5)
 
   return (
     <section className="mb-12">
       <div className="space-y-8">
         <ul className="space-y-8">
           {posts.map((post, index) => (
-            <div key={post.id} className={`transform-x animate-slide-left animate-delay-${(index + 1) * 100}`}>
+            <div 
+              key={post.id} 
+              className="transform-x animate-slide-left"
+              style={{ animationDelay: `${(index + 1) * 100}ms` }}
+            >
               <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="text-md font-medium">- {post.title}</h3>

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { usePosts } from '@/hooks/usePosts'
 
 interface Post {
   id: string
@@ -14,32 +15,13 @@ interface RecentPostsSidebarProps {
 }
 
 export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebarProps) {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [allTags, setAllTags] = useState<string[]>([])
+  const { posts } = usePosts()
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
-  useEffect(() => {
-    // Fetch posts on client side
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('/api/posts')
-        const data = await response.json()
-        setPosts(data)
-        
-        // Extract all unique tags
-        const tags = new Set<string>()
-        data.forEach((post: Post) => {
-          if (post.tags) {
-            post.tags.forEach((tag) => tags.add(tag))
-          }
-        })
-        setAllTags(Array.from(tags).sort())
-      } catch (error) {
-        console.error('Error fetching posts:', error)
-      }
-    }
-    fetchPosts()
-  }, [])
+  // Extract all unique tags
+  const allTags = Array.from(
+    new Set(posts.flatMap((post) => post.tags || []))
+  ).sort()
 
   const filteredPosts = selectedTag
     ? posts.filter((post) => post.tags?.includes(selectedTag))

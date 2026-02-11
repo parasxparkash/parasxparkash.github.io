@@ -10,8 +10,6 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   trailingSlash: true,
-  // Optimize fonts
-  optimizeFonts: true,
 }
 
 module.exports = nextConfig

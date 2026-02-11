@@ -84,4 +84,3 @@ export default function MathJaxLoader() {
 
   return null
 }
-
