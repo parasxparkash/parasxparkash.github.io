@@ -1,7 +1,5 @@
 import { Metadata } from 'next'
 import { getSortedPostsData } from '@/lib/posts'
-import Header from '@/components/Header'
-import Sidebar from '@/components/Sidebar'
 
 export const metadata: Metadata = {
   title: 'Posts',
@@ -28,18 +26,9 @@ export default function Posts() {
 
   return (
     <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden bg-white dark:bg-zinc-900 min-h-screen">
-      {/* Mobile Overlay */}
-      <div id="mobile-overlay" className="mobile-overlay hidden"></div>
-
       <div className="flex gap-12 flex-1 flex-col lg:flex-row">
-        {/* Left Sidebar */}
-        <Sidebar />
-
         {/* Center Content Area */}
-        <div className="flex-1 flex flex-col lg:h-screen">
-          {/* Header Section */}
-          <Header />
-
+        <div className="flex-1 flex flex-col">
           {/* Posts Content */}
           <div className="flex-1 overflow-y-auto min-h-0">
             <div className="mb-12">

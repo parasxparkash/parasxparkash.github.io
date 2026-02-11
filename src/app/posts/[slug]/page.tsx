@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPostData, getAllPostIds, getSortedPostsData } from '@/lib/posts'
-import Sidebar from '@/components/Sidebar'
 import TableOfContents from '@/components/TableOfContents'
 import RecentPostsSidebar from '@/components/RecentPostsSidebar'
 import MathJaxLoader from '@/components/MathJaxLoader'
@@ -147,9 +146,6 @@ export default async function Post({ params }: PostPageProps) {
       </div>
 
       <div className="flex gap-8 flex-1 flex-col lg:flex-row">
-        {/* Left Sidebar */}
-        <Sidebar />
-
         {/* Center Content Area - Wider, shifted right */}
         <div className="flex-[2] flex flex-col lg:h-screen">
           {/* Post Content - Shifted to top */}
