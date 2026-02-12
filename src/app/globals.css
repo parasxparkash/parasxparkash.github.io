@@ -65,18 +65,7 @@ main {
 .animate-delay-300 { animation-delay: 0.3s; }
 .animate-delay-400 { animation-delay: 0.4s; }
 
-.opacity-0 {
-  opacity: 0;
-  will-change: opacity;
-}
-.transform {
-  transform: translateY(20px);
-  will-change: transform;
-}
-.transform-x {
-  transform: translateX(-20px);
-  will-change: transform;
-}
+/* Animation initial states are now handled by Tailwind's animate-fade-in */
 
 /* Dark mode detection */
 @media (prefers-color-scheme: dark) {

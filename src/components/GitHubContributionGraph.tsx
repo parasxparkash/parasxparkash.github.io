@@ -104,17 +104,16 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
         </p>
       </div>
       
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full">
+      <div className="w-full overflow-hidden">
+        <div className="w-full">
           {/* Month labels */}
-          <div className="flex mb-1 ml-8">
+          <div className="flex mb-1 ml-6 relative" style={{ height: '16px' }}>
             {monthLabels.map((label, i) => (
               <div
                 key={i}
-                className="text-xs text-zinc-500 dark:text-zinc-400"
+                className="text-[10px] text-zinc-500 dark:text-zinc-400 absolute"
                 style={{ 
-                  position: 'absolute',
-                  left: `${label.x * 12 + 32}px`
+                  left: `${label.x * 8.5 + 24}px`
                 }}
               >
                 {label.month}
@@ -123,26 +122,26 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
           </div>
 
           {/* Contribution grid */}
-          <div className="flex gap-1">
+          <div className="flex gap-0.5">
             {/* Day labels */}
-            <div className="flex flex-col gap-1 text-xs text-zinc-500 dark:text-zinc-400 pr-2">
-              <div style={{ height: '10px' }}></div>
-              <div style={{ height: '10px' }}>Mon</div>
-              <div style={{ height: '10px' }}></div>
-              <div style={{ height: '10px' }}>Wed</div>
-              <div style={{ height: '10px' }}></div>
-              <div style={{ height: '10px' }}>Fri</div>
-              <div style={{ height: '10px' }}></div>
+            <div className="flex flex-col gap-0.5 text-[10px] text-zinc-500 dark:text-zinc-400 pr-1.5">
+              <div style={{ height: '7px' }}></div>
+              <div style={{ height: '7px' }}>Mon</div>
+              <div style={{ height: '7px' }}></div>
+              <div style={{ height: '7px' }}>Wed</div>
+              <div style={{ height: '7px' }}></div>
+              <div style={{ height: '7px' }}>Fri</div>
+              <div style={{ height: '7px' }}></div>
             </div>
 
             {/* Weeks */}
-            <div className="flex gap-1">
+            <div className="flex gap-0.5 flex-1 overflow-hidden">
               {data.weeks.map((week, weekIndex) => (
-                <div key={weekIndex} className="flex flex-col gap-1">
+                <div key={weekIndex} className="flex flex-col gap-0.5">
                   {week.contributionDays.map((day, dayIndex) => (
                     <div
                       key={dayIndex}
-                      className={`w-[10px] h-[10px] rounded-sm ${getColor(day.contributionCount)} hover:ring-2 hover:ring-zinc-400 dark:hover:ring-zinc-500 transition-all cursor-pointer`}
+                      className={`w-[7px] h-[7px] rounded-sm ${getColor(day.contributionCount)} hover:ring-1 hover:ring-zinc-400 dark:hover:ring-zinc-500 transition-all cursor-pointer`}
                       title={`${day.contributionCount} contributions on ${new Date(day.date).toLocaleDateString()}`}
                     />
                   ))}
@@ -152,14 +151,14 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
           </div>
 
           {/* Legend */}
-          <div className="flex items-center gap-2 mt-4 text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="flex items-center gap-2 mt-3 text-[10px] text-zinc-500 dark:text-zinc-400">
             <span>Less</span>
-            <div className="flex gap-1">
-              <div className="w-[10px] h-[10px] rounded-sm bg-zinc-100 dark:bg-zinc-800"></div>
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-200 dark:bg-green-900"></div>
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-300 dark:bg-green-700"></div>
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-400 dark:bg-green-600"></div>
-              <div className="w-[10px] h-[10px] rounded-sm bg-green-500 dark:bg-green-500"></div>
+            <div className="flex gap-0.5">
+              <div className="w-[7px] h-[7px] rounded-sm bg-zinc-100 dark:bg-zinc-800"></div>
+              <div className="w-[7px] h-[7px] rounded-sm bg-green-200 dark:bg-green-900"></div>
+              <div className="w-[7px] h-[7px] rounded-sm bg-green-300 dark:bg-green-700"></div>
+              <div className="w-[7px] h-[7px] rounded-sm bg-green-400 dark:bg-green-600"></div>
+              <div className="w-[7px] h-[7px] rounded-sm bg-green-500 dark:bg-green-500"></div>
             </div>
             <span>More</span>
           </div>

@@ -190,10 +190,10 @@ export default function Home() {
         {/* Center Content Area */}
         <div className="flex-1 flex flex-col lg:h-screen">
           {/* Header Section - Responsive layout */}
-          <div className="opacity-0 transform animate-fade-in flex-shrink-0">
+          <div className="animate-fade-in flex-shrink-0">
             <section className="mb-6">
               {/* Mobile: Show only description above tabs, name/location/icons are in sidebar */}
-              <div className="hidden md:block opacity-0 transform animate-fade-in animate-delay-200">
+              <div className="hidden md:block animate-fade-in animate-delay-200">
                 <div className="flex items-baseline justify-between gap-4 mb-4">
                   <h1 className="text-2xl font-medium tracking-tight">
                     Paras Parkash
@@ -219,7 +219,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="opacity-0 transform animate-fade-in animate-delay-300">
+              <div className="animate-fade-in animate-delay-300">
                 <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
                   Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
                 </p>
@@ -277,7 +277,7 @@ export default function Home() {
 
           {/* Tabs Section - Scrollable */}
           <div className="flex-1 overflow-y-auto min-h-0">
-           <div className="opacity-0 transform animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
+           <div className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
              <div className="text-muted-foreground inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
                {tabs.map((tab) => (
                  <button
