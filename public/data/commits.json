@@ -1,5 +1,26 @@
 [
   {
+    "sha": "2d63ec9",
+    "message": "Fix heading visibility in Chrome and optimize layout - Remove opacity-0 classes causing Chrome rendering issues - Reduce GitHub contribution grid size and gaps to fit without horizontal scroll - Add website links to project cards with external link icons - Move status indicator from left to after project name",
+    "date": "2026-02-12T01:46:48Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/2d63ec908250eb41a02a16f2c3e1e5e307306413",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "0fec195",
+    "message": "trigger deployment",
+    "date": "2026-02-11T16:00:46Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/0fec19526e20058460f209cbb7a196b421119e68",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "238a864",
+    "message": "Update GitHub data (contributions & commits)",
+    "date": "2026-02-11T15:55:52Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/238a8645f104e9042995b74e70ae2a52bdb29866",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "63fc5a9",
     "message": "fix: Add placeholder data files and fix workflow triggers",
     "date": "2026-02-11T15:52:03Z",
@@ -11,27 +32,6 @@
     "message": "fix: Remove deleted Header and Sidebar component references from posts pages",
     "date": "2026-02-11T15:45:22Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/439d4621c58fcfabc9393d6145460671e4158f21",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "fff11d1",
-    "message": "feat: GitHub Pages deployment with auto-updating contributions and commits",
-    "date": "2026-02-11T14:21:16Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/fff11d150c16a20595c9da662edb28db75e8540e",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "310ef06",
-    "message": "Optimize SEO metadata, improve UI components, and add recent commits feature",
-    "date": "2025-11-24T13:50:39Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/310ef06f49be522cbf0a5fb0f35fa876e7857cbf",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "d11df0b",
-    "message": "Add blinking green light and rotating text animation with vertical shuffle",
-    "date": "2025-11-24T11:28:39Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d11df0bc3c0e3b35111ac264b1f40fca06f483b1",
     "author": "Paras Parkash"
   }
 ]
