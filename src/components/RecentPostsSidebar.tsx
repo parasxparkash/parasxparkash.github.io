@@ -28,7 +28,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
     : posts
 
   return (
-    <div className="w-72 flex-shrink-0 sticky top-4 h-[calc(100vh-2rem)] overflow-y-auto">
+    <div className="w-72 flex-shrink-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
       <div className="flex items-center justify-end mb-4">
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">- Recent Posts</h3>
       </div>
@@ -135,12 +135,9 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
           <div className="flex justify-between items-start mb-3">
             <div></div>
             <div className="text-right">
-              <div className="mb-1">parasxparkash@gmail.com</div>
+              <div className="mb-1">parasparkash@quantedx.com</div>
               <div>Design with nicotine and chai</div>
             </div>
-          </div>
-          <div className="flex justify-end items-center text-[10px] text-zinc-500 dark:text-zinc-500">
-            <div id="user-info">Detecting system... • Detecting location...</div>
           </div>
         </footer>
       </div>

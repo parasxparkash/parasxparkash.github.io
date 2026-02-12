@@ -180,35 +180,28 @@ a, button {
   .flex.gap-12 {
     gap: 3rem;
     flex-direction: row;
+    align-items: stretch;
   }
 
   .flex.gap-12 > div:first-child {  /* Left sidebar */
-    flex: 1;
-    max-width: 288px;
+    width: 288px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .flex.gap-12 > div:nth-child(2) {  /* Center content */
-    flex: 2;
-    min-width: 576px;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .flex.gap-12 > div:last-child {  /* Right sidebar */
-    flex: 1;
-    max-width: 288px;
-  }
-
-  /* Show all elements on desktop */
-  #left-sidebar {
-    position: sticky !important;
-    top: 1rem !important;
-    height: fit-content !important;
-  }
-
-  .flex.gap-12 > div:last-child {
-    display: block !important;
-    position: sticky !important;
-    top: 1rem !important;
-    height: fit-content !important;
+    width: 288px;
+    flex-shrink: 0;
+    display: flex !important;
+    flex-direction: column;
   }
 
   /* Desktop: Hide mobile elements */

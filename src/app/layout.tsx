@@ -173,7 +173,7 @@ export default function RootLayout({
                 "addressRegion": "Maharashtra",
                 "addressCountry": "IN"
               },
-              "email": "parasxparkash@gmail.com",
+              "email": "parasparkash@quantedx.com",
               "telephone": "+91",
               "sameAs": [
                 "https://github.com/parasxparkash",

@@ -18,27 +18,18 @@ export function usePosts(limit?: number) {
     const fetchPosts = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/posts')
+        // For static export, directly fetch from JSON file
+        const response = await fetch('/posts.json')
         
-        if (response.ok) {
-          const data = await response.json()
-          setPosts(limit ? data.slice(0, limit) : data)
-        } else {
-          // Fallback to static JSON if API fails
-          const jsonResponse = await fetch('/posts.json')
-          const data = await jsonResponse.json()
-          setPosts(limit ? data.slice(0, limit) : data)
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts')
         }
+        
+        const data = await response.json()
+        setPosts(limit ? data.slice(0, limit) : data)
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Failed to fetch posts'))
-        // Try fallback to static JSON
-        try {
-          const jsonResponse = await fetch('/posts.json')
-          const data = await jsonResponse.json()
-          setPosts(limit ? data.slice(0, limit) : data)
-        } catch (fallbackErr) {
-          console.error('Error fetching posts:', fallbackErr)
-        }
+        console.error('Error fetching posts:', err)
       } finally {
         setLoading(false)
       }

@@ -60,9 +60,9 @@ export default function Home() {
       {/* Mobile Overlay */}
       <div id="mobile-overlay" className="mobile-overlay hidden"></div>
 
-      <div className="flex gap-12 flex-1 flex-col lg:flex-row">
+      <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch">
         {/* Left Sidebar */}
-        <div className="w-72 lg:flex-shrink-0 lg:sticky lg:top-4 lg:h-fit mb-8">
+        <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
           {/* Profile Image */}
           <div className="mb-2 flex justify-center">
             <Image
@@ -149,7 +149,7 @@ export default function Home() {
           <div className="mb-4">
             <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Commits</h4>
             <div className="space-y-2">
-              {commits.map((commit) => (
+              {commits.slice(0, 4).map((commit) => (
                 <a
                   key={commit.sha}
                   href={commit.url}
@@ -188,7 +188,7 @@ export default function Home() {
       </div>
 
         {/* Center Content Area */}
-        <div className="flex-1 flex flex-col lg:h-screen">
+        <div className="flex-1 flex flex-col min-h-full">
           {/* Header Section - Responsive layout */}
           <div className="animate-fade-in flex-shrink-0">
             <section className="mb-6">
@@ -284,9 +284,9 @@ export default function Home() {
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap !bg-transparent !border-none !shadow-none !font-light transition-all duration-300 ease-out hover:!font-bold ${
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-bold whitespace-nowrap !bg-transparent !border-none !shadow-none transition-all duration-300 ease-out ${
                     activeTab === tab.id
-                      ? '!font-bold !text-zinc-900 dark:!text-zinc-100'
+                      ? '!text-zinc-900 dark:!text-zinc-100'
                       : '!text-zinc-600 dark:!text-zinc-400'
                   }`}
                    id={`tab-${tab.id}`}

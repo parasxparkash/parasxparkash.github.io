@@ -27,7 +27,7 @@ export default function SocialLinks({ variant = 'default', className = '' }: Soc
     },
     {
       name: 'Email',
-      href: 'mailto:parasxparkash@gmail.com',
+      href: 'mailto:parasparkash@quantedx.com',
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={variant === 'mobile' ? 'h-4 w-4' : 'h-5 w-5'}>
           <path d="m4 4 16 0 0 16-16 0z"></path>
