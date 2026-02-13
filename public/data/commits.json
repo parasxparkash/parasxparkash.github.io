@@ -1,5 +1,26 @@
 [
   {
+    "sha": "353c2a5",
+    "message": "Fix static site issues: equal column heights, update email, bold tab headers, remove non-functional user detection",
+    "date": "2026-02-12T03:29:48Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/353c2a5ae709e2b6f971e924a13f8ea3a8d14a54",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "8560525",
+    "message": "Remove unused components and empty API routes - Delete BooksTab and ToolsTab components (not used in main page) - Remove empty API folders for contributions and commits (now using static JSON files)",
+    "date": "2026-02-12T02:06:55Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/856052521aeaddd4f7dc5dac65d7607550b1e94c",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "b6eac5c",
+    "message": "Update GitHub data (contributions & commits)",
+    "date": "2026-02-12T01:50:37Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/b6eac5c25801054990c755cd14e3b4d8867b6565",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "2d63ec9",
     "message": "Fix heading visibility in Chrome and optimize layout - Remove opacity-0 classes causing Chrome rendering issues - Reduce GitHub contribution grid size and gaps to fit without horizontal scroll - Add website links to project cards with external link icons - Move status indicator from left to after project name",
     "date": "2026-02-12T01:46:48Z",
@@ -11,27 +32,6 @@
     "message": "trigger deployment",
     "date": "2026-02-11T16:00:46Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/0fec19526e20058460f209cbb7a196b421119e68",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "238a864",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-11T15:55:52Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/238a8645f104e9042995b74e70ae2a52bdb29866",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "63fc5a9",
-    "message": "fix: Add placeholder data files and fix workflow triggers",
-    "date": "2026-02-11T15:52:03Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/63fc5a9d0ca05b50018e65c64d29dadb8acc8d5a",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "439d462",
-    "message": "fix: Remove deleted Header and Sidebar component references from posts pages",
-    "date": "2026-02-11T15:45:22Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/439d4621c58fcfabc9393d6145460671e4158f21",
     "author": "Paras Parkash"
   }
 ]
