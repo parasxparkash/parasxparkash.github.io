@@ -96,40 +96,51 @@ export default function Home() {
             />
           </div>
 
-          {/* Single Column Layout: Name, Location, Time, Status, Description, and Social Icons (below image) */}
+          {/* Single Column Layout: Image → Name → Social Icons → Location + Animation → Time → Headline → Description */}
           <div className="lg:hidden text-center mb-4">
+            {/* Name */}
             <h1 className="text-xl font-medium tracking-tight mb-3">Paras Parkash</h1>
 
-            <div className="flex flex-col items-center gap-2 mb-3">
+            {/* Social Icons */}
+            <div className="mb-3">
+              <SocialLinks variant="mobile" />
+            </div>
+
+            {/* Location + Building/Testing/Merging Animation */}
+            <div className="flex flex-col items-center gap-2 mb-2">
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Gurugram, Haryana
-              </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
-                {istTime}
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
-                  <RotatingText items={['Open to Opportunities', 'deploying', 'merging', 'building', 'testing']} />
+                  <RotatingText items={['building', 'testing', 'merging']} />
                 </p>
               </div>
             </div>
 
-            {/* Mobile Description */}
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-4 text-justify">
+            {/* Time */}
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal mb-3">
+              {istTime}
+            </p>
+
+            {/* Headline Text (removed "About Me" heading) */}
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
               Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
             </p>
 
-            {/* Mobile Social Icons */}
-            <SocialLinks variant="mobile" />
+            {/* Description Text */}
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-4 text-justify">
+              Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
+            </p>
           </div>
 
           {/* Separator for single column layout */}
           <div className="lg:hidden border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
-          {/* About Me Section */}
+          {/* About Me Section - Desktop only */}
           <h3 className="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-100 hidden lg:block">About Me</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify hidden lg:block">
             Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
           </p>
 
@@ -334,8 +345,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right Sidebar */}
-        <RecentPostsSidebar topPosts={topPosts} />
+        {/* Right Sidebar - Hidden on tablet (md), visible on desktop (lg+) */}
+        <div className="hidden xl:block">
+          <RecentPostsSidebar topPosts={topPosts} />
+        </div>
       </div>
     </main>
   )
