@@ -3,7 +3,6 @@ export default function EducationTab() {
     <section className="mb-12">
       <div className="space-y-8">
         <div className="mb-12">
-          <h3 className="text-xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Education</h3>
           <div className="space-y-8">
             <ul className="space-y-8">
               <div className="transform-x animate-slide-left animate-delay-400">

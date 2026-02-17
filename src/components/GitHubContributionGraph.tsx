@@ -50,6 +50,13 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
     loadContributions()
   }, [year])
 
+  // Expose total contributions to parent via custom event
+  useEffect(() => {
+    if (data) {
+      window.dispatchEvent(new CustomEvent(`contributions-${year}`, { detail: data.totalContributions }))
+    }
+  }, [data, year])
+
   const getColor = (count: number) => {
     if (count === 0) return 'bg-zinc-100 dark:bg-zinc-800'
     if (count < 3) return 'bg-green-200 dark:bg-green-900'
@@ -97,13 +104,7 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
   })
 
   return (
-    <div className="w-full">
-      <div className="mb-2">
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          {data.totalContributions} contributions in {year}
-        </p>
-      </div>
-      
+    <div className="w-full">      
       <div className="w-full overflow-hidden">
         <div className="w-full">
           {/* Month labels */}

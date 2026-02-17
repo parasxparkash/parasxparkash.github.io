@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from '@/hooks/useTheme'
 import { usePosts } from '@/hooks/usePosts'
 import { useCommits } from '@/hooks/useCommits'
@@ -31,6 +31,27 @@ export default function Home() {
   const { posts: topPosts } = usePosts(2)
   const { commits } = useCommits()
   const istTime = useISTClock()
+  const [contributions2025, setContributions2025] = useState<number | null>(null)
+  const [contributions2026, setContributions2026] = useState<number | null>(null)
+
+  useEffect(() => {
+    const handler2025 = (e: Event) => {
+      setContributions2025((e as CustomEvent).detail)
+    }
+    const handler2026 = (e: Event) => {
+      setContributions2026((e as CustomEvent).detail)
+    }
+    
+    window.addEventListener('contributions-2025', handler2025)
+    window.addEventListener('contributions-2026', handler2026)
+    
+    return () => {
+      window.removeEventListener('contributions-2025', handler2025)
+      window.removeEventListener('contributions-2026', handler2026)
+    }
+  }, [])
+
+  const currentContributionCount = selectedYear === 2025 ? contributions2025 : contributions2026
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
@@ -203,7 +224,7 @@ export default function Home() {
                     <ThemeToggle />
                   </div>
                 </div>
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     Gurugram, Haryana
                   </p>
@@ -228,9 +249,16 @@ export default function Home() {
           </div>
 
           {/* GitHub Contributions */}
-          <section className="mb-8">
+          <section className="mb-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-md font-medium">GitHub Contributions</h3>
+              <div className="flex items-baseline gap-3">
+                <h3 className="text-md font-medium">GitHub Contributions</h3>
+                {currentContributionCount !== null && (
+                  <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                    {currentContributionCount} total in {selectedYear}
+                  </span>
+                )}
+              </div>
               <div className="flex gap-2">
                 <button
                   onClick={() => setSelectedYear(2025)}
@@ -284,7 +312,7 @@ export default function Home() {
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-bold whitespace-nowrap !bg-transparent !border-none !shadow-none transition-all duration-300 ease-out ${
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap !bg-transparent !border-none !shadow-none transition-all duration-300 ease-out ${
                     activeTab === tab.id
                       ? '!text-zinc-900 dark:!text-zinc-100'
                       : '!text-zinc-600 dark:!text-zinc-400'
