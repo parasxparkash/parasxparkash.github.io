@@ -1,37 +1,37 @@
 [
   {
+    "sha": "38509a7",
+    "message": "Update page.tsx",
+    "date": "2026-02-17T13:30:02Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/38509a71a8a92118536079c32ddcda59e2fd6d41",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "d2d95b3",
+    "message": "Update portfolio components and styling",
+    "date": "2026-02-17T12:30:37Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d2d95b3e59a2c80d246307a5546d0be0d55a62ec",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "de92626",
+    "message": "Remove redundant files: unused mathjax configs, medium.css, service worker, and API route",
+    "date": "2026-02-17T09:23:50Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/de926261bd0aee6f9d83c5c94cb28c6182ea177f",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "8f6b8a0",
+    "message": "Update GitHub data (contributions & commits)",
+    "date": "2026-02-17T01:46:51Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/8f6b8a0aefe36b728fc791c8a6e09e256ebd7691",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "966b5fb",
     "message": "Update GitHub data (contributions & commits)",
     "date": "2026-02-16T01:48:33Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/966b5fb5a00737d4bb007e1e83e0661402c6b1c1",
     "author": "github-actions[bot]"
-  },
-  {
-    "sha": "0aafe7b",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-15T01:52:28Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/0aafe7b8d94097d99ca5333b0b6f04a354b539fb",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "a876659",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-14T01:43:30Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a87665907e933a5db403e813dafc053309f65663",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "ff1a10d",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-13T01:52:58Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/ff1a10ded2d97c32666d889ad15e4e5fffec8c1e",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "353c2a5",
-    "message": "Fix static site issues: equal column heights, update email, bold tab headers, remove non-functional user detection",
-    "date": "2026-02-12T03:29:48Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/353c2a5ae709e2b6f971e924a13f8ea3a8d14a54",
-    "author": "Paras Parkash"
   }
 ]
