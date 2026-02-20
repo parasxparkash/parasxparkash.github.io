@@ -133,6 +133,28 @@ export default function Home() {
             <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-4 text-justify">
               Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
             </p>
+
+            {/* Eigennotes and Stoic Journal Links - Mobile */}
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <a
+                href="https://eigenotes.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                title="Eigennotes"
+              >
+                Eigennotes
+              </a>
+              <a
+                href="https://parasparkash.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                title="Stoic Journal"
+              >
+                Stoic Journal
+              </a>
+            </div>
           </div>
 
           {/* Separator for single column layout */}
@@ -150,23 +172,23 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Eigennotes and Stoic Journal Links */}
+          {/* Eigenotes and Stoic Journal Links */}
           <div className="flex items-center gap-4 mt-3 mb-1">
             <a
               href="https://eigenotes.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-              title="Eigennotes"
+              title="eigennotes"
             >
-              Eigennotes
+              Eigenotes
             </a>
             <a
               href="https://parasparkash.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-              title="Stoic Journal"
+              title="stoic-journal"
             >
               Stoic Journal
             </a>
