@@ -150,16 +150,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Eigen Journal and Stoic Journal Links */}
+          {/* Eigennotes and Stoic Journal Links */}
           <div className="flex items-center gap-4 mt-3 mb-1">
             <a
-              href="https://eigenjournal.vercel.app"
+              href="https://eigenotes.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-              title="Eigen Journal"
+              title="Eigennotes"
             >
-              Eigen Journal
+              Eigennotes
             </a>
             <a
               href="https://parasparkash.netlify.app"
