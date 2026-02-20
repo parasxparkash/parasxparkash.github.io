@@ -150,27 +150,25 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Eigen Notes and Stoic Journal Links */}
+          {/* Eigen Journal and Stoic Journal Links */}
           <div className="flex items-center gap-4 mt-3 mb-1">
             <a
-              href="https://eigennotes.vercel.app"
+              href="https://eigenjournal.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors group"
-              title="Eigen Notes"
+              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              title="Eigen Journal"
             >
-              <span className="text-xl font-serif group-hover:scale-110 transition-transform">Σ</span>
-              <span className="text-xs">Eigen Notes</span>
+              Eigen Journal
             </a>
             <a
               href="https://parasparkash.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors group"
+              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               title="Stoic Journal"
             >
-              <span className="text-xl group-hover:scale-110 transition-transform">🏛️</span>
-              <span className="text-xs">Stoic Journal</span>
+              Stoic Journal
             </a>
           </div>
 
