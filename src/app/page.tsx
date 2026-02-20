@@ -172,6 +172,28 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Eigenotes and Stoic Journal Links - Desktop */}
+          <div className="hidden lg:flex items-center justify-center gap-4 mt-3 mb-1">
+            <a
+              href="https://eigenotes.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+              title="Eigenotes"
+            >
+              Eigenotes
+            </a>
+            <a
+              href="https://parasparkash.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+              title="Stoic Journal"
+            >
+              Stoic Journal
+            </a>
+          </div>
+
           <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
           {/* Current Project Section */}
