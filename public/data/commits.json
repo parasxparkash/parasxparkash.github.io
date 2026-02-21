@@ -1,37 +1,37 @@
 [
   {
-    "sha": "e02ca50",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-19T01:49:27Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/e02ca5002bc2be825df651a1b83f10176a7f43fc",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "935c21c",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-18T01:50:08Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/935c21c2d799637132ab5b733e2fd049e4fe5313",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "38509a7",
-    "message": "Update page.tsx",
-    "date": "2026-02-17T13:30:02Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/38509a71a8a92118536079c32ddcda59e2fd6d41",
+    "sha": "b1ce325",
+    "message": "Add Eigenotes and Stoic Journal links to desktop layout",
+    "date": "2026-02-20T05:15:04Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/b1ce32584861ae0c457bb315671a2309919b0bc4",
     "author": "Paras Parkash"
   },
   {
-    "sha": "d2d95b3",
-    "message": "Update portfolio components and styling",
-    "date": "2026-02-17T12:30:37Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d2d95b3e59a2c80d246307a5546d0be0d55a62ec",
+    "sha": "54eb3ce",
+    "message": "Remove duplicate links from desktop view and fix spelling to Eigenotes",
+    "date": "2026-02-20T05:12:58Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/54eb3ce47b017778fe6e5ee6563385b68aedb018",
     "author": "Paras Parkash"
   },
   {
-    "sha": "de92626",
-    "message": "Remove redundant files: unused mathjax configs, medium.css, service worker, and API route",
-    "date": "2026-02-17T09:23:50Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/de926261bd0aee6f9d83c5c94cb28c6182ea177f",
+    "sha": "35e7c8a",
+    "message": "Add highlighted Eigennotes and Stoic Journal links to mobile view",
+    "date": "2026-02-20T05:10:27Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/35e7c8aca7b1344d754481c4d8d819badce93c07",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "6619452",
+    "message": "Change Eigen Journal to Eigennotes and update link",
+    "date": "2026-02-20T05:06:41Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/6619452199fb8d93a2d835bcedf625606fd6b1ab",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "ba359d9",
+    "message": "Update links: remove icons, change to Eigen Journal",
+    "date": "2026-02-20T05:03:32Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/ba359d96755ab17aba7f4c2b94dd44d6af752059",
     "author": "Paras Parkash"
   }
 ]
