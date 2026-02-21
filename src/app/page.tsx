@@ -135,7 +135,7 @@ export default function Home() {
             </p>
 
             {/* Eigenotes and Stoic Journal Links - Mobile */}
-            <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="flex flex-col items-center gap-2 mb-4">
               <a
                 href="https://eigenotes.vercel.app"
                 target="_blank"
@@ -143,7 +143,7 @@ export default function Home() {
                 className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
                 title="Eigenotes"
               >
-                Eigenotes
+                Maths Notes → Eigenotes
               </a>
               <a
                 href="https://parasparkash.netlify.app"
@@ -152,7 +152,7 @@ export default function Home() {
                 className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
                 title="Stoic Journal"
               >
-                Stoic Journal
+                Stoicism → Stoic Journal
               </a>
             </div>
           </div>
