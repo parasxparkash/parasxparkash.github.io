@@ -135,25 +135,43 @@ export default function Home() {
             </p>
 
             {/* Eigenotes and Stoic Journal Links - Mobile */}
-            <div className="flex flex-col items-center gap-2 mb-4">
-              <a
-                href="https://eigenotes.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                title="Eigenotes"
-              >
-                Maths Notes → Eigenotes
-              </a>
-              <a
-                href="https://parasparkash.netlify.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                title="Stoic Journal"
-              >
-                Stoicism → Stoic Journal
-              </a>
+            <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs mx-auto">
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
+                <a
+                  href="https://eigenotes.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="Eigenotes"
+                >
+                  Eigenotes
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
+                <a
+                  href="https://parasparkash.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="StoicJournal"
+                >
+                  StoicJournal
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
+                <a
+                  href="https://parasparkash.notion.site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="CS/Architecture Notes"
+                >
+                  Notion
+                </a>
+              </div>
             </div>
           </div>
 
@@ -173,32 +191,50 @@ export default function Home() {
           </div>
 
           {/* Eigenotes and Stoic Journal Links - Desktop */}
-          <div className="hidden lg:flex items-center justify-center gap-4 mt-3 mb-1">
-            <a
-              href="https://eigenotes.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-              title="Eigenotes"
-            >
-              Eigenotes
-            </a>
-            <a
-              href="https://parasparkash.netlify.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 text-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-              title="Stoic Journal"
-            >
-              Stoic Journal
-            </a>
+          <div className="hidden lg:flex flex-col items-start gap-2 mt-3 mb-1">
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
+              <a
+                href="https://eigenotes.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                title="Eigenotes"
+              >
+                Eigenotes
+              </a>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
+              <a
+                href="https://parasparkash.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                title="StoicJournal"
+              >
+                StoicJournal
+              </a>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
+              <a
+                href="https://parasparkash.notion.site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                title="CS/Architecture Notes"
+              >
+                Notion
+              </a>
+            </div>
           </div>
 
           <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
           {/* Current Project Section */}
           <div className="mb-1">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @DelQuant</h4>
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @delquant & @QuantPype</h4>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Rust</span>

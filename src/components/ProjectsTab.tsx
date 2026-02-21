@@ -25,11 +25,19 @@ export default function ProjectsTab() {
       status: 'active'
     },
     {
-      name: 'DelQuant',
+      name: 'delquant',
       description: 'An open-source algorithmic trading software with a high-performance Rust backend engine and Electron-based interface, designed to integrate with AI agents for enhanced trading capabilities and intelligent strategy execution.',
       tags: ['Rust', 'Electron', 'AI Agents', 'Open Source', 'Algo Trading'],
       tagColors: ['orange', 'cyan', 'purple', 'green', 'blue'],
       website: 'https://github.com/parasxparkash/delquant',
+      status: 'active'
+    },
+    {
+      name: 'QuantPype',
+      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
+      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
+      tagColors: ['purple', 'green', 'blue', 'orange', 'cyan'],
+      website: 'https://parasxparkash.github.io/quantpype',
       status: 'active'
     },
     {
