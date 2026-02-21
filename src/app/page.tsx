@@ -247,7 +247,7 @@ export default function Home() {
           <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
         {/* Current Company Section */}
-        <div className="mb-1">
+        <div className="mb-4">
           <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-1">
             <span className="font-medium text-zinc-900 dark:text-zinc-100">Working as</span> Quant Researcher
           </p>
