@@ -1,37 +1,37 @@
 [
   {
-    "sha": "b1ce325",
-    "message": "Add Eigenotes and Stoic Journal links to desktop layout",
-    "date": "2026-02-20T05:15:04Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/b1ce32584861ae0c457bb315671a2309919b0bc4",
+    "sha": "bbbc473",
+    "message": "Fix spacing in Working as section to match other sections",
+    "date": "2026-02-21T20:08:24Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/bbbc473d0c815fd33a0068ae14362003454628a2",
     "author": "Paras Parkash"
   },
   {
-    "sha": "54eb3ce",
-    "message": "Remove duplicate links from desktop view and fix spelling to Eigenotes",
-    "date": "2026-02-20T05:12:58Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/54eb3ce47b017778fe6e5ee6563385b68aedb018",
+    "sha": "c114d81",
+    "message": "Revise README to streamline content",
+    "date": "2026-02-21T20:07:01Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/c114d817aa681bf4a035a8f36cc3bd47e76fc4f8",
     "author": "Paras Parkash"
   },
   {
-    "sha": "35e7c8a",
-    "message": "Add highlighted Eigennotes and Stoic Journal links to mobile view",
-    "date": "2026-02-20T05:10:27Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/35e7c8aca7b1344d754481c4d8d819badce93c07",
+    "sha": "819cecd",
+    "message": "Update links and projects: add QuantPype, change DelQuant to delquant, update link labels",
+    "date": "2026-02-21T20:04:48Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/819cecd5b507763c97e365a88d8f96b555a88ddc",
     "author": "Paras Parkash"
   },
   {
-    "sha": "6619452",
-    "message": "Change Eigen Journal to Eigennotes and update link",
-    "date": "2026-02-20T05:06:41Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/6619452199fb8d93a2d835bcedf625606fd6b1ab",
+    "sha": "231d035",
+    "message": "Update mobile links format to show category → name",
+    "date": "2026-02-21T19:49:35Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/231d035f3635a98d1c3b86249fd81d23dd58ed57",
     "author": "Paras Parkash"
   },
   {
-    "sha": "ba359d9",
-    "message": "Update links: remove icons, change to Eigen Journal",
-    "date": "2026-02-20T05:03:32Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/ba359d96755ab17aba7f4c2b94dd44d6af752059",
-    "author": "Paras Parkash"
+    "sha": "a0d5441",
+    "message": "Update GitHub data (contributions & commits)",
+    "date": "2026-02-21T01:40:59Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a0d544141041d7ed033b47088baa5eefd2503c12",
+    "author": "github-actions[bot]"
   }
 ]
