@@ -1,5 +1,12 @@
 [
   {
+    "sha": "d7085b3",
+    "message": "Update GitHub data (contributions & commits)",
+    "date": "2026-02-23T01:49:15Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d7085b31bac72442b0c782831f24c3a50c1ed830",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "3477543",
     "message": "Update GitHub data (contributions & commits)",
     "date": "2026-02-22T01:48:04Z",
@@ -25,13 +32,6 @@
     "message": "Update links and projects: add QuantPype, change DelQuant to delquant, update link labels",
     "date": "2026-02-21T20:04:48Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/819cecd5b507763c97e365a88d8f96b555a88ddc",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "231d035",
-    "message": "Update mobile links format to show category → name",
-    "date": "2026-02-21T19:49:35Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/231d035f3635a98d1c3b86249fd81d23dd58ed57",
     "author": "Paras Parkash"
   }
 ]
