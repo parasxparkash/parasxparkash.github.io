@@ -13,11 +13,11 @@ body {
   color-scheme: dark;
 }
 
-/* Consistent background across all elements */
+/* Consistent background across all elements - short transition for snappy theme switch */
 html,
 body {
   background-color: rgb(255 255 255);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.12s ease;
 }
 
 .dark html,
@@ -31,7 +31,7 @@ body {
 
 main {
   background-color: rgb(255 255 255);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.12s ease;
 }
 
 /* Core layout utilities */
@@ -88,9 +88,9 @@ main {
   color: rgb(244 244 245) !important;
 }
 
-/* Smooth transitions */
+/* Smooth transitions - avoid animating color so theme switch feels instant */
 a, button {
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
 }
 
 /* Scrollbar styling */
