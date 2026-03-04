@@ -71,9 +71,9 @@ export default function ProjectsTab() {
           {projects.map((project, index) => (
             <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
               <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
-                <div className="flex items-baseline justify-between mb-1">
+                <div className="flex items-baseline gap-2 mb-1">
                   <h3 className="text-md font-medium">{project.name}</h3>
-                  <div className="flex items-center gap-1.5 ml-auto">
+                  <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
                       <div className="w-1.5 h-1.5 bg-green-500 rounded animate-pulse" title="Active"></div>
                     )}

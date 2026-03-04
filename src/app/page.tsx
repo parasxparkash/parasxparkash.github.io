@@ -234,7 +234,7 @@ export default function Home() {
 
           {/* Current Project Section */}
           <div className="mb-1">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @delquant & @QuantPype</h4>
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @QuantPype</h4>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Rust</span>
