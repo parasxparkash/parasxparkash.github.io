@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTheme } from '@/hooks/useTheme'
 import { usePosts } from '@/hooks/usePosts'
 import { useCommits } from '@/hooks/useCommits'
+import { usePullRequests } from '@/hooks/usePullRequests'
 import { useISTClock } from '@/hooks/useISTClock'
 import ProjectsTab from '@/components/ProjectsTab'
 import ExperienceTab from '@/components/ExperienceTab'
@@ -27,9 +27,9 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('projects')
   const currentYear = new Date().getFullYear()
   const [selectedYear, setSelectedYear] = useState(currentYear)
-  const { theme, toggleTheme } = useTheme()
   const { posts: topPosts } = usePosts(2)
   const { commits } = useCommits()
+  const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
   const [contributions2025, setContributions2025] = useState<number | null>(null)
   const [contributions2026, setContributions2026] = useState<number | null>(null)
@@ -282,6 +282,44 @@ export default function Home() {
                         <span>•</span>
                         <span className="text-[10px]">
                           {new Date(commit.date).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {pullRequests.length > 0 && (
+          <div className="mb-4">
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Pull Requests</h4>
+            <div className="space-y-2">
+              {pullRequests.slice(0, 2).map((pr) => (
+                <a
+                  key={pr.number}
+                  href={pr.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                >
+                  <div className="flex items-start gap-2">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
+                        {pr.title}
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                        <span className="font-mono text-[10px]">#{pr.number}</span>
+                        <span>•</span>
+                        <span className="text-[10px]">
+                          {new Date(pr.date).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric'
                           })}

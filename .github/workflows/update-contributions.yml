@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Fetch GitHub contributions and commits
+      - name: Fetch GitHub contributions, commits and pull requests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/fetch-github-contributions.js
@@ -37,5 +37,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add public/data/
-          git commit -m "Update GitHub data (contributions & commits)"
+          git commit -m "Update GitHub data (contributions, commits & pull requests)"
           git push

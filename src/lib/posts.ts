@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
 import gfm from 'remark-gfm'
 import math from 'remark-math'
 import { unified } from 'unified'
@@ -120,17 +118,4 @@ export async function getPostData(id: string): Promise<PostData> {
     contentHtml,
     ...(matterResult.data as Omit<PostData, 'id' | 'content' | 'contentHtml'>)
   }
-}
-
-export function getAllTags(): string[] {
-  const allPosts = getSortedPostsData()
-  const tagSet = new Set<string>()
-  
-  allPosts.forEach((post) => {
-    if (post.tags) {
-      post.tags.forEach((tag) => tagSet.add(tag))
-    }
-  })
-  
-  return Array.from(tagSet).sort()
 }

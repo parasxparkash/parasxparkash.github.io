@@ -250,22 +250,6 @@ a, button {
     flex-shrink: 1 !important;
   }
 
-  /* Left sidebar styling for tablets and mobile */
-  #left-sidebar {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    margin-bottom: 2rem !important;
-    padding: 1.5rem 1rem !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid rgb(228 228 231);
-  }
-
-  .dark #left-sidebar {
-    border-bottom-color: rgb(63 63 70);
-  }
-
   /* Center content full width */
   .flex-1 {
     width: 100% !important;
@@ -317,11 +301,6 @@ a, button {
     line-height: 1.6 !important;
     text-align: left !important;
     margin-bottom: 1.5rem !important;
-  }
-
-  /* GitHub Contributions section on tablet and mobile */
-  section.mb-8 {
-    display: none !important;
   }
 
   /* Typography improvements */
@@ -435,10 +414,6 @@ a, button {
     /* Reduce spacing on mobile */
     .flex.gap-12 {
       gap: 1.5rem !important;
-    }
-
-    #left-sidebar {
-      padding: 1rem !important;
     }
   }
 }

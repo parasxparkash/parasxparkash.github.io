@@ -94,6 +94,33 @@ async function fetchRecentCommits(owner, repo) {
   }));
 }
 
+async function fetchRecentPullRequests(owner, repo) {
+  const response = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/pulls?state=all&per_page=2&sort=updated&direction=desc`,
+    {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+  }
+
+  const pulls = await response.json();
+
+  return pulls.map(pr => ({
+    number: pr.number,
+    title: pr.title,
+    state: pr.state,
+    date: pr.updated_at,
+    url: pr.html_url,
+    author: pr.user?.login || 'unknown'
+  }));
+}
+
 async function saveContributions(year) {
   console.log(`Fetching contributions for ${year}...`);
   
@@ -142,6 +169,28 @@ async function saveCommits() {
   }
 }
 
+async function savePullRequests() {
+  console.log(`Fetching recent pull requests...`);
+
+  try {
+    const pullRequests = await fetchRecentPullRequests(GITHUB_USERNAME, GITHUB_REPO);
+
+    const dataDir = path.join(process.cwd(), 'public', 'data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+
+    const filePath = path.join(dataDir, 'pull-requests.json');
+    fs.writeFileSync(filePath, JSON.stringify(pullRequests, null, 2));
+
+    console.log(`✓ Saved ${pullRequests.length} recent pull requests`);
+    return pullRequests;
+  } catch (error) {
+    console.error(`✗ Error fetching pull requests:`, error.message);
+    throw error;
+  }
+}
+
 async function main() {
   const currentYear = new Date().getFullYear();
   const years = [2025, 2026]; // Add more years as needed
@@ -159,6 +208,9 @@ async function main() {
 
   // Fetch recent commits
   await saveCommits();
+
+  // Fetch recent pull requests
+  await savePullRequests();
 
   console.log('\n✓ All data fetched successfully!');
 }
