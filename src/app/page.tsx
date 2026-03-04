@@ -234,13 +234,13 @@ export default function Home() {
 
           {/* Current Project Section */}
           <div className="mb-1">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @delquant & @QuantPype</h4>
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @QuantPype</h4>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 text-xs bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 rounded">Rust</span>
-              <span className="px-2 py-1 text-xs bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 rounded">Electron</span>
-              <span className="px-2 py-1 text-xs bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 rounded">AI Agents</span>
-              <span className="px-2 py-1 text-xs bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300 rounded">Trading Platform</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">AI Agents</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Trading Platform</span>
             </div>
           </div>
 

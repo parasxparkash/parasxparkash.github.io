@@ -51,9 +51,9 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-2 py-1 text-xs rounded-full transition-colors ${
+              className={`px-1.5 py-0.5 text-[10px] rounded transition-colors ${
                 selectedTag === null
-                  ? 'bg-blue-500 text-white dark:bg-blue-400 dark:text-white'
+                  ? 'bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900'
                   : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-600'
               }`}
             >
@@ -63,11 +63,11 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-2 py-1 text-xs rounded-full transition-colors ${
-                  selectedTag === tag
-                    ? 'bg-blue-500 text-white dark:bg-blue-400 dark:text-white'
+className={`px-1.5 py-0.5 text-[10px] rounded transition-colors ${
+                selectedTag === tag
+                    ? 'bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900'
                     : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-600'
-                }`}
+              }`}
               >
                 {tag}
               </button>
@@ -89,7 +89,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-2">
                 {post.tags.slice(0, 1).map((tag) => (
-                  <span key={tag} className="px-1.5 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">
+                  <span key={tag} className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">
                     {tag}
                   </span>
                 ))}
@@ -117,7 +117,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mb-2">
                     {post.tags.slice(0, 1).map((tag) => (
-                      <span key={tag} className="px-1.5 py-0.5 text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 rounded">
+                      <span key={tag} className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">
                         {tag}
                       </span>
                     ))}

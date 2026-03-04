@@ -50,19 +50,7 @@ export default function ProjectsTab() {
     }
   ]
 
-  const getTagColorClass = (color: string) => {
-    const colors: { [key: string]: string } = {
-      blue: 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300',
-      green: 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300',
-      orange: 'bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300',
-      purple: 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300',
-      cyan: 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300',
-      gray: 'bg-gray-50 text-gray-700 dark:bg-gray-900/20 dark:text-gray-300',
-      indigo: 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300',
-      pink: 'bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300'
-    }
-    return colors[color] || colors.blue
-  }
+  const tagClass = 'px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded'
 
   return (
     <section className="mb-12">
@@ -71,9 +59,9 @@ export default function ProjectsTab() {
           {projects.map((project, index) => (
             <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
               <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
-                <div className="flex items-baseline justify-between mb-1">
+                <div className="flex items-baseline gap-2 mb-1">
                   <h3 className="text-md font-medium">{project.name}</h3>
-                  <div className="flex items-center gap-1.5 ml-auto">
+                  <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
                       <div className="w-1.5 h-1.5 bg-green-500 rounded animate-pulse" title="Active"></div>
                     )}
@@ -93,7 +81,7 @@ export default function ProjectsTab() {
                 <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
-                    <span key={tag} className={`px-2 py-1 text-xs rounded ${getTagColorClass(project.tagColors[tagIndex])}`}>
+                    <span key={tag} className={tagClass}>
                       {tag}
                     </span>
                   ))}
