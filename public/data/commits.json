@@ -1,37 +1,37 @@
 [
   {
-    "sha": "edb194e",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-03-03T01:48:32Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/edb194ecd82f59c497efd75d28949a8196424dc3",
-    "author": "github-actions[bot]"
+    "sha": "90782d8",
+    "message": "Merge pull request #1 from parasxparkash/feature/sidebar-and-projects-ui",
+    "date": "2026-03-04T19:39:48Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/90782d85c1ffca0e9764b143b6775bc9ffd963e8",
+    "author": "Paras Parkash"
   },
   {
-    "sha": "41f669f",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-03-02T01:46:10Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/41f669fa41c43da1a0ac8846ab8ce9a064986683",
-    "author": "github-actions[bot]"
+    "sha": "445ef92",
+    "message": "UI: gray tags, smaller tag size everywhere, snappier theme toggle",
+    "date": "2026-03-04T19:37:28Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/445ef92f48d022308da9565a8943d0e6269a6a31",
+    "author": "stoicquant"
   },
   {
-    "sha": "da66080",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-03-01T01:54:19Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/da66080017d2204f533e92dc54bdcbf13dfe5b9f",
-    "author": "github-actions[bot]"
+    "sha": "82e062e",
+    "message": "Sidebar: move project link/dot next to name, Building @QuantPype only",
+    "date": "2026-03-04T19:24:22Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/82e062ec40710bac91d937da240a5dabb8c851e1",
+    "author": "stoicquant"
   },
   {
-    "sha": "ab967af",
-    "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-28T01:25:21Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/ab967afcfa688752536f83fc86e702e754b78781",
-    "author": "github-actions[bot]"
+    "sha": "3ca57b2",
+    "message": "Add recent pull requests, trim deps and dead code, fix middleware manifest",
+    "date": "2026-03-04T19:11:44Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/3ca57b2cf77861ef4bb936a76a3de217e52aa9b7",
+    "author": "stoicquant"
   },
   {
-    "sha": "9dd6445",
+    "sha": "c4d3d76",
     "message": "Update GitHub data (contributions & commits)",
-    "date": "2026-02-27T01:43:35Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/9dd6445588cce34c32fd638392d39b880d9fff54",
+    "date": "2026-03-04T01:43:01Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/c4d3d76c6ebd67664e5a85bceb0905cf0ea24e35",
     "author": "github-actions[bot]"
   }
 ]
