@@ -38,16 +38,7 @@ export default function ResearchProjectsTab() {
     }
   ]
 
-  const getTagColorClass = (color: string) => {
-    const colors: { [key: string]: string } = {
-      blue: 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300',
-      green: 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300',
-      orange: 'bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300',
-      purple: 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300',
-      cyan: 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300'
-    }
-    return colors[color] || colors.blue
-  }
+  const tagClass = 'px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded'
 
   return (
     <section className="mb-12">
@@ -78,8 +69,8 @@ export default function ResearchProjectsTab() {
                 </div>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span key={tag} className={`px-2 py-1 text-xs rounded ${getTagColorClass(project.tagColors[tagIndex])}`}>
+                  {project.tags.map((tag) => (
+                    <span key={tag} className={tagClass}>
                       {tag}
                     </span>
                   ))}
