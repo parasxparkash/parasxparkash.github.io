@@ -112,11 +112,9 @@ export default function Home() {
 
             {/* Right Column - All Content */}
             <div className="flex-1 min-w-0">
-              {/* Name */}
-              <h1 className="text-lg font-medium tracking-tight mb-2">Paras Parkash</h1>
-
-              {/* Social Icons */}
-              <div className="mb-2">
+              {/* Name and Social Icons - Inline */}
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-lg font-medium tracking-tight">Paras Parkash</h1>
                 <SocialLinks variant="mobile" />
               </div>
 
