@@ -133,15 +133,19 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const savedTheme = localStorage.getItem('theme');
-                // Default to light theme if no saved preference
-                const shouldUseDark = savedTheme === 'dark';
-
-                if (shouldUseDark) {
-                  document.documentElement.classList.add('dark');
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                const themes = ['light', 'dark', 'sepia', 'ocean', 'blood', 'space', 'dracula', 'solarized', 'vintage', 'paper', 'abacus', 'papyrus', 'colorful'];
+                
+                // Remove all theme classes first
+                themes.forEach(t => document.documentElement.classList.remove(t));
+                
+                // Add saved theme
+                document.documentElement.classList.add(savedTheme);
+                
+                // Set color scheme
+                if (['dark', 'blood', 'space', 'dracula'].includes(savedTheme)) {
                   document.documentElement.style.colorScheme = 'dark';
                 } else {
-                  document.documentElement.classList.remove('dark');
                   document.documentElement.style.colorScheme = 'light';
                 }
               })();
