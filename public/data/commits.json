@@ -1,37 +1,37 @@
 [
   {
-    "sha": "7bf172c",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-03-06T01:47:16Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/7bf172cf915fadc62fb9962a34e23ccd01aa5d99",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "f691e96",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-03-05T01:45:36Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f691e96fd46096ee5c17f85f137392f523df51df",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "90782d8",
-    "message": "Merge pull request #1 from parasxparkash/feature/sidebar-and-projects-ui",
-    "date": "2026-03-04T19:39:48Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/90782d85c1ffca0e9764b143b6775bc9ffd963e8",
+    "sha": "55a9baa",
+    "message": "Add multiple theme support: sepia, ocean, blood, space, dracula, solarized, vintage, paper, abacus, papyrus, and colorful themes",
+    "date": "2026-03-08T01:28:55Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/55a9baaf95ddb757bb75569d5eec9a9d42a80220",
     "author": "Paras Parkash"
   },
   {
-    "sha": "445ef92",
-    "message": "UI: gray tags, smaller tag size everywhere, snappier theme toggle",
-    "date": "2026-03-04T19:37:28Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/445ef92f48d022308da9565a8943d0e6269a6a31",
-    "author": "stoicquant"
+    "sha": "f81909b",
+    "message": "Update research project tags to match SaaS projects styling",
+    "date": "2026-03-08T00:32:19Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f81909b884dff0e9954c8307258f729eb3169a45",
+    "author": "Paras Parkash"
   },
   {
-    "sha": "82e062e",
-    "message": "Sidebar: move project link/dot next to name, Building @QuantPype only",
-    "date": "2026-03-04T19:24:22Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/82e062ec40710bac91d937da240a5dabb8c851e1",
-    "author": "stoicquant"
+    "sha": "0c336e8",
+    "message": "Add links to research projects pointing to quantifiedtrader.com/projects",
+    "date": "2026-03-08T00:30:26Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/0c336e8f27c02b4c79df9787cd548d6a26baf32d",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "5b0e961",
+    "message": "Add Projects tab with research projects",
+    "date": "2026-03-08T00:26:16Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5b0e961c3f6c9ac06653a2bdac815133dfd10b4c",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "6171048",
+    "message": "Change Projects tab label to SaaS",
+    "date": "2026-03-08T00:22:45Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/61710480da9228715669567213b5ceeac9414232",
+    "author": "Paras Parkash"
   }
 ]
