@@ -120,23 +120,19 @@ export default function Home() {
                 <SocialLinks variant="mobile" />
               </div>
 
-              {/* Location */}
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">
-                Gurugram, Haryana
-              </p>
-
-              {/* Building/Testing/Merging Animation */}
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
-                  <RotatingText items={['building', 'testing', 'merging']} />
-                </p>
+              {/* Location, Status Animation, and Time - Inline */}
+              <div className="flex items-center gap-2 flex-wrap text-xs text-zinc-500 dark:text-zinc-400 mb-3">
+                <span>Gurugram, Haryana</span>
+                <span>•</span>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+                  <span className="font-bold">
+                    <RotatingText items={['building', 'testing', 'merging']} />
+                  </span>
+                </div>
+                <span>•</span>
+                <span className="font-normal">{istTime}</span>
               </div>
-
-              {/* Time */}
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal mb-3">
-                {istTime}
-              </p>
 
               {/* Headline Text */}
               <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify">
