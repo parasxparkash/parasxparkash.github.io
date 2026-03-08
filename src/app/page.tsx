@@ -17,7 +17,7 @@ import GitHubContributionGraph from '@/components/GitHubContributionGraph'
 import Image from 'next/image'
 
 const tabs = [
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'SaaS' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'blogs', label: 'Blogs' },
