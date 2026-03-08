@@ -43,7 +43,7 @@ export default function SocialLinks({ variant = 'default', className = '' }: Soc
     : 'overflow-hidden transition-all text-zinc-900/60 dark:text-zinc-100/60'
 
   return (
-    <div className={`flex ${variant === 'mobile' ? 'items-center justify-center gap-4 flex-wrap' : 'flex-row gap-4'} ${className}`}>
+    <div className={`flex ${variant === 'mobile' ? 'items-center justify-start gap-4 flex-wrap' : 'flex-row gap-4'} ${className}`}>
       {links.map((link) => (
         <a
           key={link.name}
