@@ -978,127 +978,139 @@ a, button {
 }
 
 
-/* ===== COLORFUL GRADIENT TAGS ===== */
+/* ===== COLORFUL TAGS WITH 30% OPACITY ===== */
 
-/* Gradient tag styles with transparency */
+/* Solid color tags with 30% opacity */
 .px-1\.5.py-0\.5.text-\[10px\].rounded,
 .px-2.py-1.text-xs.rounded {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%) !important;
-  color: white !important;
+  background: rgba(102, 126, 234, 0.3) !important;
+  color: rgb(102, 126, 234) !important;
   border: none !important;
-  backdrop-filter: blur(10px);
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(1),
 .px-2.py-1.text-xs.rounded:nth-child(1) {
-  background: linear-gradient(135deg, rgba(240, 147, 251, 0.85) 0%, rgba(245, 87, 108, 0.85) 100%) !important;
+  background: rgba(240, 147, 251, 0.3) !important;
+  color: rgb(240, 147, 251) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(2),
 .px-2.py-1.text-xs.rounded:nth-child(2) {
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.85) 0%, rgba(0, 242, 254, 0.85) 100%) !important;
+  background: rgba(79, 172, 254, 0.3) !important;
+  color: rgb(79, 172, 254) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(3),
 .px-2.py-1.text-xs.rounded:nth-child(3) {
-  background: linear-gradient(135deg, rgba(67, 233, 123, 0.85) 0%, rgba(56, 249, 215, 0.85) 100%) !important;
+  background: rgba(67, 233, 123, 0.3) !important;
+  color: rgb(67, 233, 123) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(4),
 .px-2.py-1.text-xs.rounded:nth-child(4) {
-  background: linear-gradient(135deg, rgba(250, 112, 154, 0.85) 0%, rgba(254, 225, 64, 0.85) 100%) !important;
+  background: rgba(250, 112, 154, 0.3) !important;
+  color: rgb(250, 112, 154) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(5),
 .px-2.py-1.text-xs.rounded:nth-child(5) {
-  background: linear-gradient(135deg, rgba(48, 207, 208, 0.85) 0%, rgba(51, 8, 103, 0.85) 100%) !important;
+  background: rgba(48, 207, 208, 0.3) !important;
+  color: rgb(48, 207, 208) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(6),
 .px-2.py-1.text-xs.rounded:nth-child(6) {
-  background: linear-gradient(135deg, rgba(168, 237, 234, 0.85) 0%, rgba(254, 214, 227, 0.85) 100%) !important;
-  color: #333 !important;
+  background: rgba(168, 237, 234, 0.3) !important;
+  color: rgb(168, 237, 234) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(7),
 .px-2.py-1.text-xs.rounded:nth-child(7) {
-  background: linear-gradient(135deg, rgba(255, 154, 158, 0.85) 0%, rgba(254, 207, 239, 0.85) 100%) !important;
-  color: #333 !important;
+  background: rgba(255, 154, 158, 0.3) !important;
+  color: rgb(255, 154, 158) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(8),
 .px-2.py-1.text-xs.rounded:nth-child(8) {
-  background: linear-gradient(135deg, rgba(255, 236, 210, 0.85) 0%, rgba(252, 182, 159, 0.85) 100%) !important;
-  color: #333 !important;
+  background: rgba(255, 195, 160, 0.3) !important;
+  color: rgb(255, 195, 160) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(9),
 .px-2.py-1.text-xs.rounded:nth-child(9) {
-  background: linear-gradient(135deg, rgba(165, 142, 251, 0.85) 0%, rgba(233, 191, 248, 0.85) 100%) !important;
+  background: rgba(165, 142, 251, 0.3) !important;
+  color: rgb(165, 142, 251) !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(10),
 .px-2.py-1.text-xs.rounded:nth-child(10) {
-  background: linear-gradient(135deg, rgba(255, 175, 189, 0.85) 0%, rgba(255, 195, 160, 0.85) 100%) !important;
-  color: #333 !important;
+  background: rgba(255, 175, 189, 0.3) !important;
+  color: rgb(255, 175, 189) !important;
 }
 
-/* Dark mode adjustments for tags */
+/* Dark mode adjustments for tags - brighter colors */
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded,
 .dark .px-2.py-1.text-xs.rounded {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%) !important;
+  background: rgba(102, 126, 234, 0.3) !important;
+  color: rgb(150, 170, 255) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(1),
 .dark .px-2.py-1.text-xs.rounded:nth-child(1) {
-  background: linear-gradient(135deg, rgba(240, 147, 251, 0.7) 0%, rgba(245, 87, 108, 0.7) 100%) !important;
+  background: rgba(240, 147, 251, 0.3) !important;
+  color: rgb(255, 180, 255) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(2),
 .dark .px-2.py-1.text-xs.rounded:nth-child(2) {
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.7) 0%, rgba(0, 242, 254, 0.7) 100%) !important;
+  background: rgba(79, 172, 254, 0.3) !important;
+  color: rgb(120, 200, 255) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(3),
 .dark .px-2.py-1.text-xs.rounded:nth-child(3) {
-  background: linear-gradient(135deg, rgba(67, 233, 123, 0.7) 0%, rgba(56, 249, 215, 0.7) 100%) !important;
+  background: rgba(67, 233, 123, 0.3) !important;
+  color: rgb(100, 255, 150) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(4),
 .dark .px-2.py-1.text-xs.rounded:nth-child(4) {
-  background: linear-gradient(135deg, rgba(250, 112, 154, 0.7) 0%, rgba(254, 225, 64, 0.7) 100%) !important;
+  background: rgba(250, 112, 154, 0.3) !important;
+  color: rgb(255, 150, 180) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(5),
 .dark .px-2.py-1.text-xs.rounded:nth-child(5) {
-  background: linear-gradient(135deg, rgba(48, 207, 208, 0.7) 0%, rgba(51, 8, 103, 0.7) 100%) !important;
+  background: rgba(48, 207, 208, 0.3) !important;
+  color: rgb(100, 240, 240) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(6),
 .dark .px-2.py-1.text-xs.rounded:nth-child(6) {
-  background: linear-gradient(135deg, rgba(168, 237, 234, 0.7) 0%, rgba(254, 214, 227, 0.7) 100%) !important;
-  color: white !important;
+  background: rgba(168, 237, 234, 0.3) !important;
+  color: rgb(200, 255, 250) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(7),
 .dark .px-2.py-1.text-xs.rounded:nth-child(7) {
-  background: linear-gradient(135deg, rgba(255, 154, 158, 0.7) 0%, rgba(254, 207, 239, 0.7) 100%) !important;
-  color: white !important;
+  background: rgba(255, 154, 158, 0.3) !important;
+  color: rgb(255, 190, 195) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(8),
 .dark .px-2.py-1.text-xs.rounded:nth-child(8) {
-  background: linear-gradient(135deg, rgba(255, 236, 210, 0.7) 0%, rgba(252, 182, 159, 0.7) 100%) !important;
-  color: white !important;
+  background: rgba(255, 195, 160, 0.3) !important;
+  color: rgb(255, 220, 190) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(9),
 .dark .px-2.py-1.text-xs.rounded:nth-child(9) {
-  background: linear-gradient(135deg, rgba(165, 142, 251, 0.7) 0%, rgba(233, 191, 248, 0.7) 100%) !important;
+  background: rgba(165, 142, 251, 0.3) !important;
+  color: rgb(200, 180, 255) !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(10),
 .dark .px-2.py-1.text-xs.rounded:nth-child(10) {
-  background: linear-gradient(135deg, rgba(255, 175, 189, 0.7) 0%, rgba(255, 195, 160, 0.7) 100%) !important;
-  color: white !important;
+  background: rgba(255, 175, 189, 0.3) !important;
+  color: rgb(255, 210, 220) !important;
 }
