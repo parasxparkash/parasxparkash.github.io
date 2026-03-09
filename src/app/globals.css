@@ -978,139 +978,139 @@ a, button {
 }
 
 
-/* ===== COLORFUL TAGS WITH 30% OPACITY ===== */
+/* ===== COLORFUL TAGS WITH 10% OPACITY ===== */
 
-/* Solid color tags with 30% opacity */
+/* Solid color tags with 10% opacity and black text */
 .px-1\.5.py-0\.5.text-\[10px\].rounded,
 .px-2.py-1.text-xs.rounded {
-  background: rgba(102, 126, 234, 0.3) !important;
-  color: rgb(102, 126, 234) !important;
+  background: rgba(102, 126, 234, 0.1) !important;
+  color: #000 !important;
   border: none !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(1),
 .px-2.py-1.text-xs.rounded:nth-child(1) {
-  background: rgba(240, 147, 251, 0.3) !important;
-  color: rgb(240, 147, 251) !important;
+  background: rgba(240, 147, 251, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(2),
 .px-2.py-1.text-xs.rounded:nth-child(2) {
-  background: rgba(79, 172, 254, 0.3) !important;
-  color: rgb(79, 172, 254) !important;
+  background: rgba(79, 172, 254, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(3),
 .px-2.py-1.text-xs.rounded:nth-child(3) {
-  background: rgba(67, 233, 123, 0.3) !important;
-  color: rgb(67, 233, 123) !important;
+  background: rgba(67, 233, 123, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(4),
 .px-2.py-1.text-xs.rounded:nth-child(4) {
-  background: rgba(250, 112, 154, 0.3) !important;
-  color: rgb(250, 112, 154) !important;
+  background: rgba(250, 112, 154, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(5),
 .px-2.py-1.text-xs.rounded:nth-child(5) {
-  background: rgba(48, 207, 208, 0.3) !important;
-  color: rgb(48, 207, 208) !important;
+  background: rgba(48, 207, 208, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(6),
 .px-2.py-1.text-xs.rounded:nth-child(6) {
-  background: rgba(168, 237, 234, 0.3) !important;
-  color: rgb(168, 237, 234) !important;
+  background: rgba(168, 237, 234, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(7),
 .px-2.py-1.text-xs.rounded:nth-child(7) {
-  background: rgba(255, 154, 158, 0.3) !important;
-  color: rgb(255, 154, 158) !important;
+  background: rgba(255, 154, 158, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(8),
 .px-2.py-1.text-xs.rounded:nth-child(8) {
-  background: rgba(255, 195, 160, 0.3) !important;
-  color: rgb(255, 195, 160) !important;
+  background: rgba(255, 195, 160, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(9),
 .px-2.py-1.text-xs.rounded:nth-child(9) {
-  background: rgba(165, 142, 251, 0.3) !important;
-  color: rgb(165, 142, 251) !important;
+  background: rgba(165, 142, 251, 0.1) !important;
+  color: #000 !important;
 }
 
 .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(10),
 .px-2.py-1.text-xs.rounded:nth-child(10) {
-  background: rgba(255, 175, 189, 0.3) !important;
-  color: rgb(255, 175, 189) !important;
+  background: rgba(255, 175, 189, 0.1) !important;
+  color: #000 !important;
 }
 
-/* Dark mode adjustments for tags - brighter colors */
+/* Dark mode adjustments for tags - white text */
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded,
 .dark .px-2.py-1.text-xs.rounded {
-  background: rgba(102, 126, 234, 0.3) !important;
-  color: rgb(150, 170, 255) !important;
+  background: rgba(102, 126, 234, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(1),
 .dark .px-2.py-1.text-xs.rounded:nth-child(1) {
-  background: rgba(240, 147, 251, 0.3) !important;
-  color: rgb(255, 180, 255) !important;
+  background: rgba(240, 147, 251, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(2),
 .dark .px-2.py-1.text-xs.rounded:nth-child(2) {
-  background: rgba(79, 172, 254, 0.3) !important;
-  color: rgb(120, 200, 255) !important;
+  background: rgba(79, 172, 254, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(3),
 .dark .px-2.py-1.text-xs.rounded:nth-child(3) {
-  background: rgba(67, 233, 123, 0.3) !important;
-  color: rgb(100, 255, 150) !important;
+  background: rgba(67, 233, 123, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(4),
 .dark .px-2.py-1.text-xs.rounded:nth-child(4) {
-  background: rgba(250, 112, 154, 0.3) !important;
-  color: rgb(255, 150, 180) !important;
+  background: rgba(250, 112, 154, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(5),
 .dark .px-2.py-1.text-xs.rounded:nth-child(5) {
-  background: rgba(48, 207, 208, 0.3) !important;
-  color: rgb(100, 240, 240) !important;
+  background: rgba(48, 207, 208, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(6),
 .dark .px-2.py-1.text-xs.rounded:nth-child(6) {
-  background: rgba(168, 237, 234, 0.3) !important;
-  color: rgb(200, 255, 250) !important;
+  background: rgba(168, 237, 234, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(7),
 .dark .px-2.py-1.text-xs.rounded:nth-child(7) {
-  background: rgba(255, 154, 158, 0.3) !important;
-  color: rgb(255, 190, 195) !important;
+  background: rgba(255, 154, 158, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(8),
 .dark .px-2.py-1.text-xs.rounded:nth-child(8) {
-  background: rgba(255, 195, 160, 0.3) !important;
-  color: rgb(255, 220, 190) !important;
+  background: rgba(255, 195, 160, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(9),
 .dark .px-2.py-1.text-xs.rounded:nth-child(9) {
-  background: rgba(165, 142, 251, 0.3) !important;
-  color: rgb(200, 180, 255) !important;
+  background: rgba(165, 142, 251, 0.1) !important;
+  color: #fff !important;
 }
 
 .dark .px-1\.5.py-0\.5.text-\[10px\].rounded:nth-child(10),
 .dark .px-2.py-1.text-xs.rounded:nth-child(10) {
-  background: rgba(255, 175, 189, 0.3) !important;
-  color: rgb(255, 210, 220) !important;
+  background: rgba(255, 175, 189, 0.1) !important;
+  color: #fff !important;
 }
