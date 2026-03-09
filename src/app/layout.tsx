@@ -134,18 +134,12 @@ export default function RootLayout({
             __html: `
               (function() {
                 const savedTheme = localStorage.getItem('theme') || 'light';
-                const themes = ['light', 'dark', 'sepia', 'ocean', 'blood', 'space', 'dracula', 'solarized', 'vintage', 'paper', 'abacus', 'papyrus', 'colorful'];
                 
-                // Remove all theme classes first
-                themes.forEach(t => document.documentElement.classList.remove(t));
-                
-                // Add saved theme
-                document.documentElement.classList.add(savedTheme);
-                
-                // Set color scheme
-                if (['dark', 'blood', 'space', 'dracula'].includes(savedTheme)) {
+                if (savedTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
                   document.documentElement.style.colorScheme = 'dark';
                 } else {
+                  document.documentElement.classList.remove('dark');
                   document.documentElement.style.colorScheme = 'light';
                 }
               })();
