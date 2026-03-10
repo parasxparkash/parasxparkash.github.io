@@ -1,37 +1,37 @@
 [
   {
+    "sha": "2a391af",
+    "message": "Update tags to 10% opacity with black text in light mode and white text in dark mode",
+    "date": "2026-03-09T09:16:26Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/2a391af241a02eb5d2cdc16a0c848e9cd3411dc0",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "49682ca",
+    "message": "Change tags to solid colors with 30% opacity instead of gradients",
+    "date": "2026-03-09T09:13:25Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/49682cab5a32533859fde9292b9bb6ad4bd059e2",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "4628f33",
+    "message": "Simplify theme system to dark/light only and add colorful gradient tags with transparency",
+    "date": "2026-03-09T09:11:13Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/4628f3398e21f0295610f039351f6e5c879fb08f",
+    "author": "Paras Parkash"
+  },
+  {
+    "sha": "4f9ab5d",
+    "message": "Update GitHub data (contributions, commits & pull requests)",
+    "date": "2026-03-09T01:47:52Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/4f9ab5da21d94095e566ba9b1a86a91f1c11868a",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "27ec57b",
     "message": "Update GitHub data (contributions, commits & pull requests)",
     "date": "2026-03-08T01:46:15Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/27ec57be07a051a19a5dfcd36a8516992742f3cd",
     "author": "github-actions[bot]"
-  },
-  {
-    "sha": "55a9baa",
-    "message": "Add multiple theme support: sepia, ocean, blood, space, dracula, solarized, vintage, paper, abacus, papyrus, and colorful themes",
-    "date": "2026-03-08T01:28:55Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/55a9baaf95ddb757bb75569d5eec9a9d42a80220",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "f81909b",
-    "message": "Update research project tags to match SaaS projects styling",
-    "date": "2026-03-08T00:32:19Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f81909b884dff0e9954c8307258f729eb3169a45",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "0c336e8",
-    "message": "Add links to research projects pointing to quantifiedtrader.com/projects",
-    "date": "2026-03-08T00:30:26Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/0c336e8f27c02b4c79df9787cd548d6a26baf32d",
-    "author": "Paras Parkash"
-  },
-  {
-    "sha": "5b0e961",
-    "message": "Add Projects tab with research projects",
-    "date": "2026-03-08T00:26:16Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5b0e961c3f6c9ac06653a2bdac815133dfd10b4c",
-    "author": "Paras Parkash"
   }
 ]
