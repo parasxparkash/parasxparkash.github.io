@@ -52,15 +52,7 @@ export default function ProjectsTab() {
   return (
     <section className="mb-12">
       <div className="mb-6">
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-          Featured projects in quantitative finance, portfolio construction, and systematic investing.
-          Each project applies quantitative methods to specific problems in finance — from clustering-based
-          portfolio construction and market regime detection to adaptive portfolio strategies and RRG-based rotation analysis.
-        </p>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Projects include interactive visualizations, source code links, and methodology explanations.
-          Data is updated periodically via automated pipelines.
-        </p>
+        {/* Intro text removed as requested */}
       </div>
 
       <div className="space-y-8">
