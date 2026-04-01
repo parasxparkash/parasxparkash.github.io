@@ -455,23 +455,23 @@ export default function Home() {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${selectedYear === 2023 ? 0 : selectedYear === 2024 ? 100 : selectedYear === 2025 ? 200 : 300}%)` }}
               >
-                <div className="w-full flex-shrink-0">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2023-01-01&to=2023-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="w-full flex-shrink-0 flex justify-center">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2023-01-01&to=2023-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
                     <GitHubContributionGraph year={2023} />
                   </a>
                 </div>
-                <div className="w-full flex-shrink-0">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2024-01-01&to=2024-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="w-full flex-shrink-0 flex justify-center">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2024-01-01&to=2024-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
                     <GitHubContributionGraph year={2024} />
                   </a>
                 </div>
-                <div className="w-full flex-shrink-0">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2025-01-01&to=2025-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="w-full flex-shrink-0 flex justify-center">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2025-01-01&to=2025-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
                     <GitHubContributionGraph year={2025} />
                   </a>
                 </div>
-                <div className="w-full flex-shrink-0">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2026-01-01&to=2026-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="w-full flex-shrink-0 flex justify-center">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2026-01-01&to=2026-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
                     <GitHubContributionGraph year={2026} />
                   </a>
                 </div>
@@ -490,10 +490,10 @@ export default function Home() {
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap !bg-transparent !border-none !shadow-none transition-all duration-300 ease-out ${
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap transition-all duration-300 ease-out ${
                     activeTab === tab.id
-                      ? '!text-zinc-900 dark:!text-zinc-100'
-                      : '!text-zinc-600 dark:!text-zinc-400'
+                      ? 'bg-zinc-100 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 shadow-inner border-zinc-300 dark:border-zinc-600'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100'
                   }`}
                    id={`tab-${tab.id}`}
                  >
