@@ -6,7 +6,6 @@ import { useCommits } from '@/hooks/useCommits'
 import { usePullRequests } from '@/hooks/usePullRequests'
 import { useISTClock } from '@/hooks/useISTClock'
 import ProjectsTab from '@/components/ProjectsTab'
-import ResearchProjectsTab from '@/components/ResearchProjectsTab'
 import ExperienceTab from '@/components/ExperienceTab'
 import EducationTab from '@/components/EducationTab'
 import BlogsTab from '@/components/BlogsTab'
@@ -18,7 +17,6 @@ import GitHubContributionGraph from '@/components/GitHubContributionGraph'
 import Image from 'next/image'
 
 const tabs = [
-  { id: 'saas', label: 'SaaS' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
@@ -26,17 +24,25 @@ const tabs = [
 ]
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('saas')
+  const [activeTab, setActiveTab] = useState('projects')
   const currentYear = new Date().getFullYear()
   const [selectedYear, setSelectedYear] = useState(currentYear)
   const { posts: topPosts } = usePosts(2)
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
+  const [contributions2023, setContributions2023] = useState<number | null>(null)
+  const [contributions2024, setContributions2024] = useState<number | null>(null)
   const [contributions2025, setContributions2025] = useState<number | null>(null)
   const [contributions2026, setContributions2026] = useState<number | null>(null)
 
   useEffect(() => {
+    const handler2023 = (e: Event) => {
+      setContributions2023((e as CustomEvent).detail)
+    }
+    const handler2024 = (e: Event) => {
+      setContributions2024((e as CustomEvent).detail)
+    }
     const handler2025 = (e: Event) => {
       setContributions2025((e as CustomEvent).detail)
     }
@@ -44,16 +50,23 @@ export default function Home() {
       setContributions2026((e as CustomEvent).detail)
     }
     
+    window.addEventListener('contributions-2023', handler2023)
+    window.addEventListener('contributions-2024', handler2024)
     window.addEventListener('contributions-2025', handler2025)
     window.addEventListener('contributions-2026', handler2026)
     
     return () => {
+      window.removeEventListener('contributions-2023', handler2023)
+      window.removeEventListener('contributions-2024', handler2024)
       window.removeEventListener('contributions-2025', handler2025)
       window.removeEventListener('contributions-2026', handler2026)
     }
   }, [])
 
-  const currentContributionCount = selectedYear === 2025 ? contributions2025 : contributions2026
+  const currentContributionCount = 
+    selectedYear === 2023 ? contributions2023 :
+    selectedYear === 2024 ? contributions2024 :
+    selectedYear === 2025 ? contributions2025 : contributions2026
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
@@ -65,10 +78,8 @@ export default function Home() {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'saas':
-        return <ProjectsTab />
       case 'projects':
-        return <ResearchProjectsTab />
+        return <ProjectsTab />
       case 'experience':
         return <ExperienceTab />
       case 'education':
@@ -88,8 +99,8 @@ export default function Home() {
       <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch">
         {/* Left Sidebar */}
         <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
-          {/* Profile Image - Desktop only */}
-          <div className="mb-2 hidden lg:flex justify-center">
+          {/* Profile Image */}
+          <div className="mb-2 flex justify-center">
             <Image
               src="/assets/profile-optimized.webp"
               alt="Profile"
@@ -100,90 +111,81 @@ export default function Home() {
             />
           </div>
 
-          {/* Mobile 2-Column Layout: Image on left, content on right */}
-          <div className="lg:hidden flex gap-4 mb-4">
-            {/* Left Column - Image */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/assets/profile-optimized.webp"
-                alt="Profile"
-                width={120}
-                height={120}
-                className="w-28 h-28 rounded-full object-cover border-2 border-zinc-200 dark:border-zinc-700"
-                priority={false}
-              />
+          {/* Single Column Layout: Image → Name → Social Icons → Location + Animation → Time → Headline → Description */}
+          <div className="lg:hidden text-center mb-4">
+            {/* Name */}
+            <h1 className="text-xl font-medium tracking-tight mb-3">Paras Parkash</h1>
+
+            {/* Social Icons */}
+            <div className="mb-3">
+              <SocialLinks variant="mobile" />
             </div>
 
-            {/* Right Column - All Content */}
-            <div className="flex-1 min-w-0">
-              {/* Name and Social Icons - Inline */}
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-lg font-medium tracking-tight">Paras Parkash</h1>
-                <SocialLinks variant="mobile" />
-              </div>
-
-              {/* Location, Status Animation, and Time - Inline */}
-              <div className="flex items-center gap-2 flex-wrap text-xs text-zinc-500 dark:text-zinc-400 mb-3">
-                <span>Gurugram, Haryana</span>
-                <span>•</span>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
-                  <span className="font-bold">
-                    <RotatingText items={['building', 'testing', 'merging']} />
-                  </span>
-                </div>
-                <span>•</span>
-                <span className="font-normal">{istTime}</span>
-              </div>
-
-              {/* Headline Text */}
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify">
-                Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
+            {/* Location + Building/Testing/Merging Animation */}
+            <div className="flex flex-col items-center gap-2 mb-2">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Gurugram, Haryana| Bengaluru, Karnataka
               </p>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
+                  <RotatingText items={['building', 'testing', 'merging']} />
+                </p>
+              </div>
+            </div>
 
-              {/* Description Text */}
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">
-                Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
-              </p>
+            {/* Time */}
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal mb-3">
+              {istTime}
+            </p>
 
-              {/* Eigenotes and Stoic Journal Links - Mobile */}
-              <div className="flex flex-col items-start gap-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
-                  <a
-                    href="https://eigenotes.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium text-xs"
-                    title="Eigenotes"
-                  >
-                    Eigenotes
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
-                  <a
-                    href="https://parasparkash.netlify.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium text-xs"
-                    title="StoicJournal"
-                  >
-                    StoicJournal
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
-                  <a
-                    href="https://parasparkash.notion.site"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium text-xs"
-                    title="CS/Architecture Notes"
-                  >
-                    Notion
-                  </a>
-                </div>
+            {/* Headline Text (removed "About Me" heading) */}
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
+              Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
+            </p>
+
+            {/* Description Text */}
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-4 text-justify">
+              Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
+            </p>
+
+            {/* Eigenotes and Stoic Journal Links - Mobile */}
+            <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs mx-auto">
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
+                <a
+                  href="https://eigenotes.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="Eigenotes"
+                >
+                  Eigenotes
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
+                <a
+                  href="https://parasparkash.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="StoicJournal"
+                >
+                  StoicJournal
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
+                <a
+                  href="https://parasparkash.notion.site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title="CS/Architecture Notes"
+                >
+                  Notion
+                </a>
               </div>
             </div>
           </div>
@@ -199,7 +201,7 @@ export default function Home() {
 
           <div className="space-y-2 mb-1">
             <div className="flex items-center text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Gurugram, Haryana, India</span>
+              <span className="text-zinc-600 dark:text-zinc-400">Gurugram, Haryana-&gt; Bengaluru, Karnataka</span>
             </div>
           </div>
 
@@ -368,7 +370,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    Gurugram, Haryana
+                    Gurugram, Haryana-&gt; Bengaluru, Karnataka
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}
@@ -403,6 +405,26 @@ export default function Home() {
               </div>
               <div className="flex gap-2">
                 <button
+                  onClick={() => setSelectedYear(2023)}
+                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                    selectedYear === 2023
+                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  }`}
+                >
+                  2023
+                </button>
+                <button
+                  onClick={() => setSelectedYear(2024)}
+                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                    selectedYear === 2024
+                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  }`}
+                >
+                  2024
+                </button>
+                <button
                   onClick={() => setSelectedYear(2025)}
                   className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
                     selectedYear === 2025
@@ -427,8 +449,18 @@ export default function Home() {
             <div className="relative overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedYear === 2026 ? 100 : 0}%)` }}
+                style={{ transform: `translateX(-${selectedYear === 2023 ? 0 : selectedYear === 2024 ? 100 : selectedYear === 2025 ? 200 : 300}%)` }}
               >
+                <div className="w-full flex-shrink-0">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2023-01-01&to=2023-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                    <GitHubContributionGraph year={2023} />
+                  </a>
+                </div>
+                <div className="w-full flex-shrink-0">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2024-01-01&to=2024-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                    <GitHubContributionGraph year={2024} />
+                  </a>
+                </div>
                 <div className="w-full flex-shrink-0">
                   <a href={`https://github.com/parasxparkash?tab=overview&from=2025-01-01&to=2025-12-31`} target="_blank" rel="noopener noreferrer" className="block">
                     <GitHubContributionGraph year={2025} />
