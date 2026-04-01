@@ -1,52 +1,49 @@
 export default function ProjectsTab() {
   const projects = [
     {
-      name: 'QuantBuilt',
-      description: 'An investment optimization platform designed for Indian users to build and optimize their investment portfolios with quantitative strategies, featuring portfolio analytics and risk management tools.',
-      tags: ['Portfolio Management', 'Investment', 'Optimization', 'Indian Markets'],
-      tagColors: ['blue', 'green', 'orange', 'purple'],
-      website: 'https://quantbuilt.com',
-      status: 'active'
+      id: 1,
+      name: 'Diversified Stock Portfolio Using Clustering Analysis',
+      year: '2024',
+      description: 'S&P 500 portfolio construction using K-means clustering on risk/return features (correlation, beta, returns, volatility, Sharpe ratio). Backtested vs index.',
+      technologies: ['Python', 'K-means', 'backtesting'],
+      status: 'active',
+      link: 'https://quantifiedtrader.com/projects/'
     },
     {
-      name: 'QuantifiedTrader',
-      description: 'A comprehensive blog platform for quantitative traders featuring in-depth analysis of different trading strategies, market microstructure research, and systematic trading methodologies.',
-      tags: ['Quant Trading', 'Strategy Analysis', 'Research', 'Blog'],
-      tagColors: ['blue', 'cyan', 'purple', 'gray'],
-      website: 'https://quantifiedtrader.com',
-      status: 'active'
+      id: 2,
+      name: 'Relative Rotation Graph (RRG) — US Equity',
+      year: '2025',
+      description: 'Dynamic RRG for US stocks vs S&P 500. JdK RS-Ratio and RS-Momentum with animation.',
+      technologies: ['Python', 'yfinance', 'Recharts'],
+      status: 'active',
+      link: 'https://quantifiedtrader.com/projects/'
     },
     {
-      name: 'QuantEdX',
-      description: 'An educational platform for aspiring quantitative traders and researchers, offering comprehensive courses on quantitative finance, algorithmic trading, and mathematical finance fundamentals.',
-      tags: ['Education', 'Quant Finance', 'Learning Platform', 'Courses'],
-      tagColors: ['green', 'blue', 'purple', 'orange'],
-      website: 'https://quantedx.com',
-      status: 'active'
+      id: 3,
+      name: 'Adaptive Portfolio Strategies: Sequential Allocation Methods',
+      year: '2025',
+      description: 'Comprehensive analysis of 14 sequential portfolio allocation strategies on diversified ETF portfolio. Includes momentum-based, reversion-based, and pattern-learning approaches with transaction cost analysis.',
+      technologies: ['Python', 'sequential optimization', 'backtesting'],
+      status: 'active',
+      link: 'https://quantifiedtrader.com/projects/'
     },
     {
-      name: 'delquant',
-      description: 'An open-source algorithmic trading software with a high-performance Rust backend engine and Electron-based interface, designed to integrate with AI agents for enhanced trading capabilities and intelligent strategy execution.',
-      tags: ['Rust', 'Electron', 'AI Agents', 'Open Source', 'Algo Trading'],
-      tagColors: ['orange', 'cyan', 'purple', 'green', 'blue'],
-      website: 'https://github.com/parasxparkash/delquant',
-      status: 'active'
+      id: 4,
+      name: 'Market Regime Detection Using Gaussian Models',
+      year: '2025',
+      description: 'Comprehensive market regime identification across 21 global indices using Gaussian Mixture Models (GMM) and Greedy Gaussian Segmentation (GSS). Detects bull, bear, and transition regimes for adaptive portfolio management.',
+      technologies: ['Python', 'GMM', 'GSS', 'regime detection'],
+      status: 'active',
+      link: 'https://quantifiedtrader.com/projects/'
     },
     {
-      name: 'QuantPype',
-      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
-      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
-      tagColors: ['purple', 'green', 'blue', 'orange', 'cyan'],
-      website: 'https://parasxparkash.github.io/quantpype',
-      status: 'active'
-    },
-    {
-      name: 'AtharvaSoft',
-      description: 'A modern astrology platform combining traditional Vedic astrology principles with contemporary technology, offering personalized astrological insights and computational tools for chart analysis.',
-      tags: ['Astrology', 'Vedic', 'Chart Analysis', 'Modern Tools'],
-      tagColors: ['indigo', 'purple', 'pink', 'blue'],
-      website: 'https://atharvasoft.com',
-      status: 'active'
+      id: 5,
+      name: 'Stock Sentiment Tracker',
+      year: '2025',
+      description: 'US equity sentiment tracker using VADER lexical analysis on financial news headlines. Tracks prices, sentiment scores, and correlations for S&P 500 stocks. Updated daily.',
+      technologies: ['Python', 'VADER', 'NLP', 'financial news APIs'],
+      status: 'active',
+      link: 'https://quantifiedtrader.com/projects/'
     }
   ]
 
@@ -54,19 +51,31 @@ export default function ProjectsTab() {
 
   return (
     <section className="mb-12">
+      <div className="mb-6">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+          Featured projects in quantitative finance, portfolio construction, and systematic investing.
+          Each project applies quantitative methods to specific problems in finance — from clustering-based
+          portfolio construction and market regime detection to adaptive portfolio strategies and RRG-based rotation analysis.
+        </p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          Projects include interactive visualizations, source code links, and methodology explanations.
+          Data is updated periodically via automated pipelines.
+        </p>
+      </div>
+
       <div className="space-y-8">
         <ul className="space-y-8">
           {projects.map((project, index) => (
-            <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
+            <div key={project.id} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
               <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
                 <div className="flex items-baseline gap-2 mb-1">
-                  <h3 className="text-md font-medium">{project.name}</h3>
+                  <h3 className="text-md font-medium">{project.name} ({project.year})</h3>
                   <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
                       <div className="w-1.5 h-1.5 bg-green-500 rounded animate-pulse" title="Active"></div>
                     )}
                     <a
-                      href={project.website}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors flex items-center"
@@ -80,9 +89,9 @@ export default function ProjectsTab() {
                 </div>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span key={tag} className={tagClass}>
-                      {tag}
+                  {project.technologies.map((tech, techIndex) => (
+                    <span key={tech} className={tagClass}>
+                      {tech}
                     </span>
                   ))}
                 </div>

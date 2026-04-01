@@ -6,6 +6,7 @@ import { useCommits } from '@/hooks/useCommits'
 import { usePullRequests } from '@/hooks/usePullRequests'
 import { useISTClock } from '@/hooks/useISTClock'
 import ProjectsTab from '@/components/ProjectsTab'
+import SaaSTab from '@/components/SaaSTab'
 import ExperienceTab from '@/components/ExperienceTab'
 import EducationTab from '@/components/EducationTab'
 import BlogsTab from '@/components/BlogsTab'
@@ -17,6 +18,7 @@ import GitHubContributionGraph from '@/components/GitHubContributionGraph'
 import Image from 'next/image'
 
 const tabs = [
+  { id: 'saas', label: 'SaaS' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
@@ -24,7 +26,7 @@ const tabs = [
 ]
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('projects')
+  const [activeTab, setActiveTab] = useState('saas')
   const currentYear = new Date().getFullYear()
   const [selectedYear, setSelectedYear] = useState(currentYear)
   const { posts: topPosts } = usePosts(2)
@@ -78,6 +80,8 @@ export default function Home() {
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'saas':
+        return <SaaSTab />
       case 'projects':
         return <ProjectsTab />
       case 'experience':
@@ -87,7 +91,7 @@ export default function Home() {
       case 'blogs':
         return <BlogsTab />
       default:
-        return <ProjectsTab />
+        return <SaaSTab />
     }
   }
 
