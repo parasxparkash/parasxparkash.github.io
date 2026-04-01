@@ -4,8 +4,10 @@
  * 
  * Requirements:
  * 1. GitHub Actions provides GITHUB_TOKEN automatically
- * 2. Or set manually: GITHUB_TOKEN=your_token_here
+ * 2. Or set manually: Create a .env file with GITHUB_TOKEN=your_token_here
  */
+
+require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
@@ -193,7 +195,7 @@ async function savePullRequests() {
 
 async function main() {
   const currentYear = new Date().getFullYear();
-  const years = [2025, 2026]; // Add more years as needed
+  const years = [2023, 2024, 2025, 2026]; // Add more years as needed
 
   console.log('Starting GitHub data fetch...\n');
 

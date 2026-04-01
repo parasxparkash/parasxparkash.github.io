@@ -40,3 +40,5 @@ coverage/
 # Misc
 .claude/
 parasxparkash.github.io/
+.env
+.env.local

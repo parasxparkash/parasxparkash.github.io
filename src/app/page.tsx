@@ -31,10 +31,18 @@ export default function Home() {
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
+  const [contributions2023, setContributions2023] = useState<number | null>(null)
+  const [contributions2024, setContributions2024] = useState<number | null>(null)
   const [contributions2025, setContributions2025] = useState<number | null>(null)
   const [contributions2026, setContributions2026] = useState<number | null>(null)
 
   useEffect(() => {
+    const handler2023 = (e: Event) => {
+      setContributions2023((e as CustomEvent).detail)
+    }
+    const handler2024 = (e: Event) => {
+      setContributions2024((e as CustomEvent).detail)
+    }
     const handler2025 = (e: Event) => {
       setContributions2025((e as CustomEvent).detail)
     }
@@ -42,16 +50,23 @@ export default function Home() {
       setContributions2026((e as CustomEvent).detail)
     }
     
+    window.addEventListener('contributions-2023', handler2023)
+    window.addEventListener('contributions-2024', handler2024)
     window.addEventListener('contributions-2025', handler2025)
     window.addEventListener('contributions-2026', handler2026)
     
     return () => {
+      window.removeEventListener('contributions-2023', handler2023)
+      window.removeEventListener('contributions-2024', handler2024)
       window.removeEventListener('contributions-2025', handler2025)
       window.removeEventListener('contributions-2026', handler2026)
     }
   }, [])
 
-  const currentContributionCount = selectedYear === 2025 ? contributions2025 : contributions2026
+  const currentContributionCount = 
+    selectedYear === 2023 ? contributions2023 :
+    selectedYear === 2024 ? contributions2024 :
+    selectedYear === 2025 ? contributions2025 : contributions2026
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
@@ -109,7 +124,7 @@ export default function Home() {
             {/* Location + Building/Testing/Merging Animation */}
             <div className="flex flex-col items-center gap-2 mb-2">
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Gurugram, Haryana
+                Gurugram, Haryana| Bengaluru, Karnataka
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
@@ -186,7 +201,7 @@ export default function Home() {
 
           <div className="space-y-2 mb-1">
             <div className="flex items-center text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Gurugram, Haryana, India</span>
+              <span className="text-zinc-600 dark:text-zinc-400">Gurugram, Haryana-&gt; Bengaluru, Karnataka</span>
             </div>
           </div>
 
@@ -355,7 +370,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    Gurugram, Haryana
+                    Gurugram, Haryana-&gt; Bengaluru, Karnataka
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}
@@ -390,6 +405,26 @@ export default function Home() {
               </div>
               <div className="flex gap-2">
                 <button
+                  onClick={() => setSelectedYear(2023)}
+                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                    selectedYear === 2023
+                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  }`}
+                >
+                  2023
+                </button>
+                <button
+                  onClick={() => setSelectedYear(2024)}
+                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                    selectedYear === 2024
+                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                  }`}
+                >
+                  2024
+                </button>
+                <button
                   onClick={() => setSelectedYear(2025)}
                   className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
                     selectedYear === 2025
@@ -414,8 +449,18 @@ export default function Home() {
             <div className="relative overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedYear === 2026 ? 100 : 0}%)` }}
+                style={{ transform: `translateX(-${selectedYear === 2023 ? 0 : selectedYear === 2024 ? 100 : selectedYear === 2025 ? 200 : 300}%)` }}
               >
+                <div className="w-full flex-shrink-0">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2023-01-01&to=2023-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                    <GitHubContributionGraph year={2023} />
+                  </a>
+                </div>
+                <div className="w-full flex-shrink-0">
+                  <a href={`https://github.com/parasxparkash?tab=overview&from=2024-01-01&to=2024-12-31`} target="_blank" rel="noopener noreferrer" className="block">
+                    <GitHubContributionGraph year={2024} />
+                  </a>
+                </div>
                 <div className="w-full flex-shrink-0">
                   <a href={`https://github.com/parasxparkash?tab=overview&from=2025-01-01&to=2025-12-31`} target="_blank" rel="noopener noreferrer" className="block">
                     <GitHubContributionGraph year={2025} />
