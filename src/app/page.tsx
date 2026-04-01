@@ -490,10 +490,10 @@ export default function Home() {
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm whitespace-nowrap transition-all duration-300 ease-out ${
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-sm whitespace-nowrap transition-all duration-300 ease-out ${
                     activeTab === tab.id
-                      ? 'bg-zinc-100 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 shadow-inner border-zinc-300 dark:border-zinc-600'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100'
+                      ? 'text-zinc-900 dark:text-zinc-100 font-medium bg-zinc-50 dark:bg-zinc-800/30'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-25 dark:hover:bg-zinc-800/20'
                   }`}
                    id={`tab-${tab.id}`}
                  >
