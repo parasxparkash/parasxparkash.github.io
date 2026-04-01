@@ -104,9 +104,9 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
   })
 
   return (
-    <div className="w-full">      
-      <div className="w-full overflow-hidden">
-        <div className="w-full">
+    <div className="w-full flex justify-center">
+      <div className="w-full max-w-4xl overflow-hidden">
+        <div className="w-full" style={{ margin: '0 auto' }}>
           {/* Month labels */}
           <div className="flex mb-1 ml-6 relative" style={{ height: '16px' }}>
             {monthLabels.map((label, i) => (
