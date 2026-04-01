@@ -47,7 +47,7 @@ export default function ProjectsTab() {
     }
   ]
 
-  const tagClass = 'px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded'
+  const tagClass = 'px-1.5 py-0.5 text-[10px] bg-zinc-700 bg-opacity-80 text-white dark:bg-zinc-400 dark:bg-opacity-80 dark:text-zinc-900 rounded'
 
   return (
     <section className="mb-12">
