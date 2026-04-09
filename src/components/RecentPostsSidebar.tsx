@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { usePosts } from '@/hooks/usePosts'
 import { BlogPostSummary } from '@/lib/post-types'
 import { getPostHref, isExternalPost } from '@/lib/post-utils'
@@ -10,6 +11,28 @@ interface RecentPostsSidebarProps {
 
 export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebarProps) {
   const { posts } = usePosts()
+  const [currentDateTime, setCurrentDateTime] = useState(
+    new Date().toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+      timeZone: 'Asia/Kolkata'
+    })
+  )
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(
+        new Date().toLocaleString('en-IN', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+          timeZone: 'Asia/Kolkata'
+        })
+      )
+    }, 60000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
   const pinnedPostIds = new Set(topPosts.map((post) => post.id))
   const recentPosts = posts.filter((post) => !pinnedPostIds.has(post.id))
   const renderPostItem = (post: Pick<BlogPostSummary, 'id' | 'title' | 'tags' | 'external_url'>) => (
@@ -82,6 +105,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
             <div className="text-right">
               <div className="mb-1">parasparkash@quantedx.com</div>
               <div>Design with nicotine and chai</div>
+              <div className="mt-1 text-xs">IST {currentDateTime}</div>
             </div>
           </div>
         </footer>
