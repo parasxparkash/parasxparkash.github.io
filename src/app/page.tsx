@@ -24,11 +24,47 @@ const tabs = [
   { id: 'education', label: 'Education' },
   { id: 'blogs', label: 'Blogs' },
 ]
+const contributionYears = [2023, 2024, 2025, 2026] as const
+type ContributionYear = (typeof contributionYears)[number]
+const resourceLinks = [
+  {
+    label: 'Maths Notes',
+    href: 'https://eigenotes.vercel.app',
+    title: 'Eigenotes',
+    cta: 'Eigenotes'
+  },
+  {
+    label: 'Self Quantization',
+    href: 'https://parasparkash.netlify.app',
+    title: 'StoicJournal',
+    cta: 'StoicJournal'
+  },
+  {
+    label: 'CS/Architecture Notes',
+    href: 'https://parasparkash.notion.site',
+    title: 'CS/Architecture Notes',
+    cta: 'Notion'
+  }
+] as const
+
+function formatShortDate(date: string) {
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  })
+}
+
+function getContributionLink(year: ContributionYear) {
+  return `https://github.com/parasxparkash?tab=overview&from=${year}-01-01&to=${year}-12-31`
+}
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('saas')
   const currentYear = new Date().getFullYear()
-  const [selectedYear, setSelectedYear] = useState(currentYear)
+  const initialYear = contributionYears.includes(currentYear as ContributionYear)
+    ? (currentYear as ContributionYear)
+    : contributionYears[contributionYears.length - 1]
+  const [selectedYear, setSelectedYear] = useState<ContributionYear>(initialYear)
   const { posts: topPosts } = usePosts(2)
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
@@ -39,36 +75,37 @@ export default function Home() {
   const [contributions2026, setContributions2026] = useState<number | null>(null)
 
   useEffect(() => {
-    const handler2023 = (e: Event) => {
-      setContributions2023((e as CustomEvent).detail)
-    }
-    const handler2024 = (e: Event) => {
-      setContributions2024((e as CustomEvent).detail)
-    }
-    const handler2025 = (e: Event) => {
-      setContributions2025((e as CustomEvent).detail)
-    }
-    const handler2026 = (e: Event) => {
-      setContributions2026((e as CustomEvent).detail)
-    }
-    
-    window.addEventListener('contributions-2023', handler2023)
-    window.addEventListener('contributions-2024', handler2024)
-    window.addEventListener('contributions-2025', handler2025)
-    window.addEventListener('contributions-2026', handler2026)
-    
+    const contributionEvents = [
+      { eventName: 'contributions-2023', setValue: setContributions2023 },
+      { eventName: 'contributions-2024', setValue: setContributions2024 },
+      { eventName: 'contributions-2025', setValue: setContributions2025 },
+      { eventName: 'contributions-2026', setValue: setContributions2026 }
+    ] as const
+
+    const listeners = contributionEvents.map(({ eventName, setValue }) => {
+      const handler = (e: Event) => {
+        setValue((e as CustomEvent<number>).detail)
+      }
+
+      window.addEventListener(eventName, handler)
+      return { eventName, handler }
+    })
+
     return () => {
-      window.removeEventListener('contributions-2023', handler2023)
-      window.removeEventListener('contributions-2024', handler2024)
-      window.removeEventListener('contributions-2025', handler2025)
-      window.removeEventListener('contributions-2026', handler2026)
+      listeners.forEach(({ eventName, handler }) => {
+        window.removeEventListener(eventName, handler)
+      })
     }
   }, [])
 
-  const currentContributionCount = 
-    selectedYear === 2023 ? contributions2023 :
-    selectedYear === 2024 ? contributions2024 :
-    selectedYear === 2025 ? contributions2025 : contributions2026
+  const contributionCounts: Record<ContributionYear, number | null> = {
+    2023: contributions2023,
+    2024: contributions2024,
+    2025: contributions2025,
+    2026: contributions2026
+  }
+  const currentContributionCount = contributionCounts[selectedYear]
+  const selectedYearIndex = contributionYears.indexOf(selectedYear)
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
@@ -155,42 +192,20 @@ export default function Home() {
 
             {/* Eigenotes and Stoic Journal Links - Mobile */}
             <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs mx-auto">
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
-                <a
-                  href="https://eigenotes.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                  title="Eigenotes"
-                >
-                  Eigenotes
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
-                <a
-                  href="https://parasparkash.netlify.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                  title="StoicJournal"
-                >
-                  StoicJournal
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
-                <a
-                  href="https://parasparkash.notion.site"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                  title="CS/Architecture Notes"
-                >
-                  Notion
-                </a>
-              </div>
+              {resourceLinks.map((link) => (
+                <div key={link.label} className="flex items-center gap-2 text-sm">
+                  <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                    title={link.title}
+                  >
+                    {link.cta}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -211,42 +226,20 @@ export default function Home() {
 
           {/* Eigenotes and Stoic Journal Links - Desktop */}
           <div className="hidden lg:flex flex-col items-start gap-2 mt-3 mb-1">
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Maths Notes →</span>
-              <a
-                href="https://eigenotes.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                title="Eigenotes"
-              >
-                Eigenotes
-              </a>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Self Quantization →</span>
-              <a
-                href="https://parasparkash.netlify.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                title="StoicJournal"
-              >
-                StoicJournal
-              </a>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">CS/Architecture Notes →</span>
-              <a
-                href="https://parasparkash.notion.site"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
-                title="CS/Architecture Notes"
-              >
-                Notion
-              </a>
-            </div>
+            {resourceLinks.map((link) => (
+              <div key={link.label} className="flex items-center gap-2 text-sm">
+                <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title={link.title}
+                >
+                  {link.cta}
+                </a>
+              </div>
+            ))}
           </div>
 
           <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
@@ -300,10 +293,7 @@ export default function Home() {
                         <span className="font-mono text-[10px]">{commit.sha}</span>
                         <span>•</span>
                         <span className="text-[10px]">
-                          {new Date(commit.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric'
-                          })}
+                          {formatShortDate(commit.date)}
                         </span>
                       </div>
                     </div>
@@ -338,10 +328,7 @@ export default function Home() {
                         <span className="font-mono text-[10px]">#{pr.number}</span>
                         <span>•</span>
                         <span className="text-[10px]">
-                          {new Date(pr.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric'
-                          })}
+                          {formatShortDate(pr.date)}
                         </span>
                       </div>
                     </div>
@@ -364,8 +351,14 @@ export default function Home() {
               {/* Mobile: Show only description above tabs, name/location/icons are in sidebar */}
               <div className="hidden md:block animate-fade-in animate-delay-200">
                 <div className="flex items-baseline justify-between gap-4 mb-4">
-                  <h1 className="text-2xl font-medium tracking-tight">
+                  <h1 className="text-2xl font-medium tracking-tight flex items-center gap-2">
                     Paras Parkash
+                    <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 font-bold leading-none">
+                      <span className="w-2 h-2 bg-green-500 rounded-full animate-blink"></span>
+                      <span className="leading-none">
+                        <RotatingText items={['merging', 'testing', 'building']} />
+                      </span>
+                    </span>
                   </h1>
                   <div className="flex items-center gap-4">
                     <SocialLinks />
@@ -379,12 +372,6 @@ export default function Home() {
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}
                   </p>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
-                      <RotatingText items={['Open to Opportunities', 'deploying', 'merging', 'building', 'testing']} />
-                    </p>
-                  </div>
                 </div>
               </div>
 
@@ -408,73 +395,33 @@ export default function Home() {
                 )}
               </div>
               <div className="flex gap-2">
-                <button
-                  onClick={() => setSelectedYear(2023)}
-                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
-                    selectedYear === 2023
-                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
-                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
-                  }`}
-                >
-                  2023
-                </button>
-                <button
-                  onClick={() => setSelectedYear(2024)}
-                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
-                    selectedYear === 2024
-                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
-                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
-                  }`}
-                >
-                  2024
-                </button>
-                <button
-                  onClick={() => setSelectedYear(2025)}
-                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
-                    selectedYear === 2025
-                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
-                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
-                  }`}
-                >
-                  2025
-                </button>
-                <button
-                  onClick={() => setSelectedYear(2026)}
-                  className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
-                    selectedYear === 2026
-                      ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
-                      : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
-                  }`}
-                >
-                  2026
-                </button>
+                {contributionYears.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                      selectedYear === year
+                        ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                        : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                    }`}
+                  >
+                    {year}
+                  </button>
+                ))}
               </div>
             </div>
             <div className="relative overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedYear === 2023 ? 0 : selectedYear === 2024 ? 100 : selectedYear === 2025 ? 200 : 300}%)` }}
+                style={{ transform: `translateX(-${selectedYearIndex * 100}%)` }}
               >
-                <div className="w-full flex-shrink-0 flex justify-center">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2023-01-01&to=2023-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
-                    <GitHubContributionGraph year={2023} />
-                  </a>
-                </div>
-                <div className="w-full flex-shrink-0 flex justify-center">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2024-01-01&to=2024-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
-                    <GitHubContributionGraph year={2024} />
-                  </a>
-                </div>
-                <div className="w-full flex-shrink-0 flex justify-center">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2025-01-01&to=2025-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
-                    <GitHubContributionGraph year={2025} />
-                  </a>
-                </div>
-                <div className="w-full flex-shrink-0 flex justify-center">
-                  <a href={`https://github.com/parasxparkash?tab=overview&from=2026-01-01&to=2026-12-31`} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
-                    <GitHubContributionGraph year={2026} />
-                  </a>
-                </div>
+                {contributionYears.map((year) => (
+                  <div key={year} className="w-full flex-shrink-0 flex justify-center">
+                    <a href={getContributionLink(year)} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
+                      <GitHubContributionGraph year={year} />
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </section>

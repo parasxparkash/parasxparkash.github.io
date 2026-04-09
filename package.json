@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:posts": "node generate-posts.js",
+    "prebuild": "node generate-posts.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -38,7 +38,7 @@ export default function RotatingText({ items, className = '' }: RotatingTextProp
   return (
     <span 
       className={`inline-block relative overflow-hidden rotating-text-container ${className}`} 
-      style={{ minHeight: '1.2em', lineHeight: '1.2em', display: 'inline-block' }}
+      style={{ minHeight: '1em', lineHeight: '1em', display: 'inline-block', verticalAlign: 'bottom' }}
     >
       {/* Current text sliding out */}
       <span
@@ -65,4 +65,3 @@ export default function RotatingText({ items, className = '' }: RotatingTextProp
     </span>
   )
 }
-

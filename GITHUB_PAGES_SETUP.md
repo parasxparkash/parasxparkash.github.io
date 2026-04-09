@@ -220,4 +220,83 @@ const GITHUB_USERNAME = 'your-username';
 
 ---
 
+## ✍️ Adding Blogs
+
+Your site supports both:
+
+- Local posts written in Markdown
+- External posts from Substack, Medium, or any other website
+
+### Add a local blog post
+
+1. Create a new file in `public/posts/`, for example `my-new-post.md`
+2. Add frontmatter at the top:
+
+```md
+---
+title: "My New Post"
+date: 2026-04-09
+tags: [ai, finance]
+description: "Short summary for the blog list."
+author: Paras Parkash
+reading_time: 6
+---
+
+# My New Post
+
+Write your article here in Markdown.
+```
+
+3. Run:
+
+```bash
+npm run generate:posts
+```
+
+This refreshes `public/posts.json`, which powers the homepage blog list.
+
+### Add an external blog post
+
+Edit `public/external-posts.json` and add an entry like this:
+
+```json
+[
+  {
+    "id": "market-notes-substack-apr-2026",
+    "title": "Market Notes: April 2026",
+    "date": "2026-04-09",
+    "description": "A practical write-up on positioning, volatility, and what I’m watching this month.",
+    "source": "Substack",
+    "external_url": "https://your-substack-url",
+    "link_text": "Read on Substack",
+    "tags": ["markets", "macro"]
+  }
+]
+```
+
+Notes:
+
+- `id` should be unique
+- `description` is the descriptive text shown in the blog list
+- `source` is an optional label like `Substack`, `Medium`, or `Personal Site`
+- `link_text` lets you show text like `Read on Substack`
+- External posts open directly on the other website
+
+After editing the file, run:
+
+```bash
+npm run generate:posts
+```
+
+### Deploying blog changes
+
+After adding local or external posts:
+
+1. Run `npm run generate:posts`
+2. Commit the updated files
+3. Push to GitHub
+4. GitHub Pages will deploy the changes
+
+---
+
 **That's it!** Your GitHub contributions will update automatically every day. 🎉

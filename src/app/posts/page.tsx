@@ -1,5 +1,12 @@
 import { Metadata } from 'next'
 import { getSortedPostsData } from '@/lib/posts'
+import {
+  formatPostFullDate,
+  formatPostMonthDay,
+  getPostHref,
+  getPostLinkLabel,
+  isExternalPost
+} from '@/lib/post-utils'
 
 export const metadata: Metadata = {
   title: 'Posts',
@@ -39,17 +46,28 @@ export default function Posts() {
                   <article key={post.id} className="border-b border-zinc-200 dark:border-zinc-700 pb-8 last:border-b-0">
                     <div className="flex items-baseline justify-between mb-2">
                       <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        <a href={`/posts/${post.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                        <a
+                          href={getPostHref(post)}
+                          target={isExternalPost(post) ? '_blank' : undefined}
+                          rel={isExternalPost(post) ? 'noopener noreferrer' : undefined}
+                          className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        >
                           {post.title}
                         </a>
                       </h3>
                       <time className="text-sm text-zinc-500 dark:text-zinc-400">
-                        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+                        {formatPostFullDate(post.date)}
                       </time>
                     </div>
 
                     {post.description && (
                       <p className="text-zinc-600 dark:text-zinc-400 mb-4">{post.description}</p>
+                    )}
+
+                    {post.source && (
+                      <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
+                        {post.source}
+                      </p>
                     )}
 
                     {post.tags && post.tags.length > 0 && (
@@ -62,8 +80,13 @@ export default function Posts() {
                       </div>
                     )}
 
-                    <a href={`/posts/${post.id}`} className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                      Read more
+                    <a
+                      href={getPostHref(post)}
+                      target={isExternalPost(post) ? '_blank' : undefined}
+                      rel={isExternalPost(post) ? 'noopener noreferrer' : undefined}
+                      className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    >
+                      {getPostLinkLabel(post)}
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                       </svg>
@@ -84,12 +107,17 @@ export default function Posts() {
             {allPostsData.slice(0, 5).map((post) => (
               <div key={post.id} className="p-3 rounded hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
                 <h4 className="font-medium text-zinc-900 dark:text-zinc-100 text-sm mb-2">
-                  <a href={`/posts/${post.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <a
+                    href={getPostHref(post)}
+                    target={isExternalPost(post) ? '_blank' : undefined}
+                    rel={isExternalPost(post) ? 'noopener noreferrer' : undefined}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
                     {post.title}
                   </a>
                 </h4>
                 <time className="text-xs text-zinc-500 dark:text-zinc-400">
-                  {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  {formatPostMonthDay(post.date)}
                 </time>
               </div>
             ))}
