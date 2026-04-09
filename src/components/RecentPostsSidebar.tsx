@@ -105,7 +105,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
             <div className="text-right">
               <div className="mb-1">parasparkash@quantedx.com</div>
               <div>Design with nicotine and chai</div>
-              <div className="mt-1 text-xs">IST {currentDateTime}</div>
+              <div className="mt-1 text-xs">Updated at: IST {currentDateTime}</div>
             </div>
           </div>
         </footer>
