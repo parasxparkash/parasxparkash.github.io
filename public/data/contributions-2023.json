@@ -1355,12 +1355,12 @@
           "weekday": 4
         },
         {
-          "contributionCount": 0,
+          "contributionCount": 1,
           "date": "2023-09-01",
           "weekday": 5
         },
         {
-          "contributionCount": 4,
+          "contributionCount": 3,
           "date": "2023-09-02",
           "weekday": 6
         }
