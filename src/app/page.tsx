@@ -165,7 +165,7 @@ export default function Home() {
             {/* Location + Building/Testing/Merging Animation */}
             <div className="flex flex-col items-center gap-2 mb-2">
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Gurugram, Haryana| Bengaluru, Karnataka
+                Hyderabad / Bengaluru
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
@@ -220,7 +220,7 @@ export default function Home() {
 
           <div className="space-y-2 mb-1">
             <div className="flex items-center text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Gurugram, Haryana-&gt; Bengaluru, Karnataka</span>
+              <span className="text-zinc-600 dark:text-zinc-400">Hyderabad / Bengaluru</span>
             </div>
           </div>
 
@@ -367,7 +367,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    Gurugram, Haryana-&gt; Bengaluru, Karnataka
+                    Hyderabad / Bengaluru
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}
