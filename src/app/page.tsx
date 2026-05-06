@@ -197,7 +197,7 @@ export default function Home() {
                 className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 title="View full About Me page"
               >
-                <span>About Me</span>
+                <span className="font-semibold">About Me</span>
                 <svg 
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
                   fill="none" 
@@ -244,7 +244,7 @@ export default function Home() {
               className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               title="View full About Me page"
             >
-              <span>Read more</span>
+              <span className="font-semibold">Read more</span>
               <svg 
                 className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
                 fill="none" 
@@ -306,9 +306,9 @@ export default function Home() {
 
         <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
-        {/* Recent Commits Section */}
+        {/* Recent Commits Section - Desktop only */}
         {commits.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-4 hidden lg:block">
             <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Commits</h4>
             <div className="space-y-2">
               {commits.slice(0, 4).map((commit) => (
@@ -342,8 +342,9 @@ export default function Home() {
           </div>
         )}
 
+        {/* Recent Pull Requests Section - Desktop only */}
         {pullRequests.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-4 hidden lg:block">
             <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Pull Requests</h4>
             <div className="space-y-2">
               {pullRequests.slice(0, 2).map((pr) => (
@@ -494,6 +495,81 @@ export default function Home() {
             <div className="pl-2 pb-12">
               {renderTabContent()}
             </div>
+          </div>
+
+          {/* Recent Commits and Pull Requests - Mobile only (at bottom) */}
+          <div className="lg:hidden mt-8 space-y-6">
+            {/* Recent Commits Section - Mobile */}
+            {commits.length > 0 && (
+              <div>
+                <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Commits</h4>
+                <div className="space-y-2">
+                  {commits.slice(0, 4).map((commit) => (
+                    <a
+                      key={commit.sha}
+                      href={commit.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                    >
+                      <div className="flex items-start gap-2">
+                        <div className="flex-shrink-0 mt-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
+                            {commit.message}
+                          </p>
+                          <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                            <span className="font-mono text-[10px]">{commit.sha}</span>
+                            <span>•</span>
+                            <span className="text-[10px]">
+                              {formatShortDate(commit.date)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recent Pull Requests Section - Mobile */}
+            {pullRequests.length > 0 && (
+              <div>
+                <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Pull Requests</h4>
+                <div className="space-y-2">
+                  {pullRequests.slice(0, 2).map((pr) => (
+                    <a
+                      key={pr.number}
+                      href={pr.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                    >
+                      <div className="flex items-start gap-2">
+                        <div className="flex-shrink-0 mt-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
+                            {pr.title}
+                          </p>
+                          <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                            <span className="font-mono text-[10px]">#{pr.number}</span>
+                            <span>•</span>
+                            <span className="text-[10px]">
+                              {formatShortDate(pr.date)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
