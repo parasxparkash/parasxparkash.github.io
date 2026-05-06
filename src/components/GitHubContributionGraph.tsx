@@ -105,8 +105,8 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
 
   return (
     <div className="w-full flex justify-center">
-      <div className="w-full max-w-4xl overflow-hidden">
-        <div className="w-full" style={{ margin: '0 auto' }}>
+      <div className="w-full max-w-4xl overflow-x-auto overflow-y-hidden scrollbar-hide">
+        <div className="w-full min-w-[600px]" style={{ margin: '0 auto' }}>
           {/* Month labels */}
           <div className="flex mb-1 ml-6 relative" style={{ height: '16px' }}>
             {monthLabels.map((label, i) => (
@@ -136,7 +136,7 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
             </div>
 
             {/* Weeks */}
-            <div className="flex gap-0.5 flex-1 overflow-hidden">
+            <div className="flex gap-0.5">
               {data.weeks.map((week, weekIndex) => (
                 <div key={weekIndex} className="flex flex-col gap-0.5">
                   {week.contributionDays.map((day, dayIndex) => (

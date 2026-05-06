@@ -139,7 +139,7 @@ export default function Home() {
 
       <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch overflow-x-hidden">
         {/* Left Sidebar */}
-        <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
+        <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
           {/* Profile Image */}
           <div className="mb-2 flex justify-center">
             <Image
@@ -424,8 +424,8 @@ export default function Home() {
 
           {/* GitHub Contributions */}
           <section className="mb-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-baseline gap-3">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
                 <h3 className="text-md font-medium">GitHub Contributions</h3>
                 {currentContributionCount !== null && (
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -478,8 +478,8 @@ export default function Home() {
                    type="button"
                   className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-sm whitespace-nowrap transition-all duration-300 ease-out ${
                     activeTab === tab.id
-                      ? 'text-zinc-900 dark:text-zinc-100 font-medium bg-zinc-50 dark:bg-zinc-800/30'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-25 dark:hover:bg-zinc-800/20'
+                      ? 'text-zinc-900 dark:text-zinc-100 font-medium lg:bg-zinc-50 lg:dark:bg-zinc-800/30'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:hover:bg-zinc-25 lg:dark:hover:bg-zinc-800/20'
                   }`}
                    id={`tab-${tab.id}`}
                  >

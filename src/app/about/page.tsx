@@ -67,7 +67,7 @@ export default function AboutPage() {
         {/* Current Work */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Current Work</h2>
-          <div className="bg-zinc-50 dark:bg-zinc-800/30 p-6 rounded-lg mb-6">
+          <div className="lg:bg-zinc-50 lg:dark:bg-zinc-800/30 p-6 rounded-lg mb-6">
             <h3 className="text-lg font-medium mb-2 text-zinc-900 dark:text-zinc-100">Building @QuantPype</h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
               A local AI agent-based trading platform with advanced automation and intelligent strategy execution

@@ -58,7 +58,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
   )
 
   return (
-    <div className="w-72 flex-shrink-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
+    <div className="w-72 flex-shrink-0 flex flex-col lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
       {/* Pinned Post Section */}
       {topPosts.length > 0 && (
         <div>
