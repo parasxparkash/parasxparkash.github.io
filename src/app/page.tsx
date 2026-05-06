@@ -133,11 +133,11 @@ export default function Home() {
   }
 
   return (
-    <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col overflow-x-hidden bg-white dark:bg-zinc-900 min-h-screen">
+    <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col bg-white dark:bg-zinc-900 min-h-screen overflow-x-hidden">
       {/* Mobile Overlay */}
       <div id="mobile-overlay" className="mobile-overlay hidden"></div>
 
-      <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch">
+      <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch overflow-x-hidden">
         {/* Left Sidebar */}
         <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col bg-zinc-50 dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
           {/* Profile Image */}
@@ -158,14 +158,14 @@ export default function Home() {
             <h1 className="text-xl font-medium tracking-tight mb-3">Paras Parkash</h1>
 
             {/* Social Icons */}
-            <div className="mb-3">
+            <div className="mb-3 flex justify-center">
               <SocialLinks variant="mobile" />
             </div>
 
             {/* Location + Building/Testing/Merging Animation */}
             <div className="flex flex-col items-center gap-2 mb-2">
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Hyderabad / Bengaluru
+                Hyderabad / Delhi
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
@@ -186,12 +186,31 @@ export default function Home() {
             </p>
 
             {/* Description Text */}
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-4 text-justify">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-2 text-justify">
               Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
             </p>
 
+            {/* About Me Link - Mobile */}
+            <div className="flex mb-4">
+              <a
+                href="/about"
+                className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                title="View full About Me page"
+              >
+                <span>About Me</span>
+                <svg 
+                  className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+
             {/* Eigenotes and Stoic Journal Links - Mobile */}
-            <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs mx-auto">
+            <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs">
               {resourceLinks.map((link) => (
                 <div key={link.label} className="flex items-center gap-2 text-sm">
                   <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
@@ -218,9 +237,28 @@ export default function Home() {
             Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
           </p>
 
+          {/* About Me Link - Desktop */}
+          <div className="hidden lg:flex mb-3">
+            <a
+              href="/about"
+              className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              title="View full About Me page"
+            >
+              <span>Read more</span>
+              <svg 
+                className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+
           <div className="space-y-2 mb-1">
             <div className="flex items-center text-sm">
-              <span className="text-zinc-600 dark:text-zinc-400">Hyderabad / Bengaluru</span>
+              <span className="text-zinc-600 dark:text-zinc-400">Hyderabad / Delhi</span>
             </div>
           </div>
 
@@ -367,7 +405,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    Hyderabad / Bengaluru
+                    Hyderabad / Delhi
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}

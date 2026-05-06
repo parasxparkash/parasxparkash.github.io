@@ -286,7 +286,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300`}>
+      <body className={`${inter.className} font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300`} suppressHydrationWarning>
         {children}
       </body>
     </html>
