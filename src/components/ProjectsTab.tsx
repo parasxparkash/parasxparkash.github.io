@@ -81,7 +81,7 @@ export default function ProjectsTab() {
                 </div>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
+                  {project.technologies.map((tech) => (
                     <span key={tech} className={tagClass}>
                       {tech}
                     </span>
