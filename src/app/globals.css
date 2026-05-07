@@ -214,8 +214,48 @@ a, button {
   }
 }
 
-/* Tablet and Mobile - Single column layout (below 1200px) */
-@media (max-width: 1199px) {
+/* Tablet - Two column layout (768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  /* Force two column layout */
+  .flex.gap-12 {
+    flex-direction: row !important;
+    gap: 2rem !important;
+  }
+
+  /* Left sidebar - visible */
+  .flex.gap-12 > div:first-child {
+    width: 280px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  /* Center content - takes remaining space */
+  .flex.gap-12 > div:nth-child(2) {
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  /* Right sidebar - hidden on tablet */
+  .flex.gap-12 > div:last-child {
+    display: none !important;
+  }
+
+  /* Remove height constraints for tablet */
+  .h-screen, .h-fit, .h-full, .h-\[calc\(100vh-2rem\)\] {
+    height: auto !important;
+  }
+
+  .overflow-y-auto {
+    overflow-y: visible !important;
+    max-height: none !important;
+  }
+}
+
+/* Mobile and Small Tablet - Single column layout (below 768px) */
+@media (max-width: 767px) {
   /* Override the mobile menu toggle and overlay */
   #mobile-menu-toggle {
     display: none !important;
@@ -256,7 +296,7 @@ a, button {
     position: static !important;
   }
 
-  /* Right sidebar styling for tablets and mobile */
+  /* Right sidebar styling for mobile */
   .flex.gap-12 > div:last-child {
     display: block !important;
     width: 100% !important;

@@ -574,7 +574,7 @@ export default function Home() {
         </div>
 
         {/* Right Sidebar - Hidden on tablet (md), visible on desktop (lg+) */}
-        <div className="hidden xl:block">
+        <div className="hidden lg:block xl:block">
           <RecentPostsSidebar topPosts={topPosts} />
         </div>
       </div>
