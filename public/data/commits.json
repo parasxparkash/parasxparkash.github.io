@@ -1,37 +1,37 @@
 [
   {
-    "sha": "d5d9276",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-05T02:24:33Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/d5d9276ad9fbce0989dd0afdfaf08a31f0dd8546",
-    "author": "github-actions[bot]"
+    "sha": "922022f",
+    "message": "Improve mobile view: consistent backgrounds, responsive GitHub contributions, larger profile image",
+    "date": "2026-05-06T17:48:20Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/922022f60a8f3881b08065bb42722f538f27f1aa",
+    "author": "parasxparkash"
   },
   {
-    "sha": "423e218",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-04T02:29:06Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/423e2188ba5f96abf042a2ed045ff3e6574fc561",
-    "author": "github-actions[bot]"
+    "sha": "6a0d0ac",
+    "message": "Move Recent Commits/PRs to bottom on mobile and make About Me text bold",
+    "date": "2026-05-06T15:03:35Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/6a0d0ac7229a60a911e5d00d3174934550336947",
+    "author": "parasxparkash"
   },
   {
-    "sha": "843e99b",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-03T02:30:32Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/843e99bc69a570990b4eb0aa62d426602f667065",
-    "author": "github-actions[bot]"
+    "sha": "5e31d3a",
+    "message": "feat: update location, fix mobile layout, enhance About page",
+    "date": "2026-05-06T11:52:08Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5e31d3a568c974cfab52d808b6da173712ed7509",
+    "author": "parasxparkash"
   },
   {
-    "sha": "bad900a",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-02T02:14:16Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/bad900ae76c81dd23bc1860004e216eb889a5a34",
-    "author": "github-actions[bot]"
+    "sha": "a02a71b",
+    "message": "chore: remove unused packages and dead code",
+    "date": "2026-05-06T11:19:05Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a02a71bca30c091addb7f72f0490dc57032aabbb",
+    "author": "parasxparkash"
   },
   {
-    "sha": "c222b2c",
+    "sha": "18b7c5f",
     "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-01T02:38:36Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/c222b2cb8d5f5058c410988b25054f123d3e5211",
+    "date": "2026-05-06T02:27:42Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/18b7c5f67803adb4fb5e9391c2f57a3d3890eab2",
     "author": "github-actions[bot]"
   }
 ]
