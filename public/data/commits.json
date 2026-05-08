@@ -1,5 +1,19 @@
 [
   {
+    "sha": "50c1ab4",
+    "message": "Add responsive layout: 3-column laptop, 2-column tablet, single-column mobile",
+    "date": "2026-05-07T12:21:54Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/50c1ab412f3871be333b4ea6e5ab676e24db75ee",
+    "author": "parasxparkash"
+  },
+  {
+    "sha": "abbc41e",
+    "message": "Update GitHub data (contributions, commits & pull requests)",
+    "date": "2026-05-07T02:29:18Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/abbc41e1930fb3f609e1ac104c0b1e476f24c679",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "922022f",
     "message": "Improve mobile view: consistent backgrounds, responsive GitHub contributions, larger profile image",
     "date": "2026-05-06T17:48:20Z",
@@ -19,19 +33,5 @@
     "date": "2026-05-06T11:52:08Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5e31d3a568c974cfab52d808b6da173712ed7509",
     "author": "parasxparkash"
-  },
-  {
-    "sha": "a02a71b",
-    "message": "chore: remove unused packages and dead code",
-    "date": "2026-05-06T11:19:05Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a02a71bca30c091addb7f72f0490dc57032aabbb",
-    "author": "parasxparkash"
-  },
-  {
-    "sha": "18b7c5f",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-06T02:27:42Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/18b7c5f67803adb4fb5e9391c2f57a3d3890eab2",
-    "author": "github-actions[bot]"
   }
 ]
