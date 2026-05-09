@@ -1,5 +1,12 @@
 [
   {
+    "sha": "e146e7a",
+    "message": "Update GitHub data (contributions, commits & pull requests)",
+    "date": "2026-05-08T02:36:34Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/e146e7ada6fc02f748f6ebce342ed9df98c2c4d1",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "50c1ab4",
     "message": "Add responsive layout: 3-column laptop, 2-column tablet, single-column mobile",
     "date": "2026-05-07T12:21:54Z",
@@ -25,13 +32,6 @@
     "message": "Move Recent Commits/PRs to bottom on mobile and make About Me text bold",
     "date": "2026-05-06T15:03:35Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/6a0d0ac7229a60a911e5d00d3174934550336947",
-    "author": "parasxparkash"
-  },
-  {
-    "sha": "5e31d3a",
-    "message": "feat: update location, fix mobile layout, enhance About page",
-    "date": "2026-05-06T11:52:08Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5e31d3a568c974cfab52d808b6da173712ed7509",
     "author": "parasxparkash"
   }
 ]
