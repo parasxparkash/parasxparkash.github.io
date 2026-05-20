@@ -35,7 +35,7 @@ const resourceLinks = [
   },
   {
     label: 'Self Quantization',
-    href: 'https://parasparkash.netlify.app',
+    href: 'https://stoicjournals.netlify.app/u/parasparkash',
     title: 'StoicJournal',
     cta: 'StoicJournal'
   },
