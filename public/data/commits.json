@@ -1,5 +1,19 @@
 [
   {
+    "sha": "4b89b4d",
+    "message": "Update website link and fix tsconfig deprecation for build",
+    "date": "2026-05-20T19:21:50Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/4b89b4d34915475049b304b8d89ff0d4836baf2c",
+    "author": "parasxparkash"
+  },
+  {
+    "sha": "f4d6efa",
+    "message": "Update GitHub data (contributions, commits & pull requests)",
+    "date": "2026-05-20T02:48:38Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f4d6efa36e49b2357890c9d50f26cece97bf448d",
+    "author": "github-actions[bot]"
+  },
+  {
     "sha": "dbcd6d8",
     "message": "Update GitHub data (contributions, commits & pull requests)",
     "date": "2026-05-19T02:47:51Z",
@@ -18,20 +32,6 @@
     "message": "Update GitHub data (contributions, commits & pull requests)",
     "date": "2026-05-17T02:40:31Z",
     "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5bf3727308d07c751cef032f1f4ed53be8bfdc50",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "3573388",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-16T02:32:48Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/357338823b01061499a3763bf740e75b6e8d3c16",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "b17aff2",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-05-15T02:43:29Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/b17aff2a9b74abb2b05bdf8b036ac1e04fdae6b6",
     "author": "github-actions[bot]"
   }
 ]
