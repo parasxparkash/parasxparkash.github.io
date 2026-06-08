@@ -1,5 +1,5 @@
 {
-  "totalContributions": 365,
+  "totalContributions": 369,
   "weeks": [
     {
       "contributionDays": [
@@ -881,12 +881,12 @@
     {
       "contributionDays": [
         {
-          "contributionCount": 0,
+          "contributionCount": 2,
           "date": "2026-06-07",
           "weekday": 0
         },
         {
-          "contributionCount": 0,
+          "contributionCount": 2,
           "date": "2026-06-08",
           "weekday": 1
         },
