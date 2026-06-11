@@ -69,43 +69,38 @@ export default function Home() {
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
-  const [contributions2023, setContributions2023] = useState<number | null>(null)
-  const [contributions2024, setContributions2024] = useState<number | null>(null)
-  const [contributions2025, setContributions2025] = useState<number | null>(null)
-  const [contributions2026, setContributions2026] = useState<number | null>(null)
+  const [contributionCounts, setContributionCounts] = useState<Record<ContributionYear, number | null>>({
+    2023: null,
+    2024: null,
+    2025: null,
+    2026: null,
+  })
 
   useEffect(() => {
-    const contributionEvents = [
-      { eventName: 'contributions-2023', setValue: setContributions2023 },
-      { eventName: 'contributions-2024', setValue: setContributions2024 },
-      { eventName: 'contributions-2025', setValue: setContributions2025 },
-      { eventName: 'contributions-2026', setValue: setContributions2026 }
-    ] as const
+    let cancelled = false
 
-    const listeners = contributionEvents.map(({ eventName, setValue }) => {
-      const handler = (e: Event) => {
-        setValue((e as CustomEvent<number>).detail)
-      }
-
-      window.addEventListener(eventName, handler)
-      return { eventName, handler }
+    Promise.all(
+      contributionYears.map(async (year) => {
+        try {
+          const response = await fetch(`/data/contributions-${year}.json`)
+          if (!response.ok) return [year, null] as const
+          const data = await response.json()
+          return [year, data.totalContributions as number] as const
+        } catch {
+          return [year, null] as const
+        }
+      })
+    ).then((results) => {
+      if (cancelled) return
+      setContributionCounts(Object.fromEntries(results) as Record<ContributionYear, number | null>)
     })
 
     return () => {
-      listeners.forEach(({ eventName, handler }) => {
-        window.removeEventListener(eventName, handler)
-      })
+      cancelled = true
     }
   }, [])
 
-  const contributionCounts: Record<ContributionYear, number | null> = {
-    2023: contributions2023,
-    2024: contributions2024,
-    2025: contributions2025,
-    2026: contributions2026
-  }
   const currentContributionCount = contributionCounts[selectedYear]
-  const selectedYearIndex = contributionYears.indexOf(selectedYear)
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
@@ -134,9 +129,6 @@ export default function Home() {
 
   return (
     <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col bg-white dark:bg-zinc-900 min-h-screen overflow-x-hidden">
-      {/* Mobile Overlay */}
-      <div id="mobile-overlay" className="mobile-overlay hidden"></div>
-
       <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch overflow-x-hidden">
         {/* Left Sidebar */}
         <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
@@ -181,12 +173,12 @@ export default function Home() {
             </p>
 
             {/* Headline Text (removed "About Me" heading) */}
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
               Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
             </p>
 
             {/* Description Text */}
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-2 text-justify">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-2 text-justify">
               Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
             </p>
 
@@ -194,7 +186,7 @@ export default function Home() {
             <div className="flex mb-4">
               <a
                 href="/about"
-                className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="group inline-flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 title="View full About Me page"
               >
                 <span className="font-semibold">About Me</span>
@@ -212,13 +204,13 @@ export default function Home() {
             {/* Eigenotes and Stoic Journal Links - Mobile */}
             <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs">
               {resourceLinks.map((link) => (
-                <div key={link.label} className="flex items-center gap-2 text-sm">
+                <div key={link.label} className="flex items-center gap-2 text-xs">
                   <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
                   <a
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                    className="px-2 py-0.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
                     title={link.title}
                   >
                     {link.cta}
@@ -232,8 +224,8 @@ export default function Home() {
           <div className="lg:hidden border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
           {/* About Me Section - Desktop only */}
-          <h3 className="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-100 hidden lg:block">About Me</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 text-justify hidden lg:block">
+          <h3 className="text-sm font-medium mb-2 text-zinc-900 dark:text-zinc-100 hidden lg:block">About Me</h3>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify hidden lg:block">
             Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
           </p>
 
@@ -241,7 +233,7 @@ export default function Home() {
           <div className="hidden lg:flex mb-3">
             <a
               href="/about"
-              className="group inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="group inline-flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               title="View full About Me page"
             >
               <span className="font-semibold">Read more</span>
@@ -257,7 +249,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-2 mb-1">
-            <div className="flex items-center text-sm">
+            <div className="flex items-center text-xs">
               <span className="text-zinc-600 dark:text-zinc-400">Hyderabad / Delhi</span>
             </div>
           </div>
@@ -265,13 +257,13 @@ export default function Home() {
           {/* Eigenotes and Stoic Journal Links - Desktop */}
           <div className="hidden lg:flex flex-col items-start gap-2 mt-3 mb-1">
             {resourceLinks.map((link) => (
-              <div key={link.label} className="flex items-center gap-2 text-sm">
+              <div key={link.label} className="flex items-center gap-2 text-xs">
                 <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
                 <a
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  className="px-2 py-0.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
                   title={link.title}
                 >
                   {link.cta}
@@ -285,7 +277,7 @@ export default function Home() {
           {/* Current Project Section */}
           <div className="mb-1">
             <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @QuantPype</h4>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
             <div className="flex flex-wrap gap-2">
               <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
               <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
@@ -298,7 +290,7 @@ export default function Home() {
 
         {/* Current Company Section */}
         <div className="mb-4">
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-1">
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1">
             <span className="font-medium text-zinc-900 dark:text-zinc-100">Working as</span> Quant Researcher
           </p>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">@QuantEdX Research • 2023 - Present</p>
@@ -317,7 +309,7 @@ export default function Home() {
                   href={commit.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                  className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
                 >
                   <div className="flex items-start gap-2">
                     <div className="flex-shrink-0 mt-1">
@@ -353,7 +345,7 @@ export default function Home() {
                   href={pr.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                  className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
                 >
                   <div className="flex items-start gap-2">
                     <div className="flex-shrink-0 mt-1">
@@ -415,7 +407,7 @@ export default function Home() {
               </div>
 
               <div className="animate-fade-in animate-delay-300">
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
                   Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
                 </p>
               </div>
@@ -426,9 +418,9 @@ export default function Home() {
           <section className="mb-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
               <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
-                <h3 className="text-md font-medium">GitHub Contributions</h3>
+                <h3 className="text-sm font-medium">GitHub Contributions</h3>
                 {currentContributionCount !== null && (
-                  <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">
                     {currentContributionCount} total in {selectedYear}
                   </span>
                 )}
@@ -438,7 +430,7 @@ export default function Home() {
                   <button
                     key={year}
                     onClick={() => setSelectedYear(year)}
-                    className={`px-3 py-1 text-xs rounded transition-all duration-300 ${
+                    className={`px-3 py-1 text-xs rounded ${
                       selectedYear === year
                         ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
                         : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
@@ -449,20 +441,14 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="relative overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${selectedYearIndex * 100}%)` }}
-              >
-                {contributionYears.map((year) => (
-                  <div key={year} className="w-full flex-shrink-0 flex justify-center">
-                    <a href={getContributionLink(year)} target="_blank" rel="noopener noreferrer" className="block w-full max-w-3xl">
-                      <GitHubContributionGraph year={year} />
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <a
+              href={getContributionLink(selectedYear)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full max-w-3xl mx-auto"
+            >
+              <GitHubContributionGraph year={selectedYear} />
+            </a>
           </section>
 
 
@@ -476,7 +462,7 @@ export default function Home() {
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-sm whitespace-nowrap transition-all duration-300 ease-out ${
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-xs whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'text-zinc-900 dark:text-zinc-100 font-medium lg:bg-zinc-50 lg:dark:bg-zinc-800/30'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:hover:bg-zinc-25 lg:dark:hover:bg-zinc-800/20'
@@ -510,7 +496,7 @@ export default function Home() {
                       href={commit.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                      className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
                     >
                       <div className="flex items-start gap-2">
                         <div className="flex-shrink-0 mt-1">
@@ -546,7 +532,7 @@ export default function Home() {
                       href={pr.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block group hover:translate-x-1 transition-all duration-300 ease-out"
+                      className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
                     >
                       <div className="flex items-start gap-2">
                         <div className="flex-shrink-0 mt-1">

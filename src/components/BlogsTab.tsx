@@ -19,17 +19,17 @@ export default function BlogsTab() {
           {posts.map((post, index) => (
             <li
               key={post.id}
-              className="transform-x animate-slide-left"
+              className="animate-slide-left"
               style={{ animationDelay: `${(index + 1) * 100}ms` }}
             >
-              <article className="group hover:translate-x-1 transition-all duration-300 ease-out">
+              <article className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline justify-between mb-1">
-                  <h3 className="text-md font-medium">- {post.title}</h3>
+                  <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">- {post.title}</h3>
                   <span className="text-xs text-zinc-500 dark:text-zinc-400">
                     {formatPostMonthYear(post.date)}
                   </span>
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">
                   {getPostExcerpt(post)}
                 </p>
                 {post.source && (

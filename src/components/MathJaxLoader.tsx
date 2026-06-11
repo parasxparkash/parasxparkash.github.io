@@ -40,7 +40,6 @@ export default function MathJaxLoader() {
         },
         startup: {
           ready: function() {
-            console.log('MathJax is ready')
             if (window.MathJax?.startup?.defaultReady) {
               window.MathJax.startup.defaultReady()
             }

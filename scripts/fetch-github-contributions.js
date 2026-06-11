@@ -70,9 +70,11 @@ async function fetchContributions(username, year) {
   return data.data.user.contributionsCollection.contributionCalendar;
 }
 
+const BOT_COMMIT_PATTERN = /^Update GitHub data/i;
+
 async function fetchRecentCommits(owner, repo) {
   const response = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/commits?per_page=5`,
+    `https://api.github.com/repos/${owner}/${repo}/commits?per_page=30`,
     {
       headers: {
         'Authorization': `Bearer ${GITHUB_TOKEN}`,
@@ -86,14 +88,17 @@ async function fetchRecentCommits(owner, repo) {
   }
 
   const commits = await response.json();
-  
-  return commits.map(commit => ({
-    sha: commit.sha.substring(0, 7),
-    message: commit.commit.message.split('\n')[0],
-    date: commit.commit.author.date,
-    url: commit.html_url,
-    author: commit.commit.author.name
-  }));
+
+  return commits
+    .map(commit => ({
+      sha: commit.sha.substring(0, 7),
+      message: commit.commit.message.split('\n')[0],
+      date: commit.commit.author.date,
+      url: commit.html_url,
+      author: commit.commit.author.name
+    }))
+    .filter(commit => !BOT_COMMIT_PATTERN.test(commit.message))
+    .slice(0, 5);
 }
 
 async function fetchRecentPullRequests(owner, repo) {

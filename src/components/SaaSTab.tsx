@@ -1,6 +1,13 @@
 export default function SaaSTab() {
   const projects = [
     {
+      name: 'QuantPype',
+      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
+      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
+      website: 'https://parasxparkash.github.io/quantpype',
+      status: 'active'
+    },
+    {
       name: 'QuantBuilt',
       description: 'An investment optimization platform designed for Indian users to build and optimize their investment portfolios with quantitative strategies, featuring portfolio analytics and risk management tools.',
       tags: ['Portfolio Management', 'Investment', 'Optimization', 'Indian Markets'],
@@ -20,20 +27,6 @@ export default function SaaSTab() {
       tags: ['Education', 'Quant Finance', 'Learning Platform', 'Courses'],
       website: 'https://quantedx.com',
       status: 'active'
-    },
-    {
-      name: 'QuantPype',
-      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
-      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
-      website: 'https://parasxparkash.github.io/quantpype',
-      status: 'active'
-    },
-    {
-      name: 'AtharvaSoft',
-      description: 'A modern astrology platform combining traditional Vedic astrology principles with contemporary technology, offering personalized astrological insights and computational tools for chart analysis.',
-      tags: ['Astrology', 'Vedic', 'Chart Analysis', 'Modern Tools'],
-      website: 'https://atharvasoft.com',
-      status: 'active'
     }
   ]
 
@@ -45,9 +38,9 @@ export default function SaaSTab() {
         <ul className="space-y-8">
           {projects.map((project, index) => (
             <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
-              <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
+              <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline gap-2 mb-1">
-                  <h3 className="text-md font-medium">{project.name}</h3>
+                  <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">{project.name}</h3>
                   <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
                       <div className="w-1.5 h-1.5 bg-green-500 rounded animate-pulse" title="Active"></div>
@@ -65,7 +58,7 @@ export default function SaaSTab() {
                     </a>
                   </div>
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span key={tag} className={tagClass}>

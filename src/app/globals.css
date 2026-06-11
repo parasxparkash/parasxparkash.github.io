@@ -13,11 +13,10 @@ body {
   color-scheme: dark;
 }
 
-/* Consistent background across all elements - short transition for snappy theme switch */
+/* Consistent background across all elements - no color transition (instant theme switch) */
 html,
 body {
   background-color: rgb(255 255 255);
-  transition: background-color 0.12s ease;
 }
 
 .dark html,
@@ -31,33 +30,15 @@ body {
 
 main {
   background-color: rgb(255 255 255);
-  transition: background-color 0.12s ease;
 }
 
-/* Core layout utilities */
-.text-zinc-900 { color: rgb(24 24 27); }
-.dark .text-zinc-100 { color: rgb(244 244 245); }
-.max-w-7xl { max-width: 80rem; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.gap-12 { gap: 3rem; }
-.w-72 { width: 18rem; }
-.flex-shrink-0 { flex-shrink: 0; }
-.sticky { position: sticky; }
-.top-4 { top: 1rem; }
-.h-fit { height: fit-content; }
-.mb-6 { margin-bottom: 1.5rem; }
-.justify-center { justify-content: center; }
-.w-40 { width: 10rem; }
-.h-40 { height: 10rem; }
-.rounded-full { border-radius: 9999px; }
-.object-cover { object-fit: cover; }
-.border-2 { border-width: 2px; }
-.border-zinc-200 { border-color: rgb(228 228 231); }
-.dark .border-zinc-700 { border-color: rgb(63 63 70); }
+/* Instant theme switch — skip animating thousands of elements */
+html.disable-transitions,
+html.disable-transitions *,
+html.disable-transitions *::before,
+html.disable-transitions *::after {
+  transition: none !important;
+}
 
 /* Animation classes */
 .animate-delay-100 { animation-delay: 0.1s; }
@@ -74,23 +55,11 @@ main {
   }
 }
 
-/* Tab styles */
-.tab-content {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.tab-button.active {
-  font-weight: bold !important;
-  color: rgb(39 39 42) !important;
-}
-
-.dark .tab-button.active {
-  color: rgb(244 244 245) !important;
-}
-
-/* Smooth transitions - avoid animating color so theme switch feels instant */
-a, button {
-  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+/* Hover-only motion — don't animate colors (keeps theme toggle instant) */
+@media (hover: hover) {
+  a, button {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
 }
 
 /* Scrollbar styling */
@@ -118,59 +87,6 @@ a, button {
 
 .dark ::-webkit-scrollbar-thumb {
   background: rgb(82 82 91);
-}
-
-/* Post tag styling */
-.post-tag.active {
-  background-color: rgb(59 130 246) !important;
-  color: white !important;
-}
-
-.dark .post-tag.active {
-  background-color: rgb(96 165 250) !important;
-  color: white !important;
-}
-
-/* Post item transitions */
-.post-item {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* List item hover effects */
-.tab-content li, .tab-content .space-y-6 > div {
-  position: relative;
-  transition: all 0.3s ease;
-  padding-left: 1rem;
-  min-height: 120px;
-}
-
-.tab-content li::before, .tab-content .space-y-6 > div::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: rgb(0 0 0);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.dark .tab-content li::before, .dark .tab-content .space-y-6 > div::before {
-  background: rgb(255 255 255);
-}
-
-.tab-content li:hover::before, .tab-content .space-y-6 > div:hover::before {
-  opacity: 1;
-}
-
-/* Increase spacing between list items */
-.tab-content .space-y-8 > * + * {
-  margin-top: 2.5rem !important;
-}
-
-.tab-content ul.space-y-8 {
-  padding-bottom: 2rem;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -256,15 +172,6 @@ a, button {
 
 /* Mobile and Small Tablet - Single column layout (below 768px) */
 @media (max-width: 767px) {
-  /* Override the mobile menu toggle and overlay */
-  #mobile-menu-toggle {
-    display: none !important;
-  }
-
-  .mobile-overlay {
-    display: none !important;
-  }
-
   /* Main container adjustments */
   main {
     padding: 1rem !important;
@@ -643,19 +550,6 @@ a, button {
     margin: 1.25rem 0;
   }
 
-  /* Mobile TOC improvements */
-  #mobile-toc-toggle {
-    position: sticky;
-    top: 1rem;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-    background-color: rgba(249, 250, 251, 0.9);
-  }
-
-  .dark #mobile-toc-toggle {
-    background-color: rgba(39, 39, 42, 0.9);
-  }
-
   /* Optimize posts container for mobile */
   .max-w-6xl {
     max-width: 100%;
@@ -666,9 +560,7 @@ a, button {
 
 /* Performance optimizations */
 @media (prefers-reduced-motion: reduce) {
-  .toc-link,
   .tab-button,
-  .post-item,
   button {
     transition: none !important;
   }
@@ -700,46 +592,6 @@ a, button {
 
 .dark .medium-style-article .prose {
   color: rgba(242, 242, 242, 1);
-}
-
-/* TOC Responsive Behavior */
-@media (max-width: 1023px) {
-  .lg\:block {
-    display: none !important;
-  }
-
-  .lg\:hidden {
-    display: block !important;
-  }
-
-  /* Mobile TOC toggle styling */
-  #mobile-toc-toggle {
-    transition: all 0.2s ease;
-  }
-
-  #mobile-toc.hidden {
-    display: none;
-  }
-
-  #mobile-toc:not(.hidden) {
-    display: block;
-    animation: slideDown 0.2s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .rotate-180 {
-    transform: rotate(180deg);
-  }
 }
 
 /* Post content responsive typography */
@@ -931,52 +783,12 @@ a, button {
 /* Mobile-First Approach Enhancements */
 /* Base mobile styles applied first, then enhanced for larger screens */
 
-/* Touch-friendly interactions */
-@media (hover: none) and (pointer: coarse) {
-  .toc-link {
-    padding: 0.75rem 0.5rem !important;
-    margin: 0.25rem 0 !important;
-  }
-
-  #mobile-toc-toggle {
-    padding: 1rem !important;
-    font-size: 1rem !important;
-  }
-
-  /* Larger touch targets for mobile */
-  .inline-flex.items-center.gap-2 {
-    padding: 0.75rem 1rem !important;
-    margin: 0.5rem 0 !important;
-  }
-}
-
-/* Progressive enhancement for larger screens */
-@media (min-width: 1024px) {
-  .toc-link {
-    font-size: 0.875rem;
-    padding: 0.5rem;
-  }
-
-  /* Enhanced desktop interaction */
-  .toc-link:hover {
-    transform: translateX(4px);
-    transition: all 0.2s ease;
-  }
-}
-
 /* Ensure content is readable across all devices */
 .prose, .medium-content, .post-content {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-}
-
-/* Improved focus states for accessibility */
-.toc-link:focus,
-#mobile-toc-toggle:focus {
-  outline: 2px solid rgb(59 130 246);
-  outline-offset: 2px;
 }
 
 /* Scrollbar hide utility */

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import '@fontsource/inter/latin.css'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://parasparkash.github.io'),
@@ -286,7 +284,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} font-geist-sans bg-white overscroll-none dark:bg-zinc-900 transition-colors duration-300`} suppressHydrationWarning>
+      <body className="font-geist-sans bg-white overscroll-none dark:bg-zinc-900" suppressHydrationWarning>
         {children}
       </body>
     </html>

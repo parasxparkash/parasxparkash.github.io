@@ -50,13 +50,6 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
     loadContributions()
   }, [year])
 
-  // Expose total contributions to parent via custom event
-  useEffect(() => {
-    if (data) {
-      window.dispatchEvent(new CustomEvent(`contributions-${year}`, { detail: data.totalContributions }))
-    }
-  }, [data, year])
-
   const getColor = (count: number) => {
     if (count === 0) return 'bg-zinc-100 dark:bg-zinc-800'
     if (count < 3) return 'bg-green-200 dark:bg-green-900'
@@ -142,7 +135,7 @@ export default function GitHubContributionGraph({ year }: GitHubContributionGrap
                   {week.contributionDays.map((day, dayIndex) => (
                     <div
                       key={dayIndex}
-                      className={`w-[7px] h-[7px] rounded-sm ${getColor(day.contributionCount)} hover:ring-1 hover:ring-zinc-400 dark:hover:ring-zinc-500 transition-all cursor-pointer`}
+                      className={`w-[7px] h-[7px] rounded-sm ${getColor(day.contributionCount)} hover:ring-1 hover:ring-zinc-400 dark:hover:ring-zinc-500 cursor-pointer`}
                       title={`${day.contributionCount} contributions on ${new Date(day.date).toLocaleDateString()}`}
                     />
                   ))}

@@ -15,13 +15,22 @@ export default function ThemeToggle() {
   }, [])
 
   const applyTheme = (theme: string) => {
+    const root = document.documentElement
+    root.classList.add('disable-transitions')
+
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-      document.documentElement.style.colorScheme = 'dark'
+      root.classList.add('dark')
+      root.style.colorScheme = 'dark'
     } else {
-      document.documentElement.classList.remove('dark')
-      document.documentElement.style.colorScheme = 'light'
+      root.classList.remove('dark')
+      root.style.colorScheme = 'light'
     }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        root.classList.remove('disable-transitions')
+      })
+    })
   }
 
   const toggleTheme = () => {
@@ -34,7 +43,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+        className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
         aria-label="Toggle theme"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +56,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+      className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
       aria-label="Toggle theme"
     >
       {isDark ? (

@@ -51,17 +51,13 @@ export default function ProjectsTab() {
 
   return (
     <section className="mb-12">
-      <div className="mb-6">
-        {/* Intro text removed as requested */}
-      </div>
-
       <div className="space-y-8">
         <ul className="space-y-8">
           {projects.map((project, index) => (
             <div key={project.id} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
-              <li className="group hover:translate-x-1 transition-all duration-300 ease-out">
+              <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline gap-2 mb-1">
-                  <h3 className="text-md font-medium">{project.name} ({project.year})</h3>
+                  <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">{project.name} ({project.year})</h3>
                   <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
                       <div className="w-1.5 h-1.5 bg-green-500 rounded animate-pulse" title="Active"></div>
@@ -79,7 +75,7 @@ export default function ProjectsTab() {
                     </a>
                   </div>
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span key={tech} className={tagClass}>

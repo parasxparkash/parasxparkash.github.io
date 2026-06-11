@@ -131,9 +131,6 @@ export default async function Post({ params }: PostPageProps) {
       <main className="text-zinc-900 dark:text-zinc-100 max-w-[1400px] mx-auto px-4 py-4 flex flex-col overflow-x-hidden bg-white dark:bg-zinc-900 min-h-screen">
         {/* Load MathJax only on post pages */}
         <MathJaxLoader />
-      {/* Mobile Overlay */}
-      <div id="mobile-overlay" className="mobile-overlay hidden"></div>
-
       {/* Back to Home Button at Top */}
       <div className="mb-4">
         <a href="/" className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">

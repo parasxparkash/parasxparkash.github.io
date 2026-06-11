@@ -41,7 +41,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
         href={getPostHref(post)}
         target={isExternalPost(post) ? '_blank' : undefined}
         rel={isExternalPost(post) ? 'noopener noreferrer' : undefined}
-        className="block text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-1"
+        className="block text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-1"
       >
         {post.title}
       </a>
@@ -63,7 +63,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
       {topPosts.length > 0 && (
         <div>
           <div className="flex items-center justify-end mb-3">
-            <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Pinned Post</h4>
+            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Pinned Post</h4>
           </div>
           <div className="space-y-4">
             {topPosts.map((post) => renderPostItem(post))}
@@ -73,7 +73,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
 
       <div className={topPosts.length > 0 ? 'mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-700' : ''}>
         <div className="flex items-center justify-end mb-4">
-          <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Recent Posts</h3>
+          <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Recent Posts</h3>
         </div>
 
         {/* Posts List */}
@@ -87,7 +87,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
         <div className="flex justify-end">
           <a
             href="/posts"
-            className="inline-flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            className="inline-flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             View All Posts
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
 
       {/* Footer - Email and Design credit */}
       <div className="border-t border-zinc-200 dark:border-zinc-700 mt-6 pt-4">
-        <footer className="text-sm text-zinc-400 dark:text-zinc-500">
+        <footer className="text-xs text-zinc-400 dark:text-zinc-500">
           <div className="flex justify-between items-start mb-3">
             <div></div>
             <div className="text-right">

@@ -18,7 +18,9 @@ export function useCommits() {
       try {
         setLoading(true)
         // Fetch from static JSON file (GitHub Pages compatible)
-        const response = await fetch('/data/commits.json')
+        const response = await fetch(`/data/commits.json?ts=${Date.now()}`, {
+          cache: 'no-store',
+        })
         
         if (response.ok) {
           const data = await response.json()
