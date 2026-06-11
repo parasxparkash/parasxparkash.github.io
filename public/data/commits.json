@@ -1,5 +1,12 @@
 [
   {
+    "sha": "e415d76",
+    "message": "Fix ProjectsTab scrollRef type so production build passes.",
+    "date": "2026-06-11T07:46:19Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/e415d762bda8194c748a4656837fd7e216da1b35",
+    "author": "parasxparkash"
+  },
+  {
     "sha": "dfee5bb",
     "message": "Move QuantPype to bottom and add building tag before its name.",
     "date": "2026-06-11T07:36:22Z",
