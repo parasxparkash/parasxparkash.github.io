@@ -1,8 +1,8 @@
-import { RefObject } from 'react'
+import { Ref } from 'react'
 import { quantifiedTraderProjects } from '@/data/quantified-trader-projects'
 
 interface ProjectsTabProps {
-  scrollRef?: RefObject<HTMLDivElement | null>
+  scrollRef?: Ref<HTMLDivElement>
   maxHeight?: number | null
 }
 
