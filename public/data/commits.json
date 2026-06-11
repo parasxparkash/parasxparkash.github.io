@@ -1,37 +1,16 @@
 [
   {
-    "sha": "4f8ccd2",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-06-10T02:55:13Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/4f8ccd2d5d286654b9db57c350dc25eb1b7087e7",
-    "author": "github-actions[bot]"
+    "sha": "f93631d",
+    "message": "Improve site performance, social links, and GitHub data refresh.",
+    "date": "2026-06-11T06:34:14Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f93631d7affda9b8e4d5a87832b51a8633a16ce5",
+    "author": "parasxparkash"
   },
   {
-    "sha": "2fb73c2",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-06-09T02:41:41Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/2fb73c26d461a4c198255095ee29942375e9c503",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "e86a24c",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-06-08T03:31:13Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/e86a24ce4bd7b704642dff81491e2c02194e0e9f",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "57744e9",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-06-07T03:25:12Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/57744e912e42abe0e7fcb4e5eda4b103aa1746c0",
-    "author": "github-actions[bot]"
-  },
-  {
-    "sha": "c08d944",
-    "message": "Update GitHub data (contributions, commits & pull requests)",
-    "date": "2026-06-06T02:42:45Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/c08d9445c52b37b164ec3047c11d6fa47b4cc816",
-    "author": "github-actions[bot]"
+    "sha": "4b89b4d",
+    "message": "Update website link and fix tsconfig deprecation for build",
+    "date": "2026-05-20T19:21:50Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/4b89b4d34915475049b304b8d89ff0d4836baf2c",
+    "author": "parasxparkash"
   }
 ]
