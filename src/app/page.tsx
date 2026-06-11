@@ -318,20 +318,6 @@ export default function Home() {
 
           <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
-          {/* Current Project Section */}
-          <div className="mb-1">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-2">Building @QuantPype</h4>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">AI Agents</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Trading Platform</span>
-            </div>
-          </div>
-
-          <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
-
         {/* Current Company Section */}
         <div className="mb-4">
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1">
@@ -415,6 +401,23 @@ export default function Home() {
         )}
 
         <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
+
+          {/* Current Project Section */}
+          <div className="mb-1 mt-auto">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 rounded">
+                building
+              </span>
+              <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">QuantPype</h4>
+            </div>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">AI Agents</span>
+              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Trading Platform</span>
+            </div>
+          </div>
 
       </div>
 

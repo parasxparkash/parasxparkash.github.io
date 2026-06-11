@@ -1,13 +1,6 @@
 export default function SaaSTab() {
   const projects = [
     {
-      name: 'QuantPype',
-      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
-      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
-      website: 'https://parasxparkash.github.io/quantpype',
-      status: 'active'
-    },
-    {
       name: 'QuantBuilt',
       description: 'An investment optimization platform designed for Indian users to build and optimize their investment portfolios with quantitative strategies, featuring portfolio analytics and risk management tools.',
       tags: ['Portfolio Management', 'Investment', 'Optimization', 'Indian Markets'],
@@ -27,6 +20,14 @@ export default function SaaSTab() {
       tags: ['Education', 'Quant Finance', 'Learning Platform', 'Courses'],
       website: 'https://quantedx.com',
       status: 'active'
+    },
+    {
+      name: 'QuantPype',
+      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
+      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
+      website: 'https://parasxparkash.github.io/quantpype',
+      status: 'active',
+      building: true
     }
   ]
 
@@ -39,7 +40,12 @@ export default function SaaSTab() {
           {projects.map((project, index) => (
             <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
               <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
-                <div className="flex items-baseline gap-2 mb-1">
+                <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+                  {'building' in project && project.building && (
+                    <span className="px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 rounded">
+                      building
+                    </span>
+                  )}
                   <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">{project.name}</h3>
                   <div className="flex items-center gap-1.5">
                     {project.status === 'active' && (
