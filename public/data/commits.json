@@ -1,5 +1,12 @@
 [
   {
+    "sha": "05ef4b2",
+    "message": "Align homepage sidebars and add scrollable Projects tab.",
+    "date": "2026-06-11T07:19:46Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/05ef4b27fe0ddd803b0ab56986a4b9e71986f703",
+    "author": "parasxparkash"
+  },
+  {
     "sha": "f93631d",
     "message": "Improve site performance, social links, and GitHub data refresh.",
     "date": "2026-06-11T06:34:14Z",
