@@ -1,5 +1,12 @@
 [
   {
+    "sha": "dfee5bb",
+    "message": "Move QuantPype to bottom and add building tag before its name.",
+    "date": "2026-06-11T07:36:22Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/dfee5bb0615e13abed8e8f44e608aa2e48943f29",
+    "author": "parasxparkash"
+  },
+  {
     "sha": "05ef4b2",
     "message": "Align homepage sidebars and add scrollable Projects tab.",
     "date": "2026-06-11T07:19:46Z",
