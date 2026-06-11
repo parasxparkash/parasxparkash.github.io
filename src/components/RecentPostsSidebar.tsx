@@ -58,7 +58,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
   )
 
   return (
-    <div className="w-72 flex-shrink-0 flex flex-col lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
+    <div className="w-full flex-shrink-0 flex flex-col h-full lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
       {/* Pinned Post Section */}
       {topPosts.length > 0 && (
         <div>
@@ -71,7 +71,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
         </div>
       )}
 
-      <div className={topPosts.length > 0 ? 'mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-700' : ''}>
+      <div className={`flex-1 flex flex-col ${topPosts.length > 0 ? 'mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-700' : ''}`}>
         <div className="flex items-center justify-end mb-4">
           <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Recent Posts</h3>
         </div>
@@ -83,7 +83,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
       </div>
 
       {/* Bottom action */}
-      <div className="mt-6 pt-4 border-t border-zinc-200 dark:border-zinc-700">
+      <div className="mt-auto pt-4 border-t border-zinc-200 dark:border-zinc-700">
         <div className="flex justify-end">
           <a
             href="/posts"

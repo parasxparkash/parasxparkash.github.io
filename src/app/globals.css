@@ -63,6 +63,15 @@ html.disable-transitions *::after {
 }
 
 /* Scrollbar styling */
+.projects-tab-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(161 161 170) transparent;
+}
+
+.dark .projects-tab-scroll {
+  scrollbar-color: rgb(82 82 91) transparent;
+}
+
 .flex-1.overflow-y-auto {
   scrollbar-width: none;
   -ms-overflow-style: none;

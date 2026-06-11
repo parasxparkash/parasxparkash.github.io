@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePosts } from '@/hooks/usePosts'
 import { useCommits } from '@/hooks/useCommits'
 import { usePullRequests } from '@/hooks/usePullRequests'
@@ -101,12 +101,48 @@ export default function Home() {
   }, [])
 
   const currentContributionCount = contributionCounts[selectedYear]
+  const leftSidebarRef = useRef<HTMLDivElement>(null)
+  const centerAboveTabsRef = useRef<HTMLDivElement>(null)
+  const tabNavRef = useRef<HTMLDivElement>(null)
+  const projectsScrollRef = useRef<HTMLDivElement>(null)
+  const [projectsScrollHeight, setProjectsScrollHeight] = useState<number | null>(null)
+
+  useEffect(() => {
+    const updateProjectsScrollHeight = () => {
+      if (window.innerWidth < 1024) {
+        setProjectsScrollHeight(null)
+        return
+      }
+
+      const sidebar = leftSidebarRef.current
+      const aboveTabs = centerAboveTabsRef.current
+      const tabNav = tabNavRef.current
+
+      if (!sidebar || !aboveTabs || !tabNav) return
+
+      const height = sidebar.offsetHeight - aboveTabs.offsetHeight - tabNav.offsetHeight
+      setProjectsScrollHeight(Math.max(height, 120))
+    }
+
+    updateProjectsScrollHeight()
+
+    const resizeObserver = new ResizeObserver(updateProjectsScrollHeight)
+    ;[leftSidebarRef, centerAboveTabsRef, tabNavRef].forEach((ref) => {
+      if (ref.current) resizeObserver.observe(ref.current)
+    })
+
+    window.addEventListener('resize', updateProjectsScrollHeight)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateProjectsScrollHeight)
+    }
+  }, [commits.length, pullRequests.length, currentContributionCount, selectedYear, activeTab])
 
   const showTab = (tabName: string) => {
     setActiveTab(tabName)
-    const tabContainer = document.querySelector('.flex-1.overflow-y-auto')
-    if (tabContainer) {
-      tabContainer.scrollTop = 0
+    if (projectsScrollRef.current) {
+      projectsScrollRef.current.scrollTop = 0
     }
   }
 
@@ -115,7 +151,12 @@ export default function Home() {
       case 'saas':
         return <SaaSTab />
       case 'projects':
-        return <ProjectsTab />
+        return (
+          <ProjectsTab
+            scrollRef={projectsScrollRef}
+            maxHeight={projectsScrollHeight}
+          />
+        )
       case 'experience':
         return <ExperienceTab />
       case 'education':
@@ -131,7 +172,10 @@ export default function Home() {
     <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col bg-white dark:bg-zinc-900 min-h-screen overflow-x-hidden">
       <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch overflow-x-hidden">
         {/* Left Sidebar */}
-        <div className="w-72 lg:flex-shrink-0 mb-8 lg:mb-0 flex flex-col lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
+        <div
+          ref={leftSidebarRef}
+          className="w-72 lg:flex-shrink-0 lg:self-stretch mb-8 lg:mb-0 flex flex-col lg:h-full lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg"
+        >
           {/* Profile Image */}
           <div className="mb-2 flex justify-center">
             <Image
@@ -376,6 +420,7 @@ export default function Home() {
 
         {/* Center Content Area */}
         <div className="flex-1 flex flex-col min-h-full">
+          <div ref={centerAboveTabsRef} className="flex-shrink-0">
           {/* Header Section - Responsive layout */}
           <div className="animate-fade-in flex-shrink-0">
             <section className="mb-6">
@@ -415,7 +460,7 @@ export default function Home() {
           </div>
 
           {/* GitHub Contributions */}
-          <section className="mb-4">
+          <section className="mb-4 flex-shrink-0">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
               <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
                 <h3 className="text-sm font-medium">GitHub Contributions</h3>
@@ -450,12 +495,11 @@ export default function Home() {
               <GitHubContributionGraph year={selectedYear} />
             </a>
           </section>
+          </div>
 
-
-
-          {/* Tabs Section - Scrollable */}
-          <div className="flex-1 overflow-y-auto min-h-0">
-           <div className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
+          {/* Tabs Section */}
+          <div className="tab-scroll-container flex-1">
+           <div ref={tabNavRef} className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
              <div className="text-muted-foreground inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
                {tabs.map((tab) => (
                  <button
@@ -560,7 +604,7 @@ export default function Home() {
         </div>
 
         {/* Right Sidebar - Hidden on tablet (md), visible on desktop (lg+) */}
-        <div className="hidden lg:block xl:block">
+        <div className="hidden lg:flex lg:flex-col lg:self-stretch w-72 lg:flex-shrink-0">
           <RecentPostsSidebar topPosts={topPosts} />
         </div>
       </div>
