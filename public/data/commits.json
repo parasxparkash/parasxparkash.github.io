@@ -1,5 +1,12 @@
 [
   {
+    "sha": "a663105",
+    "message": "Add brand-colored social icons and SaaS LinkedIn/X links.",
+    "date": "2026-06-13T11:59:40Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a66310543f583ce5ef343aff909423ebbdb93198",
+    "author": "parasxparkash"
+  },
+  {
     "sha": "e415d76",
     "message": "Fix ProjectsTab scrollRef type so production build passes.",
     "date": "2026-06-11T07:46:19Z",
