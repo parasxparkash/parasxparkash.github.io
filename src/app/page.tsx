@@ -320,9 +320,9 @@ export default function Home() {
         {/* Current Company Section */}
         <div className="mb-4">
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1">
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">Working as</span> Quant Researcher
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">Co-Founded</span> @QuantEdX Research
           </p>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">@QuantEdX Research • 2023 - Present</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">2023 - Present</p>
         </div>
 
         <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
