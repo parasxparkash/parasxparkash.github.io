@@ -10,10 +10,7 @@ const nextConfig = {
   assetPrefix: basePath || undefined,
   images: {
     unoptimized: true,
-    domains: ['ghchart.rshah.org', 'cdn.jsdelivr.net'],
-    formats: ['image/webp', 'image/avif'],
   },
-  compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
   trailingSlash: true,

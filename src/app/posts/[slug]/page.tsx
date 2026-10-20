@@ -185,7 +185,7 @@ export default async function Post({ params }: PostPageProps) {
                 {postData.tags && postData.tags.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {postData.tags.map((tag) => (
-                      <span key={tag} className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">
+                      <span key={tag} className="px-1.5 py-0.5 text-[10px] rounded">
                         {tag}
                       </span>
                     ))}

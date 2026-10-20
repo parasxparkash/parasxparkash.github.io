@@ -11,5 +11,4 @@ export interface BlogPostSummary {
   external_url?: string
   source?: string
   link_text?: string
-  isExternal?: boolean
 }

@@ -11,10 +11,10 @@ export default function EducationTab() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">WorldQuant University</p>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">Advanced studies in quantitative finance, derivatives pricing, risk management, and algorithmic trading strategies. Focus on mathematical modeling, statistical analysis, and computational finance applications.</p>
             <div className="flex flex-wrap gap-2 mt-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Quantitative Finance</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Derivatives Pricing</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Risk Management</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Algorithmic Trading</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Quantitative Finance</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Derivatives Pricing</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Risk Management</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Algorithmic Trading</span>
             </div>
           </li>
         </div>
@@ -28,9 +28,9 @@ export default function EducationTab() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Lovely Professional University</p>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">Advanced mathematical studies with focus on applied mathematics, statistical analysis, and mathematical modeling. Final thesis pending completion.</p>
             <div className="flex flex-wrap gap-2 mt-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Applied Mathematics</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Statistical Analysis</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Mathematical Modeling</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Applied Mathematics</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Statistical Analysis</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Mathematical Modeling</span>
             </div>
           </li>
         </div>
@@ -44,9 +44,9 @@ export default function EducationTab() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">Birla Institute of Technology and Science, Pilani</p>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">Comprehensive finance education covering corporate finance, investment analysis, financial markets, and portfolio management. Strong foundation in financial theory and practical applications.</p>
             <div className="flex flex-wrap gap-2 mt-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Corporate Finance</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Investment Analysis</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Portfolio Management</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Corporate Finance</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Investment Analysis</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Portfolio Management</span>
             </div>
           </li>
         </div>
@@ -60,10 +60,10 @@ export default function EducationTab() {
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">National Institute of Technology, Jalandhar</p>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">Comprehensive mechanical engineering education with focus on systems design, control systems, and automation. Strong foundation in engineering principles, mathematics, and problem-solving methodologies.</p>
             <div className="flex flex-wrap gap-2 mt-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Mechanical Systems</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Control Systems</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Automation</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Engineering Design</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Mechanical Systems</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Control Systems</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Automation</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Engineering Design</span>
             </div>
           </li>
         </div>

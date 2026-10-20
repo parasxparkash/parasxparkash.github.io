@@ -31,8 +31,6 @@ function getLocalPostsData() {
     return {
       id,
       content: matterResult.content,
-      contentHtml: '',
-      isExternal: false,
       ...(matterResult.data)
     };
   });
@@ -48,9 +46,7 @@ function getExternalPostsData() {
 
   return externalPosts.map((post) => ({
     content: '',
-    contentHtml: '',
     tags: [],
-    isExternal: true,
     link_text: 'Read article',
     ...post
   }));

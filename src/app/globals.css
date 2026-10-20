@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
 /* Ensure dark theme works properly */
 .dark {
   color-scheme: dark;
@@ -19,17 +13,8 @@ body {
   background-color: rgb(255 255 255);
 }
 
-.dark html,
 .dark body {
   background-color: rgb(24 24 27) !important;
-}
-
-.dark main {
-  background-color: rgb(24 24 27) !important;
-}
-
-main {
-  background-color: rgb(255 255 255);
 }
 
 /* Instant theme switch — skip animating thousands of elements */
@@ -45,15 +30,6 @@ html.disable-transitions *::after {
 .animate-delay-200 { animation-delay: 0.2s; }
 .animate-delay-300 { animation-delay: 0.3s; }
 .animate-delay-400 { animation-delay: 0.4s; }
-
-/* Animation initial states are now handled by Tailwind's animate-fade-in */
-
-/* Dark mode detection */
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    color-scheme: dark;
-  }
-}
 
 /* Hover-only motion — don't animate colors (keeps theme toggle instant) */
 @media (hover: hover) {
@@ -128,15 +104,6 @@ html.disable-transitions *::after {
     display: flex !important;
     flex-direction: column;
   }
-
-  /* Desktop: Hide mobile elements */
-  .md\:hidden {
-    display: none !important;
-  }
-
-  .hidden.md\:block {
-    display: block !important;
-  }
 }
 
 /* Tablet - Two column layout (768px to 1199px) */
@@ -169,7 +136,7 @@ html.disable-transitions *::after {
   }
 
   /* Remove height constraints for tablet */
-  .h-screen, .h-fit, .h-full, .h-\[calc\(100vh-2rem\)\] {
+  .h-screen, .h-full, .h-\[calc\(100vh-2rem\)\] {
     height: auto !important;
   }
 
@@ -228,7 +195,7 @@ html.disable-transitions *::after {
   }
 
   /* Remove all height constraints */
-  .h-screen, .h-fit, .h-full, .h-\[calc\(100vh-2rem\)\] {
+  .h-screen, .h-full, .h-\[calc\(100vh-2rem\)\] {
     height: auto !important;
   }
 
@@ -244,32 +211,9 @@ html.disable-transitions *::after {
     margin: 0 auto 1rem auto !important;
   }
 
-  /* About Me section enhancement */
-  .text-lg.font-semibold.mb-2 {
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 1rem !important;
-    text-align: center !important;
-  }
-
-  .text-sm.text-zinc-600.dark\:text-zinc-400.mb-2.text-justify {
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
-    text-align: left !important;
-    margin-bottom: 1.5rem !important;
-  }
-
   /* Typography improvements */
   .text-2xl {
     font-size: 1.5rem !important;
-    text-align: center !important;
-  }
-
-  /* Location and time info layout */
-  .flex.items-center.gap-3.mb-4 {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
     text-align: center !important;
   }
 
@@ -395,10 +339,6 @@ html.disable-transitions *::after {
     font-size: 1.25rem !important;
   }
 
-  .text-md {
-    font-size: 0.875rem !important;
-  }
-
   .gap-12 {
     gap: 1rem !important;
   }
@@ -410,161 +350,7 @@ html.disable-transitions *::after {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-.medium-content {
-  max-width: none;
-  width: 100%;
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: 20px;
   line-height: 1.6;
-  color: rgb(41, 41, 41);
-  text-align: left;
-  letter-spacing: -0.003em;
-}
-
-.dark .medium-content {
-  color: rgb(242, 242, 242);
-}
-
-/* Medium content headings - responsive and elegant */
-.medium-content h1 {
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 3rem 0 1.5rem 0;
-  color: rgb(41, 41, 41);
-  letter-spacing: -0.02em;
-}
-
-.medium-content h2 {
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 2.5rem 0 1rem 0;
-  color: rgb(41, 41, 41);
-  letter-spacing: -0.015em;
-}
-
-.medium-content h3 {
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 2rem 0 0.75rem 0;
-  color: rgb(41, 41, 41);
-  letter-spacing: -0.01em;
-}
-
-.medium-content h4 {
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 1.5rem 0 0.5rem 0;
-  color: rgb(41, 41, 41);
-  letter-spacing: -0.005em;
-}
-
-.dark .medium-content h1,
-.dark .medium-content h2,
-.dark .medium-content h3,
-.dark .medium-content h4 {
-  color: rgb(242, 242, 242);
-}
-
-/* Medium content paragraphs and text */
-.medium-content p {
-  font-family: 'Charter', 'Georgia', 'Times New Roman', serif;
-  font-size: 20px;
-  line-height: 1.6;
-  margin: 1.5rem 0;
-  color: rgb(41, 41, 41);
-  text-align: left;
-  letter-spacing: -0.003em;
-}
-
-.dark .medium-content p {
-  color: rgb(242, 242, 242);
-}
-
-.medium-content ul,
-.medium-content ol {
-  margin: 21px 0;
-  padding-left: 30px;
-}
-
-.medium-content li {
-  margin: 8px 0;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.medium-content blockquote {
-  border-left: 3px solid #242424;
-  padding-left: 20px;
-  margin: 29px 0;
-  font-style: italic;
-  color: #757575;
-}
-
-.dark .medium-content blockquote {
-  border-left-color: #e5e5e5;
-  color: #a0a0a0;
-}
-
-.medium-content pre {
-  background: #f6f6f6;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 29px 0;
-  overflow-x: auto;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.dark .medium-content pre {
-  background: #2a2a2a;
-  color: #e5e5e5;
-}
-
-.medium-content code {
-  background: #f6f6f6;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  font-size: 16px;
-}
-
-.dark .medium-content code {
-  background: #2a2a2a;
-  color: #e5e5e5;
-}
-
-/* Posts page specific responsive optimizations */
-@media (max-width: 768px) {
-  /* Posts layout mobile adjustments */
-  .medium-content {
-    font-size: 18px;
-    line-height: 1.65;
-    padding: 0 0.5rem;
-  }
-
-  .medium-content p {
-    font-size: 18px;
-    line-height: 1.65;
-    margin: 1.25rem 0;
-  }
-
-  /* Optimize posts container for mobile */
-  .max-w-6xl {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 }
 
 /* Performance optimizations */
@@ -581,43 +367,11 @@ html.disable-transitions *::after {
   }
 }
 
-/* Optimize for high-DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .medium-content {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-/* Blog Post Layout Responsive Styles */
-.medium-style-article {
-  line-height: 1.6;
-}
-
-.medium-style-article .prose {
-  font-family: Charter, Georgia, serif;
-  color: rgba(41, 41, 41, 1);
-}
-
-.dark .medium-style-article .prose {
-  color: rgba(242, 242, 242, 1);
-}
-
 /* Post content responsive typography */
 @media (max-width: 768px) {
   .medium-style-article h1 {
     font-size: 2.25rem !important;
     line-height: 1.2 !important;
-  }
-
-  .medium-style-article .prose {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-  }
-
-  .max-w-6xl {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
   }
 }
 
@@ -626,15 +380,7 @@ html.disable-transitions *::after {
     font-size: 1.875rem !important;
   }
 
-  .text-3xl {
-    font-size: 1.875rem !important;
-  }
-
   .text-4xl {
-    font-size: 2.25rem !important;
-  }
-
-  .text-5xl {
     font-size: 2.25rem !important;
   }
 }
@@ -793,7 +539,7 @@ html.disable-transitions *::after {
 /* Base mobile styles applied first, then enhanced for larger screens */
 
 /* Ensure content is readable across all devices */
-.prose, .medium-content, .post-content {
+.post-content {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;

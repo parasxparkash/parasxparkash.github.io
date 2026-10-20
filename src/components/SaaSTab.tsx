@@ -31,7 +31,7 @@ export default function SaaSTab() {
     }
   ]
 
-  const tagClass = 'px-1.5 py-0.5 text-[10px] bg-zinc-700 bg-opacity-80 text-white dark:bg-zinc-400 dark:bg-opacity-80 dark:text-zinc-900 rounded'
+  const tagClass = 'px-1.5 py-0.5 text-[10px] rounded'
 
   return (
     <section className="mb-12">
@@ -42,7 +42,7 @@ export default function SaaSTab() {
               <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                   {'building' in project && project.building && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 rounded">
+                    <span className="px-1.5 py-0.5 text-[10px] font-medium rounded">
                       building
                     </span>
                   )}

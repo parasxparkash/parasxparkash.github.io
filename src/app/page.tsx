@@ -15,6 +15,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import RotatingText from '@/components/RotatingText'
 import SocialLinks from '@/components/SocialLinks'
 import GitHubContributionGraph from '@/components/GitHubContributionGraph'
+import ActivityList, { ActivityItem } from '@/components/ActivityList'
 import Image from 'next/image'
 
 const tabs = [
@@ -47,13 +48,6 @@ const resourceLinks = [
   }
 ] as const
 
-function formatShortDate(date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric'
-  })
-}
-
 function getContributionLink(year: ContributionYear) {
   return `https://github.com/parasxparkash?tab=overview&from=${year}-01-01&to=${year}-12-31`
 }
@@ -69,6 +63,20 @@ export default function Home() {
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
+  const commitItems: ActivityItem[] = commits.slice(0, 4).map((commit) => ({
+    id: commit.sha,
+    href: commit.url,
+    title: commit.message,
+    label: commit.sha,
+    date: commit.date,
+  }))
+  const pullRequestItems: ActivityItem[] = pullRequests.slice(0, 2).map((pr) => ({
+    id: String(pr.number),
+    href: pr.url,
+    title: pr.title,
+    label: `#${pr.number}`,
+    date: pr.date,
+  }))
   const [contributionCounts, setContributionCounts] = useState<Record<ContributionYear, number | null>>({
     2023: null,
     2024: null,
@@ -174,7 +182,7 @@ export default function Home() {
         {/* Left Sidebar */}
         <div
           ref={leftSidebarRef}
-          className="w-72 lg:flex-shrink-0 lg:self-stretch mb-8 lg:mb-0 flex flex-col lg:h-full lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg"
+          className="w-72 lg:flex-shrink-0 lg:self-stretch mb-8 lg:mb-0 flex flex-col lg:h-full lg:p-4"
         >
           {/* Profile Image */}
           <div className="mb-2 flex justify-center">
@@ -201,7 +209,7 @@ export default function Home() {
             {/* Location + Building/Testing/Merging Animation */}
             <div className="flex flex-col items-center gap-2 mb-2">
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                Hyderabad / Delhi
+                Banjara Hills, Hyderabad, India 
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
@@ -216,7 +224,7 @@ export default function Home() {
               {istTime}
             </p>
 
-            {/* Headline Text (removed "About Me" heading) */}
+            {/* Headline Text */}
             <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
               Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
             </p>
@@ -264,9 +272,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Separator for single column layout */}
-          <div className="lg:hidden border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
-
           {/* About Me Section - Desktop only */}
           <h3 className="text-sm font-medium mb-2 text-zinc-900 dark:text-zinc-100 hidden lg:block">About Me</h3>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify hidden lg:block">
@@ -290,12 +295,6 @@ export default function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </a>
-          </div>
-
-          <div className="space-y-2 mb-1">
-            <div className="flex items-center text-xs">
-              <span className="text-zinc-600 dark:text-zinc-400">Hyderabad / Delhi</span>
-            </div>
           </div>
 
           {/* Eigenotes and Stoic Journal Links - Desktop */}
@@ -329,74 +328,16 @@ export default function Home() {
         <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
 
         {/* Recent Commits Section - Desktop only */}
-        {commits.length > 0 && (
+        {commitItems.length > 0 && (
           <div className="mb-4 hidden lg:block">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Commits</h4>
-            <div className="space-y-2">
-              {commits.slice(0, 4).map((commit) => (
-                <a
-                  key={commit.sha}
-                  href={commit.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
-                >
-                  <div className="flex items-start gap-2">
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
-                        {commit.message}
-                      </p>
-                      <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                        <span className="font-mono text-[10px]">{commit.sha}</span>
-                        <span>•</span>
-                        <span className="text-[10px]">
-                          {formatShortDate(commit.date)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <ActivityList title="Recent Commits" items={commitItems} dotClassName="bg-green-500" />
           </div>
         )}
 
         {/* Recent Pull Requests Section - Desktop only */}
-        {pullRequests.length > 0 && (
+        {pullRequestItems.length > 0 && (
           <div className="mb-4 hidden lg:block">
-            <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Pull Requests</h4>
-            <div className="space-y-2">
-              {pullRequests.slice(0, 2).map((pr) => (
-                <a
-                  key={pr.number}
-                  href={pr.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
-                >
-                  <div className="flex items-start gap-2">
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
-                        {pr.title}
-                      </p>
-                      <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                        <span className="font-mono text-[10px]">#{pr.number}</span>
-                        <span>•</span>
-                        <span className="text-[10px]">
-                          {formatShortDate(pr.date)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <ActivityList title="Recent Pull Requests" items={pullRequestItems} dotClassName="bg-purple-500" />
           </div>
         )}
 
@@ -405,17 +346,17 @@ export default function Home() {
           {/* Current Project Section */}
           <div className="mb-1 mt-auto">
             <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <span className="px-1.5 py-0.5 text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 rounded">
+              <span className="px-1.5 py-0.5 text-[10px] font-medium rounded">
                 building
               </span>
               <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">QuantPype</h4>
             </div>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">AI Agents</span>
-              <span className="px-1.5 py-0.5 text-[10px] bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Trading Platform</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Rust</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Electron</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">AI Agents</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Trading Platform</span>
             </div>
           </div>
 
@@ -446,7 +387,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    Hyderabad / Delhi
+                  Banjara Hills, Hyderabad, India
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
                     {istTime}
@@ -503,7 +444,7 @@ export default function Home() {
           {/* Tabs Section */}
           <div className="tab-scroll-container flex-1">
            <div ref={tabNavRef} className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
-             <div className="text-muted-foreground inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
+             <div className="inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
                {tabs.map((tab) => (
                  <button
                    key={tab.id}
@@ -512,9 +453,8 @@ export default function Home() {
                   className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-xs whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'text-zinc-900 dark:text-zinc-100 font-medium lg:bg-zinc-50 lg:dark:bg-zinc-800/30'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:hover:bg-zinc-25 lg:dark:hover:bg-zinc-800/20'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:dark:hover:bg-zinc-800/20'
                   }`}
-                   id={`tab-${tab.id}`}
                  >
                    {tab.label}
                  </button>
@@ -532,76 +472,11 @@ export default function Home() {
 
           {/* Recent Commits and Pull Requests - Mobile only (at bottom) */}
           <div className="lg:hidden mt-8 space-y-6">
-            {/* Recent Commits Section - Mobile */}
-            {commits.length > 0 && (
-              <div>
-                <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Commits</h4>
-                <div className="space-y-2">
-                  {commits.slice(0, 4).map((commit) => (
-                    <a
-                      key={commit.sha}
-                      href={commit.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
-                    >
-                      <div className="flex items-start gap-2">
-                        <div className="flex-shrink-0 mt-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
-                            {commit.message}
-                          </p>
-                          <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                            <span className="font-mono text-[10px]">{commit.sha}</span>
-                            <span>•</span>
-                            <span className="text-[10px]">
-                              {formatShortDate(commit.date)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
+            {commitItems.length > 0 && (
+              <ActivityList title="Recent Commits" items={commitItems} dotClassName="bg-green-500" />
             )}
-
-            {/* Recent Pull Requests Section - Mobile */}
-            {pullRequests.length > 0 && (
-              <div>
-                <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">Recent Pull Requests</h4>
-                <div className="space-y-2">
-                  {pullRequests.slice(0, 2).map((pr) => (
-                    <a
-                      key={pr.number}
-                      href={pr.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block group hover:translate-x-1 transition-transform duration-150 ease-out"
-                    >
-                      <div className="flex items-start gap-2">
-                        <div className="flex-shrink-0 mt-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors line-clamp-2">
-                            {pr.title}
-                          </p>
-                          <div className="flex items-center gap-1.5 mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                            <span className="font-mono text-[10px]">#{pr.number}</span>
-                            <span>•</span>
-                            <span className="text-[10px]">
-                              {formatShortDate(pr.date)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
+            {pullRequestItems.length > 0 && (
+              <ActivityList title="Recent Pull Requests" items={pullRequestItems} dotClassName="bg-purple-500" />
             )}
           </div>
         </div>

@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 
-declare global {
-  interface Window {
-    MathJax?: any
-  }
-}
-
 interface MathJaxTypesetProps {
   content: string
 }

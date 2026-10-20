@@ -7,9 +7,6 @@ interface ProjectsTabProps {
 }
 
 export default function ProjectsTab({ scrollRef, maxHeight }: ProjectsTabProps) {
-  const tagClass =
-    'px-1.5 py-0.5 text-[10px] bg-zinc-700 bg-opacity-80 text-white dark:bg-zinc-400 dark:bg-opacity-80 dark:text-zinc-900 rounded'
-
   return (
     <section className="mb-12">
       <div
@@ -17,15 +14,14 @@ export default function ProjectsTab({ scrollRef, maxHeight }: ProjectsTabProps) 
         className="projects-tab-scroll overflow-y-auto pr-1"
         style={maxHeight ? { maxHeight } : undefined}
       >
-      <div className="space-y-8">
         <ul className="space-y-8">
           {quantifiedTraderProjects.map((project, index) => (
-            <div
+            <li
               key={project.id}
               className="animate-slide-left"
               style={{ animationDelay: `${Math.min((index + 1) * 50, 400)}ms` }}
             >
-              <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
+              <div className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                   <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
                     {project.name} ({project.year})
@@ -54,16 +50,15 @@ export default function ProjectsTab({ scrollRef, maxHeight }: ProjectsTabProps) 
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
-                    <span key={tech} className={tagClass}>
+                    <span key={tech} className="px-1.5 py-0.5 text-[10px] rounded">
                       {tech}
                     </span>
                   ))}
                 </div>
-              </li>
-            </div>
+              </div>
+            </li>
           ))}
         </ul>
-      </div>
       </div>
     </section>
   )

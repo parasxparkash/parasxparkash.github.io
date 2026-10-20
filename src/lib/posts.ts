@@ -18,7 +18,7 @@ export interface PostData extends BlogPostSummary {
   contentHtml: string
 }
 
-function getLocalPostsData(): PostData[] {
+function getLocalPostsData(): BlogPostSummary[] {
   if (!fs.existsSync(postsDirectory)) {
     return []
   }
@@ -34,14 +34,12 @@ function getLocalPostsData(): PostData[] {
     return {
       id,
       content: matterResult.content,
-      contentHtml: '',
-      isExternal: false,
-      ...(matterResult.data as Omit<PostData, 'id' | 'content' | 'contentHtml'>)
+      ...(matterResult.data as Omit<BlogPostSummary, 'id' | 'content'>)
     }
   })
 }
 
-function getExternalPostsData(): PostData[] {
+function getExternalPostsData(): BlogPostSummary[] {
   if (!fs.existsSync(externalPostsPath)) {
     return []
   }
@@ -51,15 +49,13 @@ function getExternalPostsData(): PostData[] {
 
   return externalPosts.map((post) => ({
     content: '',
-    contentHtml: '',
     tags: [],
-    isExternal: true,
     link_text: 'Read article',
     ...post
   }))
 }
 
-export function getSortedPostsData(): PostData[] {
+export function getSortedPostsData(): BlogPostSummary[] {
   return sortPostsByDate([...getLocalPostsData(), ...getExternalPostsData()])
 }
 

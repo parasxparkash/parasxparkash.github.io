@@ -73,10 +73,10 @@ export default function AboutPage() {
               A local AI agent-based trading platform with advanced automation and intelligent strategy execution
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Rust</span>
-              <span className="px-2 py-1 text-xs bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Electron</span>
-              <span className="px-2 py-1 text-xs bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">AI Agents</span>
-              <span className="px-2 py-1 text-xs bg-zinc-700 text-white dark:bg-zinc-400 dark:text-zinc-900 rounded">Trading Platform</span>
+              <span className="px-2 py-1 text-xs rounded">Rust</span>
+              <span className="px-2 py-1 text-xs rounded">Electron</span>
+              <span className="px-2 py-1 text-xs rounded">AI Agents</span>
+              <span className="px-2 py-1 text-xs rounded">Trading Platform</span>
             </div>
           </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -224,9 +224,9 @@ export default function AboutPage() {
                 analysis and led research in innovative quantitative models for derivative pricing.
               </p>
               <div className="flex flex-wrap gap-2 mt-2">
-                <span className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded">Machine Learning</span>
-                <span className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded">Derivative Pricing</span>
-                <span className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded">Risk Management</span>
+                <span className="px-2 py-1 text-xs rounded">Machine Learning</span>
+                <span className="px-2 py-1 text-xs rounded">Derivative Pricing</span>
+                <span className="px-2 py-1 text-xs rounded">Risk Management</span>
               </div>
             </div>
             <div className="border-l-4 border-zinc-300 dark:border-zinc-600 pl-6">

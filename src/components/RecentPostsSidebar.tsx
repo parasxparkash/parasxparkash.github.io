@@ -48,7 +48,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
       {post.tags && post.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-2">
           {post.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="px-1.5 py-0.5 text-[10px] bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 rounded">
+            <span key={tag} className="px-1.5 py-0.5 text-[10px] rounded">
               {tag}
             </span>
           ))}
@@ -58,7 +58,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
   )
 
   return (
-    <div className="w-full flex-shrink-0 flex flex-col h-full lg:bg-zinc-50 lg:dark:bg-zinc-800/30 lg:p-4 lg:rounded-lg">
+    <div className="w-full flex-shrink-0 flex flex-col h-full lg:p-4">
       {/* Pinned Post Section */}
       {topPosts.length > 0 && (
         <div>
@@ -100,8 +100,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
       {/* Footer - Email and Design credit */}
       <div className="border-t border-zinc-200 dark:border-zinc-700 mt-6 pt-4">
         <footer className="text-xs text-zinc-400 dark:text-zinc-500">
-          <div className="flex justify-between items-start mb-3">
-            <div></div>
+          <div className="flex justify-end items-start mb-3">
             <div className="text-right">
               <div className="mb-1">parasparkash@quantedx.com</div>
               <div>Design with nicotine and chai</div>
