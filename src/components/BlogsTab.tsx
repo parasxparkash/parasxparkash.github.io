@@ -10,7 +10,10 @@ import {
 } from '@/lib/post-utils'
 
 export default function BlogsTab() {
-  const { posts } = usePosts(5)
+  const { posts: allPosts } = usePosts()
+  const posts = allPosts
+    .filter((post) => post.category !== 'MEP Engineering')
+    .slice(0, 5)
 
   return (
     <section className="mb-12">

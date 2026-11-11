@@ -10,6 +10,7 @@ import SaaSTab from '@/components/SaaSTab'
 import ExperienceTab from '@/components/ExperienceTab'
 import EducationTab from '@/components/EducationTab'
 import BlogsTab from '@/components/BlogsTab'
+import MEPTab from '@/components/MEPTab'
 import RecentPostsSidebar from '@/components/RecentPostsSidebar'
 import ThemeToggle from '@/components/ThemeToggle'
 import RotatingText from '@/components/RotatingText'
@@ -22,6 +23,7 @@ const tabs = [
   { id: 'saas', label: 'SaaS' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
+  { id: 'mep', label: 'MEP' },
   { id: 'education', label: 'Education' },
   { id: 'blogs', label: 'Blogs' },
 ]
@@ -59,7 +61,8 @@ export default function Home() {
     ? (currentYear as ContributionYear)
     : contributionYears[contributionYears.length - 1]
   const [selectedYear, setSelectedYear] = useState<ContributionYear>(initialYear)
-  const { posts: topPosts } = usePosts(2)
+  const { posts: allTopPosts } = usePosts()
+  const topPosts = allTopPosts.filter((p) => p.category !== 'MEP Engineering').slice(0, 2)
   const { commits } = useCommits()
   const { pullRequests } = usePullRequests()
   const istTime = useISTClock()
@@ -171,6 +174,8 @@ export default function Home() {
         return <EducationTab />
       case 'blogs':
         return <BlogsTab />
+      case 'mep':
+        return <MEPTab />
       default:
         return <SaaSTab />
     }

@@ -34,7 +34,7 @@ export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebar
   }, [])
 
   const pinnedPostIds = new Set(topPosts.map((post) => post.id))
-  const recentPosts = posts.filter((post) => !pinnedPostIds.has(post.id))
+  const recentPosts = posts.filter((post) => !pinnedPostIds.has(post.id) && post.category !== 'MEP Engineering')
   const renderPostItem = (post: Pick<BlogPostSummary, 'id' | 'title' | 'tags' | 'external_url'>) => (
     <div key={post.id}>
       <a

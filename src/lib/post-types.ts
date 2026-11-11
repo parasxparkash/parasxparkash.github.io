@@ -5,6 +5,7 @@ export interface BlogPostSummary {
   description?: string
   content: string
   tags?: string[]
+  category?: string
   author?: string
   reading_time?: number
   image?: string
