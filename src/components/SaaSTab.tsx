@@ -5,7 +5,8 @@ export default function SaaSTab() {
       description: 'An investment optimization platform designed for Indian users to build and optimize their investment portfolios with quantitative strategies, featuring portfolio analytics and risk management tools.',
       tags: ['Portfolio Management', 'Investment', 'Optimization', 'Indian Markets'],
       website: 'https://quantbuilt.com',
-      status: 'active'
+      status: 'active',
+      building: true
     },
     {
       name: 'QuantifiedTrader',
@@ -20,14 +21,6 @@ export default function SaaSTab() {
       tags: ['Education', 'Quant Finance', 'Learning Platform', 'Courses'],
       website: 'https://quantedx.com',
       status: 'active'
-    },
-    {
-      name: 'QuantPype',
-      description: 'A self-hosted quant agents system for automated quantitative analysis and trading strategy development, providing a flexible framework for building and deploying intelligent trading agents.',
-      tags: ['AI Agents', 'Self-Hosted', 'Quant Analysis', 'Trading System', 'Automation'],
-      website: 'https://parasxparkash.github.io/quantpype',
-      status: 'active',
-      building: true
     }
   ]
 

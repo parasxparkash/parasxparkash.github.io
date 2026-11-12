@@ -354,14 +354,14 @@ export default function Home() {
               <span className="px-1.5 py-0.5 text-[10px] font-medium rounded">
                 building
               </span>
-              <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">QuantPype</h4>
+              <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">QuantBuilt</h4>
             </div>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Local AI agent-based trading platform with advanced automation and intelligent strategy execution</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Investment optimization platform for Indian users to build and optimize portfolios with quantitative strategies, portfolio analytics and risk management tools</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-1.5 py-0.5 text-[10px] rounded">Rust</span>
-              <span className="px-1.5 py-0.5 text-[10px] rounded">Electron</span>
-              <span className="px-1.5 py-0.5 text-[10px] rounded">AI Agents</span>
-              <span className="px-1.5 py-0.5 text-[10px] rounded">Trading Platform</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Portfolio Management</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Investment</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Optimization</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Indian Markets</span>
             </div>
           </div>
 

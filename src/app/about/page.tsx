@@ -68,15 +68,15 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100">Current Work</h2>
           <div className="lg:bg-zinc-50 lg:dark:bg-zinc-800/30 p-6 rounded-lg mb-6">
-            <h3 className="text-lg font-medium mb-2 text-zinc-900 dark:text-zinc-100">Building @QuantPype</h3>
+            <h3 className="text-lg font-medium mb-2 text-zinc-900 dark:text-zinc-100">Building @QuantBuilt</h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
-              A local AI agent-based trading platform with advanced automation and intelligent strategy execution
+              An investment optimization platform for Indian users to build and optimize portfolios with quantitative strategies, portfolio analytics and risk management tools
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 text-xs rounded">Rust</span>
-              <span className="px-2 py-1 text-xs rounded">Electron</span>
-              <span className="px-2 py-1 text-xs rounded">AI Agents</span>
-              <span className="px-2 py-1 text-xs rounded">Trading Platform</span>
+              <span className="px-2 py-1 text-xs rounded">Portfolio Management</span>
+              <span className="px-2 py-1 text-xs rounded">Investment</span>
+              <span className="px-2 py-1 text-xs rounded">Optimization</span>
+              <span className="px-2 py-1 text-xs rounded">Indian Markets</span>
             </div>
           </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -271,13 +271,6 @@ export default function AboutPage() {
               <h3 className="font-medium mb-2 text-zinc-900 dark:text-zinc-100">QuantEdX</h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 Educational platform offering courses on quantitative finance and algorithmic trading
-              </p>
-            </a>
-            <a href="https://parasxparkash.github.io/quantpype" target="_blank" rel="noopener noreferrer"
-               className="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors">
-              <h3 className="font-medium mb-2 text-zinc-900 dark:text-zinc-100">QuantPype</h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Self-hosted quant agents system for automated quantitative analysis and trading strategy development
               </p>
             </a>
           </div>
