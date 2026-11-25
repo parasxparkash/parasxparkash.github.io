@@ -1,37 +1,37 @@
 [
   {
-    "sha": "a663105",
-    "message": "Add brand-colored social icons and SaaS LinkedIn/X links.",
-    "date": "2026-06-13T11:59:40Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/a66310543f583ce5ef343aff909423ebbdb93198",
+    "sha": "5a9f67d",
+    "message": "Bake homepage data at build time so the site ships less and renders math without MathJax.",
+    "date": "2026-11-25T19:28:34Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/5a9f67d7bf4d8857b9b0d07aa0b06a4d910b55d5",
     "author": "parasxparkash"
   },
   {
-    "sha": "e415d76",
-    "message": "Fix ProjectsTab scrollRef type so production build passes.",
-    "date": "2026-06-11T07:46:19Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/e415d762bda8194c748a4656837fd7e216da1b35",
+    "sha": "515ce6d",
+    "message": "Replace QuantPype with QuantBuilt as the current building project.",
+    "date": "2026-11-12T21:05:20Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/515ce6d4f623a50988a706091756b0a4689ae564",
     "author": "parasxparkash"
   },
   {
-    "sha": "dfee5bb",
-    "message": "Move QuantPype to bottom and add building tag before its name.",
-    "date": "2026-06-11T07:36:22Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/dfee5bb0615e13abed8e8f44e608aa2e48943f29",
+    "sha": "819ac1f",
+    "message": "feat: add MEP engineering tab with pump, motor, and HVAC project pages",
+    "date": "2026-11-11T07:22:09Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/819ac1fe8fb373dfbec68d7e68129a2c3edf3cfb",
     "author": "parasxparkash"
   },
   {
-    "sha": "05ef4b2",
-    "message": "Align homepage sidebars and add scrollable Projects tab.",
-    "date": "2026-06-11T07:19:46Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/05ef4b27fe0ddd803b0ab56986a4b9e71986f703",
+    "sha": "70f60ef",
+    "message": "Remove Instagram link and show Co-Founded @QuantEdX Research in sidebar.",
+    "date": "2026-10-20T21:52:17Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/70f60ef81d8315c31c94c53d4391cebc2f14158a",
     "author": "parasxparkash"
   },
   {
-    "sha": "f93631d",
-    "message": "Improve site performance, social links, and GitHub data refresh.",
-    "date": "2026-06-11T06:34:14Z",
-    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/f93631d7affda9b8e4d5a87832b51a8633a16ce5",
+    "sha": "b70ee60",
+    "message": "Remove dead code, dedupe markup, and set location metadata to Banjara Hills, Hyderabad.",
+    "date": "2026-10-20T21:47:30Z",
+    "url": "https://github.com/parasxparkash/parasxparkash.github.io/commit/b70ee6025ea97acf03f8c625f3d4a2cb840f2ee7",
     "author": "parasxparkash"
   }
 ]
