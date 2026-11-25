@@ -355,7 +355,7 @@ export default function HomePage({ posts, commits, pullRequests }: HomePageProps
       </div>
 
         {/* Center Content Area */}
-        <div className="flex-1 flex flex-col min-h-full">
+        <div className="flex-1 flex flex-col min-h-full min-w-0">
           <div ref={centerAboveTabsRef} className="flex-shrink-0">
           {/* Header Section - Responsive layout */}
           <div className="animate-fade-in flex-shrink-0">
@@ -385,7 +385,7 @@ export default function HomePage({ posts, commits, pullRequests }: HomePageProps
                 </div>
               </div>
 
-              <div className="animate-fade-in animate-delay-300">
+              <div className="hidden lg:block animate-fade-in animate-delay-300">
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
                   Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
                 </p>
@@ -402,7 +402,7 @@ export default function HomePage({ posts, commits, pullRequests }: HomePageProps
                   {currentContributionCount} total in {selectedYear}
                 </span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {contributionYears.map((year) => (
                   <button
                     key={year}
@@ -432,13 +432,13 @@ export default function HomePage({ posts, commits, pullRequests }: HomePageProps
           {/* Tabs Section */}
           <div className="tab-scroll-container flex-1">
            <div ref={tabNavRef} className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
-             <div className="inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
+             <div className="flex w-full flex-wrap items-center gap-x-1 gap-y-1 mb-1">
                {tabs.map((tab) => (
                  <button
                    key={tab.id}
                    onClick={() => showTab(tab.id)}
                    type="button"
-                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-xs whitespace-nowrap ${
+                  className={`tab-button inline-flex items-center justify-center rounded-md px-2.5 py-1.5 text-xs whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'text-zinc-900 dark:text-zinc-100 font-medium lg:bg-zinc-50 lg:dark:bg-zinc-800/30'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:dark:hover:bg-zinc-800/20'

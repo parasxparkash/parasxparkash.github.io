@@ -243,21 +243,8 @@ html.disable-transitions *::after {
     text-align: center !important;
   }
 
-  /* Tab navigation optimization */
-  .inline-flex.h-9 {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-  }
-
-  .inline-flex.h-9::-webkit-scrollbar {
-    display: none;
-  }
-
   .tab-button {
-    white-space: nowrap !important;
-    min-width: fit-content !important;
-    padding: 0.75rem 1rem !important;
+    padding: 0.375rem 0.5rem;
   }
 
   /* Project items layout */
@@ -577,6 +564,33 @@ html.disable-transitions *::after {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
+}
+
+.post-content .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+@media (max-width: 767px) {
+  .post-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+.contribution-weeks {
+  display: grid;
+  grid-template-columns: repeat(var(--weeks), minmax(0, 1fr));
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .contribution-weeks {
+    grid-template-columns: repeat(var(--weeks), 7px);
+    width: max-content;
+  }
 }
 
 /* Scrollbar hide utility */

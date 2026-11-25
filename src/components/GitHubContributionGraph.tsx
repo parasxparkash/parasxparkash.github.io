@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { ContributionYear, getContributions } from '@/data/github/contributions'
 
 interface ContributionDay {
@@ -29,6 +30,21 @@ function expandWeeks(year: ContributionYear): ContributionDay[][] {
   )
 }
 
+function padWeek(week: ContributionDay[]): (ContributionDay | null)[] {
+  const cells: (ContributionDay | null)[] = Array(7).fill(null)
+  week.forEach((day) => {
+    cells[new Date(`${day.date}T00:00:00Z`).getUTCDay()] = day
+  })
+  return cells
+}
+
+function monthLabel(week: (ContributionDay | null)[], weekIndex: number) {
+  const firstOfMonth = week.find((day) => day?.date.endsWith('-01'))
+  const labeled = firstOfMonth ?? (weekIndex === 0 ? week.find((day) => day) : null)
+  if (!labeled) return ''
+  return months[Number(labeled.date.slice(5, 7)) - 1]
+}
+
 function getColor(count: number) {
   if (count === 0) return 'bg-zinc-100 dark:bg-zinc-800'
   if (count < 3) return 'bg-green-200 dark:bg-green-900'
@@ -38,78 +54,62 @@ function getColor(count: number) {
 }
 
 export default function GitHubContributionGraph({ year }: GitHubContributionGraphProps) {
-  const weeks = expandWeeks(year)
-  const monthLabels: { month: string; x: number }[] = []
-
-  weeks.forEach((week, weekIndex) => {
-    const firstDay = week[0]
-    if (!firstDay) return
-    const day = Number(firstDay.date.slice(8, 10))
-    const month = Number(firstDay.date.slice(5, 7)) - 1
-    if (day <= 7 && weekIndex > 0) {
-      monthLabels.push({
-        month: months[month],
-        x: weekIndex,
-      })
-    }
-  })
+  const weeks = expandWeeks(year).map(padWeek)
+  const weekStyle = { '--weeks': weeks.length } as CSSProperties
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-4xl overflow-x-auto overflow-y-hidden scrollbar-hide">
-        <div className="w-full min-w-[600px]" style={{ margin: '0 auto' }}>
-          <div className="flex mb-1 ml-6 relative" style={{ height: '16px' }}>
-            {monthLabels.map((label, i) => (
-              <div
-                key={i}
-                className="text-[10px] text-zinc-500 dark:text-zinc-400 absolute"
-                style={{
-                  left: `${label.x * 8.5 + 24}px`
-                }}
-              >
-                {label.month}
-              </div>
-            ))}
-          </div>
-
-          <div className="flex gap-0.5">
-            <div className="flex flex-col gap-0.5 text-[10px] text-zinc-500 dark:text-zinc-400 pr-1.5">
-              <div style={{ height: '7px' }}></div>
-              <div style={{ height: '7px' }}>Mon</div>
-              <div style={{ height: '7px' }}></div>
-              <div style={{ height: '7px' }}>Wed</div>
-              <div style={{ height: '7px' }}></div>
-              <div style={{ height: '7px' }}>Fri</div>
-              <div style={{ height: '7px' }}></div>
+    <div className="w-full min-w-0">
+      <div className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-1">
+        <div />
+        <div className="contribution-weeks text-[8px] leading-none text-zinc-500 dark:text-zinc-400 sm:text-[10px]" style={weekStyle}>
+          {weeks.map((week, index) => (
+            <div key={index} className="overflow-visible whitespace-nowrap">
+              {monthLabel(week, index)}
             </div>
+          ))}
+        </div>
 
-            <div className="flex gap-0.5">
-              {weeks.map((week, weekIndex) => (
-                <div key={weekIndex} className="flex flex-col gap-0.5">
-                  {week.map((day) => (
-                    <div
-                      key={day.date}
-                      className={`w-[7px] h-[7px] rounded-sm ${getColor(day.contributionCount)} hover:ring-1 hover:ring-zinc-400 dark:hover:ring-zinc-500 cursor-pointer`}
-                      title={`${day.contributionCount} contributions on ${day.date}`}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 mt-3 text-[10px] text-zinc-500 dark:text-zinc-400">
-            <span>Less</span>
-            <div className="flex gap-0.5">
-              <div className="w-[7px] h-[7px] rounded-sm bg-zinc-100 dark:bg-zinc-800"></div>
-              <div className="w-[7px] h-[7px] rounded-sm bg-green-200 dark:bg-green-900"></div>
-              <div className="w-[7px] h-[7px] rounded-sm bg-green-300 dark:bg-green-700"></div>
-              <div className="w-[7px] h-[7px] rounded-sm bg-green-400 dark:bg-green-600"></div>
-              <div className="w-[7px] h-[7px] rounded-sm bg-green-500 dark:bg-green-500"></div>
-            </div>
-            <span>More</span>
+        <div className="relative">
+          <div className="absolute inset-0 grid grid-rows-7 text-[8px] leading-none text-zinc-500 dark:text-zinc-400 sm:text-[10px]">
+            <span />
+            <span className="self-center">Mon</span>
+            <span />
+            <span className="self-center">Wed</span>
+            <span />
+            <span className="self-center">Fri</span>
+            <span />
           </div>
         </div>
+
+        <div className="contribution-weeks min-w-0 gap-0 lg:gap-0.5" style={weekStyle}>
+          {weeks.map((week, weekIndex) => (
+            <div key={weekIndex} className="grid grid-rows-7 gap-0 lg:gap-0.5">
+              {week.map((day, dayIndex) => (
+                day ? (
+                  <div
+                    key={day.date}
+                    className={`aspect-square w-full min-w-0 rounded-[2px] ${getColor(day.contributionCount)}`}
+                    title={`${day.contributionCount} contributions on ${day.date}`}
+                  />
+                ) : (
+                  <div key={`empty-${weekIndex}-${dayIndex}`} className="aspect-square w-full min-w-0" />
+                )
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-2 flex items-center gap-2 text-[10px] text-zinc-500 dark:text-zinc-400">
+        <span>Less</span>
+        <div className="flex gap-0.5">
+          <div className="h-[7px] w-[7px] rounded-sm bg-zinc-100 dark:bg-zinc-800" />
+          <div className="h-[7px] w-[7px] rounded-sm bg-green-200 dark:bg-green-900" />
+          <div className="h-[7px] w-[7px] rounded-sm bg-green-300 dark:bg-green-700" />
+          <div className="h-[7px] w-[7px] rounded-sm bg-green-400 dark:bg-green-600" />
+          <div className="h-[7px] w-[7px] rounded-sm bg-green-500" />
+        </div>
+        <span>More</span>
       </div>
     </div>
   )
