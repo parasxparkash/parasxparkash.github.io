@@ -46,6 +46,10 @@ export function getPostExcerpt(post: Pick<BlogPostSummary, 'description' | 'cont
     return post.description
   }
 
+  if (!post.content) {
+    return ''
+  }
+
   return `${post.content.substring(0, 150).replace(/[#*`]/g, '').trim()}...`
 }
 

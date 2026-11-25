@@ -3,7 +3,7 @@ export interface BlogPostSummary {
   title: string
   date: string
   description?: string
-  content: string
+  content?: string
   tags?: string[]
   category?: string
   author?: string

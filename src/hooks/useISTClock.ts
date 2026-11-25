@@ -24,21 +24,31 @@ export function useISTClock() {
       setTime(`${dayString}, ${timeString} IST`)
     }
 
-    updateISTClock()
-    const clockInterval = setInterval(updateISTClock, 1000)
-    
+    let clockInterval = 0
+
+    const start = () => {
+      updateISTClock()
+      clockInterval = window.setInterval(updateISTClock, 1000)
+    }
+
+    const stop = () => {
+      window.clearInterval(clockInterval)
+    }
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        clearInterval(clockInterval)
+        stop()
       } else {
-        updateISTClock()
+        stop()
+        start()
       }
     }
-    
+
+    start()
     document.addEventListener('visibilitychange', handleVisibilityChange)
 
     return () => {
-      clearInterval(clockInterval)
+      stop()
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [])

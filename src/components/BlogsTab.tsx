@@ -1,6 +1,4 @@
-'use client'
-
-import { usePosts } from '@/hooks/usePosts'
+import { BlogPostSummary } from '@/lib/post-types'
 import {
   formatPostMonthYear,
   getPostExcerpt,
@@ -9,8 +7,7 @@ import {
   isExternalPost
 } from '@/lib/post-utils'
 
-export default function BlogsTab() {
-  const { posts: allPosts } = usePosts()
+export default function BlogsTab({ posts: allPosts }: { posts: BlogPostSummary[] }) {
   const posts = allPosts
     .filter((post) => post.category !== 'MEP Engineering')
     .slice(0, 5)
@@ -22,7 +19,7 @@ export default function BlogsTab() {
           <li
             key={post.id}
             className="animate-slide-left"
-            style={{ animationDelay: `${(index + 1) * 100}ms` }}
+            style={{ animationDelay: `${index * 40}ms` }}
           >
             <article className="group hover:translate-x-1 transition-transform duration-150 ease-out">
               <div className="flex items-baseline justify-between mb-1">

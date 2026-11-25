@@ -13,7 +13,7 @@ module.exports = {
       },
       animation: {
         'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'slide-left': 'slideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'slide-left': 'slideLeft 0.38s cubic-bezier(0.22, 1, 0.36, 1) both',
         'blink': 'blink 1.5s ease-in-out infinite',
       },
       keyframes: {
@@ -22,8 +22,8 @@ module.exports = {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         blink: {
           '0%, 100%': { opacity: '1' },

@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import '@fontsource/inter/latin.css'
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-500.css'
+import '@fontsource/inter/latin-600.css'
+import '@fontsource/inter/latin-700.css'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -92,9 +95,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        {/* Preconnect to external domains - only for resources we actually use */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-
         {/* Prevent flash of incorrect theme - Default to light theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -113,8 +113,6 @@ export default function RootLayout({
             `,
           }}
         />
-
-        {/* MathJax will be loaded dynamically when needed on post pages via MathJaxLoader component */}
 
         {/* JSON-LD Structured Data */}
         <script

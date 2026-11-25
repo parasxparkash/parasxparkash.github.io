@@ -65,7 +65,7 @@ export default function MEPTab() {
           <div
             key={project.id}
             className="animate-slide-left"
-            style={{ animationDelay: `${Math.min((index + 1) * 50, 400)}ms` }}
+            style={{ animationDelay: `${Math.min(index, 10) * 40}ms` }}
           >
             <div className="group hover:translate-x-1 transition-transform duration-150 ease-out">
               <div className="flex items-baseline gap-2 mb-1 flex-wrap">

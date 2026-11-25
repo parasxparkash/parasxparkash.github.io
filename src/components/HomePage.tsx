@@ -1,0 +1,479 @@
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
+import { BlogPostSummary } from '@/lib/post-types'
+import { contributionYears, ContributionYear, getContributions } from '@/data/github/contributions'
+import RecentPostsSidebar from '@/components/RecentPostsSidebar'
+import ThemeToggle from '@/components/ThemeToggle'
+import RotatingText from '@/components/RotatingText'
+import SocialLinks from '@/components/SocialLinks'
+import GitHubContributionGraph from '@/components/GitHubContributionGraph'
+import ActivityList, { ActivityItem } from '@/components/ActivityList'
+import IstClock from '@/components/IstClock'
+import SaaSTab from '@/components/SaaSTab'
+import Image from 'next/image'
+
+const tabFallback = () => <div className="h-24" />
+
+const ProjectsTab = dynamic(() => import('@/components/ProjectsTab'), { loading: tabFallback })
+const ExperienceTab = dynamic(() => import('@/components/ExperienceTab'), { loading: tabFallback })
+const EducationTab = dynamic(() => import('@/components/EducationTab'), { loading: tabFallback })
+const BlogsTab = dynamic(() => import('@/components/BlogsTab'), { loading: tabFallback })
+const MEPTab = dynamic(() => import('@/components/MEPTab'), { loading: tabFallback })
+
+const tabs = [
+  { id: 'saas', label: 'SaaS' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'mep', label: 'MEP' },
+  { id: 'education', label: 'Education' },
+  { id: 'blogs', label: 'Blogs' },
+]
+
+interface Commit {
+  sha: string
+  message: string
+  date: string
+  url: string
+  author: string
+}
+
+interface PullRequest {
+  number: number
+  title: string
+  state: string
+  date: string
+  url: string
+  author: string
+}
+
+interface HomePageProps {
+  posts: BlogPostSummary[]
+  commits: Commit[]
+  pullRequests: PullRequest[]
+}
+const resourceLinks = [
+  {
+    label: 'Maths Notes',
+    href: 'https://eigenotes.vercel.app',
+    title: 'Eigenotes',
+    cta: 'Eigenotes'
+  },
+  {
+    label: 'Self Quantization',
+    href: 'https://stoicjournals.netlify.app/u/parasparkash',
+    title: 'StoicJournal',
+    cta: 'StoicJournal'
+  },
+  {
+    label: 'CS/Architecture Notes',
+    href: 'https://parasparkash.notion.site',
+    title: 'CS/Architecture Notes',
+    cta: 'Notion'
+  }
+] as const
+
+function getContributionLink(year: ContributionYear) {
+  return `https://github.com/parasxparkash?tab=overview&from=${year}-01-01&to=${year}-12-31`
+}
+
+export default function HomePage({ posts, commits, pullRequests }: HomePageProps) {
+  const [activeTab, setActiveTab] = useState('saas')
+  const currentYear = new Date().getFullYear()
+  const initialYear = contributionYears.includes(currentYear as ContributionYear)
+    ? (currentYear as ContributionYear)
+    : contributionYears[contributionYears.length - 1]
+  const [selectedYear, setSelectedYear] = useState<ContributionYear>(initialYear)
+  const topPosts = posts.filter((p) => p.category !== 'MEP Engineering').slice(0, 2)
+  const commitItems: ActivityItem[] = commits.slice(0, 4).map((commit) => ({
+    id: commit.sha,
+    href: commit.url,
+    title: commit.message,
+    label: commit.sha,
+    date: commit.date,
+  }))
+  const pullRequestItems: ActivityItem[] = pullRequests.slice(0, 2).map((pr) => ({
+    id: String(pr.number),
+    href: pr.url,
+    title: pr.title,
+    label: `#${pr.number}`,
+    date: pr.date,
+  }))
+  const currentContributionCount = getContributions(selectedYear).total
+  const leftSidebarRef = useRef<HTMLDivElement>(null)
+  const centerAboveTabsRef = useRef<HTMLDivElement>(null)
+  const tabNavRef = useRef<HTMLDivElement>(null)
+  const projectsScrollRef = useRef<HTMLDivElement>(null)
+  const [projectsScrollHeight, setProjectsScrollHeight] = useState<number | null>(null)
+
+  useEffect(() => {
+    const updateProjectsScrollHeight = () => {
+      if (window.innerWidth < 1024) {
+        setProjectsScrollHeight(null)
+        return
+      }
+
+      const sidebar = leftSidebarRef.current
+      const aboveTabs = centerAboveTabsRef.current
+      const tabNav = tabNavRef.current
+
+      if (!sidebar || !aboveTabs || !tabNav) return
+
+      const height = sidebar.offsetHeight - aboveTabs.offsetHeight - tabNav.offsetHeight
+      setProjectsScrollHeight(Math.max(height, 120))
+    }
+
+    updateProjectsScrollHeight()
+
+    const resizeObserver = new ResizeObserver(updateProjectsScrollHeight)
+    ;[leftSidebarRef, centerAboveTabsRef, tabNavRef].forEach((ref) => {
+      if (ref.current) resizeObserver.observe(ref.current)
+    })
+
+    window.addEventListener('resize', updateProjectsScrollHeight)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateProjectsScrollHeight)
+    }
+  }, [commits.length, pullRequests.length, currentContributionCount, selectedYear, activeTab])
+
+  const showTab = (tabName: string) => {
+    setActiveTab(tabName)
+    if (projectsScrollRef.current) {
+      projectsScrollRef.current.scrollTop = 0
+    }
+  }
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'saas':
+        return <SaaSTab />
+      case 'projects':
+        return (
+          <ProjectsTab
+            scrollRef={projectsScrollRef}
+            maxHeight={projectsScrollHeight}
+          />
+        )
+      case 'experience':
+        return <ExperienceTab />
+      case 'education':
+        return <EducationTab />
+      case 'blogs':
+        return <BlogsTab posts={posts} />
+      case 'mep':
+        return <MEPTab />
+      default:
+        return <SaaSTab />
+    }
+  }
+
+  return (
+    <main className="text-zinc-900 dark:text-zinc-100 max-w-7xl mx-auto px-4 py-10 flex flex-col bg-white dark:bg-zinc-900 min-h-screen overflow-x-hidden">
+      <div className="flex gap-12 flex-1 flex-col lg:flex-row lg:items-stretch overflow-x-hidden">
+        {/* Left Sidebar */}
+        <div
+          ref={leftSidebarRef}
+          className="w-72 lg:flex-shrink-0 lg:self-stretch mb-8 lg:mb-0 flex flex-col lg:h-full lg:p-4"
+        >
+          {/* Profile Image */}
+          <div className="mb-2 flex justify-center">
+            <Image
+              src="/assets/profile-optimized.webp"
+              alt="Profile"
+              width={160}
+              height={160}
+              className="w-40 h-40 rounded-full object-cover border-2 border-zinc-200 dark:border-zinc-700"
+              priority={false}
+            />
+          </div>
+
+          {/* Single Column Layout: Image → Name → Social Icons → Location + Animation → Time → Headline → Description */}
+          <div className="lg:hidden text-center mb-4">
+            {/* Name */}
+            <h1 className="text-xl font-medium tracking-tight mb-3">Paras Parkash</h1>
+
+            {/* Social Icons */}
+            <div className="mb-3 flex justify-center">
+              <SocialLinks variant="mobile" />
+            </div>
+
+            {/* Location + Building/Testing/Merging Animation */}
+            <div className="flex flex-col items-center gap-2 mb-2">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Banjara Hills, Hyderabad, India 
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-bold">
+                  <RotatingText items={['building', 'testing', 'merging']} />
+                </p>
+              </div>
+            </div>
+
+            {/* Time */}
+            <IstClock className="text-xs text-zinc-500 dark:text-zinc-400 font-normal mb-3" />
+
+            {/* Headline Text */}
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-3 text-justify">
+              Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
+            </p>
+
+            {/* Description Text */}
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-2 text-justify">
+              Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
+            </p>
+
+            {/* About Me Link - Mobile */}
+            <div className="flex mb-4">
+              <a
+                href="/about"
+                className="group inline-flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                title="View full About Me page"
+              >
+                <span className="font-semibold">About Me</span>
+                <svg 
+                  className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Eigenotes and Stoic Journal Links - Mobile */}
+            <div className="flex flex-col items-start gap-2 mb-4 w-full max-w-xs">
+              {resourceLinks.map((link) => (
+                <div key={link.label} className="flex items-center gap-2 text-xs">
+                  <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-0.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                    title={link.title}
+                  >
+                    {link.cta}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* About Me Section - Desktop only */}
+          <h3 className="text-sm font-medium mb-2 text-zinc-900 dark:text-zinc-100 hidden lg:block">About Me</h3>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 text-justify hidden lg:block">
+            Proficient in developing and implementing profitable High-Frequency Trading (HFT) and Medium-Frequency Trading (MFT) strategies, as well as portfolio construction, while incorporating ML/AI techniques for high accuracy. Proven ability to leverage advanced statistical methods, low-latency systems, and performance optimization for alpha generation and risk management.
+          </p>
+
+          {/* About Me Link - Desktop */}
+          <div className="hidden lg:flex mb-3">
+            <a
+              href="/about"
+              className="group inline-flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              title="View full About Me page"
+            >
+              <span className="font-semibold">Read more</span>
+              <svg 
+                className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Eigenotes and Stoic Journal Links - Desktop */}
+          <div className="hidden lg:flex flex-col items-start gap-2 mt-3 mb-1">
+            {resourceLinks.map((link) => (
+              <div key={link.label} className="flex items-center gap-2 text-xs">
+                <span className="text-zinc-600 dark:text-zinc-400">{link.label} →</span>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-0.5 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors font-medium"
+                  title={link.title}
+                >
+                  {link.cta}
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
+
+        {/* Current Company Section */}
+        <div className="mb-4">
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1">
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">Co-Founded</span> @QuantEdX Research
+          </p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">2023 - Present</p>
+        </div>
+
+        <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4 hidden lg:block"></div>
+
+        {/* Recent Commits Section - Desktop only */}
+        {commitItems.length > 0 && (
+          <div className="mb-4 hidden lg:block">
+            <ActivityList title="Recent Commits" items={commitItems} dotClassName="bg-green-500" />
+          </div>
+        )}
+
+        {/* Recent Pull Requests Section - Desktop only */}
+        {pullRequestItems.length > 0 && (
+          <div className="mb-4 hidden lg:block">
+            <ActivityList title="Recent Pull Requests" items={pullRequestItems} dotClassName="bg-purple-500" />
+          </div>
+        )}
+
+        <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
+
+          {/* Current Project Section */}
+          <div className="mb-1 mt-auto">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="px-1.5 py-0.5 text-[10px] font-medium rounded">
+                building
+              </span>
+              <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">QuantBuilt</h4>
+            </div>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-3 text-justify">Investment optimization platform for Indian users to build and optimize portfolios with quantitative strategies, portfolio analytics and risk management tools</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Portfolio Management</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Investment</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Optimization</span>
+              <span className="px-1.5 py-0.5 text-[10px] rounded">Indian Markets</span>
+            </div>
+          </div>
+
+      </div>
+
+        {/* Center Content Area */}
+        <div className="flex-1 flex flex-col min-h-full">
+          <div ref={centerAboveTabsRef} className="flex-shrink-0">
+          {/* Header Section - Responsive layout */}
+          <div className="animate-fade-in flex-shrink-0">
+            <section className="mb-6">
+              {/* Mobile: Show only description above tabs, name/location/icons are in sidebar */}
+              <div className="hidden md:block animate-fade-in animate-delay-200">
+                <div className="flex items-baseline justify-between gap-4 mb-4">
+                  <h1 className="text-2xl font-medium tracking-tight flex items-center gap-2">
+                    Paras Parkash
+                    <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 font-bold leading-none">
+                      <span className="w-2 h-2 bg-green-500 rounded-full animate-blink"></span>
+                      <span className="leading-none">
+                        <RotatingText items={['merging', 'testing', 'building']} />
+                      </span>
+                    </span>
+                  </h1>
+                  <div className="flex items-center gap-4">
+                    <SocialLinks />
+                    <ThemeToggle />
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Banjara Hills, Hyderabad, India
+                  </p>
+                  <IstClock className="text-xs text-zinc-500 dark:text-zinc-400 font-normal" />
+                </div>
+              </div>
+
+              <div className="animate-fade-in animate-delay-300">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-xl mb-4 text-justify">
+                  Developing Quantitative Models for Hedging using Derivatives leveraging Agentic AI for Risk Management and Market Screening
+                </p>
+              </div>
+            </section>
+          </div>
+
+          {/* GitHub Contributions */}
+          <section className="mb-4 flex-shrink-0">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-3">
+                <h3 className="text-sm font-medium">GitHub Contributions</h3>
+                <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                  {currentContributionCount} total in {selectedYear}
+                </span>
+              </div>
+              <div className="flex gap-2">
+                {contributionYears.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setSelectedYear(year)}
+                    className={`px-3 py-1 text-xs rounded ${
+                      selectedYear === year
+                        ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium'
+                        : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                    }`}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <a
+              href={getContributionLink(selectedYear)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full max-w-3xl mx-auto"
+            >
+              <GitHubContributionGraph year={selectedYear} />
+            </a>
+          </section>
+          </div>
+
+          {/* Tabs Section */}
+          <div className="tab-scroll-container flex-1">
+           <div ref={tabNavRef} className="animate-fade-in animate-delay-200 sticky top-0 bg-white dark:bg-zinc-900 z-10">
+             <div className="inline-flex h-9 w-full items-center justify-start rounded-lg mb-1 border-none bg-transparent p-0 overflow-x-auto scrollbar-hide">
+               {tabs.map((tab) => (
+                 <button
+                   key={tab.id}
+                   onClick={() => showTab(tab.id)}
+                   type="button"
+                  className={`tab-button inline-flex h-[calc(100%-1px)] items-center justify-start gap-1.5 rounded-md px-3 py-1.5 text-xs whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? 'text-zinc-900 dark:text-zinc-100 font-medium lg:bg-zinc-50 lg:dark:bg-zinc-800/30'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 lg:dark:hover:bg-zinc-800/20'
+                  }`}
+                 >
+                   {tab.label}
+                 </button>
+               ))}
+              </div>
+              {/* Demarcating Line - Just below tab items with small gap */}
+              <div className="border-b border-zinc-200 dark:border-zinc-700 mb-4"></div>
+            </div>
+
+            {/* Tab Content - Left aligned with minimal padding */}
+            <div key={activeTab} className="pl-2 pb-12">
+              {renderTabContent()}
+            </div>
+          </div>
+
+          {/* Recent Commits and Pull Requests - Mobile only (at bottom) */}
+          <div className="lg:hidden mt-8 space-y-6">
+            {commitItems.length > 0 && (
+              <ActivityList title="Recent Commits" items={commitItems} dotClassName="bg-green-500" />
+            )}
+            {pullRequestItems.length > 0 && (
+              <ActivityList title="Recent Pull Requests" items={pullRequestItems} dotClassName="bg-purple-500" />
+            )}
+          </div>
+        </div>
+
+        {/* Right Sidebar - Hidden on tablet (md), visible on desktop (lg+) */}
+        <div className="hidden lg:flex lg:flex-col lg:self-stretch w-72 lg:flex-shrink-0">
+          <RecentPostsSidebar posts={posts} topPosts={topPosts} />
+        </div>
+      </div>
+    </main>
+  )
+}

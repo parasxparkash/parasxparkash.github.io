@@ -2,7 +2,7 @@ export default function ExperienceTab() {
   return (
     <section className="mb-12">
       <ul className="space-y-8">
-            <div className="animate-slide-left animate-delay-100">
+            <div className="animate-slide-left" style={{ animationDelay: '0ms' }}>
               <li className="group">
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">Quantitative Researcher | Educator</h3>
@@ -19,7 +19,7 @@ export default function ExperienceTab() {
               </li>
             </div>
 
-            <div className="animate-slide-left animate-delay-200">
+            <div className="animate-slide-left" style={{ animationDelay: '40ms' }}>
               <li className="group">
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">Section Engineer</h3>
@@ -36,7 +36,7 @@ export default function ExperienceTab() {
               </li>
             </div>
 
-            <div className="animate-slide-left animate-delay-300">
+            <div className="animate-slide-left" style={{ animationDelay: '80ms' }}>
               <li className="group">
                 <div className="flex items-baseline justify-between mb-1">
                   <h3 className="text-xs font-medium text-zinc-600 dark:text-zinc-400">Assistant Manager</h3>

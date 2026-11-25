@@ -1,16 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePosts } from '@/hooks/usePosts'
 import { BlogPostSummary } from '@/lib/post-types'
 import { getPostHref, isExternalPost } from '@/lib/post-utils'
 
 interface RecentPostsSidebarProps {
+  posts: BlogPostSummary[]
   topPosts?: BlogPostSummary[]
 }
 
-export default function RecentPostsSidebar({ topPosts = [] }: RecentPostsSidebarProps) {
-  const { posts } = usePosts()
+export default function RecentPostsSidebar({ posts, topPosts = [] }: RecentPostsSidebarProps) {
   const [currentDateTime, setCurrentDateTime] = useState(
     new Date().toLocaleString('en-IN', {
       dateStyle: 'medium',

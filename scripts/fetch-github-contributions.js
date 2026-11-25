@@ -70,6 +70,24 @@ async function fetchContributions(username, year) {
   return data.data.user.contributionsCollection.contributionCalendar;
 }
 
+function compactCalendar(calendar) {
+  const days = calendar.weeks.flatMap((week) => week.contributionDays);
+
+  return {
+    total: calendar.totalContributions,
+    start: days[0]?.date,
+    weeks: calendar.weeks.map((week) => week.contributionDays.map((day) => day.contributionCount)),
+  };
+}
+
+function dataDir() {
+  const dir = path.join(process.cwd(), 'src', 'data', 'github');
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  return dir;
+}
+
 const BOT_COMMIT_PATTERN = /^Update GitHub data/i;
 
 async function fetchRecentCommits(owner, repo) {
@@ -132,19 +150,11 @@ async function saveContributions(year) {
   console.log(`Fetching contributions for ${year}...`);
   
   try {
-    const contributions = await fetchContributions(GITHUB_USERNAME, year);
-    
-    // Create public/data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), 'public', 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
+    const contributions = compactCalendar(await fetchContributions(GITHUB_USERNAME, year));
+    const filePath = path.join(dataDir(), `contributions-${year}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(contributions));
 
-    // Save to JSON file
-    const filePath = path.join(dataDir, `contributions-${year}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(contributions, null, 2));
-    
-    console.log(`✓ Saved ${contributions.totalContributions} contributions for ${year}`);
+    console.log(`✓ Saved ${contributions.total} contributions for ${year}`);
     return contributions;
   } catch (error) {
     console.error(`✗ Error fetching contributions for ${year}:`, error.message);
@@ -157,15 +167,7 @@ async function saveCommits() {
   
   try {
     const commits = await fetchRecentCommits(GITHUB_USERNAME, GITHUB_REPO);
-    
-    // Create public/data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), 'public', 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    // Save to JSON file
-    const filePath = path.join(dataDir, 'commits.json');
+    const filePath = path.join(dataDir(), 'commits.json');
     fs.writeFileSync(filePath, JSON.stringify(commits, null, 2));
     
     console.log(`✓ Saved ${commits.length} recent commits`);
@@ -181,13 +183,7 @@ async function savePullRequests() {
 
   try {
     const pullRequests = await fetchRecentPullRequests(GITHUB_USERNAME, GITHUB_REPO);
-
-    const dataDir = path.join(process.cwd(), 'public', 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    const filePath = path.join(dataDir, 'pull-requests.json');
+    const filePath = path.join(dataDir(), 'pull-requests.json');
     fs.writeFileSync(filePath, JSON.stringify(pullRequests, null, 2));
 
     console.log(`✓ Saved ${pullRequests.length} recent pull requests`);

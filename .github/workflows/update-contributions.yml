@@ -8,7 +8,7 @@ on:
     branches: ["main"]
     paths:
       - 'src/**'
-      - 'public/posts/**'
+      - 'content/posts/**'
       - 'public/external-posts.json'
   workflow_dispatch: # Allow manual trigger
 
@@ -39,13 +39,13 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code src/data/github/ || echo "changed=true" >> $GITHUB_OUTPUT
       
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/data/
+          git add src/data/github/
           git commit -m "Update GitHub data (contributions, commits & pull requests)"
           git push

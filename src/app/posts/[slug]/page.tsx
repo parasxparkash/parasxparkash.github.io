@@ -2,10 +2,11 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPostData, getAllPostIds } from '@/lib/posts'
 import TableOfContents from '@/components/TableOfContents'
-import MathJaxLoader from '@/components/MathJaxLoader'
-import MathJaxTypeset from '@/components/MathJaxTypeset'
 import ThemeToggle from '@/components/ThemeToggle'
 import Image from 'next/image'
+import 'katex/dist/katex.min.css'
+import 'highlight.js/styles/github.css'
+import '../highlight-dark.css'
 
 interface PostPageProps {
   params: {
@@ -24,10 +25,10 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 
     return {
       title: postData.title,
-      description: postData.description || postData.content.substring(0, 160),
+      description: postData.description || postData.content?.substring(0, 160) || '',
       openGraph: {
         title: postData.title,
-        description: postData.description || postData.content.substring(0, 160),
+        description: postData.description || postData.content?.substring(0, 160) || '',
         url: `https://parasparkash.github.io/posts/${params.slug}`,
         type: 'article',
         publishedTime: postData.date,
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       twitter: {
         card: 'summary_large_image',
         title: postData.title,
-        description: postData.description || postData.content.substring(0, 160),
+        description: postData.description || postData.content?.substring(0, 160) || '',
         images: postData.image ? [postData.image.startsWith('http') ? postData.image : `https://parasparkash.github.io${postData.image}`] : undefined,
       },
       alternates: {
@@ -72,7 +73,7 @@ export default async function Post({ params }: PostPageProps) {
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": postData.title,
-            "description": postData.description || postData.content.substring(0, 160),
+            "description": postData.description || postData.content?.substring(0, 160) || '',
             "image": postData.image ? [postData.image.startsWith('http') ? postData.image : `https://parasparkash.github.io${postData.image}`] : undefined,
             "datePublished": postData.date,
             "dateModified": postData.date,
@@ -129,8 +130,6 @@ export default async function Post({ params }: PostPageProps) {
       />
 
       <main className="text-zinc-900 dark:text-zinc-100 max-w-[1400px] mx-auto px-4 py-4 flex flex-col overflow-x-hidden bg-white dark:bg-zinc-900 min-h-screen">
-        {/* Load MathJax only on post pages */}
-        <MathJaxLoader />
       {/* Back to Home Button at Top */}
       <div className="mb-4">
         <a href="/" className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
@@ -206,8 +205,10 @@ export default async function Post({ params }: PostPageProps) {
                 </figure>
               )}
 
-              {/* Content with MathJax typesetting */}
-              <MathJaxTypeset content={postData.contentHtml} />
+              <div
+                className="post-content max-w-none"
+                dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+              />
 
             </article>
           </div>

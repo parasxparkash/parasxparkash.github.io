@@ -31,7 +31,7 @@ export default function SaaSTab() {
       <div className="space-y-8">
         <ul className="space-y-8">
           {projects.map((project, index) => (
-            <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${(index + 1) * 100}ms` }}>
+            <div key={project.name} className="animate-slide-left" style={{ animationDelay: `${index * 40}ms` }}>
               <li className="group hover:translate-x-1 transition-transform duration-150 ease-out">
                 <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                   {'building' in project && project.building && (
